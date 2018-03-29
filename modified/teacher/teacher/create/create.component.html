@@ -1,0 +1,35 @@
+<div align="right" style="padding-bottom: 20px;" data-toggle="modal" data-target="#myModal">
+  <button class="btn">+ Add Question</button>
+</div>
+<div id="myModal" class="modal fade" role="dialog">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal">&times;</button>
+        <h4 class="modal-title">Create Teacher Form</h4>
+      </div>
+      <div class="modal-body">
+        <div>
+          <textarea class="form-control" style="height:90px" [(ngModel)]="TempQue.Text">Enter Question in Space provided</textarea>
+          <form>
+            <input type="radio" name="gender" value="male" checked ><input type="text" name="m" [(ngModel)]="TempQue.Option1"/> <br />
+            <input type="radio" name="gender" value="female"  ><input type="text" name="f" [(ngModel)]="TempQue.Option2"/><br />
+            <input type="radio" name="gender" value="other" > <input type="text" name="other_reason" [(ngModel)]="TempQue.Option3"/><br />
+            <input type="radio" name="gender" value="other" ><input type="text" name="not say" [(ngModel)]="TempQue.Option4"/><br />
+          </form>
+        </div>
+      </div>
+      <div class="modal-footer">
+        <div class="form-group pull-right">
+        <button id="button79" type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+        </div>
+        <div class="form-group pull-right">
+        <button id="button72" type="button" class="btn btn-default" (click)="Adding()">Add to Quiz</button>
+        </div>
+        <div class="form-group pull-right">
+        <button id="button77" type="button" class="btn btn-default" (click)="Add()">Reset</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
