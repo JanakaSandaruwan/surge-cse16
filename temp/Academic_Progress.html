@@ -1,0 +1,344 @@
+<html>
+<head>
+  <title>
+    SurgeOrb.com
+  </title>
+
+  <!-- Latest compiled and minified CSS -->
+
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+
+    <!-- jQuery library -->
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+
+    <!-- Latest compiled JavaScript -->
+
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    <link rel="stylesheet" href="examstyle.css">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <meta name="distributor" content="Global" />
+    <meta itemprop="contentRating" content="General" />
+    <meta name="robots" content="All" />
+    <meta name="revisit-after" content="7 days" />
+    <meta name="description" content="The source of truly unique and awesome jquery plugins." />
+    <meta name="keywords" content="slider, carousel, responsive, swipe, one to one movement, touch devices, jquery, plugin, bootstrap compatible, html5, css3" />
+    <meta name="author" content="w3widgets.com">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href='http://fonts.googleapis.com/css?family=Economica' rel='stylesheet' type='text/css'>
+    <!-- Bootstrap -->
+    <link rel="stylesheet" href="http://netdna.bootstrapcdn.com/bootstrap/3.0.3/css/bootstrap.min.css">
+    <!-- Respomsive slider -->
+    <link href="responsive-calendar.css" rel="stylesheet">
+    <link rel="shortcut icon" href="icon.png" type="image/x-icon" />
+    <style>
+    body {
+  padding-top: 50px;
+  overflow: hidden;
+}
+#wrapper {
+  min-height: 100%;
+  height: 100%;
+  width: 100%;
+  position: absolute;
+  top: 35px;
+  left: 0;
+  display: inline-block;
+  background-color: #D6EAF8;
+}
+#main-wrapper {
+  height: 100%;
+  overflow-y: auto;
+  padding: 50px 0 0px 0;
+}
+#main {
+  position: relative;
+  height: 100%;
+  overflow-y: auto;
+  padding: 0 15px;
+}
+#sidebar-wrapper {
+  height: 100%;
+  padding: 50px 0 0px 0;
+  position: fixed;
+  border-right: 1px solid gray;
+  background-color: tan;
+}
+#sidebar {
+  position: relative;
+  height: 100%;
+  overflow:auto;
+}
+#sidebar .list-group-item {
+      border-radius: 0;
+      border-left: 0;
+      border-right: 0;
+      border-top: 0;
+      background-color: tan;
+      color : white;
+}
+@media (max-width: 992px) {
+  body {
+      padding-top: 0px;
+  }
+}
+@media (min-width: 992px) {
+  #main-wrapper {
+      float:right;
+  }
+}
+@media (max-width: 992px) {
+  #main-wrapper {
+      padding-top: 0px;
+  }
+}
+@media (max-width: 992px) {
+  #sidebar-wrapper {
+      position: static;
+      height:auto;
+      max-height: 300px;
+    border-right:0;
+}
+}
+.footer {
+  background-color:#ffffff;
+  bottom:0;
+  position:fixed;
+  padding:10px;
+}
+.table{
+  text-align: center;
+  width: 250px;
+
+}
+.table-dark{
+  background-color: white;
+  text-align: center;
+}
+.table-light{
+
+  background-color:lightgray;
+  text-align: center;
+}
+
+    </style>
+</head>
+<body>
+  <div id="header" class="navbar navbar-default navbar-fixed-top" style="height:90; background:url(ab.jpg)"; >
+      <div class="navbar-header" >
+          <img src="nt.png" style="height:82;width:180px;padding-left: 10px; padding-top: 10px"/>
+      </div>
+      <nav class="collapse navbar-collapse" style="color:white;">
+          <ul class="nav navbar-nav">
+              <li>
+                  <h1 style="font-family:'Courier New';">Welcome to SurgeOrb!</h1>
+              </li>
+          </ul>
+          <ul class="nav navbar-nav pull-right">
+              <li class="dropdown1">
+                  <img src="149071.png" width="30px" style="margin-left:3rem; margin-top:0.25rem;"/>
+                  
+                  <div class="dropdown">
+                  <button onclick="myFunction()" class="dropbtn" >Username    <img src="drop.png" style="width: 10px; height: 10px"></button>
+                    <div id="myDropdown" class="dropdown-content">
+                      <a href="index.html"><img src="logout.jpg" style="width: 20px; height: 20px">&nbsp;&nbsp;Logout</a>
+                      
+                    </div>
+                  </div>
+                
+              </li>
+          </ul>
+      </nav>
+  </div>
+  <div id="wrapper">
+    <div id="sidebar-wrapper" class="col-md-1" style="background:url(ab.jpg); width: 150px">
+              <div id="sidebar" style="background:url(ab.jpg)";>
+                  
+                    <div class="btn-group">
+  <button class="button">Home</button>
+  <button class="button">My Course</button>
+  <button class="button">Field Selection</button>
+  <button class="button">View Academic Progress</button> 
+  <button class="button">Scholarship</button>
+  <a href="complain.html"><button class="button">Complains</button></a>
+  <button class="button">Medicle Leave Application</button>
+</div>
+</div>
+</div>
+</div>
+<div id="main-wrapper" class="col-md-11 pull-right" style="left: 35px;">
+              <div id="main"  >
+                
+                  <h3 style="left : 0px;color: blue; font-weight: bold; font-family:'Courier New'; padding-top: 10px">View Academic Result</h3>
+                
+                <div class="item" style="top: 250px; left:250px; width:100%; height:400px;" >
+                
+                <p style="padding-left: 30px; padding-top: 10px; font-size: 35; font-weight: bold">Semester 1</p>
+                <br> 
+               <p style="padding-left: 30px;"><table style="top: 250; width: 1150; height: 200px;">
+    <thead>
+        <tr >
+            <th class="table" style="background-color: #1d96b2;">  Module Code  </th>
+            <th class="table" style="background-color: lightblue;">  Module Name  </th>
+            <th class="table"  style="background-color: #1d96b2;">  Grade</th>
+            <th class="table" style="background-color: lightblue;">  GPA  </th>
+        </tr>
+    </thead>
+
+    <tbody>
+        <tr class="table-dark">
+            <td>CS1962</td>
+            <td>Engineering Skill Development</td>
+            <td>A</td>
+            <td>1.5</td>
+        </tr>
+        
+        <tr class="table-light">
+            <td>CS1962</td>
+            <td>Engineering Skill Development</td>
+            <td>A</td>
+            <td>1.5</td>
+        </tr>
+        <tr></tr>
+        <tr class="table-dark">
+            <td>CS1962</td>
+            <td>Engineering Skill Development</td>
+            <td>A</td>
+            <td>1.5</td>
+        </tr>
+        <tr class="table-light">
+            <td>CS1962</td>
+            <td>Engineering Skill Development</td>
+            <td>A</td>
+            <td>1.5</td>
+        </tr>
+        <tr class="table-dark">
+            <td>CS1962</td>
+            <td>Engineering Skill Development</td>
+            <td>A</td>
+            <td>1.5</td>
+        </tr>
+        <tr class="table-light">
+            <td>CS1962</td>
+            <td>Engineering Skill Development</td>
+            <td>A</td>
+            <td>1.5</td>
+        </tr>
+        <tr class="table-dark">
+            <td>CS1962</td>
+            <td>Engineering Skill Development</td>
+            <td>A</td>
+            <td>1.5</td>
+        </tr>
+        <tr class="table-light">
+            <td>CS1962</td>
+            <td>Engineering Skill Development</td>
+            <td>A</td>
+            <td>1.5</td>
+        </tr>
+        <tr class="table-dark">
+            <td>CS1962</td>
+            <td>Engineering Skill Development</td>
+            <td>A</td>
+            <td>1.5</td>
+        </tr>
+        <tr class="table-light">
+            <td>CS1962</td>
+            <td>Engineering Skill Development</td>
+            <td>A</td>
+            <td>1.5</td>
+        </tr>
+    </tbody>
+</table>
+<h2 style="text-align: center; font-family:'Arial'; padding-top: 10px">Semester GPA = 3.37</h2>
+</p></div>
+
+<div class="item" style="top: 655px; left:250px; width:100%; height:400px" >
+                
+                <p style="padding-left: 30px; padding-top: 10px; font-size: 35; font-weight: bold">Semester 2</p>
+                <br> 
+               <p style="padding-left: 30px;"><table style="top: 250; width: 1150; height: 200px;">
+    <thead>
+        <tr >
+            <th class="table" style="background-color: #1d96b2;">  Module Code  </th>
+            <th class="table" style="background-color: lightblue;">  Module Name  </th>
+            <th class="table"  style="background-color: #1d96b2;">  Grade</th>
+            <th class="table" style="background-color: lightblue;">  GPA  </th>
+        </tr>
+    </thead>
+
+    <tbody>
+        <tr class="table-dark">
+            <td>CS1962</td>
+            <td>Engineering Skill Development</td>
+            <td>A</td>
+            <td>1.5</td>
+        </tr>
+        
+        <tr class="table-light">
+            <td>CS1962</td>
+            <td>Engineering Skill Development</td>
+            <td>A</td>
+            <td>1.5</td>
+        </tr>
+        <tr></tr>
+        <tr class="table-dark">
+            <td>CS1962</td>
+            <td>Engineering Skill Development</td>
+            <td>A</td>
+            <td>1.5</td>
+        </tr>
+        <tr class="table-light">
+            <td>CS1962</td>
+            <td>Engineering Skill Development</td>
+            <td>A</td>
+            <td>1.5</td>
+        </tr>
+        <tr class="table-dark">
+            <td>CS1962</td>
+            <td>Engineering Skill Development</td>
+            <td>A</td>
+            <td>1.5</td>
+        </tr>
+        <tr class="table-light">
+            <td>CS1962</td>
+            <td>Engineering Skill Development</td>
+            <td>A</td>
+            <td>1.5</td>
+        </tr>
+        <tr class="table-dark">
+            <td>CS1962</td>
+            <td>Engineering Skill Development</td>
+            <td>A</td>
+            <td>1.5</td>
+        </tr>
+        <tr class="table-light">
+            <td>CS1962</td>
+            <td>Engineering Skill Development</td>
+            <td>A</td>
+            <td>1.5</td>
+        </tr>
+        <tr class="table-dark">
+            <td>CS1962</td>
+            <td>Engineering Skill Development</td>
+            <td>A</td>
+            <td>1.5</td>
+        </tr>
+        <tr class="table-light">
+            <td>CS1962</td>
+            <td>Engineering Skill Development</td>
+            <td>A</td>
+            <td>1.5</td>
+        </tr>
+    </tbody>
+</table>
+<h2 style="text-align: center; font-family:'Arial'; padding-top: 10px">Semester GPA = 3.37</h2>
+</p></div>
+
+                </div>
+              </div>
+              
+
+</body>
+</html>
