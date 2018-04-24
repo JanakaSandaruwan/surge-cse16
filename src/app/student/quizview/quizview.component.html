@@ -1,0 +1,19 @@
+<div class="btn-group">
+  <button type="button" class="btn btn-primary"  *ngFor= "let question of quiz.Questions" (click)="goto(quiz.Questions.indexOf(question))">{{quiz.Questions.indexOf(question) + 1}}</button>
+</div>
+
+<div style="overflow:hidden;">
+  <button class="btn" *ngIf="shownext" style="float:right;"(click)="next()">next</button>
+  <button class="btn" *ngIf="showprev" (click)="prev()">previous</button>
+  <button class="btn" *ngIf="!shownext" style="float:right;" (click)="submit()">Submit</button>
+</div>
+
+
+<div style="height:10px;">
+
+</div>
+
+<div class = "form-group" *ngIf="completed" style="background-color:mintcream; border-style:solid; border-color:grey; border-radius:10px; height:60px; text-align:center; padding-top:10px;">
+  You got {{correct}} out of {{this.quiz.Questions.length}} Questions correct.<br />
+  Percentage = {{correct*100/this.quiz.Questions.length}} %
+</div>

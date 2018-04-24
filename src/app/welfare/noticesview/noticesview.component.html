@@ -1,0 +1,6 @@
+<ul id="messageslist" style="list-style-type:none" class="list-group">
+  <li *ngFor= "let x of contentd" class="list-group-item animated fadeInLeft">
+      {{x.subject}}
+        <button class="btn" (click)=deletenotice(contentd.indexOf(x))>Delete</button>
+  </li>
+</ul>

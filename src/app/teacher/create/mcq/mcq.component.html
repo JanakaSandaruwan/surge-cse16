@@ -1,0 +1,27 @@
+<div id="mainbody" style="border-style:solid; border-color:grey; border-radius:10px;" [ngClass]="{incomplete: this.completed == false , correct: (this.completed != false) && this.selected == this.corans,
+wrong: (this.completed != false) && this.selected != this.corans}">
+<div style="margin:10px;">
+  <p>{{Question}}</p>
+</div>
+
+  <div class="form-group" *ngIf="type=='mcq'">
+    <input type="radio" name="gender" [disabled]="completed" [(ngModel)]="selected"  value="1" checked (change)='newValue(value)'> {{Option1}} <br />
+    <input type="radio" name="gender" [disabled]="completed" [(ngModel)]="selected" value="2" (change)='newValue(value)'> {{Option2}} <br />
+    <input type="radio" name="gender" [disabled]="completed" [(ngModel)]="selected" value="3" (change)='newValue(value)'> {{Option3}} <br />
+    <input type="radio" name="gender" [disabled]="completed" [(ngModel)]="selected" value="4" (change)='newValue(value)'> {{Option4}} <br />
+  </div>
+  <div class="form-group" *ngIf="type=='tf'">
+    <input type="radio" name="gender" [disabled]="completed" [(ngModel)]="selected"  value="True" checked (change)='newValue(value)'> True <br />
+    <input type="radio" name="gender" [disabled]="completed" [(ngModel)]="selected" value="False" (change)='newValue(value)'> False <br />
+  </div>
+  <div class="form-group" *ngIf="type=='sans'">
+    <textarea  [(ngModel)]="selected" class="form-control" [disabled]="completed" (change)='newValue(value)'>Enter answer</textarea>
+  </div>
+  <div class="form-group" *ngIf="wrong">
+    The correct answer is {{corans}}
+  </div>
+  <div class="form-group">
+    <button *ngIf="level" type="button" class="btn btn-default"
+                          (click)="removeObject()" > Remove</button>
+  </div>
+</div>

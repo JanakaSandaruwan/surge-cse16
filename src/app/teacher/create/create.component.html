@@ -1,0 +1,44 @@
+<div align="right" style="padding-bottom: 20px;" data-toggle="modal" data-target="#myModal">
+  <button class="btn">+ Add  Mcq Question</button>
+</div>
+<div id="myModal" class="modal fade" role="dialog">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal">&times;</button>
+        <h4 class="modal-title">Create Teacher Form</h4>
+      </div>
+      <div class="modal-body">
+        <div>
+          <form>
+            <input type="radio" name="type" value="mcq" checked [(ngModel)]="TempQue.type"> MCQ type question<br />
+            <input type="radio" name="type" value="tf" [(ngModel)]="TempQue.type" > True False type question<br />
+            <input type="radio" name="type" value="sans" [(ngModel)]="TempQue.type" >Written Answer question<br />
+          </form>
+          <textarea class="form-control" style="height:90px" [(ngModel)]="TempQue.Text">Enter Question in Space provided</textarea>
+          <form *ngIf="TempQue.type=='mcq'">
+            <input type="radio" name="gender" [(ngModel)]="TempQue.Answer" value="1" checked ><input type="text" name="m" [(ngModel)]="TempQue.Option1"/> <br />
+            <input type="radio" name="gender" [(ngModel)]="TempQue.Answer" value="2"  ><input type="text" name="f" [(ngModel)]="TempQue.Option2"/><br />
+            <input type="radio" name="gender" [(ngModel)]="TempQue.Answer" value="3" > <input type="text" name="other_reason" [(ngModel)]="TempQue.Option3"/><br />
+            <input type="radio" name="gender" [(ngModel)]="TempQue.Answer" value="4" ><input type="text" name="not say" [(ngModel)]="TempQue.Option4"/><br />
+          </form>
+          <form *ngIf="TempQue.type=='tf'">
+            <input type="radio" name="gender" [(ngModel)]="TempQue.Answer" value="True" checked > True <br />
+            <input type="radio" name="gender" [(ngModel)]="TempQue.Answer" value="False"  > False<br />
+          </form>
+          <div *ngIf="TempQue.type=='sans'">
+            <textarea class="form-control" style="height:90px" [(ngModel)]="TempQue.Answer">Enter Question in Space provided</textarea>
+          </div>
+        </div>
+      </div>
+      <div class="modal-footer">
+        <div class="form-group pull-right">
+        <button id="button79" type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+        </div>
+        <div class="form-group pull-right">
+        <button id="button77" type="button" class="btn btn-default" (click)="Add()">Reset</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

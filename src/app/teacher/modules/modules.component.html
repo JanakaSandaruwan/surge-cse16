@@ -1,0 +1,33 @@
+<!--div>
+<h2 style="text-align: center; ">Module Name</h2>
+</div>
+<div class="row" style="margin-top: 100px">
+
+  <div class="col-lg-3 col-md-3 col-sm-6 col-xs-12 mycontainer" align="center" (click)="gotoQuiz()" >
+    <button class= "btn bigbutton" >
+      Quiz <br /><span class="glyphicon glyphicon-book"></span></button>
+  </div>
+  <div class="col-lg-3 col-md-3 col-sm-6 col-xs-12 mycontainer" align="center" (click)="gotoaddmitance()" >
+    <button class= "btn bigbutton" >
+     Addmitance <br /><span class="glyphicon glyphicon-book"></span></button>
+  </div>
+  <div class="col-lg-3 col-md-3 col-sm-6 col-xs-12 mycontainer" align="center" (click)="gotomaterial()" >
+    <button class= "btn bigbutton" >
+      Study Material <br /><span class="glyphicon glyphicon-book"></span></button>
+  </div>
+
+</div-->
+<button (click)="refresh()" >Refresh</button>
+<h2 style="text-align:center; ">My Modules</h2>
+
+<div style="margin-top:30px; margin-bottom:30px; margin-left:450px">
+  <label style="font-size:15px"> Search </label>
+  <input type="text" [(ngModel)]="term" >
+
+</div>
+
+<div  style="margin-top:30px; margin-bottom:30px; margin-left:450px">
+  <ul>
+    <li style="padding:10px;"  *ngFor= "let module of modules | filter:term" (click)="redirect(module.name)"><a>{{module.name}}</a></li>
+  </ul>
+</div>

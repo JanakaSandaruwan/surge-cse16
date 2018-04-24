@@ -1,0 +1,22 @@
+*{margin: 0; padding: 0;}
+a{
+
+	text-decoration: none;
+}
+.item{
+	margin: 10px 10px 10px 10px;
+	padding: 10px 20px 10px 20px;
+	background-color: white;
+	border-radius: 10px;
+
+}
+.item ul {
+	padding:0 30px 30px 0;
+	list-style: none;
+
+}
+.item ul li{
+	padding-top: 20px;
+	font-size: 30px;
+
+}

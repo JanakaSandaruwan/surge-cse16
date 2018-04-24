@@ -1,0 +1,55 @@
+<!--div class="upload" style="margin:auto">
+ <div class="upload-files">
+  <header>
+   <p>
+    <i class="fa fa-cloud-upload" aria-hidden="true"></i>
+    <span class="up">up</span>
+    <span class="load">load</span>
+   </p>
+  </header>
+  <div class="body" id="drop">
+   <i class="fa fa-file-text-o pointer-none" aria-hidden="true"></i>
+   <p class="pointer-none"><b>Drag and drop</b> files here <br /> or <a href="" id="triggerFile">browse</a> to begin the upload</p>
+			<input type="file" multiple="multiple" />
+  </div>
+  <footer>
+   <div class="divider">
+    <span>FILES</span>
+   </div>
+   <div class="list-files">
+
+   </div>
+			<button class="importar">UPDATE FILES</button>
+  </footer>
+ </div>
+</div-->
+
+
+<div *ngIf="currentUpload">
+  <div class="progress">
+    <div class="progress-bar progress-bar-animated" [ngStyle]="{ 'width': currentUpload?.progress + '%' }"></div>
+  </div>
+  Progress: {{currentUpload?.name}} | {{currentUpload?.progress}}% Complete
+</div>
+
+    <label>
+       <input type="file" (change)="detectFiles($event)">
+    </label>
+
+    <button
+            [disabled]="!selectedFiles"
+            (click)="uploadSingle()">
+
+      Upload
+    </button>
+
+    <!--label>
+       <input type="file" (change)="detectFiles($event)" multiple>
+    </label>
+
+      <button
+              [disabled]="!selectedFiles"
+              (click)="uploadMulti()">
+
+        Upload Multiple
+      </button-->
