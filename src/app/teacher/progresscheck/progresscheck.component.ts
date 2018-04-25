@@ -37,14 +37,14 @@ export class ProgresscheckComponent implements OnInit {
     this.gridApi = params.api;
     this.gridColumnApi = params.columnApi;
 
-    this.gradeservice.listgrades().subscribe(val => {
+    this.gradeservice.listgrades(this.subjectname).subscribe(val => {
       this.gridApi.setRowData(val);
     });
   }
 
   refresh(){
-    var list=this.gradeservice.listgrades();
-    this.gradeservice.listgrades().subscribe(val => {
+    var list=this.gradeservice.listgrades(this.subjectname);
+    this.gradeservice.listgrades(this.subjectname).subscribe(val => {
       this.gridApi.setRowData(val);
     });
   //  console.log("kkkkk"+this.marks);

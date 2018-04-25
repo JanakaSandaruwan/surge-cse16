@@ -65,14 +65,14 @@ export class AdmittanceComponent implements OnInit {
     this.gridApi = params.api;
     this.gridColumnApi = params.columnApi;
 
-    this.gradeservice.listgrades().subscribe(val => {
+    this.gradeservice.listgrades(this.subjectname).subscribe(val => {
      this.gridApi.setRowData(val);
    });
   }
 
   refresh(){
   //  this.gridApi.setRowData(this.addmitancetable);
-   this.gradeservice.listgrades().subscribe(val => {
+   this.gradeservice.listgrades(this.subjectname).subscribe(val => {
     this.gridApi.setRowData(val);
   });
   }

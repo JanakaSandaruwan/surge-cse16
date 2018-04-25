@@ -14,12 +14,12 @@ export class LoadgradesService {
 
   constructor() { }
 
-  listgrades():Observable<Grade[]>{
+  listgrades(subjectname):Observable<Grade[]>{
 
     var finallist : Grade[];
     finallist=[];
     var nodata = 0;
-    firebase.database().ref('classes/MA2-bc0001/students').on('child_added', function(data) {
+    firebase.database().ref('classes/'+subjectname+'/students').on('child_added', function(data) {
         finallist[nodata]=data.val();
         nodata = nodata + 1;
 
