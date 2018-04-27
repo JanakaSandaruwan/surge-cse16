@@ -4,6 +4,7 @@ import { Upload } from '../../models/upload';
 import {Router} from '@angular/router';
 import { ActivatedRoute } from '@angular/router';
 
+
 @Component({
   selector: 'app-studymaterial',
   templateUrl: './studymaterial.component.html',
@@ -34,11 +35,14 @@ export class StudymaterialComponent implements OnInit {
   }
 
   uploadSingle() {
+    console.log(this.selectedFiles);
       let file = this.selectedFiles.item(0);
+      
       this.currentUpload = new Upload(file);
       this.upSvc.pushUpload(this.currentUpload,this.subjectname);
       console.log("File uploaded kk");
     }
+
 
 
 }
