@@ -16,7 +16,7 @@ import { HttpModule } from '@angular/http';
 import { AngularDateTimePickerModule } from 'angular2-datetimepicker';
 
 
-import { DragDropDirectiveModule} from "angular4-drag-drop";
+
 
 import { ComplainComponent } from './student/complain/complain.component';
 import { ViewAcademicProgressComponent } from './student/view-academic-progress/view-academic-progress.component';
@@ -85,6 +85,7 @@ import { LeaveapproveService } from './services/leaveapprove.service';
 import { ViewleaveComponent } from './hr/viewleave/viewleave.component';
 import { ExamHomeComponent } from './examdiv/exam-home/exam-home.component';
 import { CreateTtComponent } from './examdiv/create-tt/create-tt.component';
+import { NewviewComponent } from './newview/newview.component';
 
 @NgModule({
   declarations: [
@@ -136,7 +137,8 @@ import { CreateTtComponent } from './examdiv/create-tt/create-tt.component';
     FilterPipe,
     ModuleComponent,
     TrueqComponent,
-    EssayComponent
+    EssayComponent,
+    NewviewComponent
   ],
   entryComponents: [
     McqComponent
@@ -146,7 +148,6 @@ import { CreateTtComponent } from './examdiv/create-tt/create-tt.component';
     AngularDateTimePickerModule,
     FormsModule,
     DataTablesModule,
-    DragDropDirectiveModule,
     HttpModule,
     NgbModule.forRoot(),
     AgGridModule.withComponents([ ]),
@@ -220,7 +221,8 @@ import { CreateTtComponent } from './examdiv/create-tt/create-tt.component';
     { path: 'home', component:ExamHomeComponent},
     { path: 'createTT' , component :CreateTtComponent}]
   //{ path: '**', component: PageNo,FoundComponent }
-  }
+},
+{ path: 'new' , component:NewviewComponent}
     ]),
     RouterModule
   ],

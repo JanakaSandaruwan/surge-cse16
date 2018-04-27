@@ -5,7 +5,7 @@
     <nav class="collapse navbar-collapse" style="color:white;">
         <ul class="nav navbar-nav">
             <li>
-                <h1 style="font-family: 'Do Hyeon', sans-serif;">Welcome to SurgeOrb!</h1>
+                <h1>Welcome to SurgeOrb!</h1>
             </li>
             <!--<li class="dropdown">
               <a href="#" class="dropdown-toggle" data-toggle="dropdown">Navbar Item 2<b class="caret"></b></a>
@@ -19,11 +19,11 @@
         </ul>
         <ul class="nav navbar-nav pull-right">
             <li class="dropdown">
-                <img src="assets/149071.png" width="30px" style="margin-left:4.5rem; margin-top:1rem;"/>
-                <a href="#" (click)="movedown()" id="nbAcctDD" style="background-color:#424242" class="content" data-toggle="dropdown"><i class="icon-user"></i>Username<i class="icon-sort-down"></i></a>
-                <ul class="dropdown-menu pull-right content" style="background-color:#424242" >
-                    <li ><a (click)="logout()">Log Out</a></li>
-                    <li ><a (click)="changedata()">Change</a></li>
+                <img src="assets/149071.png" width="30px" style="margin-left:3rem; margin-top:1rem;"/>
+                <a href="#" id="nbAcctDD" class="dropdown-toggle" data-toggle="dropdown"><i class="icon-user"></i>Username<i class="icon-sort-down"></i></a>
+                <ul class="dropdown-menu pull-right" >
+                    <li><button (click)="logout()">Log Out</button></li>
+                    <li><button (click)="changedata()">Change</button></li>
                 </ul>
             </li>
         </ul>
@@ -33,14 +33,12 @@
   <div id="sidebar-wrapper"  >
     <div class="sidebar">
 
-        <ul class="sidebar-nav content">
-            <li  >
-                <div>
-                  <a (click)="togglenav()">Close <i class="fa fa-bars menu-icon fa-2x" aria-hidden="true"></i></a>
-                </div>
+        <ul class="sidebar-nav">
+            <li>
+                <a (click)="togglenav()">Close <i class="fa fa-bars menu-icon fa-2x" aria-hidden="true"></i></a>
             </li>
             <li>
-                <a href="#">Home <i class="fa fa-home menu-icon fa-2x " aria-hidden="true"></i></a>
+                <a href="#">Home <i class="fa fa-home menu-icon fa-2x" aria-hidden="true"></i></a>
             </li>
             <li>
                 <a href="#">Download<i class="fa fa-download menu-icon fa-2x" aria-hidden="true"></i></a>
@@ -61,7 +59,6 @@
               <div class="page-header">
                 <h3>Welfare</h3>
               </div>
-              <router-outlet></router-outlet>
             </div>
         </div>
 </div>

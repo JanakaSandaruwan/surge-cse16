@@ -16,4 +16,8 @@ export class WelfareHomeComponent implements OnInit {
   gotoNN(){
     this.router.navigate(['welfare/create']);
   }
+
+  gotoVN(){
+    this.router.navigate(['welfare/viewnotices']);
+  }
 }
