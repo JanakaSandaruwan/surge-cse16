@@ -14,17 +14,12 @@ import { ViewbatchesComponent } from './admin/viewbatches/viewbatches.component'
 import { DataTablesModule } from 'angular-datatables';
 import { HttpModule } from '@angular/http';
 import { AngularDateTimePickerModule } from 'angular2-datetimepicker';
-
-
-import { DragDropDirectiveModule} from "angular4-drag-drop";
-
 import { ComplainComponent } from './student/complain/complain.component';
 import { ViewAcademicProgressComponent } from './student/view-academic-progress/view-academic-progress.component';
 import { MyCourseComponent } from './student/my-course/my-course.component';
 import { MedicleLeaveComponent } from './student/medicle-leave/medicle-leave.component';
 import { ScholarshipComponent } from './student/scholarship/scholarship.component';
 import { HomeComponent } from './student/home/home.component';
-
 import { FilterPipe } from './filter.pipe';
 import { LeaveapplicationComponent } from './teacher/leaveapplication/leaveapplication.component';
 import { QuizComponent } from './teacher/quiz/quiz.component';
@@ -42,7 +37,6 @@ import { TrueqComponent } from './teacher/quiz/addquiz/trueq/trueq.component';
 import { EssayComponent } from './teacher/quiz/addquiz/essay/essay.component';
 import { LoadquizService } from './services/loadquiz.service';
 import { UploadService } from './services/upload.service';
-
 import { LoginServiceService } from './services/login-service.service';
 import { HttpClient, HttpErrorResponse, HttpHeaders ,HttpClientModule } from '@angular/common/http';
 import { LoadbatchesService } from './services/loadbatches.service';
@@ -146,7 +140,6 @@ import { CreateTtComponent } from './examdiv/create-tt/create-tt.component';
     AngularDateTimePickerModule,
     FormsModule,
     DataTablesModule,
-    DragDropDirectiveModule,
     HttpModule,
     NgbModule.forRoot(),
     AgGridModule.withComponents([ ]),
