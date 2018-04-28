@@ -2,48 +2,56 @@
   <div class="form-group">
     <label class="control-label col-lg-2 col-md-2 col-sm-2 col-xs-12" for="name"><b>Subject</b></label>
     <div class="col-lg-10 col-md-10 col-sm-10 col-xs-12">
-      <input id="subject" name="subject" class="form-control input-md marginbot" required [(ngModel)]="noticesubject" #subject="ngModel" >
+      <input id="subject" name="subject" class="form-control input-md marginbot" required [(ngModel)]="noticesubject" #subject="ngModel" (input)="doublechecksub()">
     </div>
 
 
     <label class="control-label col-lg-2 col-md-2 col-sm-2 col-xs-12" for="des"><b>Description</b></label>
     <div class="col-lg-10 col-md-10 col-sm-10 col-xs-12">
-      <textarea id="des" name="des" class="form-control marginbot" required [(ngModel)]="noticedes" #des="ngModel" style='height:200px;'></textarea>
+      <textarea id="des" name="des" class="form-control marginbot" required [(ngModel)]="noticedes" #des="ngModel" style='height:200px;' (input)="doublechecknotice()"></textarea>
     </div>
 
     <label class="control-label col-lg-2 col-md-2 col-sm-2 col-xs-12" for="name"><b>Files to upload</b></label>
     <div class="col-lg-10 col-md-10 col-sm-10 col-xs-12 marginbot" >
-      <image-upload  [max]="100" [url]=""  [dropBoxMessage]="' or Drop your images here'" (uploadFinished)="onUploadFinished($event)" (removed)="onRemoved($event)"></image-upload>
+      <image-upload  removeAfterUpload [max]="100" [url]=""  [dropBoxMessage]="' or Drop your images here'" (uploadFinished)="onUploadFinished($event)" (removed)="onRemoved($event)"></image-upload>
     </div>
-    <label class="control-label col-md-2" for="dp"><b>Stop Notice on </b></label>
-    <div class="input-group col-md-4 marginbot" style="padding-left:15px;">
-      <input id="dp" class="form-control" placeholder="yyyy-mm-dd"
-             name="dp" [(ngModel)]="model" ngbDatepicker #d="ngbDatepicker" readonly=[true]>
-        <div class="input-group-addon span btn" (click)="activate()">change</div>
+    <label class="control-label col-lg-2 col-md-2 col-sm-2 col-xs-12" for="dp"><b>Stop Notice on </b></label>
+    <div class="col-lg-10 col-md-10 col-sm-10 col-xs-12 marginbot" style="padding-left:15px;">
+      <span class="k-widget k-datepicker k-header form-control" style="">
+        <span class="k-picker-wrap k-state-default">
+          <input name="name"   (input)="doublecheckdate()" [(ngModel)]="model" id="field3" type="date" class="form-control k-input" data-role="date" role="textbox" aria-haspopup="true" aria-expanded="false" aria-owns="field3_dateview" aria-disabled="false" aria-readonly="false" aria-label="Current focused date is null" data-error-container="#errfield3" style="width: 100%;" required="required" data-parsley-errors-container="#errId3" >
+          <span style="background-color:white;" unselectable="on" class="k-select" role="button" aria-controls="field3_dateview" ><span unselectable="on" class="k-icon k-i-calendar" >select</span></span></span></span>
     </div>
     <button id="x" style="display:none"(click)="d.toggle()">toggle</button>
   </div>
 
 
 
-
-
-
-
-
-
-
 </div>
 
+<div id="div13" class="col-lg-10 col-md-10 col-sm-10 col-xs-12" *ngIf="(descheck | async)" class="alert alert-danger">
+<div *ngIf="(descheck | async)">No description</div> </div>
+
+<div id="div14" class="col-lg-10 col-md-10 col-sm-10 col-xs-12" *ngIf="(subcheck | async)" class="alert alert-danger">
+<div *ngIf="(subcheck | async)">No Subject</div> </div>
+
+<div id="div133" class="col-lg-10 col-md-10 col-sm-10 col-xs-12" *ngIf="(modelcheck | async)" class="alert alert-danger">
+<div *ngIf="( modelcheck | async)">No End date</div> </div>
+
+<div id="div13s3" class="col-lg-10 col-md-10 col-sm-10 col-xs-12" *ngIf="(modelearly | async)" class="alert alert-danger">
+<div *ngIf="(modelearly | async)">Date given is not valid</div> </div>
 
 
 <div class="form-group pull-right">
 <button id="button77" type="button" class="btn btn-default" data-toggle="modal" data-target="#myModal2">View preview</button>
 </div>
 <div class="form-group pull-right">
-<button id="button78" type="button" class="btn btn-default" (click)="Postnotice()">Post</button>
+<button id="button78" type="button" class="btn btn-default" (click)="justletters()">Post</button>
 </div>
-
+<div class="form-group pull-right">
+<button id="button7ds" type="button" class="btn btn-default" (click)="reset()">Reset</button>
+</div>
+<button id="button79" class="hidden" (click)="Postnotice()">ds</button>
 <div id="myModal2" class="modal fade" role="dialog">
   <div class="modal-dialog">
     <div class="modal-content">

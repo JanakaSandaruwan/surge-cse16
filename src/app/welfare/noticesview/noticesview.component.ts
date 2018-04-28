@@ -10,6 +10,8 @@ export class NoticesviewComponent implements OnInit {
 
   contentd : any = [];
   keys : string[] = [];
+  selectednotice : any;
+  selectedfiles : any = [];
   constructor(private _nservice: NoticeserviceService) { }
 
   ngOnInit() {
@@ -32,6 +34,22 @@ export class NoticesviewComponent implements OnInit {
 
 
   }
+
+  chooseselect(index){
+    this.selectednotice = this.contentd[index];
+    console.log(this.selectednotice);
+    var obj = this.selectednotice.files;
+    if ( obj != undefined){
+      this.selectedfiles = Object.keys(obj).map(function(key) {
+          return [Number(key), obj[key]];
+      });
+    }
+
+    console.log(this.selectedfiles);
+    $("#xxx").click();
+  }
+
+
 
   deletenotice(index){
     console.log(index);

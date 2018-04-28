@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { NoticeserviceService } from '../../services/noticeservice.service';
+import { Observable } from 'rxjs/Observable';
+
 @Component({
   selector: 'app-createnotice',
   templateUrl: './createnotice.component.html',
@@ -9,7 +11,11 @@ export class CreatenoticeComponent implements OnInit {
   noticesubject : string;
   noticedes : string;
   files : any = [];
-  model = { year:undefined ,month:undefined, day:undefined};
+  descheck : Observable<boolean> = Observable.of(false);
+  subcheck : Observable<boolean> = Observable.of(false);
+  modelcheck : Observable<boolean> = Observable.of(false);
+  modelearly : Observable<boolean> = Observable.of(false);
+  model : any;
 
   constructor(private _post : NoticeserviceService) { }
 
@@ -17,12 +23,21 @@ export class CreatenoticeComponent implements OnInit {
   }
 
   onRemoved(event){
-    console.log(event);
+    var i = 0;
+    var index = -1;
+    for ( i =0 ; i< this.files.length ; i++){
+      if (event.src == this.files[i].src){
+        index = i;
+        break;
+      }
+    }
+    if (index !== -1) {
+        this.files.splice(index, 1);
+    }
+    console.log(this.files);
   }
   onUploadFinished(event){
     this.files.push(event);
-    console.log(this.files);
-    console.log(this.files[0].src);
   }
   yay(file){
     console.log(file);
@@ -34,6 +49,77 @@ export class CreatenoticeComponent implements OnInit {
 
   Postnotice(){
     this._post.postnotice(this.noticesubject,this.noticedes,this.model, this.files);
+  }
+
+  reset(){
+    this.noticedes = undefined;
+    this.noticesubject = undefined;
+    this.model = undefined;
+    $('.image-ul-clear').click();
+  }
+  doublecheckdate(){
+    var today = new Date();
+    if ( this.model == undefined ){
+      this.modelcheck = Observable.of(true);
+    }else{
+      this.modelcheck = Observable.of(false);
+      var pickedDate = new Date(Date.parse(this.model.replace(/-/g, " ")));
+      if( pickedDate <= today){
+        this.modelearly = Observable.of(true);
+      }else{
+        this.modelearly = Observable.of(false);
+      }
+    }
+    console.log(pickedDate);
+
+
+  }
+  doublechecknotice(){
+    if ( this.noticedes == undefined || this.noticedes == null){
+      this.descheck = Observable.of(true);
+    }else{
+      this.descheck = Observable.of(false);
+    }
+  }
+  doublechecksub(){
+    if ( this.noticesubject == undefined ){
+      this.subcheck = Observable.of(true);
+    }else{
+      this.subcheck = Observable.of(false);
+    }
+  }
+  justletters(){
+    var today = new Date();
+    var x = false;
+    if ( this.model == undefined ){
+      this.modelcheck = Observable.of(true);
+      x = true;
+    }else{
+      this.modelcheck = Observable.of(false);
+      var pickedDate = new Date(Date.parse(this.model.replace(/-/g, " ")));
+      if( pickedDate <= today){
+        x = true;
+        this.modelearly = Observable.of(true);
+      }else{
+        this.modelearly = Observable.of(false);
+      }
+    }
+    console.log(pickedDate);
+    if ( this.noticedes == undefined ){
+      x= true;
+      this.descheck = Observable.of(true);
+    }else{
+      this.descheck = Observable.of(false);
+    }
+    if ( this.noticesubject == undefined ){
+      x = true;
+      this.subcheck = Observable.of(true);
+    }else{
+      this.subcheck = Observable.of(false);
+    }
+    if ( !x ){
+      $('#button79').click();
+    }
   }
 
   /*detectfiles(event){

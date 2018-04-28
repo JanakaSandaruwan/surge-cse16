@@ -1,6 +1,55 @@
 <ul id="messageslist" style="list-style-type:none;" class="list-group content"  >
-  <li *ngFor= "let x of contentd" class="list-group-item animated fadeInLeft">
+  <li *ngFor= "let x of contentd" class="list-group-item animated fadeInLeft" (click)="chooseselect(contentd.indexOf(x))">
+    <div>
       {{x.subject}}
-        <button class="btn" (click)=deletenotice(contentd.indexOf(x))>Delete</button>
+      <span class="pull-right">
+          <span class="btn btn-xs btn-default" (click)="deletenotice(contentd.indexOf(x))">
+                <span class="glyphicon glyphicon-trash" aria-hidden="true"></span>
+          </span>
+      </span>
+    </div>
+
   </li>
 </ul>
+<button id="xxx" class="hidden" data-toggle="modal" data-target="#myModal2">yay</button>
+<div id="myModal2" class="modal fade" role="dialog">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal">&times;</button>
+        <h4 class="modal-title">{{selectednotice.subject}}</h4>
+      </div>
+      <div class="modal-body">
+        <div class="form-group">
+
+        <div class="row">
+
+       <div class="col-md-12">
+
+
+       <p> {{selectednotice.description}}</p>
+      </div>
+      </div>
+      </div>
+
+      <div class="form-group">
+
+      <div class="row">
+
+
+     <div *ngFor="let file of selectedfiles">
+           <img  [src]="file[1].url"  class="thumbnail" style="max-height:100px; max-width:200px; height:auto; width:auto;"/>
+
+
+    </div>
+    </div>
+    </div>
+      </div>
+      <div class="modal-footer">
+        <div class="form-group pull-right">
+        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
