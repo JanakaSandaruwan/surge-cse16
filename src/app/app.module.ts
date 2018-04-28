@@ -28,8 +28,6 @@ import { DisplaymarkComponent } from './teacher/quiz/displaymark/displaymark.com
 import { AddquizComponent } from './teacher/quiz/addquiz/addquiz.component';
 import { AdmittanceComponent } from './teacher/admittance/admittance.component';
 import { StudymaterialComponent } from './teacher/studymaterial/studymaterial.component';
-import { SendleaveComponent } from './teacher/leaveapplication/sendleave/sendleave.component';
-import { LeaveinfoComponent } from './teacher/leaveapplication/leaveinfo/leaveinfo.component';
 import { ModulesComponent } from './teacher/modules/modules.component';
 import { FeablelistComponent } from './teacher/progresscheck/feablelist/feablelist.component';
 import { ModuleComponent } from './teacher/modules/module/module.component';
@@ -123,8 +121,6 @@ import { CreateTtComponent } from './examdiv/create-tt/create-tt.component';
     AddquizComponent,
     AdmittanceComponent,
     StudymaterialComponent,
-    SendleaveComponent,
-    LeaveinfoComponent,
     ModulesComponent,
     FeablelistComponent,
     FilterPipe,
@@ -164,8 +160,6 @@ import { CreateTtComponent } from './examdiv/create-tt/create-tt.component';
       {path:'progresscheck/feablelist',component:FeablelistComponent},
       { path: 'admittance', component:AdmittanceComponent},
       { path: 'leaveapplication', component:LeaveapplicationComponent},
-      { path: 'leaveapplication/sendleave', component:SendleaveComponent},
-      { path: 'leaveapplication/leaveinfo', component:LeaveinfoComponent},
       {path:'quiz',component:QuizComponent},
       {path:'quiz/displaymark',component:DisplaymarkComponent},
       {path:'quiz/addquiz',component:CreateComponent},

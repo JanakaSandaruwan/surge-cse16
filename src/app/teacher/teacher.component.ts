@@ -37,13 +37,16 @@ export class TeacherComponent implements OnInit {
          });
       });
     }
-
   }
 
   logout(){
     this.logincookie.remove("uname");
     this.login.logoutuser(this.fulldata['username']);
     this.router.navigate(['']);
+  }
+
+  changedata(){
+    this.router.navigate(['../admin/updatedetails', {details : this.usercode}]);
   }
 
   seeme(){
