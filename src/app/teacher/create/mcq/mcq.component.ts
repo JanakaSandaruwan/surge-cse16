@@ -16,7 +16,7 @@ export class McqComponent implements OnInit {
   type: string;
   corans : string;
   completed : boolean;
-  selected : string = "0";
+  selected : string ;
   wrong : boolean = false;
   final : Question = <Question>{};
   id : string = "";

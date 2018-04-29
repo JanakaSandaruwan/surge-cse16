@@ -107,7 +107,7 @@ export class CreateComponent implements OnInit {
         var blockInstance = ref.instance as McqComponent;
         this.loadquiz.updatequizquestion(this.subjectcode,this.quiz.Questions);
         this.loadquiz.updatequizanswer(this.subjectcode,this.quizanswers);
-        
+
         blockInstance.messageEvent.subscribe((val) => {
             console.log(val);
             var i : number;
@@ -129,6 +129,7 @@ export class CreateComponent implements OnInit {
         this.TempQue.Option2="";
         this.TempQue.Option3="";
         this.TempQue.Option4="";
+        this.TempQue.Answer="";
   }
 
   AddingTrue(){
@@ -193,6 +194,7 @@ export class CreateComponent implements OnInit {
         this.TempQue.Option2="";
         this.TempQue.Option3="";
         this.TempQue.Option4="";
+        this.TempQue.Answer="";
   }
 
   AddEssay() {
@@ -231,6 +233,7 @@ export class CreateComponent implements OnInit {
         this.TempQue.Option2="";
         this.TempQue.Option3="";
         this.TempQue.Option4="";
+        this.TempQue.Answer="";
   }
 
 }

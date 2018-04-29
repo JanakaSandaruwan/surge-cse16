@@ -17,21 +17,20 @@
           </form>
 
           <form *ngIf="TempQue.type=='mcq'">
-            <textarea name="textarea" class="form-control" style="height:90px" [(ngModel)]="TempQue.Text" style="margin:top:10px;margin-bottom:10px;">Enter Question in Space provided</textarea>
+            <textarea placeholder="Type question here" name="textarea" class="form-control" style="height:90px" [(ngModel)]="TempQue.Text" style="margin:top:10px;margin-bottom:10px;"></textarea>
             <input type="radio" style="margin:top:10px;margin-bottom:10px;" name="gender" [(ngModel)]="TempQue.Answer" value="1" checked ><input type="text" name="m" [(ngModel)]="TempQue.Option1"/> <br />
             <input type="radio" style="margin:top:10px;margin-bottom:10px;"  name="gender" [(ngModel)]="TempQue.Answer" value="2"  ><input type="text" name="f" [(ngModel)]="TempQue.Option2"/><br />
             <input type="radio" style="margin:top:10px;margin-bottom:10px;"  name="gender" [(ngModel)]="TempQue.Answer" value="3" > <input type="text" name="other_reason" [(ngModel)]="TempQue.Option3"/><br />
             <input type="radio" style="margin:top:10px;margin-bottom:10px;" name="gender" [(ngModel)]="TempQue.Answer" value="4" ><input type="text" name="not say" [(ngModel)]="TempQue.Option4"/><br />
           </form>
           <form *ngIf="TempQue.type=='tf'">
-
-            <textarea name="textarea" class="form-control" style="height:90px" [(ngModel)]="TempQue.Text">Enter Question in Space provided</textarea>
+            <textarea placeholder="Type question here" name="textarea" class="form-control" style="height:90px" [(ngModel)]="TempQue.Text"></textarea>
             <input type="radio" name="gender" [(ngModel)]="TempQue.Answer" value="True" checked > True <br />
             <input type="radio" name="gender" [(ngModel)]="TempQue.Answer" value="False"  > False<br />
           </form>
           <div *ngIf="TempQue.type=='sans'">
-            <textarea name="textarea" class="form-control" style="height:90px; margin:top:10px;margin-bottom:10px;" [(ngModel)]="TempQue.Text">Enter Question in Space provided</textarea>
-            <textarea class="form-control" style="height:90px; margin:top:10px;margin-bottom:10px;" [(ngModel)]="TempQue.Answer">Enter Sample Answer in Space provided</textarea>
+            <textarea placeholder="Type question here"name="textarea" class="form-control" style="height:90px; margin:top:10px;margin-bottom:10px;" [(ngModel)]="TempQue.Text">Enter Question in Space provided</textarea>
+            <textarea placeholder="Type answer here" class="form-control" style="height:90px; margin:top:10px;margin-bottom:10px;" [(ngModel)]="TempQue.Answer">Enter Sample Answer in Space provided</textarea>
           </div>
         </div>
       </div>

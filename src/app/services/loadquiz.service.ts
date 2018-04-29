@@ -35,6 +35,8 @@ export class LoadquizService {
     firebase.database().ref('/classes/'+subjectcode+'/Quiz/quiz'+this.getNumQuiz(subjectcode)).update({
       question:quizes
     });
+
+
   }
 
   updatequizanswer(subjectcode,ans){
@@ -42,6 +44,7 @@ export class LoadquizService {
     firebase.database().ref('/classes/'+subjectcode+'/Quiz/quiz'+this.getNumQuiz(subjectcode)).update({
       answer:ans
     });
+
   }
 
   loadquizInfo(subjectcode,quizname,quizdate,startquiztime,endquiztime){
