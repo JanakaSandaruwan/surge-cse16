@@ -37,6 +37,13 @@ export class LoadquizService {
     });
   }
 
+  updatequizanswer(subjectcode,ans){
+
+    firebase.database().ref('/classes/'+subjectcode+'/Quiz/quiz'+this.getNumQuiz(subjectcode)).update({
+      answer:ans
+    });
+  }
+
   loadquizInfo(subjectcode,quizname,quizdate,startquiztime,endquiztime){
     console.log("working");
     this.updatequizno(subjectcode);

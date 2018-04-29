@@ -37,6 +37,7 @@ export class McqComponent implements OnInit {
     this.final.Option3 = this.Option3;
     this.final.Option4 = this.Option4;
     this.messageEvent.emit(this.final);
+    console.log(this.messageEvent);
     this._ref.destroy();
   }
 

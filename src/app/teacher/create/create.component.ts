@@ -17,6 +17,7 @@ export class CreateComponent implements OnInit {
   quiz : Quiz = <Quiz>{};
   quizanswers : string[] = [];
   subjectcode : string;
+
   //@ViewChild('parent', { read: ViewContainerRef }) container: ViewContainerRef;
   getChildEvent(evt){
     console.log('got this from the child', evt.detail);
@@ -34,9 +35,45 @@ export class CreateComponent implements OnInit {
     this.quiz.Questions = [];
   }
 
+
+  Add(){
+    if(this.TempQue.type=="mcq"){
+        console.log("mcq add");
+        this.AddMcq();
+    }
+
+    if(this.TempQue.type=="tf"){
+        console.log("tf add");
+        this.AddTrue();
+    }
+
+    if(this.TempQue.type=="sans"){
+        console.log("sans add");
+        this.AddEssay();
+    }
+  }
+
   Adding(){
+    if(this.TempQue.type=="mcq"){
+        console.log("mcq adding");
+        this.AddingMcq();
+    }
+
+    if(this.TempQue.type=="tf"){
+        console.log("tf adding");
+        this.AddingTrue();
+    }
+
+    if(this.TempQue.type=="sans"){
+        console.log("sans adding");
+        this.AddingEssay();
+    }
+
+  }
+
+  AddingMcq(){
     var temp = {Text:"",Option1:"",Option2:"",Option3:"",Option4:"",type:""};
-    var tempans = this.TempQue.Answer
+    var tempans = this.TempQue.Answer;
     temp.Text = this.TempQue.Text;
     temp.Option1 = this.TempQue.Option1;
     temp.Option2 = this.TempQue.Option2;
@@ -44,13 +81,14 @@ export class CreateComponent implements OnInit {
     temp.Option4 = this.TempQue.Option4;
     temp.type = this.TempQue.type;
     this.quiz.Questions.push(temp);
+
     console.log(this.quiz.Questions);
     this.quizanswers.push(tempans);
     console.log(this.quizanswers);
 
   }
 
-  Add() {
+  AddMcq() {
 
         var factory = this.componentFactoryResolver.resolveComponentFactory(McqComponent);
         var ref = this.viewContainerRef.createComponent(factory);
@@ -68,6 +106,8 @@ export class CreateComponent implements OnInit {
         //ref.changeDetectorRef.detectChanges();
         var blockInstance = ref.instance as McqComponent;
         this.loadquiz.updatequizquestion(this.subjectcode,this.quiz.Questions);
+        this.loadquiz.updatequizanswer(this.subjectcode,this.quizanswers);
+        
         blockInstance.messageEvent.subscribe((val) => {
             console.log(val);
             var i : number;
@@ -83,6 +123,114 @@ export class CreateComponent implements OnInit {
             }
             console.log(this.quiz.Questions);
         });
+
+        this.TempQue.Text="";
+        this.TempQue.Option1="";
+        this.TempQue.Option2="";
+        this.TempQue.Option3="";
+        this.TempQue.Option4="";
+  }
+
+  AddingTrue(){
+    var temp = {Text:"",type:"tf"};
+    temp.Text = this.TempQue.Text;
+    var tempans = this.TempQue.Answer;
+    this.quiz.Questions.push(temp);
+    console.log(this.quiz.Questions);
+    this.quizanswers.push(tempans);
+    console.log(this.quizanswers);
+    //this.subjectcode="MA2-bc0001";
+    this.loadquiz.updatequizquestion(this.subjectcode,this.quiz.Questions);
+      this.loadquiz.updatequizanswer(this.subjectcode,this.quizanswers);
+  }
+
+  AddingEssay(){
+    var temp = {Text:"",type:"sans"};
+    temp.Text = this.TempQue.Text;
+    var tempans = this.TempQue.Answer;
+    this.quiz.Questions.push(temp);
+    console.log(this.quiz.Questions);
+    this.quizanswers.push(tempans);
+    console.log(this.quizanswers);
+  //  this.subjectcode="MA2-bc0001";
+    this.loadquiz.updatequizquestion(this.subjectcode,this.quiz.Questions);
+    this.loadquiz.updatequizanswer(this.subjectcode,this.quizanswers);
+  }
+
+  AddTrue() {
+
+        var factory = this.componentFactoryResolver.resolveComponentFactory(McqComponent);
+        var ref = this.viewContainerRef.createComponent(factory);
+        //expComponent.instance._ref = expComponent;
+        ref.instance._ref = ref;
+        ref.instance.level = true;
+        ref.instance.Question = this.TempQue.Text;
+        ref.instance.type = this.TempQue.type;
+        /*ref.instance.Option1 = this.TempQue.Option1;
+        ref.instance.Option2 = this.TempQue.Option2;
+        ref.instance.Option3 = this.TempQue.Option3;
+        ref.instance.Option4 = this.TempQue.Option4;
+        //ref.changeDetectorRef.detectChanges();*/
+        ref.instance.completed = false;
+        this.Adding();
+        var blockInstance = ref.instance as McqComponent;
+
+        blockInstance.messageEvent.subscribe((val) => {
+            console.log(val);
+            var i : number;
+            i=0;
+            while (i<this.quiz.Questions.length){
+              if (this.quiz.Questions[i].Text == val.Text){
+                console.log('val');
+              }
+              i=i+1;
+            }
+            console.log(this.quiz.Questions);
+        });
+
+        this.TempQue.Text="";
+        this.TempQue.Option1="";
+        this.TempQue.Option2="";
+        this.TempQue.Option3="";
+        this.TempQue.Option4="";
+  }
+
+  AddEssay() {
+
+        var factory = this.componentFactoryResolver.resolveComponentFactory(McqComponent);
+        var ref = this.viewContainerRef.createComponent(factory);
+        //expComponent.instance._ref = expComponent;
+        ref.instance._ref = ref;
+        ref.instance.level = true;
+        ref.instance.Question = this.TempQue.Text;
+        ref.instance.type = this.TempQue.type;
+        /*ref.instance.Option1 = this.TempQue.Option1;
+        ref.instance.Option2 = this.TempQue.Option2;
+        ref.instance.Option3 = this.TempQue.Option3;
+        ref.instance.Option4 = this.TempQue.Option4;
+        //ref.changeDetectorRef.detectChanges();*/
+        ref.instance.completed = false;
+        this.Adding();
+        var blockInstance = ref.instance as McqComponent;
+
+        blockInstance.messageEvent.subscribe((val) => {
+            console.log(val);
+            var i : number;
+            i=0;
+            while (i<this.quiz.Questions.length){
+              if (this.quiz.Questions[i].Text == val.Text){
+                console.log('val');
+              }
+              i=i+1;
+            }
+            console.log(this.quiz.Questions);
+        });
+
+        this.TempQue.Text="";
+        this.TempQue.Option1="";
+        this.TempQue.Option2="";
+        this.TempQue.Option3="";
+        this.TempQue.Option4="";
   }
 
 }

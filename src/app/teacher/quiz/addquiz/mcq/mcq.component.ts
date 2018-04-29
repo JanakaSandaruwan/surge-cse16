@@ -13,7 +13,8 @@ export class McqComponent implements OnInit {
   Option2: string;
   Option3: string;
   Option4: string;
-  selected : string = "0";
+  selected : string ;
+  type:string;
   final : Question = <Question>{};;
   constructor(private elRef: ElementRef) { }
 
