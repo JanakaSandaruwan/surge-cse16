@@ -1,9 +1,10 @@
+<button (click)="refresh()">Refresh</button>
 <div class="btn-group">
-  <button type="button" class="btn btn-primary"  *ngFor= "let question of quiz.Questions" (click)="goto(quiz.Questions.indexOf(question))">{{quiz.Questions.indexOf(question) + 1}}</button>
+  <button type="button" class="btn btn-primary"  *ngFor= "let question1 of quiz" (click)="goto(quiz.indexOf(question1))">{{quiz.indexOf(question1) + 1}}</button>
 </div>
 
 <div style="overflow:hidden;">
   <button class="btn" *ngIf="shownext" style="float:right;"(click)="next()">next</button>
   <button class="btn" *ngIf="showprev" (click)="prev()">previous</button>
-  
+
 </div>

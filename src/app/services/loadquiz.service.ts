@@ -75,4 +75,20 @@ export class LoadquizService {
 
   }
 
+  quizeslist(subjectname):any[]{
+    var finallist :any[];
+    finallist = [];
+    var nodata = 0;
+    firebase.database().ref('classes/'+subjectname+'/Quiz').on('child_added', function(data) {
+        finallist[nodata-1]=data.val();
+        nodata = nodata + 1;
+
+
+      });
+    //  delete finallist[0]
+      return finallist;
+    }
+
+      
+
 }

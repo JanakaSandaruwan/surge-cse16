@@ -17,7 +17,7 @@ import { ActivatedRoute } from '@angular/router';
 export class AddquizComponent implements OnInit {
 
   quizname:string;
-
+  subjectname:string;
 
   constructor(private componentFactoryResolver: ComponentFactoryResolver,
                 private viewContainerRef: ViewContainerRef, private loadquiz :LoadquizService,private router:Router, private route: ActivatedRoute) { }
@@ -26,7 +26,8 @@ export class AddquizComponent implements OnInit {
 
     this.route.params.subscribe(params => {
       // this.usercode = params['details'];
-       this.quizname=atob(params['quizname']);
+       this.quizname=(params['quizname']);
+       this.subjectname=atob(params['subjectname']);
        //console.log((this.usercode));
        console.log((this.quizname));
     });
@@ -34,8 +35,8 @@ export class AddquizComponent implements OnInit {
   }
 
   gotoView(){
-    this.router.navigate(['../../teacher/quiz/teacherview',{quizname: btoa(this.quizname)}]);
-    console.log("navigate to preview");
+    this.router.navigate(['../../teacher/quiz/teacherview',{quizname: (this.quizname),subjectname:btoa(this.subjectname)}]);
+    console.log("navigate to teacherview");
   }
 
 

@@ -29,7 +29,7 @@ import { AddquizComponent } from './teacher/quiz/addquiz/addquiz.component';
 import { AdmittanceComponent } from './teacher/admittance/admittance.component';
 import { StudymaterialComponent } from './teacher/studymaterial/studymaterial.component';
 import { ModulesComponent } from './teacher/modules/modules.component';
-import { FeablelistComponent } from './teacher/progresscheck/feablelist/feablelist.component';
+
 import { ModuleComponent } from './teacher/modules/module/module.component';
 
 import { LoadquizService } from './services/loadquiz.service';
@@ -123,7 +123,7 @@ import { TeachermcqComponent } from './teacher/quiz/addquiz/teacherview/teacherm
     AdmittanceComponent,
     StudymaterialComponent,
     ModulesComponent,
-    FeablelistComponent,
+
     FilterPipe,
     ModuleComponent,
     TeacherviewComponent,
@@ -160,7 +160,7 @@ import { TeachermcqComponent } from './teacher/quiz/addquiz/teacherview/teacherm
     { path: 'teacher', component:TeacherComponent, children : [
       { path: '', component: TeacherHomeComponent },
       { path: 'progresscheck', component:ProgresscheckComponent},
-      {path:'progresscheck/feablelist',component:FeablelistComponent},
+      
       { path: 'admittance', component:AdmittanceComponent},
       { path: 'leaveapplication', component:LeaveapplicationComponent},
       {path:'quiz',component:QuizComponent},
