@@ -1,20 +1,27 @@
 import { Component, OnInit, Input, ElementRef , EventEmitter, Output } from '@angular/core';
-import { Question } from '../../../../models/question';
+import { Question } from '../../../../../models/question';
+
 @Component({
-  selector: 'app-trueq',
-  templateUrl: './trueq.component.html',
-  styleUrls: ['./trueq.component.css']
+  selector: 'app-teachermcq',
+  templateUrl: './teachermcq.component.html',
+  styleUrls: ['./teachermcq.component.css']
 })
-export class TrueqComponent implements OnInit {
+export class TeachermcqComponent implements OnInit {
+
   _ref:any;
   level: boolean;
   Question :string;
-  /*Option1: string;
+  Option1: string;
   Option2: string;
   Option3: string;
-  Option4: string;*/
-  selected : string = "0";
-  final : Question = <Question>{};;
+  Option4: string;
+  type: string;
+  corans : string;
+  completed : boolean=true;
+  selected : string ;
+  wrong : boolean = false;
+  final : Question = <Question>{};
+  id : string = "";
   constructor(private elRef: ElementRef) { }
 
   @Output() messageEvent = new EventEmitter<Question>();
@@ -27,15 +34,18 @@ export class TrueqComponent implements OnInit {
 
   removeObject(){
     this.final.Text = this.Question;
-    /*this.final.Option1 = this.Option1;
+    this.final.Option1 = this.Option1;
     this.final.Option2 = this.Option2;
     this.final.Option3 = this.Option3;
-    this.final.Option4 = this.Option4;*/
+    this.final.Option4 = this.Option4;
     this.messageEvent.emit(this.final);
+    console.log(this.messageEvent);
     this._ref.destroy();
   }
 
   ngOnInit() {
+
+
   }
 
 }

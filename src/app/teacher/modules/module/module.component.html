@@ -53,6 +53,6 @@
 <div  style="margin-top:30px; margin-bottom:30px; margin-left:50px">
   <h4>Quizes</h4>
   <ul>
-    <li style="padding:10px;"   ><a></a></li>
+    <li style="padding:10px;"  *ngFor= "let quiz of quizes " ><a (click)="gotodisplayquiz(quiz.name)" >{{quiz.name}}</a></li>
   </ul>
 </div>

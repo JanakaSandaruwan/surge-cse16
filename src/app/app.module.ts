@@ -31,8 +31,7 @@ import { StudymaterialComponent } from './teacher/studymaterial/studymaterial.co
 import { ModulesComponent } from './teacher/modules/modules.component';
 import { FeablelistComponent } from './teacher/progresscheck/feablelist/feablelist.component';
 import { ModuleComponent } from './teacher/modules/module/module.component';
-import { TrueqComponent } from './teacher/quiz/addquiz/trueq/trueq.component';
-import { EssayComponent } from './teacher/quiz/addquiz/essay/essay.component';
+
 import { LoadquizService } from './services/loadquiz.service';
 import { UploadService } from './services/upload.service';
 import { LoginServiceService } from './services/login-service.service';
@@ -77,6 +76,8 @@ import { LeaveapproveService } from './services/leaveapprove.service';
 import { ViewleaveComponent } from './hr/viewleave/viewleave.component';
 import { ExamHomeComponent } from './examdiv/exam-home/exam-home.component';
 import { CreateTtComponent } from './examdiv/create-tt/create-tt.component';
+import { TeacherviewComponent } from './teacher/quiz/addquiz/teacherview/teacherview.component';
+import { TeachermcqComponent } from './teacher/quiz/addquiz/teacherview/teachermcq/teachermcq.component';
 
 @NgModule({
   declarations: [
@@ -125,11 +126,13 @@ import { CreateTtComponent } from './examdiv/create-tt/create-tt.component';
     FeablelistComponent,
     FilterPipe,
     ModuleComponent,
-    TrueqComponent,
-    EssayComponent
+    TeacherviewComponent,
+    TeachermcqComponent,
+
   ],
   entryComponents: [
-    McqComponent
+    McqComponent,
+    TeachermcqComponent
   ],
   imports: [
     BrowserModule,
@@ -163,9 +166,11 @@ import { CreateTtComponent } from './examdiv/create-tt/create-tt.component';
       {path:'quiz',component:QuizComponent},
       {path:'quiz/displaymark',component:DisplaymarkComponent},
       {path:'quiz/addquiz',component:CreateComponent},
+      {path:'quiz/preview',component:AddquizComponent},
+      {path:'quiz/preview/mcq',component:TeachermcqComponent},
       {path:'quiz/addquiz/mcq',component:McqComponent},
-      {path:'quiz/addquiz/trueq',component:TrueqComponent},
-      {path:'quiz/addquiz/essay',component:EssayComponent},
+      {path:'quiz/teacherview',component:TeacherviewComponent},
+
       { path: 'modules', component:ModulesComponent},
       { path: 'modules/module', component:ModuleComponent},
       {path:'studymaterial',component:StudymaterialComponent},

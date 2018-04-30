@@ -233,7 +233,7 @@ export class CreateComponent implements OnInit {
         this.TempQue.Option2="";
         this.TempQue.Option3="";
         this.TempQue.Option4="";
-        this.TempQue.Answer="";
+        this.TempQue.Answer="";``
   }
 
 }
