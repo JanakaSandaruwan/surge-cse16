@@ -1,5 +1,5 @@
 import { Component, OnInit, Input, ElementRef , EventEmitter, Output } from '@angular/core';
-import { Question } from '../../../models/question';
+import { Question } from '../../../../models/question';
 @Component({
   selector: 'app-mcq',
   templateUrl: './mcq.component.html',

@@ -1,10 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 import { ViewChild, ComponentFactoryResolver, ViewContainerRef } from '@angular/core';
 import { McqComponent } from './mcq/mcq.component';
-import { Quiz } from '../../models/quiz';
-import { Question } from '../../models/question';
+import { Quiz } from '../../../models/quiz';
+import { Question } from '../../../models/question';
 import { ActivatedRoute } from '@angular/router';
-import {LoadquizService} from '../../services/loadquiz.service';
+import {LoadquizService} from '../../../services/loadquiz.service';
 
 @Component({
   selector: 'app-create',

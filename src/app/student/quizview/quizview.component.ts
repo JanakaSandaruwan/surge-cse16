@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Quiz } from '../../models/quiz';
 import { Question } from '../../models/question';
-import { McqComponent } from '../../teacher/create/mcq/mcq.component';
+import { McqComponent } from '../../teacher/quiz/create/mcq/mcq.component';
 import { ViewChild, ComponentFactoryResolver, ViewContainerRef } from '@angular/core';
 
 @Component({
