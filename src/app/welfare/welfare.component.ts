@@ -1,4 +1,8 @@
 import { Component, OnInit } from '@angular/core';
+import {LocalStorageService, SessionStorageService} from 'ngx-webstorage';
+import { Router } from '@angular/router';
+import { ActivatedRoute } from '@angular/router';
+import { LoginServiceService } from '../services/login-service.service';
 
 @Component({
   selector: 'app-welfare',
@@ -8,7 +12,10 @@ import { Component, OnInit } from '@angular/core';
 export class WelfareComponent implements OnInit {
   state : string = "expanded";
   dropdownstate : string = "collapsed";
-  constructor() { }
+  username: string;
+  usercode: string;
+  fulldata : object = <object>{} ;
+  constructor(private storage:LocalStorageService, private route: ActivatedRoute, private login : LoginServiceService,private router:Router) { }
 
   movedown(){
       console.log("dad");
@@ -40,6 +47,34 @@ export class WelfareComponent implements OnInit {
     }
   }
   ngOnInit() {
+
+    if (!this.storage.retrieve("uname")){
+      console.log("x");
+      this.router.navigate(['']);
+    }
+    console.log(this.storage.retrieve("uname")+"adsa");
+    if (this.login.getloginstatus(this.storage.retrieve("uname")) == false){
+      console.log("y");
+      this.router.navigate(['']);
+    }else{
+      this.route.firstChild.params.subscribe(params => {
+           console.log(atob(params['details']));
+           this.usercode = params['details'];
+         this.login.loginemployee(atob(params['details'])).subscribe(data => {
+           this.fulldata = data;
+
+           if (this.fulldata == null){
+             this.router.navigate(['']);
+           }
+         });
+      });
+    }
+  }
+
+  logout(){
+    this.storage.clear("uname");
+    this.login.logoutuser(this.fulldata['username']);
+    this.router.navigate(['']);
   }
 
 }

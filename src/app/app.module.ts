@@ -29,11 +29,10 @@ import { AddquizComponent } from './teacher/quiz/addquiz/addquiz.component';
 import { AdmittanceComponent } from './teacher/admittance/admittance.component';
 import { StudymaterialComponent } from './teacher/studymaterial/studymaterial.component';
 import { ModulesComponent } from './teacher/modules/modules.component';
-
 import { ModuleComponent } from './teacher/modules/module/module.component';
-
 import { LoadquizService } from './services/loadquiz.service';
 import { UploadService } from './services/upload.service';
+import { NewviewComponent } from './newview/newview.component';
 import { LoginServiceService } from './services/login-service.service';
 import { HttpClient, HttpErrorResponse, HttpHeaders ,HttpClientModule } from '@angular/common/http';
 import { LoadbatchesService } from './services/loadbatches.service';
@@ -76,8 +75,7 @@ import { LeaveapproveService } from './services/leaveapprove.service';
 import { ViewleaveComponent } from './hr/viewleave/viewleave.component';
 import { ExamHomeComponent } from './examdiv/exam-home/exam-home.component';
 import { CreateTtComponent } from './examdiv/create-tt/create-tt.component';
-import { TeacherviewComponent } from './teacher/quiz/addquiz/teacherview/teacherview.component';
-import { TeachermcqComponent } from './teacher/quiz/addquiz/teacherview/teachermcq/teachermcq.component';
+import {Ng2Webstorage} from 'ngx-webstorage';
 
 @NgModule({
   declarations: [
@@ -114,6 +112,7 @@ import { TeachermcqComponent } from './teacher/quiz/addquiz/teacherview/teacherm
     HrHomeComponent,
     ViewleaveComponent,
     ExamHomeComponent,
+    NewviewComponent,
     CreateTtComponent,
     LeaveapplicationComponent,
     QuizComponent,
@@ -123,16 +122,11 @@ import { TeachermcqComponent } from './teacher/quiz/addquiz/teacherview/teacherm
     AdmittanceComponent,
     StudymaterialComponent,
     ModulesComponent,
-
     FilterPipe,
-    ModuleComponent,
-    TeacherviewComponent,
-    TeachermcqComponent,
-
+    ModuleComponent
   ],
   entryComponents: [
-    McqComponent,
-    TeachermcqComponent
+    McqComponent
   ],
   imports: [
     BrowserModule,
@@ -140,6 +134,7 @@ import { TeachermcqComponent } from './teacher/quiz/addquiz/teacherview/teacherm
     FormsModule,
     DataTablesModule,
     HttpModule,
+    Ng2Webstorage,
     NgbModule.forRoot(),
     AgGridModule.withComponents([ ]),
     HttpClientModule,
@@ -160,17 +155,12 @@ import { TeachermcqComponent } from './teacher/quiz/addquiz/teacherview/teacherm
     { path: 'teacher', component:TeacherComponent, children : [
       { path: '', component: TeacherHomeComponent },
       { path: 'progresscheck', component:ProgresscheckComponent},
-      
       { path: 'admittance', component:AdmittanceComponent},
       { path: 'leaveapplication', component:LeaveapplicationComponent},
       {path:'quiz',component:QuizComponent},
       {path:'quiz/displaymark',component:DisplaymarkComponent},
       {path:'quiz/addquiz',component:CreateComponent},
-      {path:'quiz/preview',component:AddquizComponent},
-      {path:'quiz/preview/mcq',component:TeachermcqComponent},
       {path:'quiz/addquiz/mcq',component:McqComponent},
-      {path:'quiz/teacherview',component:TeacherviewComponent},
-
       { path: 'modules', component:ModulesComponent},
       { path: 'modules/module', component:ModuleComponent},
       {path:'studymaterial',component:StudymaterialComponent},
@@ -212,7 +202,10 @@ import { TeachermcqComponent } from './teacher/quiz/addquiz/teacherview/teacherm
     { path: 'home', component:ExamHomeComponent},
     { path: 'createTT' , component :CreateTtComponent}]
   //{ path: '**', component: PageNo,FoundComponent }
-  }
+},
+{
+  path: 'new' , component: NewviewComponent
+}
     ]),
     RouterModule
   ],

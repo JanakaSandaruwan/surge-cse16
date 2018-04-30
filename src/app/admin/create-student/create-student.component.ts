@@ -28,6 +28,71 @@ export class CreateStudentComponent implements OnInit {
   selectedRows : Student[] = [];
   DCCRows : Student = <Student>{};
   NICtaken : Observable<boolean>;
+  showid : boolean = true;
+  shownic : boolean = true;
+  showadd : boolean = true;
+  showcon : boolean = true;
+  showname : boolean = true;
+  showmail : boolean = true;
+  Error : string = "";
+
+  toggleid(){
+    this.showid = !this.showid;
+    this.gridColumnApi.setColumnVisible("ID",this.showid);
+  }
+
+  togglename(){
+    this.showname = !this.showname
+    this.gridColumnApi.setColumnVisible("fname",this.showname);
+  }
+
+  togglenic(){
+    this.shownic = !this.shownic
+    this.gridColumnApi.setColumnVisible("NIC",this.shownic);
+  }
+
+  getdown(){
+    $('#menu').first().stop(true, true).slideDown();
+  }
+
+  toggleadd(){
+    this.showadd = !this.showadd;
+    this.gridColumnApi.setColumnVisible("Address",this.showadd);
+  }
+
+  togglemail(){
+    this.showmail = !this.showmail;
+    this.gridColumnApi.setColumnVisible("email",this.showmail);
+  }
+
+  togglecon(){
+    this.showcon = !this.showcon;
+    this.gridColumnApi.setColumnVisible("contact",this.showcon);
+  }
+
+  onBtnExport(): void {
+    console.log(this.gridApi.getSelectedRows());
+    if (this.selected == undefined){
+        this.Error = "No batch selected";
+        $("#errorbutton").click();
+    }else if ( this.gridApi.getSelectedRows().length != 0){
+      const params = {
+        columnGroups: true,
+        allColumns: true,
+        fileName: 'filename_of_your_choice',
+        onlySelected : true
+      }
+      this.gridApi.exportDataAsCsv(params);
+    }else{
+      console.log('d');
+      const params = {
+        columnGroups: true,
+        allColumns: true,
+        fileName: 'filename_of_your_choice'
+      }
+      this.gridApi.exportDataAsCsv(params);
+    }
+  }
 
   constructor(private _batchservice: LoadbatchesService,
     private _loginservice : LoginServiceService) {
@@ -36,28 +101,54 @@ export class CreateStudentComponent implements OnInit {
             {headerName: "ID", field: "ID", width: 350},
             {headerName: "Name", field: "fname", width: 475},
             {headerName: "NIC", field: "NIC", width: 350},
+            {headerName: "Address", field: "Address", width: 350},
+            {headerName: "Email", field: "email", width: 350},
+            {headerName: "Contact", field: "contact", width: 350},
 
         ];
         this.rowSelection = "multiple";
     }
 
+    fit(){
+        this.gridApi.sizeColumnsToFit();
+    }
+
     SendtoNextlevel(){
-      var i : number = 0;
-      for (i=0;i<this.selectedRows.length;i++){
-        this._batchservice.NextLevel(this.selectedRows[i].username,this.selected,this.SStudents.length);
+
+      if(this.selected == undefined){
+        this.Error = "No batch selected";
+        $("#errorbutton").click();
+      }else if(this.selectedRows.length == 0 ){
+        this.Error = "No rows selected to Delete";
+        $("#errorbutton").click();
+      }else{
+        var i : number = 0;
+        for (i=0;i<this.selectedRows.length;i++){
+          this._batchservice.NextLevel(this.selectedRows[i].username,this.selected,this.SStudents.length);
+        }
+        this.SStudents = this._batchservice.listStudents(this.selected);
+        this.gridApi.setRowData(this.SStudents);
       }
-      this.SStudents = this._batchservice.listStudents(this.selected);
-      this.gridApi.setRowData(this.SStudents);
+
     }
 
     Deletebutton(){
-      var i : number = 0;
-      for (i=0;i<this.selectedRows.length;i++){
-        this._loginservice.removeUser(this.selectedRows[i].username);
-        this._batchservice.saveBatchlist(this.selectedRows[i].username,this.selected,this.SStudents.length);
+      if(this.selected == undefined){
+        this.Error = "No batch selected";
+        $("#errorbutton").click();
+      }else if(this.selectedRows.length == 0 ){
+        this.Error = "No rows selected to Delete";
+        $("#errorbutton").click();
+      }else{
+        var i : number = 0;
+        for (i=0;i<this.selectedRows.length;i++){
+          this._loginservice.removeUser(this.selectedRows[i].username);
+          this._batchservice.saveBatchlist(this.selectedRows[i].username,this.selected,this.SStudents.length);
+        }
+        this.SStudents = this._batchservice.listStudents(this.selected);
+        this.gridApi.setRowData(this.SStudents);
       }
-      this.SStudents = this._batchservice.listStudents(this.selected);
-      this.gridApi.setRowData(this.SStudents);
+
     }
     checkValidity(){
       this.NICtaken = this._loginservice.checkNICs(this.cstudent.NIC);
@@ -106,32 +197,38 @@ export class CreateStudentComponent implements OnInit {
   }
 
   AddStudent(){
-    this.cstudent.batchcode = this.sbatch.name;
-    this.cstudent.bindex = this.selected;
-    this.cstudent.Level = "Entry";
-    this.cstudent.password = "student123";
-    this.cstudent.role = "student";
-      if (this.nextid < 10){
-        this.cstudent.ID = this.cstudent.batchcode+"000"+this.nextid;
-      }else if (this.nextid < 100){
-        this.cstudent.ID = this.cstudent.batchcode+"00"+this.nextid;
-      }else if (this.nextid < 1000){
-        this.cstudent.ID = this.cstudent.batchcode+"0"+this.nextid;
-      }else{
-        this.cstudent.ID = this.cstudent.batchcode+this.nextid;
-      }
-      this.nextid = this.nextid + 1 ;
-      this.cstudent.username = this.cstudent.ID;
-      this._batchservice.Addnewstudent(this.cstudent, this.SStudents.length , this.nextid);
-    this._loginservice.adduser(this.cstudent);
-    this.cstudent.fname = "";
-    this.cstudent.NIC = "";
-    this.cstudent.Address = "";
-    this.cstudent.contact = "";
-    this.cstudent.email = "";
-    $('#button79').click();
-    this.SStudents = this._batchservice.listStudents(this.selected);
-    this.gridApi.setRowData(this.SStudents);
+    if ( this.selected == undefined ){
+      this.Error = "Batch hasn't been selected";
+      $("#errorbutton").click();
+    }else{
+      this.cstudent.batchcode = this.sbatch.name;
+      this.cstudent.bindex = this.selected;
+      this.cstudent.Level = "Entry";
+      this.cstudent.password = "student123";
+      this.cstudent.role = "student";
+        if (this.nextid < 10){
+          this.cstudent.ID = this.cstudent.batchcode+"000"+this.nextid;
+        }else if (this.nextid < 100){
+          this.cstudent.ID = this.cstudent.batchcode+"00"+this.nextid;
+        }else if (this.nextid < 1000){
+          this.cstudent.ID = this.cstudent.batchcode+"0"+this.nextid;
+        }else{
+          this.cstudent.ID = this.cstudent.batchcode+this.nextid;
+        }
+        this.nextid = this.nextid + 1 ;
+        this.cstudent.username = this.cstudent.ID;
+        this._batchservice.Addnewstudent(this.cstudent, this.SStudents.length , this.nextid);
+      this._loginservice.adduser(this.cstudent);
+      this.cstudent.fname = "";
+      this.cstudent.NIC = "";
+      this.cstudent.Address = "";
+      this.cstudent.contact = "";
+      this.cstudent.email = "";
+      $('#button79').click();
+      this.SStudents = this._batchservice.listStudents(this.selected);
+      this.gridApi.setRowData(this.SStudents);
+    }
+
   }
 
   changebatch(batchno,batch){

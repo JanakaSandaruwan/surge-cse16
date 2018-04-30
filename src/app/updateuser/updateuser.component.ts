@@ -4,6 +4,7 @@ import { LoginServiceService } from '../services/login-service.service';
 import { Observable } from 'rxjs/Observable';
 import {  UploadserviceService } from '../services/uploadservice.service';
 import { Upload } from '../models/upload';
+import {LocalStorageService, SessionStorageService} from 'ngx-webstorage';
 @Component({
   selector: 'app-updateuser',
   templateUrl: './updateuser.component.html',
@@ -32,28 +33,28 @@ export class UpdateuserComponent implements OnInit {
   selectedFiles: FileList;
   currentFileUpload: Upload;
   profileurl: string;
-  constructor(private _loginservice : LoginServiceService, private logincookie : CookieService, private  uploadService: UploadserviceService) { }
+  constructor(private storage:LocalStorageService, private _loginservice : LoginServiceService, private logincookie : CookieService, private  uploadService: UploadserviceService) { }
 
   ngOnInit() {
-    this.fcontact = this.logincookie.get("contact");
-    this.fNIC = this.logincookie.get("NIC");
-    this.femail = this.logincookie.get("email");
-    this.fname = this.logincookie.get("fname");
-    this.fAddress = this.logincookie.get("Address");
-    this.fcontact2 = this.logincookie.get("econtact");
-    this.model.year = +this.logincookie.get("byear");
-    this.model.month = +this.logincookie.get("bmonth");
-    this.model.day = +this.logincookie.get("bdate");
-    this.uploadService.getUrl(this.logincookie.get("uname")).subscribe(data => {
+    this.fcontact = this.storage.retrieve("contact");
+    this.fNIC = this.storage.retrieve("NIC");
+    this.femail = this.storage.retrieve("email");
+    this.fname = this.storage.retrieve("fname");
+    this.fAddress = this.storage.retrieve("Address");
+    this.fcontact2 = this.storage.retrieve("econtact");
+    this.model.year = +this.storage.retrieve("byear");
+    this.model.month = +this.storage.retrieve("bmonth");
+    this.model.day = +this.storage.retrieve("bdate");
+    this.uploadService.getUrl(this.storage.retrieve("uname")).subscribe(data => {
       this.profileurl = data;
       console.log(this.profileurl);
     });
-    console.log(this.logincookie.get("econtact"));
-    console.log(this.logincookie.get("fname"));
+    console.log(this.storage.retrieve("econtact"));
+    console.log(this.storage.retrieve("fname"));
   }
 
   getcurrentPassword(){
-    this._loginservice.login(this.logincookie.get("uname"),"s").subscribe(data => {
+    this._loginservice.login(this.storage.retrieve("uname"),"s").subscribe(data => {
       this.oldpasswordcopy = data.Password ;
     });
   }
@@ -69,7 +70,7 @@ export class UpdateuserComponent implements OnInit {
       this.oldcheck = Observable.of(false);
       this.newcheck = Observable.of(false);
       console.log("done and dusted");
-      this._loginservice.updatepassword(this.logincookie.get("uname"),this.newpassword);
+      this._loginservice.updatepassword(this.storage.retrieve("uname"),this.newpassword);
     }
   }
 
@@ -80,7 +81,7 @@ export class UpdateuserComponent implements OnInit {
 
   update(){
     console.log('run');
-    this._loginservice.updatedetails(this.logincookie.get("uname"),this.logincookie.get("role"),this.model, this.fname, this.fAddress, this.fcontact , this.fcontact2 , this.femail);
+    this._loginservice.updatedetails(this.storage.retrieve("uname"),this.storage.retrieve("role"),this.model, this.fname, this.fAddress, this.fcontact , this.fcontact2 , this.femail);
   }
 
   detectfiles(event){
@@ -100,7 +101,7 @@ export class UpdateuserComponent implements OnInit {
     const file = this.selectedFiles.item(0);
     this.selectedFiles = undefined;
     this.currentFileUpload = new Upload(file);
-    this.uploadService.uploadprofilepic(this.logincookie.get("uname"),this.currentFileUpload);
+    this.uploadService.uploadprofilepic(this.storage.retrieve("uname"),this.currentFileUpload);
   }
 
 }

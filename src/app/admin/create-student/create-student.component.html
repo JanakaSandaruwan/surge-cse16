@@ -15,74 +15,91 @@
         <h4 class="modal-title">Viewing Data of {{DCCRows.fname}}</h4>
       </div>
       <div class="modal-body">
-        <div class="form-group">
+        <div role="tabpanel">
+                    <!-- Nav tabs -->
+                    <ul class="nav nav-tabs" role="tablist">
+                        <li role="presentation" class="active"><a href="#uploadTab" aria-controls="uploadTab" role="tab" data-toggle="tab">General</a>
 
-        <div class="row">
+                        </li>
+                        <li role="presentation"><a href="#browseTab" aria-controls="browseTab" role="tab" data-toggle="tab">Academics</a>
 
-       <label class="control-label col-md-3" ><b>Full Name </b></label>
-       <div class="col-md-9">
+                        </li>
+                    </ul>
+                    <!-- Tab panes -->
+                    <div class="tab-content">
+                        <div role="tabpanel" class="tab-pane active" id="uploadTab">
+                          <div class="form-group">
 
+                          <div class="row">
 
-       <p> {{DCCRows.fname}}</p>
-      </div>
-      </div>
-      </div>
-
-      <div class="form-group">
-
-      <div class="row">
-
-     <label class="control-label col-md-3" ><b>Student ID </b></label>
-     <div class="col-md-9">
-
-
-     <p> {{DCCRows.ID}}</p>
-    </div>
-    </div>
-    </div>
-
-      <div class="form-group">
-        <div class="row">
-       <label class="control-label col-md-3"><b>Address </b></label>
-       <div class="col-md-9">
-
-      <p> {{DCCRows.Address}} </p>
-
-      </div>
-      </div>
-      </div>
-      <div class="form-group">
-
-      <div class="row">
-      <label class="control-label col-md-3" for="NIC"><b>NIC </b></label>
-      <div class="col-md-9">
-
-        <p> {{DCCRows.NIC}} </p>
-
-     </div>
-     </div>
-     </div>
-     <div class="form-group">
-       <div class="row">
-       <label class="control-label col-md-3" for="contact"><b>Phone </b></label>
-       <div class=col-md-9>
-          <p> {{DCCRows.contact}} </p>
-       </div>
-       </div>
-     </div>
-
-     <div class="form-group">
-       <div class="row">
+                         <label class="control-label col-md-3" ><b>Full Name </b></label>
+                         <div class="col-md-9">
 
 
-       <label class="control-label col-md-3" for="email"><b>Email </b></label>
-         <div class="col-md-9">
-            <p> {{DCCRows.email}} </p>
+                         <p> {{DCCRows.fname}}</p>
+                        </div>
+                        </div>
+                        </div>
 
-         </div>
-         </div>
-     </div>
-      </div>
+                        <div class="form-group">
+
+                        <div class="row">
+
+                       <label class="control-label col-md-3" ><b>Student ID </b></label>
+                       <div class="col-md-9">
+
+
+                       <p> {{DCCRows.ID}}</p>
+                      </div>
+                      </div>
+                      </div>
+
+                        <div class="form-group">
+                          <div class="row">
+                         <label class="control-label col-md-3"><b>Address </b></label>
+                         <div class="col-md-9">
+
+                        <p> {{DCCRows.Address}} </p>
+
+                        </div>
+                        </div>
+                        </div>
+                        <div class="form-group">
+
+                        <div class="row">
+                        <label class="control-label col-md-3" for="NIC"><b>NIC </b></label>
+                        <div class="col-md-9">
+
+                          <p> {{DCCRows.NIC}} </p>
+
+                       </div>
+                       </div>
+                       </div>
+                       <div class="form-group">
+                         <div class="row">
+                         <label class="control-label col-md-3" for="contact"><b>Phone </b></label>
+                         <div class=col-md-9>
+                            <p> {{DCCRows.contact}} </p>
+                         </div>
+                         </div>
+                       </div>
+
+                       <div class="form-group">
+                         <div class="row">
+
+
+                         <label class="control-label col-md-3" for="email"><b>Email </b></label>
+                           <div class="col-md-9">
+                              <p> {{DCCRows.email}} </p>
+
+                           </div>
+                           </div>
+                       </div>
+                        </div>
+                        <div role="tabpanel" class="tab-pane" id="browseTab">browseTab</div>
+                    </div>
+                </div>
+            </div>
       <div class="modal-footer">
         <div class="form-group pull-right">
         <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
@@ -210,19 +227,68 @@
 <div style="height:60px;">
   <button class="btn btn-primary" (click)="Deletebutton()">Delete</button>
   <button class="btn btn-primary" (click)="SendtoNextlevel()">Send to Next</button>
+  <button class="btn btn-primary" (click)="fit()">fit</button>
+  <button class="btn btn-primary" (click)="onBtnExport()">Download</button>
+  <div class="dropdown-container"><!--Container wrapped around-->
+  <button data-toggle="dropdown" class="btn btn-primary dropdown-toggle btn" type="button" aria-expanded="true">Filter Columns</button>
+    <ul role="menu" class="dropdown-menu">
+      <li>
+        <input type="checkbox" [checked]="showid" (change)="toggleid()" >ID
+      </li>
+      <li>
+        <input type="checkbox" [checked]="showname" (change)="togglename()" >Name
+      </li>
+      <li>
+        <input type="checkbox" [checked]="shownic" (change)="togglenic()" >NIC
+      </li>
+      <li>
+        <input type="checkbox" [checked]="showadd" (change)="toggleadd()" >Address
+      </li>
+      <li>
+        <input type="checkbox" [checked]="showmail" (change)="togglemail()" >Email
+      </li>
+      <li>
+        <input type="checkbox" [checked]="showcon" (change)="togglecon()" >Contact
+      </li>
+    </ul>
+  </div><!--Container closed-->
+  </div>
+<div class="flexbox container" style="; padding-top: 20px; margin-bottom:10px;">
+
+
+ </div>
+
+
+
+  <div class="row">
+    <ag-grid-angular style=" height: 131px;" class="ag-theme-bootstrap"
+                     [rowData]="rowData"
+                     [columnDefs]="columnDefs"
+                     enableSorting
+                     enableFilter
+                     enableColResize
+                     enableQuickFilter
+                     animateRows
+                     defaultColDef="{
+                      enableValue: true,
+                      enableRowGroup: true,
+                      enablePivot: true
+                      }"
+                     [rowSelection]="rowSelection"
+                     (selectionChanged)="onSelectionChanged($event)"
+                     (rowDoubleClicked)="onRDC($event)"
+                     (gridReady)="onGridReady($event)"
+                     rowTemplate= '<div ng-dblclick="getExternalScopes().onGridDoubleClick(row)" ng-repeat="col in colContainer.renderedColumns track by col.colDef.name" class="ui-grid-cell" ui-grid-cell></div>'>
+    </ag-grid-angular>
+  </div>
+
+<button style="display:none;" id="errorbutton" data-toggle="modal" data-target="#errormodal" class="btn btn-primary"></button>
+
+<div id="errormodal" class="modal fade" >
+  <div class="modal-dialog">
+    <div class="alert alert-danger">
+        <button type="button" class="close" data-dismiss="modal">&times;</button>
+        <h4 class="modal-title">{{Error}}</h4>
+    </div>
+  </div>
 </div>
-
-
-<ag-grid-angular style="width:1175px; height: 131px;" class="ag-theme-bootstrap"
-                 [rowData]="rowData"
-                 [columnDefs]="columnDefs"
-                 enableSorting
-                 enableFilter
-                 enableColResize
-                 enableQuickFilter
-                 [rowSelection]="rowSelection"
-                 (selectionChanged)="onSelectionChanged($event)"
-                 (rowDoubleClicked)="onRDC($event)"
-                 (gridReady)="onGridReady($event)"
-                 rowTemplate= '<div ng-dblclick="getExternalScopes().onGridDoubleClick(row)" ng-repeat="col in colContainer.renderedColumns track by col.colDef.name" class="ui-grid-cell" ui-grid-cell></div>'>
-</ag-grid-angular>

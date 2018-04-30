@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import {Router} from '@angular/router';
+import { ActivatedRoute } from '@angular/router';
 
 @Component({
   selector: 'app-welfare-home',
@@ -8,16 +9,20 @@ import {Router} from '@angular/router';
 })
 export class WelfareHomeComponent implements OnInit {
 
-  constructor(private router:Router) { }
-
+  constructor(private router:Router , private route: ActivatedRoute) { }
+  usercode : string;
   ngOnInit() {
+    this.route.params.subscribe(params => {
+       this.usercode = params['details'];
+       console.log(this.usercode);
+    });
   }
 
   gotoNN(){
-    this.router.navigate(['welfare/create']);
+    this.router.navigate(['welfare/create' , {details : this.usercode}]);
   }
 
   gotoVN(){
-    this.router.navigate(['welfare/viewnotices']);
+    this.router.navigate(['welfare/viewnotices', {details : this.usercode}]);
   }
 }

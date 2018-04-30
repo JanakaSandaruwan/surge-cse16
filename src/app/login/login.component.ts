@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { LoginServiceService } from '../services/login-service.service';
 import {CookieService} from 'angular2-cookie/core';
+import {LocalStorageService, SessionStorageService} from 'ngx-webstorage';
 
 @Component({
   selector: 'app-login',
@@ -13,9 +14,11 @@ export class LoginComponent implements OnInit {
   pass : string;
   usrdata : any;
   fulldata : any;
-  constructor(private lservice : LoginServiceService, private router:Router, private logincookie : CookieService ) { }
+  constructor(private lservice : LoginServiceService, private router:Router, private logincookie : CookieService, private storage:LocalStorageService ) { }
 
   ngOnInit() {
+    this.storage.observe('key')
+            .subscribe((value) => console.log('new value', value));
     var x = this.logincookie.get("uname");
     if(x){
       if(this.logincookie.get("role") == "admin"){
@@ -47,20 +50,23 @@ export class LoginComponent implements OnInit {
         if(this.usrdata.role == "'admin'" || this.usrdata.role == "admin"){
           this.lservice.loginemployee(this.uname).subscribe(data=>{
             this.fulldata = data;
-            console.log(data.Address);
-            this.logincookie.put("econtact",this.fulldata.econtact);
-            this.logincookie.put("byear",this.fulldata.bday.year);
-            this.logincookie.put("bmonth",this.fulldata.bday.month);
-            this.logincookie.put("bdate",this.fulldata.bday.day);
-            this.logincookie.put("NIC", this.fulldata.NIC);
-            this.logincookie.put("contact", this.fulldata.contact);
-            this.logincookie.put("email", this.fulldata.email);
-            this.logincookie.put("fname", this.fulldata.fname);
-            this.logincookie.put("Address", this.fulldata.Address);
+            console.log(this.fulldata);
+            this.storage.store('econtact', this.fulldata.econtact);
+            if(this.fulldata.bday != undefined){
+              this.storage.store('byear', this.fulldata.bday.year);
+              this.storage.store('bmonth', this.fulldata.bday.month);
+              this.storage.store('bdate', this.fulldata.bday.day);
+            }
+            this.storage.store('NIC', this.fulldata.NIC);
+            this.storage.store('contact', this.fulldata.contact);
+            this.storage.store('email', this.fulldata.email);
+            this.storage.store('fname', this.fulldata.fname);
+            this.storage.store('Address', this.fulldata.Address);
           });
           this.lservice.loginuser(this.uname);
-          this.logincookie.put("uname",this.uname);
-          this.logincookie.put("role",this.usrdata.role);
+          this.storage.store("uname",this.uname);
+          this.storage.store("role",this.usrdata.role);
+
           this.router.navigate(['admin/home',{details: btoa(this.uname)}]);
         }else if(this.usrdata.role == "teacher"){
           this.lservice.loginteacher(this.uname).subscribe(data=>{
@@ -79,7 +85,29 @@ export class LoginComponent implements OnInit {
           this.lservice.loginuser(this.uname);
           this.logincookie.put("uname",this.uname);
           this.logincookie.put("role",this.usrdata.role);
+
           this.router.navigate(['teacher/home',{details: btoa(this.uname)}]);
+        }else if(this.usrdata.role == "Welfare"){
+          this.lservice.loginemployee(this.uname).subscribe(data=>{
+            this.fulldata = data;
+            console.log(this.fulldata);
+            this.storage.store('econtact', this.fulldata.econtact);
+            if(this.fulldata.bday != undefined){
+              this.storage.store('byear', this.fulldata.bday.year);
+              this.storage.store('bmonth', this.fulldata.bday.month);
+              this.storage.store('bdate', this.fulldata.bday.day);
+            }
+            this.storage.store('NIC', this.fulldata.NIC);
+            this.storage.store('contact', this.fulldata.contact);
+            this.storage.store('email', this.fulldata.email);
+            this.storage.store('fname', this.fulldata.fname);
+            this.storage.store('Address', this.fulldata.Address);
+          });
+          this.lservice.loginuser(this.uname);
+          this.storage.store("uname",this.uname);
+          this.storage.store("role",this.usrdata.role);
+
+          this.router.navigate(['welfare/home',{details: btoa(this.uname)}]);
         }
       }
     });
