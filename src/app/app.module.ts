@@ -26,6 +26,11 @@ import { QuizComponent } from './teacher/quiz/quiz.component';
 import { AddmarkComponent } from './teacher/quiz/addmark/addmark.component';
 import { DisplaymarkComponent } from './teacher/quiz/displaymark/displaymark.component';
 import { AddquizComponent } from './teacher/quiz/addquiz/addquiz.component';
+
+import { TeacherviewComponent  } from './teacher/quiz/addquiz/teacherview/teacherview.component';
+
+import { TeachermcqComponent } from './teacher/quiz/addquiz/teacherview/teachermcq/teachermcq.component';
+
 import { AdmittanceComponent } from './teacher/admittance/admittance.component';
 import { StudymaterialComponent } from './teacher/studymaterial/studymaterial.component';
 import { ModulesComponent } from './teacher/modules/modules.component';
@@ -123,10 +128,13 @@ import {Ng2Webstorage} from 'ngx-webstorage';
     StudymaterialComponent,
     ModulesComponent,
     FilterPipe,
-    ModuleComponent
+    ModuleComponent,
+    TeacherviewComponent,
+    TeachermcqComponent
   ],
   entryComponents: [
-    McqComponent
+    McqComponent,
+    TeachermcqComponent
   ],
   imports: [
     BrowserModule,
@@ -161,6 +169,8 @@ import {Ng2Webstorage} from 'ngx-webstorage';
       {path:'quiz/displaymark',component:DisplaymarkComponent},
       {path:'quiz/addquiz',component:CreateComponent},
       {path:'quiz/addquiz/mcq',component:McqComponent},
+      {path:'quiz/preview',component:AddquizComponent},
+      {path:'quiz/teacherview',component:TeacherviewComponent},
       { path: 'modules', component:ModulesComponent},
       { path: 'modules/module', component:ModuleComponent},
       {path:'studymaterial',component:StudymaterialComponent},
