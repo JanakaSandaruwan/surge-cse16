@@ -13,7 +13,9 @@
                  enableQuickFilter
                  [rowSelection]="rowSelection"
                  (selectionChanged)="onSelectionChanged($event)"
-                 (rowDoubleClicked)="onRDC($event)"
+                 
+                 (cellValueChanged)="valuechange($event)"
+
                  (gridReady)="onGridReady($event)"
                  rowTemplate= '<div ng-dblclick="getExternalScopes().onGridDoubleClick(row)" ng-repeat="col in colContainer.renderedColumns track by col.colDef.name" class="ui-grid-cell" ui-grid-cell></div>'>
 </ag-grid-angular>

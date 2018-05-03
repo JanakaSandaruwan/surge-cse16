@@ -11,6 +11,7 @@ import { ActivatedRoute } from '@angular/router';
   styleUrls: ['./displaymark.component.css'],
   providers:[LoadquizService]
 })
+
 export class DisplaymarkComponent implements OnInit {
 
   columnDefs : any[];
@@ -20,14 +21,15 @@ export class DisplaymarkComponent implements OnInit {
   gridColumnApi : any;
   selectedRows : any;
   subjectname:string;
+  newvalue:any;
   //mark=[{ID:"bc20150000",quiz1:"45",quiz2:"55",quiz3:"55"},{ID:"bc20150001",quiz1:"45",quiz2:"15",quiz3:"85"}];
   mark=[];
   constructor(private router:Router, private loadquiz:LoadquizService, private route: ActivatedRoute) {
     this.columnDefs = [
           {headerName: "ID", field: "ID", width: 400},
-          {headerName: "Quiz1", field: "quiz1", width: 200},
-          {headerName: "Quiz2", field: "quiz2", width: 200},
-          {headerName: "Quiz3", field: "quiz3", width: 200,editable:true}
+          {headerName: "Quiz1", field: "quiz1", width: 200,editable:true},
+          {headerName: "Quiz2", field: "quiz2", width: 200,editable:true},
+          //{headerName: "Quiz3", field: "quiz3", width: 200,editable:true}
 
       ];
       this.rowSelection = "single";
@@ -51,20 +53,30 @@ export class DisplaymarkComponent implements OnInit {
   }
 
   refresh(){
-
+    this.mark=[];
      var list=this.loadquiz.quizMarks(this.subjectname);
+
      var i=0;
-     console.log("this.mark");
+    // console.log(list);
      while(i<list.length){
-       var ls={};
-       ls["quiz"+(i+1)]=list[i]["quiz"]["quiz"+(i+1)]["mark"];
+       var ls=[];
+       var tempquiz=list[i]["quiz"];
+
+       var j=1;
+       while (j<=Object.keys(tempquiz).length){
+         var name="quiz"+j;
+
+         ls[name]=tempquiz[name]["mark"];
+         j++;
+
+       }
        ls["ID"]=list[i]["ID"];
        //console.log(list[i]["quiz"]);
        this.mark.push(ls);
        i=i+1;
      }
 
-     console.log(this.mark);
+    // console.log(this.mark);
     this.gridApi.setRowData(this.mark);
 
   }
@@ -80,5 +92,23 @@ export class DisplaymarkComponent implements OnInit {
     this.gridApi.setRowData(this.mark);
   }
 
+
+  valuechange($event){
+    this.newvalue=this.gridApi.getSelectedRows();
+   console.log(this.newvalue[0]);
+   /*firebase.database().ref('classes/'+this.subjectname+'/students/'+this.newvalue[0]["ID"]).update({
+     grade:Number(this.newvalue[0]["grade"]),
+     grademark:this.getGrade(Number(this.newvalue[0]["grade"]))
+   });*/
+
+    this.refresh();
+
+  }
+
+  onSelectionChanged($event){
+    this.selectedRows = this.gridApi.getSelectedRows();
+    //console.log(this.selectedRows);
+
+  }
 
 }
