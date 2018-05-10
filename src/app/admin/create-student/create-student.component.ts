@@ -237,7 +237,7 @@ export class CreateStudentComponent implements OnInit {
     this.sbatch = batch;
     this.nextid = batch.nextid;
     this.SStudents = this._batchservice.listStudents(this.selected);
-    this.gridApi.setRowData(this.SStudents);
+    //this.gridApi.setRowData(this.SStudents);
       //this.rowData = this.SStudents;
 
   }

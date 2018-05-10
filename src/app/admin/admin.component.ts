@@ -51,7 +51,7 @@ export class AdminComponent implements OnInit {
   }
 
   ngOnInit() {
-
+    this.username = this.storage.retrieve("uname");
     if (!this.storage.retrieve("uname")){
       console.log("x");
       this.router.navigate(['']);

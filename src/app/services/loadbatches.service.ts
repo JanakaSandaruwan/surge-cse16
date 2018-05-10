@@ -22,7 +22,7 @@ export class LoadbatchesService {
       if ( current == "entry"){
 
       }else if ( current == ""){
-        
+
       }
     });
   }
