@@ -27,18 +27,27 @@ export class ViewteacherComponent implements OnInit {
   selectedRows : any;
   subjectlist : any;
   nextid : number;
+  showid : boolean = true;
+  shownic : boolean = true;
+  showadd : boolean = true;
+  showcon : boolean = true;
+  showname : boolean = true;
+  showmail : boolean = true;
   DCCRows : Teacher = <Teacher>{};
 
 
   constructor(private _teacherservice: LoadteacherService,
     private _loginservice : LoginServiceService) {
-      this.columnDefs = [
-            {headerName: "ID", field: "ID", width: 350},
-            {headerName: "Name", field: "fname", width: 475},
-            {headerName: "NIC", field: "NIC", width: 350},
-
-        ];
-        this.rowSelection = "single";
+        this.columnDefs = [
+          {headerName: "", field:"", checkboxSelection: true, headerCheckboxSelection: true},
+          {headerName: "ID", field: "ID", width: 350},
+          {headerName: "Name", field: "fname", width: 475},
+          {headerName: "NIC", field: "NIC", width: 350},
+          {headerName: "Address", field: "Address", width: 350},
+          {headerName: "Email", field: "email", width: 350},
+          {headerName: "Contact", field: "contact", width: 350},
+          ];
+          this.rowSelection = "multiple";
     }
     Deletebutton(){
       this._loginservice.removeUser(this.selectedRows[0].username);
@@ -46,6 +55,45 @@ export class ViewteacherComponent implements OnInit {
       this._teacherservice.saveTeacherlist(this.selectedRows[0].username);
       $('#refresher').click();
     }
+
+    toggleid(){
+      this.showid = !this.showid;
+      this.gridColumnApi.setColumnVisible("ID",this.showid);
+    }
+
+    fit(){
+        this.gridApi.sizeColumnsToFit();
+    }
+
+    togglename(){
+      this.showname = !this.showname
+      this.gridColumnApi.setColumnVisible("fname",this.showname);
+    }
+
+    togglenic(){
+      this.shownic = !this.shownic
+      this.gridColumnApi.setColumnVisible("NIC",this.shownic);
+    }
+
+    getdown(){
+      $('#menu').first().stop(true, true).slideDown();
+    }
+
+    toggleadd(){
+      this.showadd = !this.showadd;
+      this.gridColumnApi.setColumnVisible("Address",this.showadd);
+    }
+
+    togglemail(){
+      this.showmail = !this.showmail;
+      this.gridColumnApi.setColumnVisible("email",this.showmail);
+    }
+
+    togglecon(){
+      this.showcon = !this.showcon;
+      this.gridColumnApi.setColumnVisible("contact",this.showcon);
+    }
+
     checkValidity(){
       this.NICtaken = this._loginservice.checkNICs(this.cteacher.NIC);
     }
@@ -53,6 +101,27 @@ export class ViewteacherComponent implements OnInit {
       this.DCCRows = this.gridApi.getSelectedRows()[0];
       console.log(this.DCCRows);
       $('#save').click();
+    }
+
+    onBtnExport(): void {
+      console.log(this.gridApi.getSelectedRows());
+      if ( this.gridApi.getSelectedRows().length != 0){
+        const params = {
+          columnGroups: true,
+          allColumns: true,
+          fileName: 'filename_of_your_choice',
+          onlySelected : true
+        }
+        this.gridApi.exportDataAsCsv(params);
+      }else{
+        console.log('d');
+        const params = {
+          columnGroups: true,
+          allColumns: true,
+          fileName: 'filename_of_your_choice'
+        }
+        this.gridApi.exportDataAsCsv(params);
+      }
     }
 
     onGridReady(params) {
