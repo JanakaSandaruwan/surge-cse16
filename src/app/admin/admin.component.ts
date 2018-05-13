@@ -37,6 +37,8 @@ export class AdminComponent implements OnInit {
         $('#main-wrapper').css('margin-left', '60px');
         $('.menu-icon').css('float','none');
         $('.menu-icon').css('position','absolute');
+        $('.large-icon').css('padding-left','15px');
+        $('.small-icon').css('padding-left','18px');
         $('.menu-icon').css('right','0');
         this.state = "minimized";
     } else {
@@ -45,6 +47,8 @@ export class AdminComponent implements OnInit {
             $('#main-wrapper').css('margin-left', '250px');
             $('.menu-icon').css('float','left');
             $('.menu-icon').css('position','relative');
+            $('.large-icon').css('padding-left','0px');
+            $('.small-icon').css('padding-left','0px');
             this.state = "expanded";
         }
     }
@@ -87,6 +91,10 @@ export class AdminComponent implements OnInit {
   }
   changedata(){
     this.router.navigate(['admin/updatedetails', {details : this.usercode}]);
+  }
+
+  gotohome(){
+    this.router.navigate(['admin/home', {details : this.usercode}]);
   }
 
 }

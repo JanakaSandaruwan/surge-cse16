@@ -59,9 +59,11 @@ border-right: 1px solid gray;
     background: #2b2b2d;
     width: 250px;
     max-width: 250px;
-    height: 100%;
+    height: calc(100% - 75px);
     float: left;
     position: fixed;
+    overflow-y:auto;
+    overflow-x:hidden;
     z-index: 1000;
     display: block;
     -webkit-transition: margin 1s;
@@ -77,8 +79,15 @@ border-right: 1px solid gray;
 .menu-icon {
     float:left;
     color: gold;
+    width: 50px;
     -webkit-transition: margin 2s;
     transition: margin 2s;
+}
+.small-icon{
+
+}
+.large-icon{
+
 }
 .content{
   font-family: 'Lato', sans-serif;
@@ -150,3 +159,4 @@ background-color: #424242;
   margin-bottom: 1rem;
 }
 }
+::-webkit-scrollbar {display:none;}

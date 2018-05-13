@@ -21,30 +21,78 @@ export class ViewsubjectsComponent implements OnInit {
   rowSelection : any;
   gridApi : any;
   gridColumnApi : any;
-  selectedRows : any;
+  selectedRows : any = [];
+  Error : string;
   levels  = [{name:"Year 1"}, {name:"Year 2"}, {name:"Year 3"}, {name:"Year 4"}];
   availTeachers : Teacher[];
   batches : Batch[];
   noteacher : Observable<boolean> = Observable.of(true);
   classtaken : Observable<boolean>;
+  showid : boolean = true;
+  showname : boolean = true;
 
+
+  onBtnExport(): void {
+    console.log(this.gridApi.getSelectedRows());
+    if ( this.gridApi.getSelectedRows().length != 0){
+      const params = {
+        columnGroups: true,
+        allColumns: true,
+        fileName: 'filename_of_your_choice',
+        onlySelected : true
+      }
+      this.gridApi.exportDataAsCsv(params);
+    }else{
+      console.log('d');
+      const params = {
+        columnGroups: true,
+        allColumns: true,
+        fileName: 'filename_of_your_choice'
+      }
+      this.gridApi.exportDataAsCsv(params);
+    }
+  }
+  
   constructor(private _teacherservice: LoadteacherService, private _batchservice: LoadbatchesService) {
     this.columnDefs = [
+          {headerName: "", field:"", checkboxSelection: true, headerCheckboxSelection: true},
           {headerName: "Subject Code", field: "code", width: 350},
           {headerName: "Subject", field: "name", width: 475}
 
       ];
-      this.rowSelection = "single";
+      this.rowSelection = "multiple";
   }
   changed(){
     console.log("ok");
   }
   Deletebutton(){
-    console.log(this.selectedRows[0].code);
-    this._teacherservice.saveSubjectlist(this.selectedRows[0].code);
+    if(this.selectedRows.length == 0 ){
+      this.Error = "No rows selected to Delete";
+      $("#errorbutton").click();
+    }else{
+      var i : number = 0;
+      for (i=0;i<this.selectedRows.length;i++){
+        this._teacherservice.saveSubjectlist(this.selectedRows[i].code);
+      }
+    }
     this.SSubject = this._teacherservice.listSubjects();
     this.gridApi.setRowData(this.SSubject);
   }
+
+  toggleid(){
+    this.showid = !this.showid;
+    this.gridColumnApi.setColumnVisible("code",this.showid);
+  }
+
+  fit(){
+      this.gridApi.sizeColumnsToFit();
+  }
+
+  togglename(){
+    this.showname = !this.showname
+    this.gridColumnApi.setColumnVisible("name",this.showname);
+  }
+
   onGridReady(params) {
     this.gridApi = params.api;
     this.gridColumnApi = params.columnApi;

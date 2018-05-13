@@ -24,7 +24,8 @@ export class ViewteacherComponent implements OnInit {
   rowSelection : any;
   gridApi : any;
   gridColumnApi : any;
-  selectedRows : any;
+  selectedRows : any = [];
+  Error : string;
   subjectlist : any;
   nextid : number;
   showid : boolean = true;
@@ -50,10 +51,17 @@ export class ViewteacherComponent implements OnInit {
           this.rowSelection = "multiple";
     }
     Deletebutton(){
-      this._loginservice.removeUser(this.selectedRows[0].username);
-      console.log(this.selectedRows[0].username);
-      this._teacherservice.saveTeacherlist(this.selectedRows[0].username);
-      $('#refresher').click();
+      if(this.selectedRows.length == 0 ){
+        this.Error = "No rows selected to Delete";
+        $("#errorbutton").click();
+      }else{
+        var i : number = 0;
+        for (i=0;i<this.selectedRows.length;i++){
+          this._loginservice.removeUser(this.selectedRows[i].username);
+          this._teacherservice.saveTeacherlist(this.selectedRows[i].username);
+        }
+        $('#refresher').click();
+      }
     }
 
     toggleid(){

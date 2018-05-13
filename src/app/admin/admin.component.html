@@ -1,6 +1,6 @@
 <div id="header" class="navbar navbar-default navbar-fixed-top" style="height:90; background-color:#424242;" >
     <div class="navbar-header" >
-        <img id="icon" src="assets/nt.png" />
+        <a href="javascript:void(0);"(click)="gotohome()"><img  id="icon" src="assets/nt.png" /></a>
     </div>
     <nav class="navbar-collapse collapse " style="color:white;">
         <ul class="nav navbar-nav">
@@ -36,20 +36,29 @@
         <ul class="sidebar-nav content">
             <li  >
                 <div>
-                  <a (click)="togglenav()">Close <i class="fa fa-bars menu-icon fa-2x" aria-hidden="true"></i></a>
+                  <a href="javascript:void(0);" (click)="togglenav()">Close <i class="fa fa-bars menu-icon fa-2x small-icon" aria-hidden="true"></i></a>
                 </div>
             </li>
             <li>
-                <a href="#">Home <i class="fa fa-home menu-icon fa-2x " aria-hidden="true"></i></a>
+                <a href="javascript:void(0);" (click) = "gotohome()" >Home <i class="fa fa-home menu-icon fa-2x large-icon " aria-hidden="true"></i></a>
             </li>
             <li>
-                <a href="#">Download<i class="fa fa-download menu-icon fa-2x" aria-hidden="true"></i></a>
+                <a href="#">View Subjects<i class="fa fa-book menu-icon fa-2x small-icon" aria-hidden="true"></i></a>
             </li>
             <li>
-                <a href="#">Edit<i class="fa fa-cog menu-icon fa-2x" aria-hidden="true"></i></a>
+                <a href="#">View Employees<i class="fa fa-users-cog menu-icon fa-2x large-icon" aria-hidden="true"></i></a>
             </li>
             <li>
-                <a href="#">log out<i class="fa fa-sign-out menu-icon fa-2x" aria-hidden="true"></i>
+                <a href="#">View Students<i class="fa fa-graduation-cap menu-icon fa-2x large-icon" aria-hidden="true"></i></a>
+            </li>
+            <li>
+                <a href="#">View Teachers<i class="fa fa-chalkboard-teacher menu-icon fa-2x large-icon" aria-hidden="true"></i></a>
+            </li>
+            <li>
+                <a href="javascript:void(0);" (click) = "changedata()" >Change Profile<i class="fa fa-cog menu-icon fa-2x small-icon" aria-hidden="true"></i></a>
+            </li>
+            <li>
+                <a href="javascript:void(0);" (click)="logout()">Log out<i class="fa fa-sign-out-alt menu-icon fa-2x small-icon" aria-hidden="true"></i>
                     </a>
             </li>
 
