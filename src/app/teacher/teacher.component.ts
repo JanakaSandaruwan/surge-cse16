@@ -17,6 +17,7 @@ export class TeacherComponent implements OnInit {
   fulldata : object = <object>{} ;
   state : string = "expanded";
   dropdownstate : string = "collapsed";
+  dropdownstate1: string ="themeup";
 //  username: string;
   profileurl: string;
   constructor(private logincookie : CookieService , private route: ActivatedRoute, private login : LoginServiceService,private router:Router){}//,private home:TeacherHomeComponent) { }
@@ -32,6 +33,43 @@ export class TeacherComponent implements OnInit {
       }
 
   }
+
+  movedownl(){
+      console.log("dad1");
+      if (this.dropdownstate1 == "themeup"){
+        $('.dropdown-menu1').first().stop(true, true).slideDown();
+        this.dropdownstate1 = "down";
+      }else{
+        $('.dropdown-menu1').first().stop(true, true).slideUp();
+        this.dropdownstate1 = "themeup";
+      }
+
+  }
+
+  dracular(){
+    $('#header').css('background-color', '#424242');
+    $('#menu').css('background-color', '#424242');
+    $('#nbAcctDD').css('background-color', '#424242');
+    $('#menu1').css('background-color', '#424242');
+    $('#nbAcc').css('background-color', '#424242')
+    $('#main-wrapper').css('background-color', '#8c8c8c');
+    $('#sidebar-wrapper').css('background-color', '#424242');
+    $('.sidebar').css('background-color', '#2b2b2d');
+    $('#sidebar-wrapper').css('background-color', '#424242');
+  }
+
+  blue(){
+    $('#header').css('background-color', '#001a33');
+    $('#menu').css('background-color', '#001a33');
+    $('#nbAcctDD').css('background-color', '#001a33');
+    $('#menu1').css('background-color', '#001a33');
+    $('#nbAcc').css('background-color', '#001a33')
+    $('#main-wrapper').css('background-color', '#b3d9ff');
+    $('#wrapper').css('background-color', '#001a33');
+    $('.sidebar').css('background-color', '#001a33');
+    $('#sidebar-wrapper').css('background-color', '#001a33');
+  }
+
   togglenav(){
     if (this.state == "expanded") {
         $('.sidebar').css('margin-left', '-190px');
@@ -55,7 +93,7 @@ export class TeacherComponent implements OnInit {
     if (!this.logincookie.get("uname")){
       this.router.navigate(['']);
     }
-    
+
     console.log(this.logincookie.get("uname")+"adsa");
     if (this.login.getloginstatus(this.logincookie.get("uname")) == false){
       this.router.navigate(['']);

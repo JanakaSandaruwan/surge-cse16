@@ -86,7 +86,7 @@
             <li class="dropdown">
                 <img id="xsd" src={{profileurl}} alt="assets/149071.png"  />
                 <a href="#" (click)="movedown()" id="nbAcctDD" style="background-color:#424242" class="content" data-toggle="dropdown"><i class="icon-user"></i>Username<i class="icon-sort-down"></i></a>
-                <ul class="dropdown-menu pull-right content" style="background-color:#424242" >
+                <ul class="dropdown-menu pull-right content" style="background-color:#424242" id="menu" >
                     <li ><a (click)="logout()">Log Out</a></li>
                     <li ><a (click)="changedata()">Change</a></li>
                 </ul>
@@ -111,7 +111,18 @@
                 <a href="#">Download<i class="fa fa-download menu-icon fa-2x" aria-hidden="true"></i></a>
             </li>
             <li>
-                <a href="#">Edit<i class="fa fa-cog menu-icon fa-2x" aria-hidden="true"></i></a>
+                <a  (click)="movedownl()">Themes<i class="fa fa-cog menu-icon fa-2x" aria-hidden="true"></i></a>
+
+                <!--ul class="nav navbar-nav pull-right" style="display:table; margin:0 auto; margin-top:1rem;">
+                    <li class="dropdown"-->
+                      <!--a href="#" (click)="movedownl()" id="nbAcc" style="float:right;background-color:#424242" class="content" data-toggle="dropdown"><i class="icon-user"></i>+SKINS<i class="icon-sort-down"></i></a-->
+                      <ul class="dropdown-menu1 pull-right content sidebar-nav" style="background-color:#424242 ; display:none " id="menu1">
+                        <li ><a (click)="dracular()">Dracular</a></li>
+                        <li ><a (click)="blue()">Surge blue</a></li>
+                      </ul>
+                    <!--/li>
+               </ul-->
+
             </li>
             <li>
                 <a (click)="logout()">log out<i class="fa fa-sign-out menu-icon fa-2x" aria-hidden="true"></i>
@@ -125,6 +136,13 @@
             <div id="main">
               <div class="page-header">
                 <h3>Teacher</h3>
+
+
+
+
+
+
+
               </div>
               <router-outlet></router-outlet>
             </div>
