@@ -83,6 +83,9 @@ import { ExamHomeComponent } from './examdiv/exam-home/exam-home.component';
 import { CreateTtComponent } from './examdiv/create-tt/create-tt.component';
 import {Ng2Webstorage} from 'ngx-webstorage';
 
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+//import { CalendarModule } from 'angular-calendar';
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -143,6 +146,8 @@ import {Ng2Webstorage} from 'ngx-webstorage';
     FormsModule,
     DataTablesModule,
     HttpModule,
+    BrowserAnimationsModule,
+    //CalendarModule.forRoot(),
     Ng2Webstorage,
     NgbModule.forRoot(),
     AgGridModule.withComponents([ ]),
@@ -211,7 +216,9 @@ import {Ng2Webstorage} from 'ngx-webstorage';
   { path: 'examdiv', component:ExamdivComponent, children : [
     /*{ path: '', component: TeacherHomeComponent }*/
     { path: 'home', component:ExamHomeComponent},
-    { path: 'createTT' , component :CreateTtComponent}]
+    { path: 'create-tt' , component :CreateTtComponent},
+    { path: 'updatedetails',component:UpdateuserComponent},
+    {path:'leaveapplication',component:LeaveapplicationComponent}]
   //{ path: '**', component: PageNo,FoundComponent }
 },
 {

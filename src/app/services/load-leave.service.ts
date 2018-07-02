@@ -40,7 +40,7 @@ export class LoadLeaveService {
 
 
     firebase.database().ref('/Leaveapplication/leaverequest').push({
-       teachername:id,
+       name:id,
        reason:reasonl,
        decription :decriptionl,
        from:froml,

@@ -53,6 +53,29 @@ export class UpdateuserComponent implements OnInit {
     console.log(this.storage.retrieve("fname"));
   }
 
+  restore() {
+    this.fcontact = this.storage.retrieve("contact");
+    this.fNIC = this.storage.retrieve("NIC");
+    this.femail = this.storage.retrieve("email");
+    this.fname = this.storage.retrieve("fname");
+    this.fAddress = this.storage.retrieve("Address");
+    this.fcontact2 = this.storage.retrieve("econtact");
+    this.model.year = +this.storage.retrieve("byear");
+    this.model.month = +this.storage.retrieve("bmonth");
+    this.model.day = +this.storage.retrieve("bdate");
+    this.uploadService.getUrl(this.storage.retrieve("uname")).subscribe(data => {
+      this.profileurl = data;
+      console.log(this.profileurl);
+    });
+    console.log(this.storage.retrieve("contact"));
+    console.log(this.storage.retrieve("fname"));
+    this.fnamedis = true;
+    this.fadddis = true;
+    this.condis = true;
+    this.emadis = true;
+    this.caldis = true;
+    this.condis2 = true;
+  }
   getcurrentPassword(){
     this._loginservice.login(this.storage.retrieve("uname"),"s").subscribe(data => {
       this.oldpasswordcopy = data.Password ;

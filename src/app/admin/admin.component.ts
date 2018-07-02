@@ -31,6 +31,17 @@ export class AdminComponent implements OnInit {
       }
 
   }
+
+  moveup(){
+    console.log("dad");
+    if (this.dropdownstate == "collapsed"){
+      $('.dropdown-menu').first().stop(true, true).slideDown();
+      this.dropdownstate = "down";
+    }else{
+      $('.dropdown-menu').first().stop(true, true).slideUp();
+      this.dropdownstate = "collapsed";
+    }
+  }
   togglenav(){
     if (this.state == "expanded") {
         $('.sidebar').css('margin-left', '-190px');
