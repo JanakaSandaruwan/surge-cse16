@@ -82,6 +82,9 @@ import { ExamHomeComponent } from './examdiv/exam-home/exam-home.component';
 import { CreateTtComponent } from './examdiv/create-tt/create-tt.component';
 import {Ng2Webstorage} from 'ngx-webstorage';
 
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { CalendarModule } from 'angular-calendar';
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -142,6 +145,8 @@ import {Ng2Webstorage} from 'ngx-webstorage';
     FormsModule,
     DataTablesModule,
     HttpModule,
+    BrowserAnimationsModule,
+    CalendarModule.forRoot(),
     Ng2Webstorage,
     NgbModule.forRoot(),
     AgGridModule.withComponents([ ]),
