@@ -110,6 +110,30 @@ export class LoginComponent implements OnInit {
           this.storage.store("role",this.usrdata.role);
 
           this.router.navigate(['welfare/home',{details: btoa(this.uname)}]);
+        }else if(this.usrdata.role == "student"){
+          console.log(this.usrdata.bnumber);
+          this.storage.store('bnumber', this.usrdata.bnumber);
+          this.lservice.loginstudent(this.uname,this.usrdata.bnumber).subscribe(data=>{
+            this.fulldata = data;
+            console.log(this.fulldata);
+            this.storage.store('econtact', this.fulldata.econtact);
+            if(this.fulldata.bday != undefined){
+              this.storage.store('byear', this.fulldata.bday.year);
+              this.storage.store('bmonth', this.fulldata.bday.month);
+              this.storage.store('bdate', this.fulldata.bday.day);
+            }
+            this.storage.store('NIC', this.fulldata.NIC);
+            this.storage.store('contact', this.fulldata.contact);
+            this.storage.store('email', this.fulldata.email);
+            this.storage.store('fname', this.fulldata.fname);
+            this.storage.store('Address', this.fulldata.Address);
+          });
+          this.lservice.loginuser(this.uname);
+          this.storage.store("uname",this.uname);
+          this.storage.store("role",this.usrdata.role);
+          this.router.navigate(['student/home',{details: btoa(this.uname)}]);
+        
+
         }else if(this.usrdata.role == "ExamDiv"){
           console.log("l")
           this.lservice.loginemployee(this.uname).subscribe(data=>{
@@ -130,7 +154,6 @@ export class LoginComponent implements OnInit {
           this.lservice.loginuser(this.uname);
           this.storage.store("uname",this.uname);
           this.storage.store("role",this.usrdata.role);
-
           this.router.navigate(['examdiv/home',{details: btoa(this.uname)}]);
         }
       }
