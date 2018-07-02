@@ -111,12 +111,13 @@ export class LeaveapplicationComponent implements OnInit {
 
   cancel(){
 
-    this.router.navigate(['/teacher/leaveapplication', {details : this.usercode}]);
+    this.router.navigate(['/examdiv/leaveapplication', {details : this.usercode}]);
     console.log("navigate to leaveapplication");
   }
 
   send(){
     console.log("sending");
+    console.log(this.usercode);
 
     if(this.reason == "" || this.to == "" || this.from =="" || this.discription =="" ){
         alert("Fill all columns");

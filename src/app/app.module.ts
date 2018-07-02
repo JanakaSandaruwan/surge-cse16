@@ -210,7 +210,9 @@ import {Ng2Webstorage} from 'ngx-webstorage';
   { path: 'examdiv', component:ExamdivComponent, children : [
     /*{ path: '', component: TeacherHomeComponent }*/
     { path: 'home', component:ExamHomeComponent},
-    { path: 'createTT' , component :CreateTtComponent}]
+    { path: 'create-tt' , component :CreateTtComponent},
+    { path: 'updatedetails',component:UpdateuserComponent},
+    {path:'leaveapplication',component:LeaveapplicationComponent}]
   //{ path: '**', component: PageNo,FoundComponent }
 },
 {
