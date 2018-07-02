@@ -27,6 +27,7 @@ import { AddmarkComponent } from './teacher/quiz/addmark/addmark.component';
 import { DisplaymarkComponent } from './teacher/quiz/displaymark/displaymark.component';
 import { AddquizComponent } from './teacher/quiz/addquiz/addquiz.component';
 
+
 import { TeacherviewComponent  } from './teacher/quiz/addquiz/teacherview/teacherview.component';
 
 import { TeachermcqComponent } from './teacher/quiz/addquiz/teacherview/teachermcq/teachermcq.component';
@@ -190,7 +191,7 @@ import {Ng2Webstorage} from 'ngx-webstorage';
     { path: 'mycourses', component: MyCourseComponent },
     { path: 'leave', component: MedicleLeaveComponent },
     { path: 'scholarship', component: ScholarshipComponent },
-    { path: 'compain', component: ComplainComponent },
+    { path: 'complain', component: ComplainComponent },
     { path: 'quizview', component:QuizviewComponent}]
   //{ path: '**', component: PageNotFoundComponent }
   },
