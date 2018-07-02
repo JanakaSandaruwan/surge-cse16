@@ -63,158 +63,168 @@
 </div>
 </div>
 
-<div class="form-group">
 
-<div class="row">
+  <div class="form-group">
 
-<div class="col-md-10">
-  <label style="font-size:45px;"><b>Update User Data</b></label>
-</div>
-<div class="col-md-2">
-  <li class="dropdown">
-    <img src={{profileurl}} width="100px" />
-    <div style="height:10px;">
-
-    </div>
-    <label class="btn btn-default btn-file" style="margin-left:33px;">
-      Browse <input type="file" style="display: none;" (change)="detectfiles($event)">
-    </label>
-  </li>
-
-</div>
-
-</div>
-</div>
-
-<div class="form-group" style="height:70px">
-
-</div>
-
-<div class="form-group">
-
-<div class="row">
-
-<label class="control-label col-md-3" for="name"><b>Full Name </b></label>
-<div class="col-md-8">
-
-
-<input [disabled]="fnamedis" id="name" name="name" class="form-control input-md" required minlength="4"  [(ngModel)]="fname" value="x" #name="ngModel" >
-
-<div id="div1" *ngIf="name.invalid && (name.errors.minlength)" class="alert alert-danger">
-<!-- <div *ngIf="name.errors.required"> Name is required.</div> -->
-<div *ngIf="name.errors.minlength">Name must be at least 4 characters long.</div></div>
-</div>
-<div class="col-md-1">
-  <button class="btn" (click)="fnamedis = false">Change</button>
-</div>
-</div>
-</div>
-
-<div class="form-group">
-<div class="row">
-<label class="control-label col-md-3" for="Address"><b>Address </b></label>
-<div class="col-md-8">
-
-<textarea [disabled]="fadddis" type="textarea" id="Address" name="Address" class="form-control" required minlength="30"  [(ngModel)]="fAddress" #Address="ngModel" ></textarea>
-
-<div id="div2" *ngIf="Address.invalid && (Address.errors.minlength)" class="alert alert-danger">
-<!--<div *ngIf="Address.errors.required"> Address is required.</div>-->
-<div *ngIf="Address.errors.minlength"> Address must be at least 30 characters long </div></div>
-</div>
-<div class="col-md-1">
-  <button class="btn" (click)="fadddis=false">Change</button>
-</div>
-</div>
-</div>
-<div class="form-group">
-
-<div class="row">
-<label class="control-label col-md-3" for="NIC"><b>NIC </b></label>
-<div class="col-md-8">
-
-<input [disabled]="true" id="NIC" name="NIC" class="form-control input-md" required minlength="10" (input)="checkValidity()" [(ngModel)]="fNIC" #NIC="ngModel" pattern="^[0-9]{9}[vV]" >
-
-<div id="div3" *ngIf="NIC.invalid && (NIC.errors.pattern || NIC.errors.minlength)" class="alert alert-danger">
-<!--<div *ngIf="NIC.errors.required"> NIC is required.</div>-->
-<div *ngIf="NIC.errors.minlength"> NIC must be 10 characters long </div>
-<div *ngIf="NIC.errors.pattern"> NIC needs to be valid</div> </div>
-<div id="div13" *ngIf="(NICtaken | async)" class="alert alert-danger">
-<!--<div *ngIf="NIC.errors.required"> NIC is required.</div>-->
-<div *ngIf="(NICtaken | async)"> NIC already taken </div> </div>
-</div>
-<div class="col-md-1">
-</div>
-</div>
-</div>
-<div class="form-group">
-<div class="row">
-<label class="control-label col-md-3" for="contact"><b>Phone </b></label>
-<div class=col-md-8>
- <input [disabled]="condis" id="contact" name="contact" class="form-control input-md" required minlength="10"  [(ngModel)]="fcontact" #contact="ngModel"  pattern="^(\+\d{1,2}\s)?\(?\d{3}\)?[\s.-]?\d{3}[\s.-]?\d{4}$" >
-
- <div id="div4" *ngIf="contact.invalid && (contact.errors.pattern || contact.errors.minlength)" class="alert alert-danger">
- <!--<div *ngIf="contact.errors.required"> Phone number is required.</div>-->
- <div *ngIf="contact.errors.minlength"> NIC must be 10 characters long </div>
- <div *ngIf="contact.errors.pattern">Please enter a valid Phone Number</div></div>
-</div>
-<div class="col-md-1">
-  <button class="btn" (click)="condis=false">Change</button>
-</div>
-</div>
-</div>
-
-<div class="form-group">
-<div class="row">
-<label class="control-label col-md-3" for="contact"><b>Emergency Contact </b></label>
-<div class=col-md-8>
- <input [disabled]="condis2" id="contact2" name="contact2" class="form-control input-md" required minlength="10"  [(ngModel)]="fcontact2" #contact2="ngModel"  pattern="^(\+\d{1,2}\s)?\(?\d{3}\)?[\s.-]?\d{3}[\s.-]?\d{4}$" >
-
- <div id="div4" *ngIf="contact2.invalid && (contact2.errors.pattern || contact2.errors.minlength)" class="alert alert-danger">
- <!--<div *ngIf="contact.errors.required"> Phone number is required.</div>-->
- <div *ngIf="contact2.errors.minlength"> NIC must be 10 characters long </div>
- <div *ngIf="contact2.errors.pattern">Please enter a valid Phone Number</div></div>
-</div>
-<div class="col-md-1">
-  <button class="btn" (click)="condis2=false">Change</button>
-</div>
-</div>
-</div>
-
-<div class="form-group">
-<div class="row">
-
-
-<label class="control-label col-md-3" for="email"><b>Email </b></label>
- <div class="col-md-8">
-   <input [disabled]="emadis" id="email" name="email" class="form-control input-md" required  [(ngModel)]="femail" #email="ngModel" pattern="^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$" >
-
-  <div id="div5" *ngIf="email.invalid && (email.errors.pattern)" class="alert alert-danger">
-  <!--<div *ngIf="email.errors.required"> Email Address is required.</div>-->
-  <div *ngIf="email.errors.pattern"> Please enter a valid Email Address </div></div>
- </div>
- <div class="col-md-1">
-   <button class="btn" (click)="emadis=false">Change</button>
- </div>
- </div>
-</div>
-
-<div class="form-group">
   <div class="row">
-    <label class="control-label col-md-3" for="dp"><b>Birthday </b></label>
-    <div class="input-group col-md-4" style="padding-left:15px;">
-      <input [disabled]="caldis" id="dp" class="form-control" placeholder="yyyy-mm-dd"
-             name="dp" [(ngModel)]="model" ngbDatepicker #d="ngbDatepicker" readonly=[true]>
-        <div class="input-group-addon span btn" (click)="activate()">change</div>
-    </div>
-    <button id="x" style="display:none"(click)="d.toggle()">toggle</button>
+
+  <div class="col-md-10">
+    <label style="font-size:45px;"><b>Update User Data</b></label>
   </div>
+  <div class="col-md-2">
+    <li class="dropdown">
+      <img src={{profileurl}} width="100px" />
+      <div style="height:10px;">
+
+      </div>
+      <label class="btn btn-default btn-file" style="margin-left:33px;">
+        Browse <input type="file" style="display: none;" (change)="detectfiles($event)">
+      </label>
+    </li>
+
+  </div>
+
+  </div>
+  </div>
+
+  <div class="form-group" style="height:10px">
+
+  </div>
+
+  <div class="form-group">
+
+  <div class="row">
+
+  <label class="control-label col-md-3" for="name"><b>Full Name </b></label>
+  <div class="col-md-8">
+
+
+  <input [disabled]="fnamedis" id="name" name="name" class="form-control input-md" required minlength="4"  [(ngModel)]="fname" value="x" #name="ngModel" >
+
+  <div id="div1" *ngIf="name.invalid && (name.errors.minlength)" class="alert alert-danger">
+  <!-- <div *ngIf="name.errors.required"> Name is required.</div> -->
+  <div *ngIf="name.errors.minlength">Name must be at least 4 characters long.</div></div>
+  </div>
+  <div class="col-md-1">
+    <button class="btn" (click)="fnamedis = false">Change</button>
+  </div>
+  </div>
+  </div>
+
+  <div class="form-group">
+  <div class="row">
+  <label class="control-label col-md-3" for="Address"><b>Address </b></label>
+  <div class="col-md-8">
+
+  <textarea [disabled]="fadddis" type="textarea" id="Address" name="Address" class="form-control" required minlength="30"  [(ngModel)]="fAddress" #Address="ngModel" ></textarea>
+
+  <div id="div2" *ngIf="Address.invalid && (Address.errors.minlength)" class="alert alert-danger">
+  <!--<div *ngIf="Address.errors.required"> Address is required.</div>-->
+  <div *ngIf="Address.errors.minlength"> Address must be at least 30 characters long </div></div>
+  </div>
+  <div class="col-md-1">
+    <button class="btn" (click)="fadddis=false">Change</button>
+  </div>
+  </div>
+  </div>
+
+  <div class="form-group">
+    <div class="row">
+      <label class="control-label col-md-3" for="dp"><b>Birthday </b></label>
+      <div class="input-group col-md-4" style="padding-left:15px;">
+        <input [disabled]="caldis" id="dp" class="form-control" placeholder="yyyy-mm-dd"
+               name="dp" [(ngModel)]="model" ngbDatepicker #d="ngbDatepicker" readonly=[true]>
+          <div class="input-group-addon span btn" (click)="activate()">change</div>
+      </div>
+      <button id="x" style="display:none"(click)="d.toggle()">toggle</button>
+    </div>
+  </div>
+
+  <div class="form-group">
+
+  <div class="row">
+  <label class="control-label col-md-3" for="NIC"><b>NIC </b></label>
+  <div class="col-md-8">
+
+  <input [disabled]="true" id="NIC" name="NIC" class="form-control input-md" required minlength="10" (input)="checkValidity()" [(ngModel)]="fNIC" #NIC="ngModel" pattern="^[0-9]{9}[vV]" >
+
+  <div id="div3" *ngIf="NIC.invalid && (NIC.errors.pattern || NIC.errors.minlength)" class="alert alert-danger">
+  <!--<div *ngIf="NIC.errors.required"> NIC is required.</div>-->
+  <div *ngIf="NIC.errors.minlength"> NIC must be 10 characters long </div>
+  <div *ngIf="NIC.errors.pattern"> NIC needs to be valid</div> </div>
+  <div id="div13" *ngIf="(NICtaken | async)" class="alert alert-danger">
+  <!--<div *ngIf="NIC.errors.required"> NIC is required.</div>-->
+  <div *ngIf="(NICtaken | async)"> NIC already taken </div> </div>
+  </div>
+  <div class="col-md-1">
+  </div>
+  </div>
+  </div>
+  <div class="form-group">
+  <div class="row">
+  <label class="control-label col-md-3" for="contact"><b>Phone </b></label>
+  <div class=col-md-8>
+   <input [disabled]="condis" id="contact" name="contact" class="form-control input-md" required minlength="10"  [(ngModel)]="fcontact" #contact="ngModel"  pattern="^(\+\d{1,2}\s)?\(?\d{3}\)?[\s.-]?\d{3}[\s.-]?\d{4}$" >
+
+   <div id="div4" *ngIf="contact.invalid && (contact.errors.pattern || contact.errors.minlength)" class="alert alert-danger">
+   <!--<div *ngIf="contact.errors.required"> Phone number is required.</div>-->
+   <div *ngIf="contact.errors.minlength"> NIC must be 10 characters long </div>
+   <div *ngIf="contact.errors.pattern">Please enter a valid Phone Number</div></div>
+  </div>
+  <div class="col-md-1">
+    <button class="btn" (click)="condis=false">Change</button>
+  </div>
+  </div>
+  </div>
+
+  <div class="form-group">
+  <div class="row">
+  <label class="control-label col-md-3" for="contact"><b>Emergency Contact </b></label>
+  <div class=col-md-8>
+   <input [disabled]="condis2" id="contact2" name="contact2" class="form-control input-md" required minlength="10"  [(ngModel)]="fcontact2" #contact2="ngModel"  pattern="^(\+\d{1,2}\s)?\(?\d{3}\)?[\s.-]?\d{3}[\s.-]?\d{4}$" >
+
+   <div id="div4" *ngIf="contact2.invalid && (contact2.errors.pattern || contact2.errors.minlength)" class="alert alert-danger">
+   <!--<div *ngIf="contact.errors.required"> Phone number is required.</div>-->
+   <div *ngIf="contact2.errors.minlength"> NIC must be 10 characters long </div>
+   <div *ngIf="contact2.errors.pattern">Please enter a valid Phone Number</div></div>
+  </div>
+  <div class="col-md-1">
+    <button class="btn" (click)="condis2=false">Change</button>
+  </div>
+  </div>
+  </div>
+
+
+
+  <div class="form-group">
+  <div class="row">
+
+
+  <label class="control-label col-md-3" for="email"><b>Email </b></label>
+   <div class="col-md-8">
+     <input [disabled]="emadis" id="email" name="email" class="form-control input-md" required  [(ngModel)]="femail" #email="ngModel" pattern="^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$" >
+
+    <div id="div5" *ngIf="email.invalid && (email.errors.pattern)" class="alert alert-danger">
+    <!--<div *ngIf="email.errors.required"> Email Address is required.</div>-->
+    <div *ngIf="email.errors.pattern"> Please enter a valid Email Address </div></div>
+   </div>
+   <div class="col-md-1">
+     <button class="btn" (click)="emadis=false">Change</button>
+   </div>
+   </div>
+  </div>
+
+<div style="height:10px">
+
 </div>
 
-<div align="right" style="padding-bottom: 20px;" >
-  <button class="btn" [disabled]=" (fnamedis || (name.invalid && (name.errors.minlength || !name.touched)))   && (fadddis || (Address.invalid && (Address.errors.minlength || !Address.touched)))
-  && (condis|| (contact.invalid && (contact.errors.pattern || !contact.touched))) && (emadis || (email.invalid && (email.errors.pattern || !email.touched)))
-  && caldis && (condis2 || (contact2.invalid && contact2.errors.pattern))" (click)="update()"> Update data</button>
-  <button class="btn" (click)="getcurrentPassword()"  data-toggle="modal" data-target="#myModal">Change Password</button>
-</div>
 
-<button (click)="upload()"> Upload </button>
+  <div align="right" style="padding-bottom: 20px;" >
+    <button class="btn" [disabled]=" (fnamedis || (name.invalid && (name.errors.minlength || !name.touched)))   && (fadddis || (Address.invalid && (Address.errors.minlength || !Address.touched)))
+    && (condis|| (contact.invalid && (contact.errors.pattern || !contact.touched))) && (emadis || (email.invalid && (email.errors.pattern || !email.touched)))
+    && caldis && (condis2 || (contact2.invalid && contact2.errors.pattern))" (click)="update()"> Update data</button>
+    <button class="btn" (click)="getcurrentPassword()"  data-toggle="modal" data-target="#myModal">Change Password</button>
+    <button class="btn" (click)="restore()" >Restore</button>
+  </div>
+
+  <button style="display:none" (click)="upload()"> Upload </button>
