@@ -146,7 +146,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
     DataTablesModule,
     HttpModule,
     BrowserAnimationsModule,
-    CalendarModule.forRoot(),
+    //CalendarModule.forRoot(),
     Ng2Webstorage,
     NgbModule.forRoot(),
     AgGridModule.withComponents([ ]),
