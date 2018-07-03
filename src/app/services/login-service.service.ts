@@ -31,6 +31,11 @@ export class LoginServiceService {
     return this._http.get<any>('https://surge-44d21.firebaseio.com/teachers/'+uname+'.json')
     .map((response : Response) => {return response});
   }
+
+  loginstudent(uname,bnumber){
+    return this._http.get<any>('https://surge-44d21.firebaseio.com/batches/'+bnumber+'/students/'+uname+'.json')
+    .map((response : Response) => {return response});
+  }
   loginemployee(uname) :   Observable<any>{
     return this._http.get<any>('https://surge-44d21.firebaseio.com/employees/'+uname+'.json').map((response : Response) => {return response});
   }
@@ -60,6 +65,13 @@ export class LoginServiceService {
       role : newuser.role,
       NIC : newuser.NIC
     });
+    if(newuser.role == "student"){
+      console.log(newuser.ID);
+      console.log()
+      firebase.database().ref('Users/' + newuser.ID).update({
+        bnumber : newuser.bindex
+      });
+    }
   }
   checkNICs(nic) : Observable<boolean>{
     var exists : boolean = false

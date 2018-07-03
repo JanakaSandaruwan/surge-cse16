@@ -6,7 +6,8 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./exam-home.component.css']
 })
 export class ExamHomeComponent implements OnInit {
-
+  events : any;
+  viewDate : any;
   constructor() { }
 
   ngOnInit() {

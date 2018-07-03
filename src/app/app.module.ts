@@ -27,6 +27,7 @@ import { AddmarkComponent } from './teacher/quiz/addmark/addmark.component';
 import { DisplaymarkComponent } from './teacher/quiz/displaymark/displaymark.component';
 import { AddquizComponent } from './teacher/quiz/addquiz/addquiz.component';
 
+
 import { TeacherviewComponent  } from './teacher/quiz/addquiz/teacherview/teacherview.component';
 
 import { TeachermcqComponent } from './teacher/quiz/addquiz/teacherview/teachermcq/teachermcq.component';
@@ -81,6 +82,9 @@ import { ViewleaveComponent } from './hr/viewleave/viewleave.component';
 import { ExamHomeComponent } from './examdiv/exam-home/exam-home.component';
 import { CreateTtComponent } from './examdiv/create-tt/create-tt.component';
 import {Ng2Webstorage} from 'ngx-webstorage';
+
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+//import { CalendarModule } from 'angular-calendar';
 
 @NgModule({
   declarations: [
@@ -143,6 +147,8 @@ import {Ng2Webstorage} from 'ngx-webstorage';
     FormsModule,
     DataTablesModule,
     HttpModule,
+    BrowserAnimationsModule,
+    //CalendarModule.forRoot(),
     Ng2Webstorage,
     NgbModule.forRoot(),
     AgGridModule.withComponents([ ]),
@@ -193,7 +199,7 @@ import {Ng2Webstorage} from 'ngx-webstorage';
     { path: 'mycourses', component: MyCourseComponent },
     { path: 'leave', component: MedicleLeaveComponent },
     { path: 'scholarship', component: ScholarshipComponent },
-    { path: 'compain', component: ComplainComponent },
+    { path: 'complain', component: ComplainComponent },
     { path: 'quizview', component:QuizviewComponent}]
   //{ path: '**', component: PageNotFoundComponent }
   },
@@ -213,7 +219,9 @@ import {Ng2Webstorage} from 'ngx-webstorage';
   { path: 'examdiv', component:ExamdivComponent, children : [
     /*{ path: '', component: TeacherHomeComponent }*/
     { path: 'home', component:ExamHomeComponent},
-    { path: 'createTT' , component :CreateTtComponent}]
+    { path: 'create-tt' , component :CreateTtComponent},
+    { path: 'updatedetails',component:UpdateuserComponent},
+    {path:'leaveapplication',component:LeaveapplicationComponent}]
   //{ path: '**', component: PageNo,FoundComponent }
 },
 {

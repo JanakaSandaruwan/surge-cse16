@@ -135,7 +135,7 @@ export class LeaveapplicationComponent implements OnInit {
       if( (new Date(today).getTime() <= new Date(this.from).getTime())){
         this.leavenum=this.leave.getNumLeave(this.usercode);
         this.leave.addLeaveApplication(this.usercode,this.reason,this.discription,this.from,this.to,this.leavenum);
-        
+
         $("#btn1").click();
         this.reason="";
         this.to="";

@@ -133,6 +133,7 @@ export class ViewteacherComponent implements OnInit {
     }
 
     onGridReady(params) {
+      var i : number = 0;
       console.log(this.STeachers);
       this.gridApi = params.api;
       this.gridColumnApi = params.columnApi;
@@ -140,6 +141,10 @@ export class ViewteacherComponent implements OnInit {
       this._teacherservice.listTeachers().subscribe(val => {
         this.gridApi.setRowData(val);
       });
+      for(;i<10;i++){
+        this.refresh();
+      }
+
     }
 
     onSelectionChanged($event){
@@ -147,13 +152,18 @@ export class ViewteacherComponent implements OnInit {
     }
 
   ngOnInit(): void {
+    var i : number = 0;
     this.subjectlist= this._teacherservice.listSubjects();
     this._teacherservice.listTeachers().subscribe(val => {
+      console.log(val)
       this.STeachers = val;
     });
     this._teacherservice.gettid().subscribe(val => {
       this.nextid = val;
     });
+    for(;i<10;i++){
+      this.refresh();
+    }
   }
 
   refresh(){
