@@ -27,6 +27,7 @@ import { AddmarkComponent } from './teacher/quiz/addmark/addmark.component';
 import { DisplaymarkComponent } from './teacher/quiz/displaymark/displaymark.component';
 import { AddquizComponent } from './teacher/quiz/addquiz/addquiz.component';
 
+
 import { TeacherviewComponent  } from './teacher/quiz/addquiz/teacherview/teacherview.component';
 
 import { TeachermcqComponent } from './teacher/quiz/addquiz/teacherview/teachermcq/teachermcq.component';
@@ -133,7 +134,8 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
     FilterPipe,
     ModuleComponent,
     TeacherviewComponent,
-    TeachermcqComponent
+    TeachermcqComponent,
+
   ],
   entryComponents: [
     McqComponent,
@@ -181,7 +183,9 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
       {path:'studymaterial',component:StudymaterialComponent},
       {path:'create',component:CreateComponent},
       {path:'create/mcq',component:McqComponent},
-      { path: 'quizes', component:CreateComponent}]
+      { path: 'quizes', component:CreateComponent},
+      {path:'updatedetails',component:UpdateuserComponent}
+    ]
     //{ path: '**', component: PageNotFoundComponent }
   },
   { path: 'teacher/:details', component:TeacherComponent, children : [
@@ -195,7 +199,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
     { path: 'mycourses', component: MyCourseComponent },
     { path: 'leave', component: MedicleLeaveComponent },
     { path: 'scholarship', component: ScholarshipComponent },
-    { path: 'compain', component: ComplainComponent },
+    { path: 'complain', component: ComplainComponent },
     { path: 'quizview', component:QuizviewComponent}]
   //{ path: '**', component: PageNotFoundComponent }
   },
@@ -209,7 +213,8 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
   { path: 'hr', component:HrComponent, children : [
     /*{ path: '', component: TeacherHomeComponent }*/
     { path: 'home', component:HrHomeComponent},
-    { path: 'viewleave', component:ViewleaveComponent}]
+    { path: 'viewleave', component:ViewleaveComponent},
+    { path: 'updatedetails',component:UpdateuserComponent}]
   //{ path: '**', component: PageNo,FoundComponent }
   },
   { path: 'examdiv', component:ExamdivComponent, children : [

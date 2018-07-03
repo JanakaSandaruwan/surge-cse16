@@ -24,6 +24,7 @@ export class LoadteacherService {
       NIC : teacher.NIC,
       contact : teacher.contact,
       email : teacher.email,
+
       fname : teacher.fname,
       password : teacher.password,
       role : teacher.role,

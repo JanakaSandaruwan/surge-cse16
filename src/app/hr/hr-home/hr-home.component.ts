@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import {Router} from '@angular/router';
+import { ActivatedRoute } from '@angular/router';
 
 @Component({
   selector: 'app-hr-home',
@@ -7,14 +8,19 @@ import {Router} from '@angular/router';
   styleUrls: ['./hr-home.component.css']
 })
 export class HrHomeComponent implements OnInit {
-
-  constructor(private router:Router) { }
+  usercode : string;
+  constructor(private router:Router , private route: ActivatedRoute) { }
 
   ngOnInit() {
+    this.route.params.subscribe(params => {
+       this.usercode = params['details'];
+       console.log(this.usercode);
+    });
   }
   gotoleave(){
-    this.router.navigate(['hr/viewleave']);
+    this.router.navigate(['hr/viewleave',{details : this.usercode}]);
   }
+  
 
 
 }

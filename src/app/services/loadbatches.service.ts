@@ -65,6 +65,8 @@ export class LoadbatchesService {
       nextid : nextid,
       total : index+1
     });
+    console.log(student.bindex);
+    console.log(student.ID);
     firebase.database().ref('/batches/' +student.bindex+'/students/'+student.ID).set({
       Address : student.Address,
       ID : student.ID,

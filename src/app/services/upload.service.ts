@@ -58,4 +58,10 @@ export class UploadService {
     });
 
   }
+
+  delete(subjectname,filename){
+
+
+  }
+
 }

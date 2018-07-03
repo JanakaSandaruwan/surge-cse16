@@ -155,6 +155,14 @@ border-right: 1px solid gray;
     -webkit-transition: margin 2s;
     transition: margin 2s;
 }
+
+.small-icon{
+
+}
+.large-icon{
+
+}
+
 .content{
   font-family: 'Lato', sans-serif;
 }
@@ -191,13 +199,13 @@ body {
 }
 @media (min-width: 992px) {
 #main-wrapper {
-  background-color: #424242;
+  background-color:  #b3d9ff;
 }
 }
 @media (max-width: 992px) {
 #main-wrapper {
   padding-top: 0px;
-  background-color: #424242;
+  background-color: #b3d9ff;
 }
 }
 @media (max-width: 3000px) {
@@ -206,7 +214,7 @@ body {
   height:auto;
   max-height: 300px;
 border-right:0;
-background-color: #424242;
+background-color: #b3d9ff;
 }
 }
 @media (max-width: 765px) {
@@ -216,7 +224,7 @@ background-color: #424242;
   max-height: 300px;
 border-right:0;
 padding-top:37px;
-background-color: #424242;
+background-color:  #b3d9ff;
 }
 }
 @media (max-width: 765px) {

@@ -18,6 +18,7 @@ export class UpdateuserComponent implements OnInit {
   fAddress : string;
   fname : string;
   model = { year:undefined ,month:undefined, day:undefined};
+  date : string;
   oldpasswordcopy : string;
   oldpassword : string;
   newpassword : string;
@@ -29,6 +30,7 @@ export class UpdateuserComponent implements OnInit {
   condis : boolean = true;
   emadis : boolean = true;
   caldis : boolean = true;
+  calinvalid : Observable<boolean> = Observable.of(false);
   condis2 : boolean = true;
   selectedFiles: FileList;
   currentFileUpload: Upload;
@@ -45,6 +47,23 @@ export class UpdateuserComponent implements OnInit {
     this.model.year = +this.storage.retrieve("byear");
     this.model.month = +this.storage.retrieve("bmonth");
     this.model.day = +this.storage.retrieve("bdate");
+    console.log((""+this.model.month).length);
+    if((""+this.model.month).length == 1){
+      this.model.month = "0"+this.model.month;
+    }
+    if((""+this.model.day).length == 1){
+      this.model.day = "0"+this.model.day;
+    }
+    if((""+this.model.year).length == 1){
+      this.model.year = "000"+this.model.year;
+    }else if((""+this.model.year).length == 2){
+      this.model.year = "00"+this.model.year;
+    }else if((""+this.model.year).length == 1){
+      this.model.year = "0"+this.model.year;
+    }else{
+      this.model.year = ""+this.model.year;
+    }
+    this.date = this.model.year+"-"+this.model.month+"-"+this.model.day;
     this.uploadService.getUrl(this.storage.retrieve("uname")).subscribe(data => {
       this.profileurl = data;
       console.log(this.profileurl);
@@ -63,6 +82,22 @@ export class UpdateuserComponent implements OnInit {
     this.model.year = +this.storage.retrieve("byear");
     this.model.month = +this.storage.retrieve("bmonth");
     this.model.day = +this.storage.retrieve("bdate");
+    if((""+this.model.month).length == 1){
+      this.model.month = "0"+this.model.month;
+    }
+    if((""+this.model.day).length == 1){
+      this.model.day = "0"+this.model.day;
+    }
+    if((""+this.model.year).length == 1){
+      this.model.year = "000"+this.model.year;
+    }else if((""+this.model.year).length == 2){
+      this.model.year = "00"+this.model.year;
+    }else if((""+this.model.year).length == 1){
+      this.model.year = "0"+this.model.year;
+    }else{
+      this.model.year = ""+this.model.year;
+    }
+    this.date = this.model.year+"-"+this.model.month+"-"+this.model.day;
     this.uploadService.getUrl(this.storage.retrieve("uname")).subscribe(data => {
       this.profileurl = data;
       console.log(this.profileurl);
@@ -98,13 +133,51 @@ export class UpdateuserComponent implements OnInit {
   }
 
   activate(){
-    $("#x").click();
     this.caldis = false;
+  }
+
+  changes(){
+    this.model.year = this.date.substring(0,4);
+    this.model.month = this.date.substring(5,7);
+    this.model.day = this.date.substring(8,10);
+    const d: Date = new Date();
+    if(d.getFullYear() < +this.model.year){
+      console.log(d.getFullYear());
+      this.calinvalid = Observable.of(true);
+    }else if(d.getFullYear() == +this.model.year){
+      if(d.getMonth() + 1 < +this.model.month){
+        console.log("k1");
+        this.calinvalid = Observable.of(true);
+      }else if(d.getMonth() + 1 == +this.model.month){
+        if(d.getDate() < +this.model.day){
+          console.log("k2");
+          this.calinvalid = Observable.of(true);
+        }else{
+          this.calinvalid = Observable.of(false);
+        }
+      }else{
+        this.calinvalid = Observable.of(false);
+      }
+    }else{
+      this.calinvalid = Observable.of(false);
+    }
   }
 
   update(){
     console.log('run');
+    this.model.year = this.date.substring(0,4);
+    this.model.month = this.date.substring(5,7);
+    this.model.day = this.date.substring(8,10);
     this._loginservice.updatedetails(this.storage.retrieve("uname"),this.storage.retrieve("role"),this.model, this.fname, this.fAddress, this.fcontact , this.fcontact2 , this.femail);
+    this.storage.store("contact" , this.fcontact);
+    this.storage.store("NIC", this.fNIC);
+    this.storage.store("email", this.femail);
+    this.storage.store("fname", this.fname);
+    this.storage.store("Address", this.fAddress);
+    this.storage.store("econtact",this.fcontact2);
+    this.storage.store("byear",this.model.year);
+    this.storage.store("bmonth",this.model.month);
+    this.storage.store("bdate",this.model.day);
   }
 
   detectfiles(event){
