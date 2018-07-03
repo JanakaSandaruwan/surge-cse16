@@ -1,11 +1,11 @@
-<div id="header" class="navbar navbar-default navbar-fixed-top" style="height:90; background:url(assets/ab.jpg);" >
+<div id="header" class="navbar navbar-default navbar-fixed-top" style="height:90; background-color:#424242;" >
     <div class="navbar-header" >
-        <img src="assets/nt.png" style="height:70px;" />
+        <a href="javascript:void(0);"(click)="gotohome()"><img  id="icon" src="assets/nt.png" /></a>
     </div>
-    <nav class="collapse navbar-collapse" style="color:white;">
+    <nav class="navbar-collapse collapse " style="color:white;">
         <ul class="nav navbar-nav">
             <li>
-                <h1>Welcome to SurgeOrb!</h1>
+                <h1 style="font-family: 'Do Hyeon', sans-serif;">Welcome to SurgeOrb!</h1>
             </li>
             <!--<li class="dropdown">
               <a href="#" class="dropdown-toggle" data-toggle="dropdown">Navbar Item 2<b class="caret"></b></a>
@@ -17,46 +17,59 @@
                 <a href="#">Navbar Item 3</a>
             </li>-->
         </ul>
-        <ul class="nav navbar-nav pull-right">
-            <li class="dropdown">
-                <img src="assets/149071.png" width="30px" style="margin-left:3rem; margin-top:1rem;"/>
-                <a href="#" id="nbAcctDD" class="dropdown-toggle" data-toggle="dropdown"><i class="icon-user"></i>Username<i class="icon-sort-down"></i></a>
-                <ul class="dropdown-menu pull-right" >
-                    <li><button (click)="logout()">Log Out</button></li>
-                    <li><button (click)="changedata()">Change</button></li>
+        <ul class="nav navbar-nav pull-right" style="display:table; margin:0 auto; margin-top:1rem;">
+            <li class="dropdown" (mouseenter)="movedown()" (mouseleave)="moveup()">
+                <img id="xsd" src={{profileurl}} alt="assets/149071.png" onerror="this.src='assets/149071.png'"  />
+                <a href="#" id="nbAcctDD" style="background-color:#424242" class="content" data-toggle="dropdown"><i class="icon-user"></i>{{username}}<i class="icon-sort-down"></i></a>
+                <ul  class="dropdown-menu pull-right content" style="background-color:#424242" >
+                    <li ><a (click)="logout()">Log Out</a></li>
+                    <li ><a (click)="changedata()">Change</a></li>
                 </ul>
             </li>
         </ul>
     </nav>
 </div>
 <div id="wrapper">
-  <div id="sidebar-wrapper" class="col-md-1" style="background:url(assets/ab.jpg);">
-            <div id="sidebar" style="background:url(assets/ab.jpg);">
-                <ul class="nav list-group">
-                    <li>
-                        <a class="list-group-item" href="#" style="background-image:url(assets/ab.jpg)"><i class="icon-home icon-1x"></i>Sidebar Item 1</a>
-                    </li>
-                    <li>
-                        <a class="list-group-item" href="#" style="background-image:url(assets/ab.jpg)"><i class="icon-home icon-1x"></i>Sidebar Item 2</a>
-                    </li>
-                    <li>
-                        <a class="list-group-item" href="#" style="background-image:url(assets/ab.jpg)"><i class="icon-home icon-1x"></i>Sidebar Item 9</a>
-                    </li>
-                    <li>
-                        <a class="list-group-item" href="#" style="background-image:url(assets/ab.jpg)"><i class="icon-home icon-1x"></i>Sidebar Item 10</a>
-                    </li>
-                    <li>
-                        <a class="list-group-item" href="#" style="background-image:url(assets/ab.jpg)"><i class="icon-home icon-1x"></i>Sidebar Item 11</a>
-                    </li>
-                </ul>
-            </div>
+  <div id="sidebar-wrapper"  >
+    <div class="sidebar">
+
+        <ul class="sidebar-nav content">
+            <li  >
+                <div>
+                  <a href="javascript:void(0);" (click)="togglenav()">Close <i class="fa fa-bars menu-icon fa-2x small-icon" aria-hidden="true"></i></a>
+                </div>
+            </li>
+            <li>
+                <a href="javascript:void(0);" (click) = "gotohome()" >Home <i class="fa fa-home menu-icon fa-2x large-icon " aria-hidden="true"></i></a>
+            </li>
+            <li>
+                <a href="#">View Subjects<i class="fa fa-book menu-icon fa-2x small-icon" aria-hidden="true"></i></a>
+            </li>
+            <li>
+                <a href="#">View Employees<i class="fa fa-users-cog menu-icon fa-2x large-icon" aria-hidden="true"></i></a>
+            </li>
+            <li>
+                <a href="#">View Students<i class="fa fa-graduation-cap menu-icon fa-2x large-icon" aria-hidden="true"></i></a>
+            </li>
+            <li>
+                <a href="#">View Teachers<i class="fa fa-chalkboard-teacher menu-icon fa-2x large-icon" aria-hidden="true"></i></a>
+            </li>
+            <li>
+                <a href="javascript:void(0);" (click) = "changedata()" >Change Profile<i class="fa fa-cog menu-icon fa-2x small-icon" aria-hidden="true"></i></a>
+            </li>
+            <li>
+                <a href="javascript:void(0);" (click)="logout()">Log out<i class="fa fa-sign-out-alt menu-icon fa-2x small-icon" aria-hidden="true"></i>
+                    </a>
+            </li>
+
+        </ul>
+    </div>
         </div>
-        <div id="main-wrapper" class="col-md-11 pull-right">
+        <div id="main-wrapper">
             <div id="main">
-              <div class="page-header">
-                <h3>HR</h3>
+              <div style="height:20px">
               </div>
-              <router-outlet ></router-outlet>
+              <router-outlet></router-outlet>
             </div>
         </div>
 </div>

@@ -136,7 +136,11 @@ import { Level1Component } from './student/my-course/level-1/level-1.component';
     ModuleComponent,
     TeacherviewComponent,
     TeachermcqComponent,
+<<<<<<< HEAD
     Level1Component
+=======
+
+>>>>>>> 249c5c05c1f08ef74e13f6f853c805d809a5a3e7
   ],
   entryComponents: [
     McqComponent,
@@ -184,7 +188,9 @@ import { Level1Component } from './student/my-course/level-1/level-1.component';
       {path:'studymaterial',component:StudymaterialComponent},
       {path:'create',component:CreateComponent},
       {path:'create/mcq',component:McqComponent},
-      { path: 'quizes', component:CreateComponent}]
+      { path: 'quizes', component:CreateComponent},
+      {path:'updatedetails',component:UpdateuserComponent}
+    ]
     //{ path: '**', component: PageNotFoundComponent }
   },
   { path: 'teacher/:details', component:TeacherComponent, children : [
@@ -212,7 +218,8 @@ import { Level1Component } from './student/my-course/level-1/level-1.component';
   { path: 'hr', component:HrComponent, children : [
     /*{ path: '', component: TeacherHomeComponent }*/
     { path: 'home', component:HrHomeComponent},
-    { path: 'viewleave', component:ViewleaveComponent}]
+    { path: 'viewleave', component:ViewleaveComponent},
+    { path: 'updatedetails',component:UpdateuserComponent}]
   //{ path: '**', component: PageNo,FoundComponent }
   },
   { path: 'examdiv', component:ExamdivComponent, children : [

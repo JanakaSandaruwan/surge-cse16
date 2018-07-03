@@ -23,7 +23,7 @@ export class ExamdivComponent implements OnInit {
   constructor(private  uploadService: UploadserviceService, private storage:LocalStorageService, private route: ActivatedRoute, private login : LoginServiceService, private router: Router, private logincookie : CookieService) { }
 
   movedown(){
-      
+
       if (this.dropdownstate == "collapsed"){
         $('.dropdown-menu').first().stop(true, true).slideDown();
         this.dropdownstate = "down";
@@ -95,9 +95,18 @@ export class ExamdivComponent implements OnInit {
     this.router.navigate(['examdiv/updatedetails', {details : this.usercode}]);
   }
 
+  gotonotices(){
+    this.router.navigate(['examdiv/home', {details : this.usercode}]);
+  }
+
+  gotoexamresults(){
+    this.router.navigate(['examdiv/create-tt', {details : this.usercode}]);
+  }
+
   gotohome(){
     this.router.navigate(['examdiv/home', {details : this.usercode}]);
   }
+
 
 
   redirectLeave(){

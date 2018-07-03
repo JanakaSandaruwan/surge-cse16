@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { LeaveapproveService } from '../../services/leaveapprove.service';
-
+import { Leave } from '../../models/leave'
 @Component({
   selector: 'app-viewleave',
   templateUrl: './viewleave.component.html',
@@ -10,14 +10,13 @@ export class ViewleaveComponent implements OnInit {
 
   contentd : any = [];
   keys : string[] = [];
+  selected = { to:undefined ,from:undefined, reason:undefined, discription:undefined, leaverequest:undefined, numofleaves:undefined};
   constructor(private _lservice: LeaveapproveService) { }
 
   ngOnInit() {
     this._lservice.getleaverequests().on("child_added", snapshot =>{
       this.contentd.push(snapshot.val());
-
-      /*this.keys.push(snapshot.key);
-      console.log(this.keys);*/
+      this.keys.push(snapshot.key);
       //$('#messageslist').append('<div  class="list-group-item animated fadeInLeft"><p>'+snapshot.val().content+'</p></div>');
     });
     console.log(this.contentd);
@@ -43,5 +42,28 @@ export class ViewleaveComponent implements OnInit {
     }
     this._nservice.deletenotice(deletekey );
   }*/
+  movedownl(x,y){
+    this.selected = y;
+    console.log(x);
+      var K = "#"+x;
+      $(K).slideToggle();
 
+  }
+  acceptleave(c){
+    this._lservice.acceptrequest(this.contentd[c]);
+    this.deletenotice(c);
+  }
+
+  refuseleave(c){
+    this._lservice.acceptrequest(this.contentd[c]);
+    this.deletenotice(c);
+  }
+  deletenotice(index){
+    var deletekey = this.keys[index];
+    if (index !== -1) {
+        this.contentd.splice(index, 1);
+        this.keys.splice(index, 1);
+    }
+    this._lservice.deletenotice(deletekey);
+  }
 }

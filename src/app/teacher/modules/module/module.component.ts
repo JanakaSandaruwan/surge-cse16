@@ -81,5 +81,9 @@ export class ModuleComponent implements OnInit {
 
   }
 
+  delete(filename){
+    
+  }
+
 
 }
