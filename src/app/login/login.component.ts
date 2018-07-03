@@ -95,8 +95,8 @@ export class LoginComponent implements OnInit {
             this.logincookie.put("Address", this.fulldata.Address);
           });
           this.lservice.loginuser(this.uname);
-          this.logincookie.put("uname",this.uname);
-          this.logincookie.put("role",this.usrdata.role);
+          this.storage.store("uname",this.uname);
+          this.storage.store("role",this.usrdata.role);
 
           this.router.navigate(['teacher/home',{details: btoa(this.uname)}]);
         }else if(this.usrdata.role == "Welfare"){

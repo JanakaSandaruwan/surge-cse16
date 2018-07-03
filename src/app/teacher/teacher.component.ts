@@ -3,6 +3,8 @@ import { Router } from '@angular/router';
 import { ActivatedRoute } from '@angular/router';
 import { LoginServiceService } from '../services/login-service.service';
 import {CookieService} from 'angular2-cookie/core';
+import {LocalStorageService, SessionStorageService} from 'ngx-webstorage';
+import { UploadserviceService } from '../services/uploadservice.service';
 //import {TeacherHomeComponent} from '../teacher/teacher-home/teacher-home.component';
 @Component({
   selector: 'app-teacher',
@@ -20,9 +22,11 @@ export class TeacherComponent implements OnInit {
   dropdownstate1: string ="themeup";
 //  username: string;
   profileurl: string;
-  constructor(private logincookie : CookieService , private route: ActivatedRoute, private login : LoginServiceService,private router:Router){}//,private home:TeacherHomeComponent) { }
+  constructor(private uploadService: UploadserviceService,private storage:LocalStorageService, private logincookie : CookieService , private route: ActivatedRoute, private login : LoginServiceService,private router:Router){}//,private home:TeacherHomeComponent) { }
 
   movedown(){
+
+
       console.log("dad");
       if (this.dropdownstate == "collapsed"){
         $('.dropdown-menu').first().stop(true, true).slideDown();
@@ -35,9 +39,11 @@ export class TeacherComponent implements OnInit {
   }
 
   movedownl(){
+    //  $("#thememenu").menu()
       console.log("dad1");
       if (this.dropdownstate1 == "themeup"){
-        $('.dropdown-menu1').first().stop(true, true).slideDown();
+       $('.dropdown-menu1').first().stop(true, true).slideDown();
+    // $('.dropdown-menu1').show(".dropdown-menu1", { direction: "left" }, 1000)
         this.dropdownstate1 = "down";
       }else{
         $('.dropdown-menu1').first().stop(true, true).slideUp();
@@ -77,6 +83,8 @@ export class TeacherComponent implements OnInit {
         $('.menu-icon').css('float','none');
         $('.menu-icon').css('position','absolute');
         $('.menu-icon').css('right','0');
+        $('.large-icon').css('padding-left','15px');
+        $('.small-icon').css('padding-left','18px');
         this.state = "minimized";
     } else {
         if (this.state == "minimized") {
@@ -84,20 +92,25 @@ export class TeacherComponent implements OnInit {
             $('#main-wrapper').css('margin-left', '250px');
             $('.menu-icon').css('float','left');
             $('.menu-icon').css('position','relative');
+            $('.large-icon').css('padding-left','0px');
+            $('.small-icon').css('padding-left','0px');
             this.state = "expanded";
         }
     }
   }
 
   ngOnInit() {
-    if (!this.logincookie.get("uname")){
+    if (!this.storage.retrieve("uname")){
       this.router.navigate(['']);
     }
 
-    console.log(this.logincookie.get("uname")+"adsa");
-    if (this.login.getloginstatus(this.logincookie.get("uname")) == false){
+    console.log(this.storage.retrieve("uname")+"adsa");
+    if (this.login.getloginstatus(this.storage.retrieve("uname")) == false){
       this.router.navigate(['']);
     }else{
+      this.uploadService.getUrl(this.storage.retrieve("uname")).subscribe(data =>{
+        this.profileurl = data;
+      });
       this.route.firstChild.params.subscribe(params => {
            console.log(atob(params['details']));
            this.usercode = params['details'];
@@ -105,6 +118,7 @@ export class TeacherComponent implements OnInit {
            this.fulldata = data;
 
            if (this.fulldata == null){
+            // console.log("kkkkkkkkkkkkkkkkkkkkkkk");
              this.router.navigate(['']);
            }
          });
@@ -113,13 +127,14 @@ export class TeacherComponent implements OnInit {
   }
 
   logout(){
-    this.logincookie.remove("uname");
+    console.log("logout");
+    this.storage.clear("username");
     this.login.logoutuser(this.fulldata['username']);
     this.router.navigate(['']);
   }
 
   changedata(){
-    this.router.navigate(['../admin/updatedetails', {details : this.usercode}]);
+    this.router.navigate(['teacher/updatedetails', {details : this.usercode}]);
   }
 
   seeme(){
@@ -127,15 +142,15 @@ export class TeacherComponent implements OnInit {
   }
 
   redirecthome(){
-    this.router.navigate(['teacher/home',{details: btoa(this.username)}]);
+    this.router.navigate(['teacher/home',{details: (this.usercode)}]);
   }
 
   redirectLeave(){
-    this.router.navigate(['teacher/leaveapplication',{details: btoa(this.username)}]);
+    this.router.navigate(['teacher/leaveapplication',{details: (this.usercode)}]);
   }
 
   redirectModules(){
-    this.router.navigate(['teacher/modules',{details: btoa(this.username)}]);
+    this.router.navigate(['teacher/modules',{details: (this.usercode)}]);
   }
 
 
