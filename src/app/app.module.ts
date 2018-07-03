@@ -84,6 +84,7 @@ import { CreateTtComponent } from './examdiv/create-tt/create-tt.component';
 import {Ng2Webstorage} from 'ngx-webstorage';
 
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { Level1Component } from './student/my-course/level-1/level-1.component';
 //import { CalendarModule } from 'angular-calendar';
 
 @NgModule({
@@ -134,7 +135,8 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
     FilterPipe,
     ModuleComponent,
     TeacherviewComponent,
-    TeachermcqComponent
+    TeachermcqComponent,
+    Level1Component
   ],
   entryComponents: [
     McqComponent,

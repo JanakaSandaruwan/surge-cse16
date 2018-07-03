@@ -97,7 +97,7 @@ export class StudentComponent implements OnInit {
     this.router.navigate(['student/home', {details : this.usercode}]);
   }
   gotocourse(){
-    this.router.navigate(['student/mycourse',{details: this.usercode}]);
+    this.router.navigate(['student/mycourses',{details: this.usercode}]);
 
   }
   gotoquiz(){
