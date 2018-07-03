@@ -58,6 +58,10 @@ export class LoginComponent implements OnInit {
               this.storage.store('byear', this.fulldata.bday.year);
               this.storage.store('bmonth', this.fulldata.bday.month);
               this.storage.store('bdate', this.fulldata.bday.day);
+            }else{
+              this.storage.store('byear', undefined);
+              this.storage.store('bmonth', undefined);
+              this.storage.store('bdate', undefined);
             }
             this.storage.store('NIC', this.fulldata.NIC);
             this.storage.store('contact', this.fulldata.contact);
@@ -75,9 +79,15 @@ export class LoginComponent implements OnInit {
             this.fulldata = data;
             console.log(data.Address);
             this.logincookie.put("econtact",this.fulldata.econtact);
-            this.logincookie.put("byear",this.fulldata.bday.year);
-            this.logincookie.put("bmonth",this.fulldata.bday.month);
-            this.logincookie.put("bdate",this.fulldata.bday.day);
+            if(this.fulldata.bday != undefined){
+              this.logincookie.put("byear",this.fulldata.bday.year);
+              this.logincookie.put("bmonth",this.fulldata.bday.month);
+              this.logincookie.put("bdate",this.fulldata.bday.day);
+            }else{
+              this.storage.store('byear', undefined);
+              this.storage.store('bmonth', undefined);
+              this.storage.store('bdate', undefined);
+            }
             this.logincookie.put("NIC", this.fulldata.NIC);
             this.logincookie.put("contact", this.fulldata.contact);
             this.logincookie.put("email", this.fulldata.email);
@@ -98,6 +108,10 @@ export class LoginComponent implements OnInit {
               this.storage.store('byear', this.fulldata.bday.year);
               this.storage.store('bmonth', this.fulldata.bday.month);
               this.storage.store('bdate', this.fulldata.bday.day);
+            }else{
+              this.storage.store('byear', undefined);
+              this.storage.store('bmonth', undefined);
+              this.storage.store('bdate', undefined);
             }
             this.storage.store('NIC', this.fulldata.NIC);
             this.storage.store('contact', this.fulldata.contact);
@@ -121,6 +135,10 @@ export class LoginComponent implements OnInit {
               this.storage.store('byear', this.fulldata.bday.year);
               this.storage.store('bmonth', this.fulldata.bday.month);
               this.storage.store('bdate', this.fulldata.bday.day);
+            }else{
+              this.storage.store('byear', undefined);
+              this.storage.store('bmonth', undefined);
+              this.storage.store('bdate', undefined);
             }
             this.storage.store('NIC', this.fulldata.NIC);
             this.storage.store('contact', this.fulldata.contact);
@@ -132,7 +150,7 @@ export class LoginComponent implements OnInit {
           this.storage.store("uname",this.uname);
           this.storage.store("role",this.usrdata.role);
           this.router.navigate(['student/home',{details: btoa(this.uname)}]);
-        
+
 
         }else if(this.usrdata.role == "ExamDiv"){
           console.log("l")
@@ -144,6 +162,10 @@ export class LoginComponent implements OnInit {
               this.storage.store('byear', this.fulldata.bday.year);
               this.storage.store('bmonth', this.fulldata.bday.month);
               this.storage.store('bdate', this.fulldata.bday.day);
+            }else{
+              this.storage.store('byear', undefined);
+              this.storage.store('bmonth', undefined);
+              this.storage.store('bdate', undefined);
             }
             this.storage.store('NIC', this.fulldata.NIC);
             this.storage.store('contact', this.fulldata.contact);
@@ -155,6 +177,31 @@ export class LoginComponent implements OnInit {
           this.storage.store("uname",this.uname);
           this.storage.store("role",this.usrdata.role);
           this.router.navigate(['examdiv/home',{details: btoa(this.uname)}]);
+        }else if(this.usrdata.role == "HR"){
+          console.log("l")
+          this.lservice.loginemployee(this.uname).subscribe(data=>{
+            this.fulldata = data;
+            console.log(this.fulldata);
+            this.storage.store('econtact', this.fulldata.econtact);
+            if(this.fulldata.bday != undefined){
+              this.storage.store('byear', this.fulldata.bday.year);
+              this.storage.store('bmonth', this.fulldata.bday.month);
+              this.storage.store('bdate', this.fulldata.bday.day);
+            }else{
+              this.storage.store('byear', undefined);
+              this.storage.store('bmonth', undefined);
+              this.storage.store('bdate', undefined);
+            }
+            this.storage.store('NIC', this.fulldata.NIC);
+            this.storage.store('contact', this.fulldata.contact);
+            this.storage.store('email', this.fulldata.email);
+            this.storage.store('fname', this.fulldata.fname);
+            this.storage.store('Address', this.fulldata.Address);
+          });
+          this.lservice.loginuser(this.uname);
+          this.storage.store("uname",this.uname);
+          this.storage.store("role",this.usrdata.role);
+          this.router.navigate(['hr/home',{details: btoa(this.uname)}]);
         }
       }
     });

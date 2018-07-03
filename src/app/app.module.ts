@@ -210,7 +210,8 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
   { path: 'hr', component:HrComponent, children : [
     /*{ path: '', component: TeacherHomeComponent }*/
     { path: 'home', component:HrHomeComponent},
-    { path: 'viewleave', component:ViewleaveComponent}]
+    { path: 'viewleave', component:ViewleaveComponent},
+    { path: 'updatedetails',component:UpdateuserComponent}]
   //{ path: '**', component: PageNo,FoundComponent }
   },
   { path: 'examdiv', component:ExamdivComponent, children : [

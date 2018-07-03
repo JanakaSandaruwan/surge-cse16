@@ -10,4 +10,23 @@ export class LeaveapproveService {
     return firebase.database().ref('/Leaveapplication/leaverequest');
   }
 
+  acceptrequest(LeaveInfo){
+    firebase.database().ref('/teachers/'+LeaveInfo.teachername+'/acceptleave').push({
+      From : LeaveInfo.from,
+      To : LeaveInfo.to,
+      Reason : LeaveInfo.reason
+    });
+    firebase.database().ref('/teachers/'+LeaveInfo.teachername+'/notifications').push("Leave for the "+LeaveInfo.from+" has been Accepted");
+  }
+  refuseleave(LeaveInfo){
+    firebase.database().ref('/teachers/'+LeaveInfo.teachername+'/notifications').push("Leave for the "+LeaveInfo.from+" has been Declined");
+  }
+  deletenotice(key){
+    /*firebase.database().ref('/notices/'+key+'/files').on("child_added", snapshot => {
+      var x = snapshot.val().filename ;
+      firebase.storage().ref('/notices/'+key+'/'+x).delete();
+    })*/
+    firebase.database().ref('/Leaveapplication/leaverequest' + key).remove();
+  }
+
 }
