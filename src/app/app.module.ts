@@ -130,7 +130,8 @@ import {Ng2Webstorage} from 'ngx-webstorage';
     FilterPipe,
     ModuleComponent,
     TeacherviewComponent,
-    TeachermcqComponent
+    TeachermcqComponent,
+
   ],
   entryComponents: [
     McqComponent,
@@ -176,7 +177,9 @@ import {Ng2Webstorage} from 'ngx-webstorage';
       {path:'studymaterial',component:StudymaterialComponent},
       {path:'create',component:CreateComponent},
       {path:'create/mcq',component:McqComponent},
-      { path: 'quizes', component:CreateComponent}]
+      { path: 'quizes', component:CreateComponent},
+      {path:'updatedetails',component:UpdateuserComponent}
+    ]
     //{ path: '**', component: PageNotFoundComponent }
   },
   { path: 'teacher/:details', component:TeacherComponent, children : [

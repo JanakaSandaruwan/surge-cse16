@@ -26,6 +26,8 @@ export class LeaveapplicationComponent implements OnInit {
   gridApi : any;
   gridColumnApi : any;
   selectedRows : any;
+  message:string;
+
 
   constructor(private router:Router, private route: ActivatedRoute,private leave:LoadLeaveService,private teacher:LoadteacherService) {
     this.columnDefs = [
@@ -48,11 +50,13 @@ export class LeaveapplicationComponent implements OnInit {
       this.gridApi.setRowData(val);
     });
 
-    firebase.database().ref('/leaveapplication/'+this.usercode+'/numofleaves').on('value', function(snapshot) {
+    firebase.database().ref('/leaveapplication/' +  this.usercode+'/numofleaves').on('value', function(snapshot) {
       this.leavenum = snapshot.val();
     });
 
     console.log(this.leavenum);
+
+
 
   }
 
@@ -76,7 +80,10 @@ export class LeaveapplicationComponent implements OnInit {
 }
   refresh(){
 
-  //  console.log(list[1]["num"]);
+
+
+
+   //console.log(a);
 
   /*var list=[];
   console.log(this.leave.getLeaveInfoNum(this.usercode));
@@ -110,27 +117,47 @@ export class LeaveapplicationComponent implements OnInit {
   }
 
   cancel(){
+    this.reason="";
+    this.to="";
+    this.from="";
+    this.discription="";
 
-    this.router.navigate(['/teacher/leaveapplication', {details : this.usercode}]);
-    console.log("navigate to leaveapplication");
   }
 
   send(){
     console.log("sending");
+    var date = new Date();
+    var today = date.getFullYear() + '-' + ('0' + (date.getMonth() + 1)).slice(-2) + '-' + ('0' + date.getDate()).slice(-2);
 
-    if(this.reason == "" || this.to == "" || this.from =="" || this.discription =="" ){
-        alert("Fill all columns");
+    if( (new Date(this.from).getTime() < new Date(this.to).getTime()))
+    {
+
+      if( (new Date(today).getTime() <= new Date(this.from).getTime())){
+        this.leavenum=this.leave.getNumLeave(this.usercode);
+        this.leave.addLeaveApplication(this.usercode,this.reason,this.discription,this.from,this.to,this.leavenum);
+        
+        $("#btn1").click();
+        this.reason="";
+        this.to="";
+        this.from="";
+        this.discription="";
+      }else{
+        this.message="From is less than today!!!"
+        this.to="";
+        this.from="";
+      }
+
     }else{
-      this.leavenum=this.leave.getNumLeave(this.usercode);
-      this.leave.addLeaveApplication(this.usercode,this.reason,this.discription,this.from,this.to,this.leavenum);
-      console.log("sending ok");
-      alert("Request sent");
-      this.reason="";
-      this.to="";
-      this.from="";
-      this.discription="";
+        this.message="To is less than From!!!"
+        this.to="";
+        this.from="";
     }
 
 
-  }
+    }
+
+
+
+
+
 }

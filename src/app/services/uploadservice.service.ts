@@ -34,11 +34,13 @@ export class UploadserviceService {
   }
 
   getUrl(uname) : Observable<string>{
+    console.log(uname);
     return this._http.get<string>('https://surge-44d21.firebaseio.com/profilepics/'+uname+'/url.json')
         .catch(this.handleError);
   }
 
   uploadprofilepic(uname, upload){
+    console.log(uname);
     const storageref = firebase.storage().ref();
     const uploadtask = storageref.child('/profilepics/'+uname).put(upload.file);
     uploadtask.on(firebase.storage.TaskEvent.STATE_CHANGED,

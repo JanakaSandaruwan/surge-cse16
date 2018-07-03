@@ -10,31 +10,69 @@
         <h4 class="modal-title">Leave Application</h4>
       </div>
         <div class="modal-body">
-          <form method="post">
+          <form method="post" #userForm="ngForm" >
           <label for="reason" class="control-label control-label-left col-sm-3">Reason*</label>
-          <input pattern="[A-Z]{5}" type="text" name="reason" [(ngModel)]="reason" id="reason" required="required" required minlength="4" class="form-control k-textbox" #reasonx="ngModel"><br>
+          <input   type="text" name="reason" [(ngModel)]="reason" id="reason" required minlength="4" class="form-control k-textbox" #reasonx="ngModel"><br>
 
-          <div id="div1" *ngIf="reasonx.invalid && (reasonx.errors.minlength)" class="alert alert-danger">
-          <!-- <div *ngIf="name.errors.required"> Name is required.</div> -->
-          <div *ngIf="reasonx.errors.minlength">Reason must be at least 4 characters long.</div></div>
+          <div *ngIf="reasonx.errors && (reasonx.dirty || reasonx.touched) "  class ="alert alert-danger">
+            <div *ngIf="reasonx.errors.minlength">Reason must be at least 4 characters long.
+            </div>
+
+            <div *ngIf="reasonx.errors.required" >Please enter reason
+            </div>
+
+            <!--div *ngIf="reasonx.errors.pattern && !reasonx.errors.minlength" >You can only use english letters
+            </div-->
+
+          </div>
+
+
 
           <label for="discrip" class="control-label control-label-left col-sm-3">Discription*</label>
                    <!--textarea cols="100" rows=""30 name="discrip" id="discrip"></textarea><br-->
-          <textarea required minlength="10" #disc="ngModel" id="discrip" rows="3" name="text" [(ngModel)]="discription" class="form-control k-textbox" data-role="textarea" required="required" data-maxwords="150" style="margin-top: 0px; margin-bottom: 0px; height: 285px;" ></textarea>
-          <div id="div1" *ngIf="disc.invalid && (disc.errors.minlength)" class="alert alert-danger">
-          <!-- <div *ngIf="name.errors.required"> Name is required.</div> -->
-          <div *ngIf="disc.errors.minlength">Discription must be at least 10 characters long.</div></div>
+          <textarea required minlength="10"  #disc="ngModel" id="discrip" rows="3" name="text" [(ngModel)]="discription" class="form-control k-textbox" data-role="textarea" required="required"  data-maxwords="150" style="margin-top: 0px; margin-bottom: 0px; height: 285px;"  ></textarea>
+          <div *ngIf="disc.errors && (disc.dirty || disc.touched) "  class ="alert alert-danger">
+            <div *ngIf="disc.errors.minlength">Discription must be at least 10 characters long.
+            </div>
+
+            <div *ngIf="disc.errors.required" >Please enter description
+            </div>
 
 
-          <label for="to" class="control-label control-label-left col-sm-3">From*</label>
-          <input type="date" [(ngModel)]="from" name="to" id="to" placeholder="MM/DD/YYY" required="required" class="form-control"><br>
+          </div>
+
+          <label for="from" class="control-label control-label-left col-sm-3">From*</label>
+          <input type="date" [(ngModel)]="from" name="from" id="to" placeholder="MM/DD/YYY" required class="form-control" #rx="ngModel" ><br>
+
+          <div *ngIf="rx.errors && (rx.dirty || rx.touched) "  class ="alert alert-danger">
+
+            <div *ngIf="rx.errors.required" >Please enter date
+            </div>
+
+
+          </div>
+
 
           <label for="to" class="control-label control-label-left col-sm-3">To*</label>
-          <input type="date" [(ngModel)]="to" name="to" id="to" placeholder="MM/DD/YYY" required="required" class="form-control">
+          <input type="date" [(ngModel)]="to" name="to" id="to" placeholder="MM/DD/YYY" required class="form-control" #rnx="ngModel"  >
+          <div *ngIf="rnx.errors && (rnx.dirty || rnx.touched) "  class ="alert alert-danger">
+
+
+            <div *ngIf="rnx.errors.required" >Please enter date
+            </div>
+
+            <!--div *ngIf="reasonx.errors.pattern && !reasonx.errors.minlength" >You can only use english letters
+            </div-->
+
+          </div>
+
+          <div *ngIf="message!=null" class ="alert alert-danger">  {{message}}</div>
+
           <div class="modal-footer">
             <div class="form-group pull-right">
-            <button type="button" class="btn btn-default" (click)="cancel()" data-dismiss="modal">Close</button>
-            <button type="button" class="btn btn-default" (click)="send()" data-dismiss="modal">Send</button>
+            <button id="cancel" type="button" class="btn btn-default" (click)="cancel()" data-dismiss="modal">Close</button>
+
+            <button type="button" (click)="send()" [disabled]="!userForm.form.valid || message!=null" class="btn btn-default" data-dismiss="modal">Send</button>
             </div>
           </div>
         </form>
@@ -44,6 +82,29 @@
   </div>
  </div>
 
+
+ <!-- Trigger the modal with a button -->
+ <button id="btn1" type="button" class="btn btn-info btn-lg" data-toggle="modal" data-target="#myModal1" [disabled]="true"></button>
+
+ <!-- Modal -->
+ <div id="myModal1" class="modal fade" role="dialog">
+   <div class="modal-dialog modal-sm">
+
+     <!-- Modal content-->
+     <div class="modal-content">
+
+       <div class="modal-body">
+         <p>The request  was sent ! </p>
+       </div>
+
+       <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal">OK</button>
+      </div>
+
+     </div>
+
+   </div>
+ </div>
 
 <div >
 	<h2 style="text-align: center;">Leave Information</h2>
