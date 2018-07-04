@@ -9,7 +9,7 @@
 <div class="container-fluid">
         <div class="row">
 
-            <form action="../submit" id="formentry" class="form-horizontal" role="form" data-parsley-validate novalidate>
+            <form action="../submit" id="formentry" class="form-horizontal" role="form" method="post" #userForm="ngForm"  data-parsley-validate novalidate>
                 <div class="container-fluid shadow">
                     <div class="row">
                         <div id="valErr" class="row viewerror clearfix hidden">
@@ -31,13 +31,32 @@
           <label class="control-label control-label-left col-sm-3" for="field1"><b>Student Index Number :</b><span class="req"> *</span></label>
           <div class="controls col-sm-9">
 
-                <input id="field1" type="text" class="form-control k-textbox" data-role="text" data-parsley-minwords="7" data-parsley-maxwords="7" required="required" data-parsley-errors-container="#errId2"><span id="errId2" class="error"></span></div>
+                <input id="index" type="text"  name="index" required minlength="10"  #indexx="ngModel" [(ngModel)]="index" class="form-control k-textbox" data-role="text">
+                <div *ngIf="indexx.errors && (indexx.dirty || indexx.touched) "  class ="alert alert-danger">
+                  <div *ngIf="indexx.errors.required" >Please enter Index Number
+                  </div>
+
+                  <div *ngIf="indexx.errors.minlength">Reason must be at least 10 characters long.
+                  </div>
+
+                </div>
+              </div>
+
+
 
     </div><div class="form-group" style="display: block;">
           <label class="control-label control-label-left col-sm-3" for="field3"><b>Year :</b><span class="req"> *</span></label>
           <div class="controls col-sm-9">
 
-                <input id="field3" type="text" class="form-control k-textbox" data-role="text" required="required" data-parsley-errors-container="#errId4"><span id="errId4" class="error"></span></div>
+                <input id="year" (input)="validYear()" name="year" [(ngModel)]="year" #yearx="ngModel"  type="text" class="form-control k-textbox"  required >
+                <div *ngIf="yearx.errors && (yearx.dirty || yearx.touched) "  class ="alert alert-danger">
+                  <div *ngIf="yearx.errors.required" >Please enter Year
+                  </div>
+
+                </div>
+
+                <div *ngIf="validyear | async " class ="alert alert-danger">  {{message}}</div>
+        </div>
 
     </div><div class="form-group" style="display: block;">
           <label class="control-label control-label-left col-sm-3" for="field4"><b>Name of the person issuing :</b><span class="req"> *</span></label>
@@ -45,13 +64,22 @@
 
                 <input id="field4" type="text" class="form-control k-textbox" data-role="text" required="required" data-parsley-errors-container="#errId5"><span id="errId5" class="error"></span></div>
 
-    </div><div class="form-group">
-          <label class="control-label control-label-left col-sm-3" for="field7"><b>Issuing Date :</b><span class="req"> *</span></label>
-          <div class="controls col-sm-9">
+    </div>
+    <div class="form-group">
+        <label class="control-label control-label-left col-sm-3" for="field7"><b>Issuing Date :</b><span class="req"> *</span></label>
+        <div class="controls col-md-8">
 
-                <input id="field7" type="date" class="form-control k-input" data-role="date" role="textbox" aria-haspopup="true" aria-expanded="false" aria-owns="field7_dateview" aria-disabled="false" aria-readonly="false" aria-label="Current focused date is null" data-error-container="#errfield7" style="width: 100%;" required="required" data-parsley-errors-container="#errId6"><span id="errId6" class="error"></span></div>
+              <span class="k-widget k-datepicker k-header form-control" style=""><span class="k-picker-wrap k-state-default"><input name="name" (input)="changes()" [disabled]="caldis" [(ngModel)]="date" id="field3" type="date" class="form-control k-input" data-role="date" role="textbox" aria-haspopup="true" aria-expanded="false" aria-owns="field3_dateview" aria-disabled="false" aria-readonly="false" aria-label="Current focused date is null" data-error-container="#errfield3" style="width: 100%;" required="required" data-parsley-errors-container="#errId3"><span unselectable="on" class="k-select" role="button" aria-controls="field3_dateview" ><span unselectable="on" class="k-icon k-i-calendar">select</span></span></span></span><span id="errId3" class="error"></span>
+              <div id="div233" *ngIf="(calinvalid | async)" class="alert alert-danger">
+              <div *ngIf="(calinvalid | async)">Date invalid</div></div>
+            </div>
 
-    </div></div></div></div></div></div></div><div class="form-group" style="display: block;">
+
+  </div></div></div></div></div></div></div>
+    <div id="div13s3" class="col-lg-10 col-md-10 col-sm-10 col-xs-12" *ngIf="(modelearly | async)" class="alert alert-danger">
+    <div *ngIf="(modelearly | async)">Date given is not valid</div> </div>
+
+    <div class="form-group" style="display: block;">
 
 
     <div style="margin-left: 175px" class="row" >
@@ -109,7 +137,7 @@
                     </div>
                 </div>
             </form>
-            
+
         </div>
     </div>
 

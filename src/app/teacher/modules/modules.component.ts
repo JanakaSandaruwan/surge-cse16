@@ -43,7 +43,7 @@ export class ModulesComponent implements OnInit {
     this.loadteacher.listTSubjects(this.usercode).subscribe(data => {
       this.nums= data;
       console.log(this.nums);
-    })
+    });
     /*var i=0;
     while(i<this.nums.length){
       //console.log(this.nums[i]);
@@ -54,7 +54,10 @@ export class ModulesComponent implements OnInit {
         console.log(module);
         tempmodules.push(module);
         i++;
+
       }*/
+
+
 //[routerLink]="['./module',module.name]"
 
 
