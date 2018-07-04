@@ -78,6 +78,9 @@ export class LeaveapplicationComponent implements OnInit {
     console.log(list[0][0]);
   }*/
 }
+
+
+
   refresh(){
 
 

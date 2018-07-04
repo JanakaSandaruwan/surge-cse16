@@ -5,6 +5,7 @@ import {UploadService} from '../../../services/upload.service';
 import { Upload } from '../../../models/upload';
 import { Quiz } from '../../../models/quiz';
 import {LoadquizService} from '../../../services/loadquiz.service';
+declare var firebase: any;
 
 @Component({
   selector: 'app-module',
@@ -82,7 +83,20 @@ export class ModuleComponent implements OnInit {
   }
 
   delete(filename){
-    
+    console.log(filename);
+    var storageRef=firebase.storage().ref().child('studymaterial/'+filename).delete().then(function() {
+      // File deleted successfully
+    }).catch(function(error) {
+      // Uh-oh, an error occurred!
+    });;
+
+    var query =   firebase.database().ref('classes/'+this.subjectname+'/studymaterial').orderByChild('name').equalTo(filename);
+    console.log(query);
+    query.on('value', function(messagesSnapshot) {
+    messagesSnapshot.forEach(function(messageSnapshot) {
+        messageSnapshot.ref().remove();
+    });
+  })
   }
 
 

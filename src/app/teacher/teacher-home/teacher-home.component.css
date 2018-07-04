@@ -5,3 +5,40 @@
 .mycontainer{
   padding-top:40px;padding-bottom:40px;
 }
+
+
+
+.header1{
+	padding-left: 5px;
+	font-weight: bold;
+ 	font-family:'Arial';
+ 	 color: blue;
+ 	 padding-top: 10px;
+
+}
+.header2{
+margin-top: 10px;
+	padding-left: 30px;
+	 font-size: 30px;
+	 font-weight: bold;
+}
+.news-item{
+	margin: 10px 10px 10px 10px;
+	padding: 10px 20px 10px 20px;
+	background-color: white;
+	border-radius: 10px;
+
+}
+.news-header{
+	border-left: groove;
+	border-bottom: groove;
+	margin: 5px 5px 20px 5px;
+	padding-left: 15px;
+	background-color: lightgray;
+
+}
+.news-header h3 p{
+	 padding-top: 10px;
+	  font-size: 15px;
+	   font-weight: bold
+}
