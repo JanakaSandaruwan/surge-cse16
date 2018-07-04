@@ -52,7 +52,7 @@ export class ViewsubjectsComponent implements OnInit {
       this.gridApi.exportDataAsCsv(params);
     }
   }
-  
+
   constructor(private _teacherservice: LoadteacherService, private _batchservice: LoadbatchesService) {
     this.columnDefs = [
           {headerName: "", field:"", checkboxSelection: true, headerCheckboxSelection: true},
@@ -72,7 +72,7 @@ export class ViewsubjectsComponent implements OnInit {
     }else{
       var i : number = 0;
       for (i=0;i<this.selectedRows.length;i++){
-        this._teacherservice.saveSubjectlist(this.selectedRows[i].code);
+        this._teacherservice.saveSubjectlist(this.selectedRows[i].code,this.selectedRows[i].level,this.selectedRows[i].batch,this.selectedRows[i].tccode);
       }
     }
     this.SSubject = this._teacherservice.listSubjects();

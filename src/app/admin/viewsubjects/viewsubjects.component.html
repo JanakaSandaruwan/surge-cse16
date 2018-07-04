@@ -53,7 +53,7 @@
             <label class="control-label col-md-3"><b>Teacher</b></label>
             <div class="col-md-9">
               <select id="teacher" class="form-control" [(ngModel)]="csubject.teacher" required #teacher="ngModel">
-                <option *ngFor="let teacher of availTeachers" [ngValue]="teacher.fname" >{{teacher.fname}}</option>
+                <option *ngFor="let teacher of availTeachers" [ngValue]="teacher" >{{teacher.fname}}</option>
               </select>
             </div>
           </div>

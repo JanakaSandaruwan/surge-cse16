@@ -31,9 +31,9 @@ export class ModuleComponent implements OnInit {
 
   ngOnInit() {
     this.route.params.subscribe(params => {
-       this.usercode = params['details'];
+       this.usercode = atob(params['details']);
        this.subjectname=atob(params['subjectname']);
-       //console.log((this.usercode));
+       console.log((this.usercode));
        console.log((this.subjectname));
     });
 
@@ -42,32 +42,32 @@ export class ModuleComponent implements OnInit {
  }
 
   gotoProgress(){
-    this.router.navigate(['../../teacher/progresscheck',{subjectname: btoa(this.subjectname)}]);
+    this.router.navigate(['../../teacher/progresscheck',{subjectname: btoa(this.subjectname),details:btoa(this.usercode)}]);
     console.log("navigate to progresscheck");
   }
 
   gotoAdmittance(){
-    this.router.navigate(['../../teacher/admittance',{subjectname: btoa(this.subjectname)}]);
+    this.router.navigate(['../../teacher/admittance',{subjectname: btoa(this.subjectname),details:btoa(this.usercode)}]);
     console.log("navigate to Admittance");
   }
 
   gotoQuiz(){
-    this.router.navigate(['../../teacher/quiz/displaymark',{subjectname: btoa(this.subjectname)}]);
+    this.router.navigate(['../../teacher/quiz/displaymark',{subjectname: btoa(this.subjectname),details:btoa(this.usercode)}]);
     console.log("navigate to Admittance");
   }
 
   gotoaddquiz(){
-    this.router.navigate(['../../teacher/quiz',{subjectname: btoa(this.subjectname)}]);
+    this.router.navigate(['../../teacher/quiz',{subjectname: btoa(this.subjectname),details:btoa(this.usercode)}]);
     console.log("navigate to add quiz");
   }
 
   gotomaterial(){
-    this.router.navigate(['../../teacher/studymaterial',{subjectname: btoa(this.subjectname)}]);
+    this.router.navigate(['../../teacher/studymaterial',{subjectname: btoa(this.subjectname),details:btoa(this.usercode)}]);
     console.log("navigate to material");
   }
 
   gotodisplayquiz(quizname){
-    this.router.navigate(['../../teacher/quiz/preview',{quizname: (quizname),subjectname:btoa(this.subjectname)}]);
+    this.router.navigate(['../../teacher/quiz/preview',{quizname: (quizname),subjectname:btoa(this.subjectname),details:btoa(this.usercode)}]);
     console.log("navigate to preview");
     console.log(this.subjectname);
     console.log(quizname);
@@ -83,21 +83,26 @@ export class ModuleComponent implements OnInit {
   }
 
   delete(filename){
-    console.log(filename);
-    var storageRef=firebase.storage().ref().child('studymaterial/'+filename).delete().then(function() {
+    //console.log(filename);
+    //console.log(this.subjectname);
+    var k=this.subjectname;
+
+    var storageRef=firebase.storage().ref().child('studymaterial/'+k+'/'+filename).delete().then(function() {
       // File deleted successfully
     }).catch(function(error) {
       // Uh-oh, an error occurred!
     });;
-
-    var query =   firebase.database().ref('classes/'+this.subjectname+'/studymaterial').orderByChild('name').equalTo(filename);
-    console.log(query);
-    query.on('value', function(messagesSnapshot) {
-    messagesSnapshot.forEach(function(messageSnapshot) {
-        messageSnapshot.ref().remove();
+  //  console.log(this.subjectname);
+    firebase.database().ref('classes/'+k+'/studymaterial').on("child_added", function(data){
+      var x : string;
+      if(data.val().name == filename){
+        x = data.key;
+        firebase.database().ref('classes/'+k+'/studymaterial/'+x).remove();
+      }
     });
-  })
+
   }
+
 
 
 }

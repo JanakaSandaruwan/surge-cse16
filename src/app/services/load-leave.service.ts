@@ -54,10 +54,10 @@ export class LoadLeaveService {
     finallist = [];
     var nodata = 0;
     firebase.database().ref('/Leaveapplication/leaverequest').on('child_added', function(data) {
-        finallist[nodata]=data.val();
-        console.log(finallist[nodata]["teachername"]==id);
+        //finallist[nodata]=data.val();
+        //console.log(finallist[nodata]["teachername"]==id);
 
-        if(data.val()["teachername"]==id){
+        if(data.val().name==id){
           finallist[nodata]=data.val();
           nodata = nodata + 1;
         }

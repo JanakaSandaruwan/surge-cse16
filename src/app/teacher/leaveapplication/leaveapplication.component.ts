@@ -4,6 +4,7 @@ import { ActivatedRoute } from '@angular/router';
 import {LoadLeaveService} from '../../services/load-leave.service';
 import {LoadteacherService} from '../../services/loadteacher.service';
 import { GridOptions } from "ag-grid";
+import { Observable } from 'rxjs/Observable';
 
 declare var firebase:any;
 @Component({
@@ -27,8 +28,8 @@ export class LeaveapplicationComponent implements OnInit {
   gridColumnApi : any;
   selectedRows : any;
   message:string;
-
-
+  fromvalid : Observable<boolean> = Observable.of(false);
+  tovalid : Observable<boolean> = Observable.of(false);
   constructor(private router:Router, private route: ActivatedRoute,private leave:LoadLeaveService,private teacher:LoadteacherService) {
     this.columnDefs = [
           {headerName: "From", field: "from", width: 300},
@@ -132,35 +133,42 @@ export class LeaveapplicationComponent implements OnInit {
     var date = new Date();
     var today = date.getFullYear() + '-' + ('0' + (date.getMonth() + 1)).slice(-2) + '-' + ('0' + date.getDate()).slice(-2);
 
-    if( (new Date(this.from).getTime() < new Date(this.to).getTime()))
-    {
+    this.leavenum=this.leave.getNumLeave(this.usercode);
+    this.leave.addLeaveApplication(this.usercode,this.reason,this.discription,this.from,this.to,this.leavenum);
 
-      if( (new Date(today).getTime() <= new Date(this.from).getTime())){
-        this.leavenum=this.leave.getNumLeave(this.usercode);
-        this.leave.addLeaveApplication(this.usercode,this.reason,this.discription,this.from,this.to,this.leavenum);
+    $("#cancel").click();
+    $("#verify").click();
 
-        $("#btn1").click();
-        this.reason="";
-        this.to="";
-        this.from="";
-        this.discription="";
-      }else{
-        this.message="From is less than today!!!"
-        this.to="";
-        this.from="";
-      }
+    this.reason="";
+    this.to="";
+    this.from="";
+    this.discription="";
 
+    }
+
+
+  validFromDate(){
+    var date = new Date();
+    var today = date.getFullYear() + '-' + ('0' + (date.getMonth() + 1)).slice(-2) + '-' + ('0' + date.getDate()).slice(-2);
+
+    if( (new Date(today).getTime() <= new Date(this.from).getTime())){
+          this.fromvalid = Observable.of(false);
     }else{
-        this.message="To is less than From!!!"
-        this.to="";
-        this.from="";
+          this.message="Incorrect date !"
+          this.fromvalid = Observable.of(true);
     }
 
+  }
 
+  validToDate(){
+    if( (new Date(this.from).getTime() < new Date(this.to).getTime())){
+
+      this.tovalid=Observable.of(false);
+    }else{
+      this.message="Incorrect date !"
+      this.tovalid = Observable.of(true);
     }
-
-
-
+  }
 
 
 }

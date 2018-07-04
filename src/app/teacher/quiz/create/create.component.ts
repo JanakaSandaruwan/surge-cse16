@@ -5,7 +5,7 @@ import { Quiz } from '../../../models/quiz';
 import { Question } from '../../../models/question';
 import { ActivatedRoute } from '@angular/router';
 import {LoadquizService} from '../../../services/loadquiz.service';
-
+import {Router} from '@angular/router';
 @Component({
   selector: 'app-create',
   templateUrl: './create.component.html',
@@ -18,6 +18,7 @@ export class CreateComponent implements OnInit {
   quiz : Quiz = <Quiz>{};
   quizanswers : string[] = [];
   subjectcode : string;
+  usercode:string;
 
   //@ViewChild('parent', { read: ViewContainerRef }) container: ViewContainerRef;
   getChildEvent(evt){
@@ -25,11 +26,11 @@ export class CreateComponent implements OnInit {
   }
 
   constructor(private componentFactoryResolver: ComponentFactoryResolver,
-                private viewContainerRef: ViewContainerRef ,  private loadquiz :LoadquizService,private route: ActivatedRoute) { }
+                private viewContainerRef: ViewContainerRef ,  private loadquiz :LoadquizService,private route: ActivatedRoute,private router:Router) { }
 
   ngOnInit() {
     this.route.params.subscribe(params => {
-      // this.usercode = params['details'];
+       this.usercode = atob(params['details']);
        this.subjectcode=atob(params['subjectname']);
        //console.log((this.usercode));
        console.log((this.subjectcode));
@@ -53,6 +54,9 @@ export class CreateComponent implements OnInit {
         console.log("sans add");
         this.AddEssay();
     }
+
+    console.log(this.quiz);
+    console.log(this.quizanswers);
   }
 
   Adding(){
@@ -103,12 +107,13 @@ export class CreateComponent implements OnInit {
         ref.instance.Option2 = this.TempQue.Option2;
         ref.instance.Option3 = this.TempQue.Option3;
         ref.instance.Option4 = this.TempQue.Option4;
+        ref.instance.corans=this.TempQue.Answer;
         ref.instance.completed = false;
         this.Adding();
         //ref.changeDetectorRef.detectChanges();
         var blockInstance = ref.instance as McqComponent;
-        this.loadquiz.updatequizquestion(this.subjectcode,this.quiz.Questions);
-        this.loadquiz.updatequizanswer(this.subjectcode,this.quizanswers);
+      //  this.loadquiz.updatequizquestion(this.subjectcode,this.quiz.Questions);
+      //  this.loadquiz.updatequizanswer(this.subjectcode,this.quizanswers);
 
         blockInstance.messageEvent.subscribe((val) => {
             console.log(val);
@@ -143,8 +148,8 @@ export class CreateComponent implements OnInit {
     this.quizanswers.push(tempans);
     console.log(this.quizanswers);
     //this.subjectcode="MA2-bc0001";
-    this.loadquiz.updatequizquestion(this.subjectcode,this.quiz.Questions);
-      this.loadquiz.updatequizanswer(this.subjectcode,this.quizanswers);
+  //  this.loadquiz.updatequizquestion(this.subjectcode,this.quiz.Questions);
+    //  this.loadquiz.updatequizanswer(this.subjectcode,this.quizanswers);
   }
 
   AddingEssay(){
@@ -156,8 +161,8 @@ export class CreateComponent implements OnInit {
     this.quizanswers.push(tempans);
     console.log(this.quizanswers);
   //  this.subjectcode="MA2-bc0001";
-    this.loadquiz.updatequizquestion(this.subjectcode,this.quiz.Questions);
-    this.loadquiz.updatequizanswer(this.subjectcode,this.quizanswers);
+  //  this.loadquiz.updatequizquestion(this.subjectcode,this.quiz.Questions);
+    //this.loadquiz.updatequizanswer(this.subjectcode,this.quizanswers);
   }
 
   AddTrue() {
@@ -169,6 +174,7 @@ export class CreateComponent implements OnInit {
         ref.instance.level = true;
         ref.instance.Question = this.TempQue.Text;
         ref.instance.type = this.TempQue.type;
+        ref.instance.corans=this.TempQue.Answer;
         /*ref.instance.Option1 = this.TempQue.Option1;
         ref.instance.Option2 = this.TempQue.Option2;
         ref.instance.Option3 = this.TempQue.Option3;
@@ -177,6 +183,8 @@ export class CreateComponent implements OnInit {
         ref.instance.completed = false;
         this.Adding();
         var blockInstance = ref.instance as McqComponent;
+      //  this.loadquiz.updatequizquestion(this.subjectcode,this.quiz.Questions);
+      //  this.loadquiz.updatequizanswer(this.subjectcode,this.quizanswers);
 
         blockInstance.messageEvent.subscribe((val) => {
             console.log(val);
@@ -184,7 +192,10 @@ export class CreateComponent implements OnInit {
             i=0;
             while (i<this.quiz.Questions.length){
               if (this.quiz.Questions[i].Text == val.Text){
-                console.log('val');
+                if (i > -1) {
+                   this.quiz.Questions.splice(i, 1);
+                   this.quizanswers.splice(i,1);
+                }
               }
               i=i+1;
             }
@@ -208,6 +219,7 @@ export class CreateComponent implements OnInit {
         ref.instance.level = true;
         ref.instance.Question = this.TempQue.Text;
         ref.instance.type = this.TempQue.type;
+        ref.instance.corans=this.TempQue.Answer;
         /*ref.instance.Option1 = this.TempQue.Option1;
         ref.instance.Option2 = this.TempQue.Option2;
         ref.instance.Option3 = this.TempQue.Option3;
@@ -216,6 +228,8 @@ export class CreateComponent implements OnInit {
         ref.instance.completed = false;
         this.Adding();
         var blockInstance = ref.instance as McqComponent;
+      //  this.loadquiz.updatequizquestion(this.subjectcode,this.quiz.Questions);
+      //  this.loadquiz.updatequizanswer(this.subjectcode,this.quizanswers);
 
         blockInstance.messageEvent.subscribe((val) => {
             console.log(val);
@@ -223,7 +237,10 @@ export class CreateComponent implements OnInit {
             i=0;
             while (i<this.quiz.Questions.length){
               if (this.quiz.Questions[i].Text == val.Text){
-                console.log('val');
+                if (i > -1) {
+                   this.quiz.Questions.splice(i, 1);
+                   this.quizanswers.splice(i,1);
+                }
               }
               i=i+1;
             }
@@ -236,6 +253,21 @@ export class CreateComponent implements OnInit {
         this.TempQue.Option3="";
         this.TempQue.Option4="";
         this.TempQue.Answer="";``
+  }
+
+
+  submit(){
+
+     this.loadquiz.updatequizquestion(this.subjectcode,this.quiz.Questions);
+     this.loadquiz.updatequizanswer(this.subjectcode,this.quizanswers);
+
+     $("#verify").click();
+
+
+  }
+
+  redirect(){
+    this.router.navigate(['../../teacher/modules/module',{subjectname: btoa(this.subjectcode),details:btoa(this.usercode)}]);
   }
 
 }
