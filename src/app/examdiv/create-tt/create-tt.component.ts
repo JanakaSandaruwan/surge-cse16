@@ -1,5 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { GridOptions } from "ag-grid";
+import { Observable } from 'rxjs/Observable';
+import { LoginServiceService } from '../../services/login-service.service';
+
 
 @Component({
   selector: 'app-create-tt',
@@ -12,6 +15,16 @@ export class CreateTtComponent implements OnInit {
   columnDefs : any[];
   rowSelection : any;
   gridColumnApi : any;
+  modelearly : Observable<boolean> = Observable.of(false);
+  modelcheck : Observable<boolean> = Observable.of(false);
+  model = { year:undefined ,month:undefined, day:undefined};
+  date : string;
+  index:string;
+  year:string;
+  message:string;
+  validyear:Observable<boolean> = Observable.of(false);
+  calinvalid : Observable<boolean> = Observable.of(false);
+  Indextaken :Observable<boolean>;
 
   results = [
     {subject: 'Mathematics', grade: "A+"},
@@ -55,7 +68,46 @@ export class CreateTtComponent implements OnInit {
         }
       }
 
+
+
+      changes(){
+        this.model.year = this.date.substring(0,4);
+        this.model.month = this.date.substring(5,7);
+        this.model.day = this.date.substring(8,10);
+        const d: Date = new Date();
+        if(d.getFullYear() > +this.model.year){
+          console.log(d.getFullYear());
+          this.calinvalid = Observable.of(true);
+        }else if(d.getFullYear() == +this.model.year){
+          if(d.getMonth() + 1 > +this.model.month){
+            console.log("k1");
+            this.calinvalid = Observable.of(true);
+          }else if(d.getMonth() + 1 == +this.model.month){
+            if(d.getDate() > +this.model.day){
+              console.log("k2");
+              this.calinvalid = Observable.of(true);
+            }else{
+              this.calinvalid = Observable.of(false);
+            }
+          }else{
+            this.calinvalid = Observable.of(false);
+          }
+        }else{
+          this.calinvalid = Observable.of(false);
+        }
+      }
+
+
   ngOnInit() {
+  }
+
+  validYear(){
+    if ( this.year == "1" || this.year=="2" || this.year=="3"|| this.year=="4" || this.year==""){
+      this.validyear=Observable.of(false);
+    }else{
+      this.message="wrong year!!!";
+      this.validyear=Observable.of(true);
+    }
   }
 
 }
