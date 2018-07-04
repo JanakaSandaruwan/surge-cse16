@@ -1,0 +1,29 @@
+ol {
+    background: #ff9999;
+    padding: 20px;
+}
+
+ul {
+    background: #cce5ff;/*#3399ff;*/
+    padding: 20px;
+}
+
+.bigbutton{
+  width:200px;height:110px;
+}
+
+.mycontainer{
+  padding-top:40px;padding-bottom:40px;
+}
+
+
+ol li {
+    background: ;
+    padding: 5px;
+    margin-left: 35px;
+}
+
+ul li {
+    background: white;
+    margin: 5px;
+}

@@ -12,6 +12,7 @@ import {LoadquizService} from '../../../services/loadquiz.service';
   styleUrls: ['./create.component.css'],
   providers:[LoadquizService]
 })
+
 export class CreateComponent implements OnInit {
   TempQue : Question = <Question>{};
   quiz : Quiz = <Quiz>{};
@@ -22,6 +23,7 @@ export class CreateComponent implements OnInit {
   getChildEvent(evt){
     console.log('got this from the child', evt.detail);
   }
+
   constructor(private componentFactoryResolver: ComponentFactoryResolver,
                 private viewContainerRef: ViewContainerRef ,  private loadquiz :LoadquizService,private route: ActivatedRoute) { }
 

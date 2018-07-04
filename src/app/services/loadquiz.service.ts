@@ -89,6 +89,6 @@ export class LoadquizService {
       return finallist;
     }
 
-      
+
 
 }

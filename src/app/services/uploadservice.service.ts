@@ -10,6 +10,7 @@ export class UploadserviceService {
   constructor(private _http: HttpClient) { }
 
   uploadNoticefiles(key , files){
+
     const storageref = firebase.storage().ref('/notices/'+key);
     var i : number = 0;
     for (i= 0 ; i<files.length ;i++){
@@ -31,6 +32,52 @@ export class UploadserviceService {
         })
     }
 
+  }
+
+  uploadNoticefilesSpecific(key , files,user){
+    if(user=="Teacher"){
+    const storageref = firebase.storage().ref('/teachernotices/'+key);
+    var i : number = 0;
+    for (i= 0 ; i<files.length ;i++){
+      const uploadtask = storageref.child(files[i].file.name).put(files[i].file);
+      uploadtask.on(firebase.storage.TaskEvent.STATE_CHANGED,
+        (snapshot) => {
+          // in progress
+          console.log("running");
+        },
+        (error) => {
+          // fail
+          console.log(error)
+        },
+        () => {
+          // success
+          console.log(uploadtask.snapshot.metadata.name);
+          //upload.name = upload.file.name;
+          this.savespecificNoticeData(uploadtask.snapshot.downloadURL , key ,uploadtask.snapshot.metadata.name,user);
+        })
+    }
+}else{
+  const storageref = firebase.storage().ref('/studentnotices/'+key);
+  var i : number = 0;
+  for (i= 0 ; i<files.length ;i++){
+    const uploadtask = storageref.child(files[i].file.name).put(files[i].file);
+    uploadtask.on(firebase.storage.TaskEvent.STATE_CHANGED,
+      (snapshot) => {
+        // in progress
+        console.log("running");
+      },
+      (error) => {
+        // fail
+        console.log(error)
+      },
+      () => {
+        // success
+        console.log(uploadtask.snapshot.metadata.name);
+        //upload.name = upload.file.name;
+        this.savespecificNoticeData(uploadtask.snapshot.downloadURL , key ,uploadtask.snapshot.metadata.name,user);
+      })
+  }
+}
   }
 
   getUrl(uname) : Observable<string>{
@@ -75,6 +122,19 @@ export class UploadserviceService {
     });
   }
 
+  private savespecificNoticeData ( upload : Upload, key , name,user ){
+    if(user=="Teacher"){
+      firebase.database().ref('teachernotices/'+key+'/files').push({
+      url : upload,
+      filename : name
+    });
+  }else{
+    firebase.database().ref('studentnotices/'+key+'/files').push({
+      url : upload,
+      filename : name
+    });
+  }
+}
   handleError(err: HttpErrorResponse) {
       console.log(err.message);
       return Observable.throw(err.message);
