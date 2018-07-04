@@ -71,26 +71,30 @@
           <div class="modal-footer">
             <div class="form-group pull-right">
 <<<<<<< HEAD
+
+            <button type="button" class="btn btn-danger btn-lg" (click)="cancel()" data-dismiss="modal">Close</button>
+            <button type="button" class="btn btn-success btn-lg" (click)="send()" data-dismiss="modal">Send</button>
+=======
+
             <button id="cancel" type="button" class="btn btn-default" (click)="cancel()" data-dismiss="modal">Close</button>
 
             <button type="button" (click)="send()" [disabled]="!userForm.form.valid || message!=null" class="btn btn-default" data-dismiss="modal">Send</button>
-=======
-            <button type="button" class="btn btn-danger btn-lg" (click)="cancel()" data-dismiss="modal">Close</button>
-            <button type="button" class="btn btn-success btn-lg" (click)="send()" data-dismiss="modal">Send</button>
->>>>>>> e19d8c70775e183edbf570ca1da60b7e4264ce82
+
+
+>>>>>>> 1fca9d464f188052477e619b78ecb6c4de119cf0
+
             </div>
           </div>
         </form>
         </div>
-
+0
     </div>
   </div>
  </div>
 
 
- <!-- Trigger the modal with a button -->
- <button id="btn1" type="button" class="btn btn-info btn-lg" data-toggle="modal" data-target="#myModal1" [disabled]="true"></button>
-
+ <!-- Trigger the modal with a button
+ <button id="btn1" type="button" class="btn btn-info btn-lg" data-toggle="modal" data-target="#myModal1" [disabled]="true"></button>-->
  <!-- Modal -->
  <div id="myModal1" class="modal fade" role="dialog">
    <div class="modal-dialog modal-sm">
@@ -133,5 +137,6 @@
       <p style="margin-left:30px;">Last Leave Application</p>
 
     </div-->
+
 
 </div>

@@ -3,7 +3,7 @@
 <div class="container-fluid">
     <div class="row">
 
-        <form action="../submit" id="formentry" class="form-horizontal" role="form" data-parsley-validate novalidate>
+        <form method="post" class="form-horizontal"   #userForm="ngForm" >
             <div class="container-fluid shadow">
                 <div class="row">
                     <div id="valErr" class="row viewerror clearfix hidden">
@@ -19,7 +19,19 @@
       <label class="control-label control-label-left col-sm-3" for="field1">Name of the quiz<span class="req"> *</span></label>
       <div class="controls col-sm-9">
 
-            <input id="field1" name="quizname" [(ngModel)]="name" type="text" class="form-control k-textbox" data-role="text" required="required" data-parsley-errors-container="#errId1"><span id="errId1" class="error"></span></div>
+            <input id="field1" name="quizname" [(ngModel)]="name" type="text" class="form-control k-textbox" data-role="text"  required minlength="4" #namex="ngModel" data-parsley-errors-container="#errId1"><span id="errId1" class="error"></span>
+            <div *ngIf="namex.errors && (namex.dirty || namex.touched) "  class ="alert alert-danger">
+              <div *ngIf="namex.errors.minlength">Name must be at least 4 characters long.
+              </div>
+
+              <div *ngIf="namex.errors.required" >Please enter name
+              </div>
+
+              <!--div *ngIf="reasonx.errors.pattern && !reasonx.errors.minlength" >You can only use english letters
+              </div-->
+
+            </div>
+     </div>
 
 </div><!--div class="form-group">
       <label class="control-label control-label-left col-sm-3" for="field2">Number of questions<span class="req"> *</span></label>
@@ -31,26 +43,76 @@
       <label class="control-label control-label-left col-sm-3" for="field3">Date<span class="req"> *</span></label>
       <div class="controls col-sm-9">
 
-            <span class="k-widget k-datepicker k-header form-control" style=""><span class="k-picker-wrap k-state-default"><input name="name"   [(ngModel)]="date" id="field3" type="date" class="form-control k-input" data-role="date" role="textbox" aria-haspopup="true" aria-expanded="false" aria-owns="field3_dateview" aria-disabled="false" aria-readonly="false" aria-label="Current focused date is null" data-error-container="#errfield3" style="width: 100%;" required="required" data-parsley-errors-container="#errId3"><span unselectable="on" class="k-select" role="button" aria-controls="field3_dateview" ><span unselectable="on" class="k-icon k-i-calendar">select</span></span></span></span><span id="errId3" class="error"></span></div>
+            <span class="k-widget k-datepicker k-header form-control" style="">
+              <span class="k-picker-wrap k-state-default">
+              <input name="name" #rtx="ngModel"  required  [(ngModel)]="date" id="field3" type="date" class="form-control k-input" data-role="date" role="textbox" aria-haspopup="true" aria-expanded="false" aria-owns="field3_dateview" aria-disabled="false" aria-readonly="false" aria-label="Current focused date is null" data-error-container="#errfield3" style="width: 100%;"  data-parsley-errors-container="#errId3">
+
+              <span unselectable="on" class="k-select" role="button" aria-controls="field3_dateview" >
+                <span unselectable="on" class="k-icon k-i-calendar">select</span>
+              </span>
+            </span>
+          </span>
+          <span id="errId3" class="error">
+          </span>
+
+          <div *ngIf="rtx.errors && (rtx.dirty || rtx.touched) "  class ="alert alert-danger">
+
+            <div *ngIf="rtx.errors.required" >Please enter date
+            </div>
+
+
+          </div>
+
+          <div *ngIf="message!=null" class ="alert alert-danger">  {{message}}</div>
+    </div>
 
 </div><div class="form-group">
       <label class="control-label control-label-left col-sm-3" for="field4">Start Time<span class="req"> *</span></label>
-      <div class="controls col-sm-9">
+          <div class="controls col-sm-9">
 
-            <span class="k-widget k-timepicker k-header form-control" style=""><span class="k-picker-wrap k-state-default"><input name="from" [(ngModel)]="starttime" id="field4" type="time" class="form-control k-input" data-role="time" role="textbox" aria-haspopup="true" aria-expanded="false" aria-owns="field4_timeview" aria-disabled="false" aria-readonly="false" data-error-container="#errfield4" style="width: 100%;" required="required" data-parsley-errors-container="#errId4"><span unselectable="on" class="k-select" role="button" aria-controls="field4_timeview"><span unselectable="on" class="k-icon k-i-clock">select</span></span></span></span><span id="errId4" class="error"></span></div>
+            <span class="k-widget k-timepicker k-header form-control" style=""><span class="k-picker-wrap k-state-default">
+              <input required  #rx="ngModel"  name="from" [(ngModel)]="starttime" id="field4" type="time" class="form-control k-input" data-role="time" role="textbox" aria-haspopup="true" aria-expanded="false" aria-owns="field4_timeview" aria-disabled="false"  aria-readonly="false"  data-error-container="#errfield4" style="width: 100%;"  data-parsley-errors-container="#errId4">
+
+              <span unselectable="on" class="k-select" role="button" aria-controls="field4_timeview"><span unselectable="on" class="k-icon k-i-clock">select</span></span></span></span><span id="errId4" class="error"></span>
+
+              <div *ngIf="rx.errors && (rx.dirty || rx.touched) "  class ="alert alert-danger">
+
+                <div *ngIf="rx.errors.required" >Please enter start time
+                </div>
+
+
+              </div>
+
+            </div>
 
 </div><div class="form-group">
       <label class="control-label control-label-left col-sm-3" for="field5">End Time<span class="req"> *</span></label>
       <div class="controls col-sm-9">
 
-            <span class="k-widget k-timepicker k-header form-control" style=""><span class="k-picker-wrap k-state-default"><input name="to" [(ngModel)]="endtime" id="field5" type="time" class="form-control k-input" data-role="time" role="textbox" aria-haspopup="true" aria-expanded="false" aria-owns="field5_timeview" aria-disabled="false" aria-readonly="false" data-error-container="#errfield5" required="required" style="width: 100%;" data-parsley-errors-container="#errId5"><span unselectable="on" class="k-select" role="button" aria-controls="field5_timeview"><span unselectable="on" class="k-icon k-i-clock">select</span></span></span></span><span id="errId5" class="error"></span></div>
+            <span class="k-widget k-timepicker k-header form-control" style=""><span class="k-picker-wrap k-state-default">
+              <input name="to" #rkx="ngModel" required  [(ngModel)]="endtime" id="field5" type="time" class="form-control k-input" data-role="time" role="textbox" aria-haspopup="true" aria-expanded="false" aria-owns="field5_timeview" aria-disabled="false" aria-readonly="false" data-error-container="#errfield5" style="width: 100%;" data-parsley-errors-container="#errId5">
+              <span unselectable="on" class="k-select" role="button" aria-controls="field5_timeview">
+                <span unselectable="on" class="k-icon k-i-clock">select</span></span></span></span><span id="errId5" class="error"></span>
+
+                <div *ngIf="rkx.errors && (rkx.dirty || rkx.touched) "  class ="alert alert-danger">
+
+                  <div *ngIf="rkx.errors.required" >Please enter end time
+                  </div>
+
+
+                </div>
+
+      </div>
 
 </div><div class="form-group pull-right">
 
 
 
-<button id="button7" (click)="add()" type="button" class="btn btn-default">create</button></div></div>
+<button id="button7" (click)="add()" type="button" class="btn btn-default"  >create</button>
+</div>
+</div>
                                 </div>
+
 
 
 

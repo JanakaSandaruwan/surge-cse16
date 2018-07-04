@@ -96,7 +96,7 @@ export class ExamdivComponent implements OnInit {
   }
 
   gotonotices(){
-    this.router.navigate(['examdiv/home', {details : this.usercode}]);
+    this.router.navigate(['examdiv/writenotice', {details : this.usercode}]);
   }
 
   gotoexamresults(){

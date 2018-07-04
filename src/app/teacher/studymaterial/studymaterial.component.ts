@@ -37,12 +37,18 @@ export class StudymaterialComponent implements OnInit {
   uploadSingle() {
     console.log(this.selectedFiles);
       let file = this.selectedFiles.item(0);
-      
+
       this.currentUpload = new Upload(file);
       this.upSvc.pushUpload(this.currentUpload,this.subjectname);
       console.log("File uploaded kk");
+      //this.router.navigate(['../../teacher/modules/module',{subjectname: btoa(this.subjectname)}]);
     }
 
+    redirect(){
+      this.router.navigate(['../../teacher/modules/module',{subjectname: btoa(this.subjectname)}]);
+    }
+
+    
 
 
 }

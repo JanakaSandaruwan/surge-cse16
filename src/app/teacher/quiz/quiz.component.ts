@@ -17,6 +17,7 @@ export class QuizComponent implements OnInit {
   starttime:string;
   endtime:string;
   subjectcode:string;
+  message:string;
 
 
   constructor(private router:Router, private loadquiz:LoadquizService, private route: ActivatedRoute) { }
@@ -33,10 +34,23 @@ export class QuizComponent implements OnInit {
   add(){
     console.log("create");
    //this.subjectcode="MA2-bc0001";
-    this.loadquiz.loadquizInfo(this.subjectcode,this.name,this.date,this.starttime,this.endtime);
+
+    var date = new Date();
+    var today = date.getFullYear() + '-' + ('0' + (date.getMonth() + 1)).slice(-2) + '-' + ('0' + date.getDate()).slice(-2);
 
 
-    this.router.navigate(['../../teacher/quiz/addquiz',{subjectname: btoa(this.subjectcode)}]);
-    console.log('ok');
+
+    if( (new Date(today).getTime() <= new Date(this.date).getTime())){
+       this.loadquiz.loadquizInfo(this.subjectcode,this.name,this.date,this.starttime,this.endtime);
+
+
+       this.router.navigate(['../../teacher/quiz/addquiz',{subjectname: btoa(this.subjectcode)}]);
+       console.log('ok');
+
+
+    }else{
+       this.message="You have entered an incorrect date!!!"
+    }
+
   }
 }
