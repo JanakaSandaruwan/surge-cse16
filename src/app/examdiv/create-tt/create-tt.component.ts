@@ -11,7 +11,7 @@ export class CreateTtComponent implements OnInit {
   gridApi : any;
   columnDefs : any[];
   rowSelection : any;
-
+  gridColumnApi : any;
 
   results = [
     {subject: 'Mathematics', grade: "A+"},
@@ -27,7 +27,14 @@ export class CreateTtComponent implements OnInit {
       ];
       this.rowSelection = "multiple"; }
 
+      onGridReady(params) {
+        this.gridApi = params.api;
+        this.gridColumnApi = params.columnApi;
+        this.gridApi.setRowData(this.results);
+
+      }
       onBtnExport(): void {
+        console.log("k");
         console.log(this.gridApi.getSelectedRows());
         if ( this.gridApi.getSelectedRows().length != 0){
           const params = {

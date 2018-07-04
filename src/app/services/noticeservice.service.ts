@@ -19,6 +19,29 @@ export class NoticeserviceService {
     this._upload.uploadNoticefiles(pushkey,files);
   }
 
+  postspecificnotice(sub , des , date, files , user){
+    if (user == "Teacher"){const pushrequest = firebase.database().ref('teachernotices').push({
+      subject : sub,
+      description : des,
+      enddate : date
+    });
+    const pushkey = pushrequest.key;
+    console.log(pushkey);
+    console.log(files);
+    this._upload.uploadNoticefilesSpecific(pushkey,files,user);
+  }else{
+    const pushrequest = firebase.database().ref('studentnotices').push({
+      subject : sub,
+      description : des,
+      enddate : date
+    });
+    const pushkey = pushrequest.key;
+    console.log(pushkey);
+    console.log(files);
+    this._upload.uploadNoticefilesSpecific(pushkey,files,user);
+  }
+}
+
   getnotices(){
     return firebase.database().ref('/notices');
   }

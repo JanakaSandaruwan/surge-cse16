@@ -85,6 +85,7 @@ import {Ng2Webstorage} from 'ngx-webstorage';
 
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { Level1Component } from './student/my-course/level-1/level-1.component';
+import { WritenoticeComponent } from './examdiv/writenotice/writenotice.component';
 //import { CalendarModule } from 'angular-calendar';
 
 @NgModule({
@@ -136,11 +137,13 @@ import { Level1Component } from './student/my-course/level-1/level-1.component';
     ModuleComponent,
     TeacherviewComponent,
     TeachermcqComponent,
-<<<<<<< HEAD
-    Level1Component
-=======
 
->>>>>>> 249c5c05c1f08ef74e13f6f853c805d809a5a3e7
+    Level1Component,
+
+    WritenoticeComponent
+
+
+
   ],
   entryComponents: [
     McqComponent,
@@ -227,7 +230,8 @@ import { Level1Component } from './student/my-course/level-1/level-1.component';
     { path: 'home', component:ExamHomeComponent},
     { path: 'create-tt' , component :CreateTtComponent},
     { path: 'updatedetails',component:UpdateuserComponent},
-    {path:'leaveapplication',component:LeaveapplicationComponent}]
+    {path:'leaveapplication',component:LeaveapplicationComponent},
+  {path:'writenotice',component:WritenoticeComponent}]
   //{ path: '**', component: PageNo,FoundComponent }
 },
 {
