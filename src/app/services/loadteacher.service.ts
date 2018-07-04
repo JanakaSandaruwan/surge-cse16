@@ -52,21 +52,31 @@ export class LoadteacherService {
   }
 
   saveTeacherlist(teacher){
+    console.log("k");
+    firebase.database().ref('/teachers/'+teacher+'/subjects').on('child_added', function(data) {
+      console.log('/subjects/'+data.val().level+'/'+data.key);
+        firebase.database().ref('/subjects/'+data.val().level+'/'+data.key).remove();
+      });
     firebase.database().ref('/teachers/'+teacher).remove();
   }
 
-  saveSubjectlist(subjectcode){
-    firebase.database().ref('/subjects/'+subjectcode).remove();
+  saveSubjectlist(subjectcode,subjectlevel,subjectbatch,subjectteacher){
+    firebase.database().ref('/teachers/'+subjectteacher+'/subjects/'+subjectcode+subjectbatch).remove();
+    firebase.database().ref('/subjects/'+subjectlevel+'/'+subjectcode+subjectbatch).remove();
   }
 
   AddnewSubject(subject){
-    firebase.database().ref('/subjects/'+subject.code+subject.batch).set({
+    firebase.database().ref('/subjects/'+subject.level+'/'+subject.code+subject.batch).set({
       code : subject.code,
       name : subject.name,
       batch : subject.batch,
-      teacher : subject.teacher,
-      level : subject.level
+      teacher : subject.teacher.fname,
+      level : subject.level,
+      tccode : subject.teacher.username
     });
+    firebase.database().ref('/teachers/'+subject.teacher.username+"/subjects/"+subject.code+subject.batch).set({
+      name:subject.name,
+      level: subject.level });
   }
 
   checkclassid(code,batch) : Observable<boolean>{
@@ -88,10 +98,22 @@ export class LoadteacherService {
     var finallist : Subject[];
     finallist = [];
     var nodata = 0;
-    firebase.database().ref('subjects').on('child_added', function(data) {
+    firebase.database().ref('subjects/Year 1').on('child_added', function(data) {
         finallist[nodata]=data.val();
         nodata = nodata + 1;
       });
+      firebase.database().ref('subjects/Year 2').on('child_added', function(data) {
+          finallist[nodata]=data.val();
+          nodata = nodata + 1;
+        });
+        firebase.database().ref('subjects/Year 3').on('child_added', function(data) {
+            finallist[nodata]=data.val();
+            nodata = nodata + 1;
+          });
+          firebase.database().ref('subjects/Year 4').on('child_added', function(data) {
+              finallist[nodata]=data.val();
+              nodata = nodata + 1;
+            });
       return finallist;
   }
 

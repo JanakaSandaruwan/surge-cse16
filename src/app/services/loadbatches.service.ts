@@ -19,10 +19,14 @@ export class LoadbatchesService {
     this._http.get<Batch[]>('https://surge-44d21.firebaseio.com/batches/'+selected+'/students/' +username+'/Level.json')
     .catch(this.handleError).subscribe(data => {
       current = data;
-      if ( current == "entry"){
-
-      }else if ( current == ""){
-
+      if ( current == "Year 1"){
+        firebase.database().ref('batches/'+selected+'/students/' +username+'/Level').set("Year 2");
+      }else if ( current == "Year 2"){
+        firebase.database().ref('batches/'+selected+'/students/' +username+'/Level').set("Year 3");
+      }else if (current == "Year 3"){
+        firebase.database().ref('batches/'+selected+'/students/' +username+'/Level').set("Year 4");
+      }else if (current == "Year 4"){
+        firebase.database().ref('batches/'+selected+'/students/' +username+'/Level').set("Graduated");
       }
     });
   }

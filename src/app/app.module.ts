@@ -136,11 +136,7 @@ import { Level1Component } from './student/my-course/level-1/level-1.component';
     ModuleComponent,
     TeacherviewComponent,
     TeachermcqComponent,
-<<<<<<< HEAD
     Level1Component
-=======
-
->>>>>>> 249c5c05c1f08ef74e13f6f853c805d809a5a3e7
   ],
   entryComponents: [
     McqComponent,

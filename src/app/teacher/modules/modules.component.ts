@@ -19,14 +19,7 @@ export class ModulesComponent implements OnInit {
   nums:any;
 
 
- modules=[
-
-   {
-     name:"MA2-bc0001"
-
-   },
-
- ];
+ modules=[];
 
   constructor(private router:Router, private route: ActivatedRoute,private loadteacher:LoadteacherService) { }
 
@@ -61,7 +54,6 @@ export class ModulesComponent implements OnInit {
         tempmodules.push(module);
         i++;
       }
-    tempmodules.push({name:"MA2-bc0001"});
 //[routerLink]="['./module',module.name]"
 
 

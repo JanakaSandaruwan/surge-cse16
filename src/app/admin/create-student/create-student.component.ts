@@ -203,7 +203,7 @@ export class CreateStudentComponent implements OnInit {
     }else{
       this.cstudent.batchcode = this.sbatch.name;
       this.cstudent.bindex = this.selected;
-      this.cstudent.Level = "Entry";
+      this.cstudent.Level = "Year 1";
       this.cstudent.password = "student123";
       this.cstudent.role = "student";
         if (this.nextid < 10){
