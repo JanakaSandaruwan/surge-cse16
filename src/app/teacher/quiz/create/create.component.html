@@ -9,39 +9,107 @@
         <h4 class="modal-title">Create Teacher Form</h4>
       </div>
       <div class="modal-body">
-        <div>
-          <form>
-            <input type="radio" name="type" value="mcq" checked [(ngModel)]="TempQue.type"> MCQ type question<br />
+        <form  method="post" #mcqForm="ngForm">
+          <div>
+            <input type="radio" name="type" value="mcq"  [(ngModel)]="TempQue.type"> MCQ type question<br />
             <input type="radio" name="type" value="tf" [(ngModel)]="TempQue.type" > True False type question<br />
             <input type="radio" name="type" value="sans" [(ngModel)]="TempQue.type" >Written Answer question<br />
-          </form>
-
-          <form *ngIf="TempQue.type=='mcq'">
-            <textarea placeholder="Type question here" name="textarea" class="form-control" style="height:90px" [(ngModel)]="TempQue.Text" style="margin:top:10px;margin-bottom:10px;"></textarea>
-            <input type="radio" style="margin:top:10px;margin-bottom:10px;" name="gender" [(ngModel)]="TempQue.Answer" value="1" checked ><input type="text" name="m" [(ngModel)]="TempQue.Option1"/> <br />
-            <input type="radio" style="margin:top:10px;margin-bottom:10px;"  name="gender" [(ngModel)]="TempQue.Answer" value="2"  ><input type="text" name="f" [(ngModel)]="TempQue.Option2"/><br />
-            <input type="radio" style="margin:top:10px;margin-bottom:10px;"  name="gender" [(ngModel)]="TempQue.Answer" value="3" > <input type="text" name="other_reason" [(ngModel)]="TempQue.Option3"/><br />
-            <input type="radio" style="margin:top:10px;margin-bottom:10px;" name="gender" [(ngModel)]="TempQue.Answer" value="4" ><input type="text" name="not say" [(ngModel)]="TempQue.Option4"/><br />
-          </form>
-          <form *ngIf="TempQue.type=='tf'">
-            <textarea placeholder="Type question here" name="textarea" class="form-control" style="height:90px" [(ngModel)]="TempQue.Text"></textarea>
-            <input type="radio" name="gender" [(ngModel)]="TempQue.Answer" value="True" checked > True <br />
-            <input type="radio" name="gender" [(ngModel)]="TempQue.Answer" value="False"  > False<br />
-          </form>
-          <div *ngIf="TempQue.type=='sans'">
-            <textarea placeholder="Type question here"name="textarea" class="form-control" style="height:90px; margin:top:10px;margin-bottom:10px;" [(ngModel)]="TempQue.Text">Enter Question in Space provided</textarea>
-            <textarea placeholder="Type answer here" class="form-control" style="height:90px; margin:top:10px;margin-bottom:10px;" [(ngModel)]="TempQue.Answer">Enter Sample Answer in Space provided</textarea>
           </div>
-        </div>
+
+          <div *ngIf="TempQue.type=='mcq'" >
+            <div>
+            <textarea required #mcq="ngModel" placeholder="Type question here" name="textarea" class="form-control" style="height:90px" [(ngModel)]="TempQue.Text" style="margin:top:10px;margin-bottom:10px;"></textarea>
+            </div>
+            <div *ngIf="mcq.errors && (mcq.dirty || mcq.touched) "  class ="alert alert-danger">
+              <div *ngIf="mcq.errors.required" >Please enter question
+              </div>
+
+            </div>
+
+            <div>
+            <input type="radio" style="margin:top:10px;margin-bottom:10px;" name="gender" [(ngModel)]="TempQue.Answer" value="1" checked >
+            <input type="text" required name="m" [(ngModel)]="TempQue.Option1" #op1="ngModel"/> <br />
+            </div>
+            <div *ngIf="op1.errors && (op1.dirty || op1.touched) "  class ="alert alert-danger">
+              <div *ngIf="op1.errors.required" >Please enter option1
+              </div>
+
+            </div>
+
+            <div>
+            <input type="radio" style="margin:top:10px;margin-bottom:10px;"  name="gender" [(ngModel)]="TempQue.Answer" value="2"  >
+            <input type="text" required  #op2="ngModel" name="f" [(ngModel)]="TempQue.Option2"/><br />
+            </div>
+            <div *ngIf="op2.errors && (op2.dirty || op2.touched) "  class ="alert alert-danger">
+              <div *ngIf="op2.errors.required" >Please enter option2
+              </div>
+
+            </div>
+
+            <input type="radio"style="margin:top:10px;margin-bottom:10px;"  name="gender" [(ngModel)]="TempQue.Answer" value="3" >
+            <input type="text" #op3="ngModel" required name="other_reason" [(ngModel)]="TempQue.Option3"/><br />
+
+            <div *ngIf="op3.errors && (op3.dirty || op3.touched) "  class ="alert alert-danger">
+              <div *ngIf="op3.errors.required" >Please enter option3
+              </div>
+
+            </div>
+
+            <input type="radio"  style="margin:top:10px;margin-bottom:10px;" name="gender" [(ngModel)]="TempQue.Answer" value="4" >
+            <input type="text" #op4="ngModel" required name="not say" [(ngModel)]="TempQue.Option4"/><br />
+
+            <div *ngIf="op4.errors && (op4.dirty || op4.touched)"  class ="alert alert-danger">
+              <div *ngIf="op4.errors.required" >Please enter option4
+              </div>
+
+            </div>
+
+          </div>
+
+          <div *ngIf="TempQue.type=='tf'">
+            <textarea placeholder="Type question here" required  #tfq="ngModel" name="textarea" class="form-control" style="height:90px" [(ngModel)]="TempQue.Text"></textarea>
+            <div *ngIf="tfq.errors && (tfq.dirty || tfq.touched)"  class ="alert alert-danger">
+              <div *ngIf="tfq.errors.required" >Please enter question
+              </div>
+
+            </div>
+            <input type="radio"  name="gender" [(ngModel)]="TempQue.Answer" value="True" checked > True <br />
+            <input type="radio" name="gender" [(ngModel)]="TempQue.Answer" value="False"  > False<br />
+          </div>
+
+          <div *ngIf="TempQue.type=='sans'">
+            <div>
+            <textarea placeholder="Type question here"  required  #sansq="ngModel" name="textarea1" class="form-control" style="height:90px; margin:top:10px;margin-bottom:10px;" [(ngModel)]="TempQue.Text">Enter Question in Space provided</textarea>
+            <div *ngIf="sansq.errors && (sansq.dirty || sansq.touched)"  class ="alert alert-danger">
+              <div *ngIf="sansq.errors.required" >Please enter question
+              </div>
+
+            </div>
+          </div>
+            <div>
+              <textarea placeholder="Type sample answer here"  required  #sansqa="ngModel" name="textarea2" class="form-control" style="height:90px; margin:top:10px;margin-bottom:10px;" [(ngModel)]="TempQue.Answer">Enter Question in Space provided</textarea>
+              <div *ngIf="sansqa.errors && (sansqa.dirty || sansqa.touched)"  class ="alert alert-danger">
+                <div *ngIf="sansqa.errors.required" >Please enter sample answer
+                </div>
+
+              </div>
+          </div>
+          </div>
+
+
+          <div class="modal-footer">
+            <div class="form-group pull-right">
+            <button id="button79" type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+            </div>
+            <div class="form-group pull-right" >
+            <button id="button77" type="button" class="btn btn-default" (click)="Add()" [disabled]="!mcqForm.form.valid ">Reset</button>
+            </div>
+          </div>
+
+
+        </form>
       </div>
-      <div class="modal-footer">
-        <div class="form-group pull-right">
-        <button id="button79" type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-        </div>
-        <div class="form-group pull-right">
-        <button id="button77" type="button" class="btn btn-default" (click)="Add()">Reset</button>
-        </div>
-      </div>
+
     </div>
   </div>
 </div>
