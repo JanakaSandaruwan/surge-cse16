@@ -82,9 +82,10 @@ import { ViewleaveComponent } from './hr/viewleave/viewleave.component';
 import { ExamHomeComponent } from './examdiv/exam-home/exam-home.component';
 import { CreateTtComponent } from './examdiv/create-tt/create-tt.component';
 import {Ng2Webstorage} from 'ngx-webstorage';
-
+import { StudentservicesService } from './services/studentservices.service'
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { Level1Component } from './student/my-course/level-1/level-1.component';
+import { EnrolmentComponent } from './student/enrolment/enrolment.component';
 //import { CalendarModule } from 'angular-calendar';
 
 @NgModule({
@@ -136,11 +137,8 @@ import { Level1Component } from './student/my-course/level-1/level-1.component';
     ModuleComponent,
     TeacherviewComponent,
     TeachermcqComponent,
-<<<<<<< HEAD
-    Level1Component
-=======
-
->>>>>>> 249c5c05c1f08ef74e13f6f853c805d809a5a3e7
+    Level1Component,
+    EnrolmentComponent
   ],
   entryComponents: [
     McqComponent,
@@ -200,6 +198,7 @@ import { Level1Component } from './student/my-course/level-1/level-1.component';
   },
   { path: 'student', component:StudentComponent, children : [
     { path: 'home', component: HomeComponent },
+    { path: 'enrolment', component: EnrolmentComponent },
     { path: 'viewprogress', component: ViewAcademicProgressComponent },
     { path: 'mycourses', component: MyCourseComponent },
     { path: 'leave', component: MedicleLeaveComponent },
@@ -236,7 +235,7 @@ import { Level1Component } from './student/my-course/level-1/level-1.component';
     ]),
     RouterModule
   ],
-  providers: [UpdatemessagesService,LeaveapproveService, NoticeserviceService, LoadquizService,UploadService, LoginServiceService, HttpClient, LoadbatchesService, LoadteacherService, LoademployeesService , CookieService,  UploadserviceService],
+  providers: [StudentservicesService,UpdatemessagesService,LeaveapproveService, NoticeserviceService, LoadquizService,UploadService, LoginServiceService, HttpClient, LoadbatchesService, LoadteacherService, LoademployeesService , CookieService,  UploadserviceService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

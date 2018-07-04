@@ -1,0 +1,23 @@
+<div class="row">
+  <div class="col-lg-3 col-md-3 col-sm-6 col-xs-12 mycontainer" align="center" (click)="gotol1()">
+    <button class= "btn bigbutton" >
+      enrolment level-1<br /><span class="glyphicon glyphicon-book"></span></button>
+  </div>
+  <div class="col-lg-3 col-md-3 col-sm-6 col-xs-12 mycontainer" align="center" >
+    <button class= "btn bigbutton" >
+      enrolment level-2<br /><span class="glyphicon glyphicon-book"></span></button>
+  </div>
+  <div class="col-lg-3 col-md-3 col-sm-6 col-xs-12 mycontainer "  align="center" >
+    <button class= "btn bigbutton" >
+      enrolment level-3<br /><span class="glyphicon glyphicon-book"></span></button>
+  </div>
+  <div class="col-lg-3 col-md-3 col-sm-6 col-xs-12 mycontainer" align="center"  >
+    <button class= "btn bigbutton" >
+      enrolment level-4<br /><span class="glyphicon glyphicon-book"></span></button>
+  </div>
+</div>
+
+<ul style="list-style-type:none; display:none" class="list-group dropdown-menu1" id="list1">
+  <li *ngFor=" let subject of finalList" class="list-group-item ">{{subject.code}} {{subject.name}}
+  </li>
+</ul>
