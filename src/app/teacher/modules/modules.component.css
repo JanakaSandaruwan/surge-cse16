@@ -1,0 +1,192 @@
+.responsive-calendar .controls {
+  text-align: center;
+}
+.responsive-calendar .controls a {
+  cursor: pointer;
+}
+.responsive-calendar .controls h4 {
+  display: inline;
+}
+.responsive-calendar .day-headers,
+.responsive-calendar .days {
+  font-size: 0;
+}
+.responsive-calendar .day {
+  display: inline-block;
+  position: relative;
+  font-size: 14px;
+  width: 14.285714285714286%;
+  text-align: center;
+}
+.responsive-calendar .day a {
+  color: #000000;
+  display: block;
+  cursor: pointer;
+  padding: 20% 0 20% 0;
+}
+.responsive-calendar .day a:hover {
+  background-color: #eee;
+  text-decoration: none;
+}
+.responsive-calendar .day.header {
+  border-bottom: 1px gray solid;
+}
+.responsive-calendar .day.active a {
+  background-color: #1d86c8;
+  color: #ffffff;
+}
+.responsive-calendar .day.active a:hover {
+  background-color: #36a0e2;
+}
+.responsive-calendar .day.active .not-current {
+  background-color: #8fcaef;
+  color: #ffffff;
+}
+.responsive-calendar .day.active .not-current:hover {
+  background-color: #bcdff5;
+}
+.responsive-calendar .day.not-current a {
+  color: #ddd;
+}
+.responsive-calendar .day .badge {
+  position: absolute;
+  top: 2px;
+  right: 2px;
+  z-index: 1;
+}
+
+.btn-group .button {
+    background:url("/assets/ab.jpg"); /* Green */
+    color: white;
+    padding: 15px -20px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    cursor: pointer;
+    width: 150px;
+    height: 85px;
+    display: block;
+    border-left: none;
+    border-color: white;
+}
+
+.btn-group .button:not(:last-child) {
+    border-bottom: none; /* Prevent double borders */
+}
+
+.btn-group .button:hover {
+    color: yellow;
+}
+
+.dropbtn {
+    background:url('/assets/ab.jpg');
+    color: white;
+    padding: 16px;
+    font-size: 16px;
+    border: none;
+    cursor: pointer;
+}
+
+.dropbtn:hover, .dropbtn:focus {
+    background-color: #2980B9;
+}
+
+.dropdown {
+    position: relative;
+    display: inline-block;
+}
+
+.dropdown-content {
+    display: none;
+    position: absolute;
+    background-color: #5DADE2 ;
+    min-width: 160px;
+    overflow: auto;
+    border-radius: 3px;
+    box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+    z-index: 1;
+}
+
+.dropdown-content a {
+    color: black;
+    padding: 12px 16px;
+    text-decoration: none;
+    display: block;
+}
+
+.dropdown a:hover {background-color: #ddd}
+
+.show {display:block;}
+.item{
+
+	width:400px;
+	height: 320px;
+	position: absolute;
+	z-index: 15;
+	top: 50%;
+	left: 50%;
+	margin: -150px 0 0 -200px;
+	background-color: #fff;
+	box-shadow: 0px 10px 60px #F4D03F;
+	overflow: hidden;
+	border-radius: 10px;
+
+}
+
+.item1{
+
+	width:400px;
+	height: 320px;
+	position: absolute;
+	z-index: 15;
+	top: 50%;
+	left: 50%;
+	margin: -150px 0 0 -200px;
+	background-color: #CACFD2;
+	box-shadow: 0px 5px 5px grey;
+	overflow: hidden;
+
+
+}
+
+
+.bigbutton{
+  width:300px;height:210px;
+
+}
+
+.mycontainer{
+  padding-top:40px;padding-bottom:40px;padding-left: 50px;
+}
+
+.button {
+
+
+  color: white;
+  padding: 16px 32px;
+  text-align: center;
+  font-size: 16px;
+  margin: 4px 2px;
+  opacity: 0.6;
+  transition: 0.3s;
+  display: inline-block;
+  text-shadow: white;
+  cursor: pointer;
+  width:350px;height:250px;
+
+}
+
+.button:hover {opacity: 1;
+box-shadow: 0px 10px 60px #F4D03F;}
+
+#wrapper {
+  
+  width: 100%;
+  position: absolute;
+  top: 35px;
+  left: 0;
+  display: inline-block;
+  background-color: #D6EAF8;
+
+}
