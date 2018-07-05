@@ -79,9 +79,9 @@ export class LoadteacherService {
       level: subject.level });
   }
 
-  checkclassid(code,batch) : Observable<boolean>{
+  checkclassid(code,batch,year) : Observable<boolean>{
     var exists : boolean = false
-    firebase.database().ref('subjects').on('child_added',function(data){
+    firebase.database().ref('subjects/'+year).on('child_added',function(data){
       if((data.val().code == code) && (data.val().batch == batch) ){
         exists = true;
       }

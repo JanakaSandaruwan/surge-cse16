@@ -30,13 +30,16 @@ export class LoginComponent implements OnInit {
     }
   }
 
+
   Auth(): void {
     this.lservice.login(this.uname,this.pass).subscribe(data => {
       this.usrdata = data;
       if (this.usrdata == null){
         console.log("invalid username");
+        $('#wronguname').css('display', 'block');
       }else if (this.usrdata.Password != this.pass){
         console.log("invalid Password", this.usrdata.password , this.pass);
+        $('#wronguname').css('display', 'block');
       }else{
         /*if (this.usrdata.role == "teacher"){
           this.router.navigate(['teacher/',{details: btoa(this.uname)}]);

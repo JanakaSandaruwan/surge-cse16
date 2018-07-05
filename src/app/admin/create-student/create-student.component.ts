@@ -11,6 +11,7 @@ import { Observable } from 'rxjs/Observable';
   styleUrls: ['./create-student.component.css']
 })
 export class CreateStudentComponent implements OnInit {
+  set : boolean = false;
   dtOptions: DataTables.Settings = {};
   name : string;
   phone : string;
@@ -36,6 +37,9 @@ export class CreateStudentComponent implements OnInit {
   showmail : boolean = true;
   Error : string = "";
 
+  setted(){
+    this.set = true;
+  }
   toggleid(){
     this.showid = !this.showid;
     this.gridColumnApi.setColumnVisible("ID",this.showid);
@@ -151,6 +155,7 @@ export class CreateStudentComponent implements OnInit {
 
     }
     checkValidity(){
+      this.setted();
       this.NICtaken = this._loginservice.checkNICs(this.cstudent.NIC);
     }
 
@@ -188,6 +193,7 @@ export class CreateStudentComponent implements OnInit {
   }
 
   clear(){
+    this.set = false;
     this.cstudent.fname = "";
     this.cstudent.NIC = "";
     this.cstudent.Address = "";
