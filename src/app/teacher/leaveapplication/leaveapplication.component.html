@@ -42,7 +42,7 @@
           </div>
 
           <label for="from" class="control-label control-label-left col-sm-3">From*</label>
-          <input type="date" [(ngModel)]="from" name="from" id="to" placeholder="MM/DD/YYY" required class="form-control" #rx="ngModel" ><br>
+          <input type="date" [(ngModel)]="from" (input)="validFromDate()" name="from" id="to" placeholder="MM/DD/YYY" required class="form-control" #rx="ngModel" ><br>
 
           <div *ngIf="rx.errors && (rx.dirty || rx.touched) "  class ="alert alert-danger">
 
@@ -51,10 +51,10 @@
 
 
           </div>
-
+          <div *ngIf="(fromvalid | async)" class ="alert alert-danger">  {{message}}</div>
 
           <label for="to" class="control-label control-label-left col-sm-3">To*</label>
-          <input type="date" [(ngModel)]="to" name="to" id="to" placeholder="MM/DD/YYY" required class="form-control" #rnx="ngModel"  >
+          <input type="date" [(ngModel)]="to" (input)="validToDate()" name="to" id="to" placeholder="MM/DD/YYY" required class="form-control" #rnx="ngModel"  >
           <div *ngIf="rnx.errors && (rnx.dirty || rnx.touched) "  class ="alert alert-danger">
 
 
@@ -65,15 +65,17 @@
             </div-->
 
           </div>
+          <div *ngIf="(tovalid | async)" class ="alert alert-danger">  {{message}}</div>
 
-          <div *ngIf="message!=null" class ="alert alert-danger">  {{message}}</div>
 
           <div class="modal-footer">
             <div class="form-group pull-right">
 
+
+
             <button id="cancel" type="button" class="btn btn-default" (click)="cancel()" data-dismiss="modal">Close</button>
 
-            <button type="button" (click)="send()" [disabled]="!userForm.form.valid || message!=null" class="btn btn-default" data-dismiss="modal">Send</button>
+            <button type="button" (click)="send()" [disabled]="!userForm.form.valid || (tovalid | async)  || (fromvalid | async) " class="btn btn-default" data-dismiss="modal">Send</button>
 
 
 
@@ -81,10 +83,14 @@
           </div>
         </form>
         </div>
-
+0
     </div>
   </div>
  </div>
+
+
+
+<button class="btn btn-primary"  style=" display:none" data-toggle="modal" data-target="#myModal1" id="verify" ></button>
 
 
  <!-- Trigger the modal with a button

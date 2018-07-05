@@ -13,7 +13,7 @@ export class UploadService {
   pushUpload(upload: Upload,subjectname) {
     console.log("File start uploaded");
     let storageRef = firebase.storage().ref();
-    let uploadTask = storageRef.child(`${this.basePath}/${upload.file.name}`).put(upload.file);
+    let uploadTask = storageRef.child('/studymaterial/'+subjectname+'/'+upload.file.name).put(upload.file);
     console.log("File uploaded");
 
 

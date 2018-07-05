@@ -121,11 +121,11 @@ export class LoadteacherService {
     var finallist : Subject[];
     finallist = [];
     var nodata = 0;
-    firebase.database().ref('subjects').on('child_added', function(data) {
-        if(data.val().teacher == tname){
-          finallist[nodata]=data.val();
+    firebase.database().ref('teachers/'+tname+'/subjects').on('child_added', function(data) {
+
+          finallist[nodata]=data.key;
           nodata = nodata + 1;
-        }
+
       });
       return Observable.of(finallist);
   }
