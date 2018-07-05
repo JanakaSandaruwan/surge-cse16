@@ -17,3 +17,5 @@
 .bgimg {
     background-image: url('/assets/ab.jpg');
 }
+
+.button:hover {opacity: 1}

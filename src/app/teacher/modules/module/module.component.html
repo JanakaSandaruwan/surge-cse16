@@ -46,7 +46,7 @@
 <div  style="margin-top:30px; margin-bottom:30px; margin-left:50px">
   <h4>Added Study Materials</h4>
   <ul>
-    <li style="padding:10px;"  *ngFor= "let file of files " ><a href="{{file.url}}">{{file.name}}</a> <button style="padding-left:  10px ;" (click)="delete(file.name)">Delete</button></li>
+    <li style="padding:10px;"  *ngFor= "let file of files " ><a href="{{file.url}}">{{file.name}}</a> <button class="btn" style="margin-left:  10px ;" (click)="delete(file.name)">Delete</button></li>
   </ul>
 </div>
 

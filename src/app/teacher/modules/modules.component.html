@@ -28,6 +28,6 @@
 
 <div  style="margin-top:30px; margin-bottom:30px; margin-left:450px">
   <ul>
-    <li style="padding:10px;"  *ngFor= "let module of nums | filter:term" (click)="redirect(module)"><a>{{module}}</a></li>
+    <li style="padding:10px;"  *ngFor= "let module of modules | filter:term" (click)="redirect(module)"><a>{{module}}</a></li>
   </ul>
 </div>
