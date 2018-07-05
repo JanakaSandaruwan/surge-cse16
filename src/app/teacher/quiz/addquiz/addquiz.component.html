@@ -1,14 +1,22 @@
-<div class="col-lg-3 col-md-3 col-sm-6 col-xs-12 mycontainer" align="center" (click)="gotoView()" >
+<button class="btn" (click)="loadInfo()" >Refresh</button>
+<div>
+    <h3><b>{{quizname}}</b></h3>
+</div>
+
+<div style="margin-top:35px;margin-left: 50px">
+  <div style="margin-top:10px;"><b>Date : {{quizdate}}</b></div>
+  <div style="margin-top:10px;"><b>Start time : {{starttime}}</b></div>
+  <div style="margin-top:10px;"><b>End time: {{endtime}}</b></div>
+</div>
+
+
+<div class="col-lg-3 col-md-3 col-sm-6 col-xs-12 mycontainer" align="center" (click)="gotoView()" style="margin-top:35px;">
   <button class= "btn bigbutton" >
     View Questions <br /><span class="glyphicon glyphicon-book"></span></button>
 </div>
 
-<div class="col-lg-3 col-md-3 col-sm-6 col-xs-12 mycontainer" align="center"  >
-  <button class= "btn bigbutton" >
-    Quiz Info <br/><span class="glyphicon glyphicon-book"></span></button>
-</div>
 
-<div class="col-lg-3 col-md-3 col-sm-6 col-xs-12 mycontainer" align="center"  >
+<div class="col-lg-3 col-md-3 col-sm-6 col-xs-12 mycontainer" align="center" style="margin-top:35px;" >
   <button class= "btn bigbutton" >
     Student Answers <br /><span class="glyphicon glyphicon-book"></span></button>
 </div>

@@ -28,6 +28,7 @@ import { DisplaymarkComponent } from './teacher/quiz/displaymark/displaymark.com
 import { AddquizComponent } from './teacher/quiz/addquiz/addquiz.component';
 
 
+
 import { TeacherviewComponent  } from './teacher/quiz/addquiz/teacherview/teacherview.component';
 
 import { TeachermcqComponent } from './teacher/quiz/addquiz/teacherview/teachermcq/teachermcq.component';
@@ -87,6 +88,8 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { Level1Component } from './student/my-course/level-1/level-1.component';
 import { WritenoticeComponent } from './examdiv/writenotice/writenotice.component';
 import { EnrolmentComponent } from './student/enrolment/enrolment.component';
+import { ViewquizComponent } from './student/viewquiz/viewquiz.component';
+import { McqsComponent } from './student/viewquiz/mcqs/mcqs.component';
 //import { CalendarModule } from 'angular-calendar';
 
 @NgModule({
@@ -140,7 +143,9 @@ import { EnrolmentComponent } from './student/enrolment/enrolment.component';
     TeachermcqComponent,
     Level1Component,
     EnrolmentComponent,
-    WritenoticeComponent
+    WritenoticeComponent,
+    ViewquizComponent,
+    McqsComponent
   ],
   entryComponents: [
     McqComponent,
@@ -186,6 +191,7 @@ import { EnrolmentComponent } from './student/enrolment/enrolment.component';
       {path:'quiz/teacherview',component:TeacherviewComponent},
       { path: 'modules', component:ModulesComponent},
       { path: 'modules/module', component:ModuleComponent},
+
       {path:'studymaterial',component:StudymaterialComponent},
       {path:'create',component:CreateComponent},
       {path:'create/mcq',component:McqComponent},
@@ -207,7 +213,11 @@ import { EnrolmentComponent } from './student/enrolment/enrolment.component';
     { path: 'leave', component: MedicleLeaveComponent },
     { path: 'scholarship', component: ScholarshipComponent },
     { path: 'complain', component: ComplainComponent },
-    { path: 'quizview', component:QuizviewComponent}]
+    { path: 'quizview', component:QuizviewComponent},
+    {path: 'subject',component:Level1Component},
+    {path:'viewquiz',component:ViewquizComponent},
+    {path:'viewquiz/mcqs',component:McqsComponent}
+  ]
   //{ path: '**', component: PageNotFoundComponent }
   },
   { path: 'welfare', component:WelfareComponent, children : [
