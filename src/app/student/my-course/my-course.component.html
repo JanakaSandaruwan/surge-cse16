@@ -4,27 +4,18 @@
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 <div class="item">
 <div class="container">
-    <div class="container">
-      <div class="container">
-        <div class="container">
+
           <h4 class="panel-title">
-            <a data-toggle="collapse" href="#collapse1"><h2>Level 1</h2></a>
+            <a data-toggle="collapse" href="#collapse1" (click)="showl1()"><h2>Level 1</h2></a>
           </h4>
         </div>
         <div id="collapse1" class="container panel-collapse collapse">
-          <ul>
-            <li class="container"><a>OOSD</a></li>
-            <li class="container"><a>Computer Communication</a></li>
-            <li class="container"><a>Operating System</a></li>
-            <li class="container"><a>Calculus</a></li>
-            <li class="container"><a>Digital Electronics</a></li>
-            <li class="container"><a>Thermodynamics</a></li>
-            <li class="container"><a>Aspect of civil Eng</a></li>
+          <ul style="list-style-type:none; display:none" class="list-group dropdown-menu1" id="listM">
+            <li *ngFor=" let subject of ModuleList" class="list-group-item " style="width:500px"> <a (click)="view(subject.module.moduleName)">{{subject.module.moduleName}}</a>
+            </li>
           </ul>
         </div>
-      </div>
-    </div>
-  </div>
+
 </div>
 <div class="item">
   <div class="container">
@@ -33,8 +24,8 @@
           </h4>
         </div>
         <div id="collapse2" class="container panel-collapse collapse">
-          <ul style="list-style-type:none;" class="list-group dropdown-menu1" id="listM">
-            <li *ngFor=" let subject of ModuleList" class="list-group-item " style="width:500px"> <a>{{subject.module.moduleName}}</a>
+          <ul style="list-style-type:none;" class="list-group dropdown-menu2" id="listM">
+            <li *ngFor=" let subject of ModuleList" class="list-group-item " style="width:500px"> <a (click)="view(subject.module.moduleName)">{{subject.module.moduleName}}</a>
             </li>
           </ul>
 
@@ -43,12 +34,12 @@
 <div class="item">
   <div class="container">
           <h4 class="panel-title">
-            <a data-toggle="collapse" href="#collapse3" (click)="showl2()"><h2>Level 3</h2></a>
+            <a data-toggle="collapse" href="#collapse3" (click)="showl3()"><h2>Level 3</h2></a>
           </h4>
         </div>
         <div id="collapse3" class="container panel-collapse collapse">
-          <ul style="list-style-type:none; display:none" class="list-group dropdown-menu1" id="listM">
-            <li *ngFor=" let subject of Modulelist" class="list-group-item "> {{moduleName}}
+          <ul style="list-style-type:none; display:none" class="list-group dropdown-menu3" id="listM">
+            <li *ngFor=" let subject of ModuleList" class="list-group-item " style="width:500px"> <a (click)="view(subject.module.moduleName)">{{subject.module.moduleName}}</a>
             </li>
           </ul>
 
