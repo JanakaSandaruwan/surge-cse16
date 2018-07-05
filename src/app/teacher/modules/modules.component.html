@@ -38,6 +38,6 @@
 
 <div  style=" text-align: center;width: 300px;height: auto;padding-top:30px; margin-bottom:30px; margin-left:450px; border:solid; border-radius: 10px; background-color:#E5E8E8 ">
   <ul>
-    <li style="list-style-type:square;padding:10px; "  *ngFor= "let module of nums | filter:term" (click)="redirect(module)"><a style="font-size:150%; text-align:center;">{{module}}</a></li>
+    <li style="padding:10px;"  *ngFor= "let module of modules | filter:term" (click)="redirect(module)"><a>{{module}}</a></li>
   </ul>
 </div>
