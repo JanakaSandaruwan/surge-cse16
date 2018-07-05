@@ -28,6 +28,7 @@ import { DisplaymarkComponent } from './teacher/quiz/displaymark/displaymark.com
 import { AddquizComponent } from './teacher/quiz/addquiz/addquiz.component';
 
 
+
 import { TeacherviewComponent  } from './teacher/quiz/addquiz/teacherview/teacherview.component';
 
 import { TeachermcqComponent } from './teacher/quiz/addquiz/teacherview/teachermcq/teachermcq.component';

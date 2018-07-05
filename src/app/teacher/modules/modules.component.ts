@@ -41,8 +41,8 @@ export class ModulesComponent implements OnInit {
     var fname = this.loadteacher.fname(this.usercode);
     console.log(this.usercode);
     this.loadteacher.listTSubjects(this.usercode).subscribe(data => {
-      this.nums= data;
-      console.log(this.nums);
+       tempmodules= data;
+      console.log(tempmodules);
     });
     /*var i=0;
     while(i<this.nums.length){

@@ -67,7 +67,7 @@ export class ModuleComponent implements OnInit {
   }
 
   gotodisplayquiz(quizname){
-    this.router.navigate(['../../teacher/quiz/preview',{quizname: (quizname),subjectname:btoa(this.subjectname),details:btoa(this.usercode)}]);
+    this.router.navigate(['../../teacher/quiz/preview',{quizname: btoa(quizname),subjectname:btoa(this.subjectname),details:btoa(this.usercode)}]);
     console.log("navigate to preview");
     console.log(this.subjectname);
     console.log(quizname);

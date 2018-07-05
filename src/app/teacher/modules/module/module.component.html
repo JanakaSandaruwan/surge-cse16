@@ -1,33 +1,40 @@
-<h3 style="text-align:center">{{subjectname}}</h3>
+<div class="main-wrapper" style="text-align:center; font-size: 350%;background-color:#E5E8E8 ; border: solid;border-radius: 10px;opacity: 0.9; width:400px;height: 80px; margin-left: 420px;">
+    <b>{{subjectname}}</b></div>
 <div class="row">
+<div style="padding-top: 100px">
 
-<div class="col-lg-3 col-md-3 col-sm-6 col-xs-12 mycontainer" align="center" (click)="gotoProgress()" >
-  <button class= "btn bigbutton" >
-    Final Grades <br /><span class="glyphicon glyphicon-book"></span></button>
+<div class="col-lg-3 col-md-3 col-sm-6 col-xs-12 mycontainer" align="center" (click)="gotonotices()" style="margin-left:150px;padding-left:0px">
+<button class= "btn button" style=" background: url(assets/finalgrade.jpg);color: black;font-size:xx-large;font-weight: bold;">
+<div class="main-wrapper" style="background-color: white; border-radius: 3px;opacity: 0.8">  Final Grades</div></button>
 </div>
-
-<div class="col-lg-3 col-md-3 col-sm-6 col-xs-12 mycontainer" align="center" (click)="gotoQuiz()" >
-  <button class= "btn bigbutton" >
-    Quiz marks <br /><span class="glyphicon glyphicon-book"></span></button>
+<div class="col-lg-3 col-md-3 col-sm-6 col-xs-12 mycontainer" align="center" (click)="gotoexamresults()" style="padding-left: 300px">
+<button class= "btn button" style=" background: url(assets/attendance.jpg);color: black;font-size:xx-large;font-weight: bold;">
+<div class="main-wrapper" style="background-color: white; border-radius: 3px;opacity: 0.8"> Attendance</div></button>
 </div>
-
-<div class="col-lg-3 col-md-3 col-sm-6 col-xs-12 mycontainer" align="center" (click)="gotoAdmittance()" >
-  <button class= "btn bigbutton" >
-    Admittance <br /><span class="glyphicon glyphicon-book"></span></button>
 </div>
-
-<div class="col-lg-3 col-md-3 col-sm-6 col-xs-12 mycontainer" align="center" (click)="gotoaddquiz()" >
-  <button class= "btn bigbutton" >
-    Add Quizes <br /><span class="glyphicon glyphicon-book"></span></button>
 </div>
-
-<div class="col-lg-3 col-md-3 col-sm-6 col-xs-12 mycontainer" align="center" (click)="gotomaterial()" >
-  <button class= "btn bigbutton" >
-    Add study materials <br /><span class="glyphicon glyphicon-book"></span></button>
+<div class="row">
+<div style="padding-top: 40px">
+<div class="col-lg-3 col-md-3 col-sm-6 col-xs-12 mycontainer " (click)="redirectLeave()" align="center" style="margin-left:150px;padding-left:0px" >
+<button class= "btn button" style=" background: url(assets/addquizes.jpg);color: black;font-size:xx-large;font-weight: bold;">
+<div class="main-wrapper" style="background-color: white; border-radius: 3px;opacity: 0.8">  Add Quizzes</div></button>
 </div>
+<div class="col-lg-3 col-md-3 col-sm-6 col-xs-12 mycontainer" align="center" (click) = "changedata()" style="padding-left: 300px" >
+<button class= "btn button" style=" background: url(assets/studymaterial.jpg);color: black;font-size:xx-large;font-weight: bold;">
+<div class="main-wrapper" style="background-color: white; border-radius: 3px;opacity: 0.8">Add Study Material</div></button>
 </div>
 
 
+</div>
+</div>
+<div class="row">
+<div style="padding-top: 40px">
+<div class="col-lg-3 col-md-3 col-sm-6 col-xs-12 mycontainer " (click)="redirectLeave()" align="center" style="margin-left:150px;padding-left:0px" >
+<button class= "btn button" style=" background: url(assets/quizmarks.jpg);color: black;font-size:xx-large;font-weight: bold;">
+<div class="main-wrapper" style="background-color: white; border-radius: 3px;opacity: 0.8">  Quiz Marks</div></button>
+</div>
+</div>
+</div>
 <!--div style="margin-top:150px;">
 <ul>
   <li *ngFor="let week of weeks">{{week.name}}
@@ -46,7 +53,7 @@
 <div  style="margin-top:30px; margin-bottom:30px; margin-left:50px">
   <h4>Added Study Materials</h4>
   <ul>
-    <li style="padding:10px;"  *ngFor= "let file of files " ><a href="{{file.url}}">{{file.name}}</a> <button style="padding-left:  100px ;" (click)="delete(file.name)">Delete</button></li>
+    <li style="padding:10px;"  *ngFor= "let file of files " ><a href="{{file.url}}">{{file.name}}</a> <button class="btn" style="margin-left:  10px ;" (click)="delete(file.name)">Delete</button></li>
   </ul>
 </div>
 

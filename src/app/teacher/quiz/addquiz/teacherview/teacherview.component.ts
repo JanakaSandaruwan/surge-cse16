@@ -39,7 +39,7 @@ export class TeacherviewComponent implements OnInit {
 
     this.route.params.subscribe(params => {
 
-       this.quizname=(params['quizname']);
+       this.quizname=atob(params['quizname']);
        this.subjectname =atob( params['subjectname']);
        //console.log((this.usercode));
        console.log((this.quizname));

@@ -16,12 +16,16 @@
     <label class="control-label col-lg-2 col-md-2 col-sm-2 col-xs-12" for="name" style="padding-top:15px"><b>Subject</b></label>
     <div class="col-lg-10 col-md-10 col-sm-10 col-xs-12" style="padding-top:15px">
       <input id="subject" name="subject" class="form-control input-md marginbot" required [(ngModel)]="noticesubject" #subject="ngModel" (input)="doublechecksub()">
-    </div>
+      <div id="div14" class="col-lg-10 col-md-10 col-sm-10 col-xs-12" *ngIf="(subcheck | async)" class="alert alert-danger">
+      <div *ngIf="(subcheck | async)">No Subject</div> </div>
+      </div>
 
 
     <label class="control-label col-lg-2 col-md-2 col-sm-2 col-xs-12" for="des"><b>Description</b></label>
     <div class="col-lg-10 col-md-10 col-sm-10 col-xs-12">
       <textarea id="des" name="des" class="form-control marginbot" required [(ngModel)]="noticedes" #des="ngModel" style='height:200px;' (input)="doublechecknotice()"></textarea>
+      <div id="div13" class="col-lg-10 col-md-10 col-sm-10 col-xs-12" *ngIf="(descheck | async)" class="alert alert-danger">
+      <div *ngIf="(descheck | async)">No description</div> </div>
     </div>
 
     <label class="control-label col-lg-2 col-md-2 col-sm-2 col-xs-12" for="name"><b>Files to upload</b></label>
@@ -33,7 +37,12 @@
       <span class="k-widget k-datepicker k-header form-control" style="">
         <span class="k-picker-wrap k-state-default">
           <input name="name"   (input)="doublecheckdate()" [(ngModel)]="model" id="field3" type="date" class="form-control k-input" data-role="date" role="textbox" aria-haspopup="true" aria-expanded="false" aria-owns="field3_dateview" aria-disabled="false" aria-readonly="false" aria-label="Current focused date is null" data-error-container="#errfield3" style="width: 100%;" required="required" data-parsley-errors-container="#errId3" >
+
           <span style="background-color:white;" unselectable="on" class="k-select" role="button" aria-controls="field3_dateview" ><span unselectable="on" class="k-icon k-i-calendar" >select</span></span></span></span>
+          <div id="div133" class="col-lg-10 col-md-10 col-sm-10 col-xs-12" *ngIf="(modelcheck | async)" class="alert alert-danger">
+          <div *ngIf="( modelcheck | async)">No End date</div> </div>
+          <div id="div13s3" class="col-lg-10 col-md-10 col-sm-10 col-xs-12" *ngIf="(modelearly | async)" class="alert alert-danger">
+          <div *ngIf="(modelearly | async)">Date given is not valid</div> </div>
     </div>
     <button id="x" style="display:none"(click)="d.toggle()">toggle</button>
   </div>
@@ -42,17 +51,6 @@
 
 </div>
 
-<div id="div13" class="col-lg-10 col-md-10 col-sm-10 col-xs-12" *ngIf="(descheck | async)" class="alert alert-danger">
-<div *ngIf="(descheck | async)">No description</div> </div>
-
-<div id="div14" class="col-lg-10 col-md-10 col-sm-10 col-xs-12" *ngIf="(subcheck | async)" class="alert alert-danger">
-<div *ngIf="(subcheck | async)">No Subject</div> </div>
-
-<div id="div133" class="col-lg-10 col-md-10 col-sm-10 col-xs-12" *ngIf="(modelcheck | async)" class="alert alert-danger">
-<div *ngIf="( modelcheck | async)">No End date</div> </div>
-
-<div id="div13s3" class="col-lg-10 col-md-10 col-sm-10 col-xs-12" *ngIf="(modelearly | async)" class="alert alert-danger">
-<div *ngIf="(modelearly | async)">Date given is not valid</div> </div>
 
 
 <div class="form-group pull-right">

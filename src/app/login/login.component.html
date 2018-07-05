@@ -1,16 +1,19 @@
 <body >
-	<div style="background-image:url(assets/orig.gif); top: 0 ; right:0; left:0; bottom: 0;background-size: cover; position:absolute;">
+	<div style="background-image:url(assets/background3.jpg); top: 0 ; right:0; left:0; bottom: 0;background-size: cover; position:absolute;">
 		<header align = "center" class="animated zoomIn" style="font-family: 'Do Hyeon', sans-serif; font-size:90px; color:#F9E79F;">
 			Welcome to SurgeOrb
 		</header>
 
-		<div class="item animated fadeInDown" style="font-family: 'Roboto', sans-serif; overflow:auto;  " >
-			<form align="center" style="font-family: 'Lato', sans-serif;">
-				<h1>Log in</h1>
+		
+
+		<div class="item animated fadeInDown" style="font-family: 'Roboto', sans-serif; overflow:auto; border: solid; border-radius: 10px" >
+
+			<form align="center" style="font-family: 'Lato', sans-serif; ">
+				<h1>LOG IN</h1>
 				<p>Username</p><input type="text" placeholder="Username" [(ngModel)]="uname" name="username" size="20" /><br />
 				<p>Password </p><input type="password" placeholder="Password" [(ngModel)]="pass" name="passw"/><br /><br>
 				<input type="checkbox" name="vehicle" value="Bike">Remember username<br>
-				<input type="button" (click)="Auth()" value="Login" style="border-radius: 10px;background-color: #3498DB;font-size: 30px;" />
+				<input class="button" type="submit" (click)="Auth()" value="Login" style="border-radius: 10px;background-color: #3498DB;font-size: 30px; opacity: 0.8" />
 			</form>
 		</div>
 	</div>
