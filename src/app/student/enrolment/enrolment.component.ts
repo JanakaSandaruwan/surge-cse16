@@ -44,7 +44,7 @@ gotol4(){
 
 }
 enrol(subject){
-  this._sservice.enrol(subject.code,this.storage.retrieve("uname"),subject.name,subject.level);
+  this._sservice.enrol(subject.code+subject.batch,this.storage.retrieve("uname"),subject.name,subject.level);
 }
 
 }

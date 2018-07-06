@@ -226,9 +226,9 @@
 
 
   <div align="right" style="padding-bottom: 20px;" >
-    <button class="btn" [disabled]=" (fnamedis || (name.invalid && (name.errors.minlength || !name.touched)))   && (fadddis || (Address.invalid && (Address.errors.minlength || !Address.touched)))
-    && (condis|| (contact.invalid && (contact.errors.pattern || !contact.touched))) && (emadis || (email.invalid && (email.errors.pattern || !email.touched)))
-    && caldis && (condis2 || (contact2.invalid && contact2.errors.pattern))" (click)="update()"> Update data</button>
+    <button class="btn" [disabled]=" (fnamedis || (name.invalid))   && (fadddis || (Address.invalid))
+    && (condis|| (contact.invalid)) && (emadis || (email.invalid))
+    && (caldis || (calinvalid | async)) && (condis2 || (contact2.invalid))" (click)="update()"> Update data</button>
     <button class="btn" (click)="getcurrentPassword()"  data-toggle="modal" data-target="#myModal">Change Password</button>
     <button class="btn" (click)="restore()" >Restore</button>
   </div>

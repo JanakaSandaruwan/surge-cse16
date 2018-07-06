@@ -83,9 +83,9 @@
             </li>-->
         </ul>
         <ul class="nav navbar-nav pull-right" style="display:table; margin:0 auto; margin-top:1rem;">
-            <li class="dropdown">
+            <li class="dropdown" (mouseenter)="movedown()" (mouseleave)="moveup()">
                 <img id="xsd" src={{profileurl}} alt="assets/149071.png" onerror="this.src='assets/149071.png'" />
-                <a href="#" (click)="movedown()" id="nbAcctDD" style="background-color:#424242" class="content" data-toggle="dropdown"><i class="icon-user"></i>Username<i class="icon-sort-down"></i></a>
+                <a href="#" id="nbAcctDD" style="background-color:#424242" class="content" data-toggle="dropdown"><i class="icon-user"></i>{{username}}<i class="icon-sort-down"></i></a>
                 <ul class="dropdown-menu pull-right content" style="background-color:#424242" id="menu" >
                     <li ><a (click)="logout()">Log Out</a></li>
                     <li ><a (click)="changedata()">Change</a></li>

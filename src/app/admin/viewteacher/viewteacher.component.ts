@@ -12,6 +12,7 @@ import { Observable } from 'rxjs/Observable';
   styleUrls: ['./viewteacher.component.css']
 })
 export class ViewteacherComponent implements OnInit {
+  set : boolean = false;
   dtOptions: DataTables.Settings = {};
   name : string;
   phone : string;
@@ -36,6 +37,9 @@ export class ViewteacherComponent implements OnInit {
   showmail : boolean = true;
   DCCRows : Teacher = <Teacher>{};
 
+  setted(){
+    this.set = true;
+  }
 
   constructor(private _teacherservice: LoadteacherService,
     private _loginservice : LoginServiceService) {
@@ -103,6 +107,7 @@ export class ViewteacherComponent implements OnInit {
     }
 
     checkValidity(){
+      this.setted();
       this.NICtaken = this._loginservice.checkNICs(this.cteacher.NIC);
     }
     onRDC($event){
@@ -173,6 +178,7 @@ export class ViewteacherComponent implements OnInit {
   }
 
   clear(){
+    this.set = false;
     this.cteacher.fname = "";
     this.cteacher.NIC = "";
     this.cteacher.Address = "";

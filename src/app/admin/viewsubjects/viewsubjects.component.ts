@@ -13,6 +13,7 @@ import { Observable } from 'rxjs/Observable';
   styleUrls: ['./viewsubjects.component.css']
 })
 export class ViewsubjectsComponent implements OnInit {
+  set = false;
   dtOptions: DataTables.Settings = {};
   csubject : Subject = <Subject>{};
   SSubject: any;
@@ -32,6 +33,9 @@ export class ViewsubjectsComponent implements OnInit {
   showname : boolean = true;
 
 
+  setted(){
+    this.set = true;
+  }
   onBtnExport(): void {
     console.log(this.gridApi.getSelectedRows());
     if ( this.gridApi.getSelectedRows().length != 0){
@@ -102,7 +106,8 @@ export class ViewsubjectsComponent implements OnInit {
   }
 
   checkValidity(){
-    this.classtaken = this._teacherservice.checkclassid(this.csubject.code,this.csubject.batch);
+    this.setted();
+    this.classtaken = this._teacherservice.checkclassid(this.csubject.code,this.csubject.batch,this.csubject.level);
   }
 
   onSelectionChanged($event){
@@ -123,9 +128,12 @@ export class ViewsubjectsComponent implements OnInit {
   }
 
   clear(){
+    this.set = false;
     this.csubject.name = "";
     this.csubject.code = "";
-
+    this.csubject.level = "";
+    this.csubject.teacher = null;
+    this.csubject.batch = "";
   }
 
   refresh(){

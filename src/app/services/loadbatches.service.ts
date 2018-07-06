@@ -6,12 +6,49 @@ import { Batch } from '../models/batch';
 import 'rxjs/add/observable/throw';
 import 'rxjs/add/operator/catch';
 import 'rxjs/add/operator/do';
+import { StudentservicesService } from '../services/studentservices.service';
 declare var firebase: any;
 
 @Injectable()
 export class LoadbatchesService {
 
-  constructor(private _http: HttpClient) { }
+  constructor(private _http: HttpClient, private sservice : StudentservicesService) { }
+
+  deletefromclasses(student){
+    var SubofYear : any[] = [];
+    this.sservice.levelModule(student,"Year 1").subscribe(data => {
+      SubofYear = data;
+      var i = 0 ;
+      for (;i<SubofYear.length;i++){
+        console.log('classes/'+SubofYear[i].moduleNo+'/students/'+student);
+        firebase.database().ref('classes/'+SubofYear[i].moduleNo+'/students/'+student).remove();
+      }
+    });
+    this.sservice.levelModule(student,"Year 2").subscribe(data => {
+      SubofYear = data;
+      var i = 0 ;
+      for (;i<SubofYear.length;i++){
+        console.log('classes/'+SubofYear[i].moduleNo+'/students/'+student);
+        firebase.database().ref('classes/'+SubofYear[i].moduleNo+'/students/'+student).remove();
+      }
+    });
+    this.sservice.levelModule(student,"Year 3").subscribe(data => {
+      SubofYear = data;
+      var i = 0 ;
+      for (;i<SubofYear.length;i++){
+        console.log('classes/'+SubofYear[i].moduleNo+'/students/'+student);
+        firebase.database().ref('classes/'+SubofYear[i].moduleNo+'/students/'+student).remove();
+      }
+    });
+    this.sservice.levelModule(student,"Year 4").subscribe(data => {
+      SubofYear = data;
+      var i = 0 ;
+      for (;i<SubofYear.length;i++){
+        console.log('classes/'+SubofYear[i].moduleNo+'/students/'+student);
+        firebase.database().ref('classes/'+SubofYear[i].moduleNo+'/students/'+student).remove();
+      }
+    });
+  }
 
   NextLevel(username, selected, length){
     var current: string;
@@ -37,6 +74,7 @@ export class LoadbatchesService {
   }
 
   saveBatchlist(username, selected, length){
+    this.deletefromclasses(username);
     firebase.database().ref('/batches/' +selected).update({
       total : length-1
     });

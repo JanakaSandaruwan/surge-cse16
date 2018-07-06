@@ -9,10 +9,22 @@ import { LoadbatchesService } from '../../services/loadbatches.service';
 })
 export class ViewbatchesComponent implements OnInit {
   batches: any;
+  set : boolean = false;
   cb : Batch = <Batch>{};
   show : boolean;
   constructor(private _batchservice: LoadbatchesService) {
 
+  }
+
+  clear(){
+    this.cb.grad= null;
+    this.cb.com = null;
+    this.cb.name ="";
+    this.set = false;
+  }
+
+  setted(){
+    this.set = true;
   }
 
   ngOnInit() {

@@ -12,6 +12,7 @@ import { Observable } from 'rxjs/Observable';
 })
 export class ViewemployeesComponent implements OnInit {
   dtOptions: DataTables.Settings = {};
+  set : boolean = false;
   name : string;
   phone : string;
   cemployee : Employee = <Employee>{};
@@ -24,6 +25,7 @@ export class ViewemployeesComponent implements OnInit {
   DCCRows : Employee = <Employee>{};
   selectedRows : any;
   NICtaken : Observable<boolean>;
+  Usernametaken : Observable<boolean>;
   showid : boolean = true;
   shownic : boolean = true;
   showadd : boolean = true;
@@ -35,6 +37,10 @@ export class ViewemployeesComponent implements OnInit {
   toggleid(){
     this.showid = !this.showid;
     this.gridColumnApi.setColumnVisible("ID",this.showid);
+  }
+
+  setted(){
+    this.set = true;
   }
 
   fit(){
@@ -110,8 +116,15 @@ export class ViewemployeesComponent implements OnInit {
       $('#save').click();
     }
     checkValidity(){
+      this.setted();
       this.NICtaken = this._loginservice.checkNICs(this.cemployee.NIC);
     }
+
+    checkUsername(){
+      this.setted();
+      this.Usernametaken = this._loginservice.checkUsernames(this.cemployee.username);
+    }
+
     Deletebutton(){
       if(this.selectedRows.length == 0 ){
         this.Error = "No rows selected to Delete";
@@ -158,6 +171,9 @@ export class ViewemployeesComponent implements OnInit {
     this.cemployee.contact = "";
     this.cemployee.email = "";
     this.cemployee.ID = "";
+    this.cemployee.role = "";
+    this.cemployee.username = "";
+    this.set = false;
   }
 
   AddEmployee(){
