@@ -38,9 +38,9 @@ enrol(modulen,studentID,moduleName,level){
   firebase.database().ref('/Users/'+studentID+"/bnumber").on("value", function(data){
     var batchno = data.val();
       console.log(batchno);
-    firebase.database().ref('/batches/'+batchno+'/students/'+studentID+'/subjects/'+level+'/'+modulen).set({
-      moduleName : moduleName,
-      moduleNo : modulen
+    firebase.database().ref('/batches/'+batchno+'/students/'+studentID+'/subjects/'+level+'/'+module).set({
+      module,
+      moduleName
     });
   });
 
@@ -52,6 +52,12 @@ enrol(modulen,studentID,moduleName,level){
     grademark:""
   });
 }
-
+unenrol(module,studentID,moduleName,level){
+  firebase.database().ref('/Users/'+studentID+"/bnumber").on("value", function(data){
+    var batchno = data.val();
+    console.log(batchno);
+    firebase.database().ref('/batches/'+batchno+'/students/'+studentID+'/subjects/'+level+'/'+module).remove();
+      });
+}
 
 }
