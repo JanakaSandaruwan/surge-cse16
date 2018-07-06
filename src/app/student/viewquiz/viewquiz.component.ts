@@ -6,6 +6,9 @@ import { McqsComponent } from './mcqs/mcqs.component';
 import { ViewChild, ComponentFactoryResolver, ViewContainerRef } from '@angular/core';
 import { Component, OnInit, Input, ElementRef , EventEmitter, Output } from '@angular/core';
 import {LoadquizService} from '../../services/loadquiz.service';
+import {LocalStorageService, SessionStorageService} from 'ngx-webstorage';
+
+import { Observable } from 'rxjs/Observable';
 
 @Component({
   selector: 'app-viewquiz',
@@ -26,7 +29,9 @@ export class ViewquizComponent implements OnInit {
   answers : string[] = [];
   corans : string[] = ["","","",""];
   quizes:any [];
-  wrongboolean: boolean[] = []
+  wrongboolean: boolean[] = [];
+  quizindex : number;
+  blocked : Observable<boolean> = Observable.of(false);
   /*quiz : Quiz =
   {Questions : [{Text: "Bob has x candybars. He gives you and Paul y candybars each. You give a x-y of your candy bars to Paul at the end you have z,2z and 3z bars respectively whats the value of y?"
   , Option1: "65", Option2: "13", Option3: "43", Option4: "none of the above", type:"mcq"},
@@ -35,7 +40,7 @@ export class ViewquizComponent implements OnInit {
 
   quiz:any[] = [];
 
-  constructor(private router:Router, private route: ActivatedRoute,private componentFactoryResolver: ComponentFactoryResolver,
+  constructor(private storage:LocalStorageService, private router:Router, private route: ActivatedRoute,private componentFactoryResolver: ComponentFactoryResolver,
                 private viewContainerRef: ViewContainerRef,private quizSvc:LoadquizService ) { }
 
                 ngOnInit() {
@@ -128,26 +133,39 @@ export class ViewquizComponent implements OnInit {
                 }
 
                 refresh(){
-                  if(this.quiz.length == 0){
-                    console.log((this.quizname));
-                    console.log((this.subjectname));
-                    this.quizes=this.quizSvc.quizeslist(this.subjectname);
-                    console.log(this.quizes);
-                    var i=0;
-                     while(i<this.quizes.length){
-                       if (this.quizname == this.quizes[i]["name"]){
-                         this.quiz=this.quizes[i]["question"];
-                         this.corans=this.quizes[i]["answer"];
-                         var x = 0;
-                         while(x<this.quiz.length){
-                           this.wrongboolean[x]=false;
-                           x = x+1;
-                         }
+                  var i=0;
+                  this.quizes=this.quizSvc.quizeslist(this.subjectname);
+                   while(i<this.quizes.length){
+                     if (this.quizname == this.quizes[i]["name"]){
+                       this.quizindex = i;
+                       this.quiz=this.quizes[i]["question"];
+                       this.corans=this.quizes[i]["answer"];
+                       break;
+                    }
+                     i++;
+                  }
+                  var x = 0;
+                  while(x<this.quiz.length){
+                    this.wrongboolean[x]=false;
+                    x = x+1;
+                  }
+                  this.quizSvc.checkcomplete(this.storage.retrieve("uname"),this.subjectname,this.quizindex+1).subscribe(data => {
+                    this.completed = data;
+                  });
+                  this.blocked=this.quizSvc.checktime(this.subjectname,this.quizindex+1)
+                  var blockcheck;
+                  this.blocked.subscribe(data => {
+                    blockcheck = data;
+                  });
+                  if(this.quiz.length == 0 && blockcheck){
+
+
+
                          this.Add();
-                         break;
-                       }
-                       i++;
-                     }
+
+
+
+
                   }
 
                 }
@@ -168,6 +186,9 @@ export class ViewquizComponent implements OnInit {
                   this.showprev = false;
                   this.viewContainerRef.remove(0);
                   this.Add();
+                  var marks = this.correct / this.quizes.length * 100 ;
+                  this.quizSvc.updatequizmarkstudent(this.storage.retrieve("uname"),this.subjectname,this.quizindex+1,this.answers,marks);
+                  console.log(this.subjectname,this.quizname,this.storage.retrieve("uname"));
                 }
 
 }
