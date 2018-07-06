@@ -39,6 +39,61 @@ export class LoadquizService {
 
   }
 
+  updatequizmarkstudent(student,modulen,quiznu,answer, marks){
+    firebase.database().ref('/classes/'+modulen+'/students/'+student+'/quiz/quiz'+quiznu+'').set({
+      ans : answer,
+      mark : marks,
+      complete : true
+    });
+  }
+
+  checkcomplete(student,modulen,quiznu) : Observable<boolean>{
+    var completed : boolean;
+    firebase.database().ref('/classes/'+modulen+'/students/'+student+'/quiz/quiz'+quiznu+'/complete').on('value', function(data){
+      console.log(data.val());
+      completed = data.val();
+    });
+    return Observable.of(completed);
+  }
+
+  checkanswer(student,modulen,quiznu) : Observable<boolean>{
+    var completed : boolean;
+    firebase.database().ref('/classes/'+modulen+'/students/'+student+'/quiz/quiz'+quiznu+'/complete').on('value', function(data){
+      console.log(data.val());
+      completed = data.val();
+    });
+    return Observable.of(completed);
+  }
+
+  checktime(modulen,quiznu): Observable<boolean>{
+    var timebeg : string;
+    var timeend : string;
+    var qdate : string;
+    var ontime : boolean;
+    firebase.database().ref('/classes/'+modulen+'/Quiz/quiz'+quiznu).on('value', function(data){
+      timebeg = data.val().starttime;
+      timeend = data.val().endtime;
+      qdate = data.val().date;
+      const d: Date = new Date();
+      if(d.getFullYear()==+qdate.substring(0,4) && d.getMonth()+1 == +qdate.substring(5,7) && d.getDate() == +qdate.substring(8.10)){
+        if (+timebeg.substring(0,2) < d.getHours() && d.getHours() < +timeend.substring(0,2)){
+          ontime = true;
+        }else if (+timebeg.substring(0,2) ==  d.getHours() && d.getMinutes() > +timebeg.substring(3,5)){
+          ontime = true;
+        }else if (+timeend.substring(0,2) ==  d.getHours() && d.getMinutes() < +timeend.substring(3,5)){
+          ontime = true;
+        }else{
+          ontime = false;
+        }
+      }else{
+        ontime = false;
+      }
+
+
+    });
+    return Observable.of(ontime);
+  }
+
   updatequizanswer(subjectcode,ans){
 
     firebase.database().ref('/classes/'+subjectcode+'/Quiz/quiz'+this.getNumQuiz(subjectcode)).update({

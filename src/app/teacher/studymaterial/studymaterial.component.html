@@ -23,24 +23,41 @@
   </footer>
  </div>
 </div-->
+<h2>Upload Study Material</h2>
+
+<hr style="color: #E5E8E8;width: 1500px">
+
+<div style="text-align:center; background-image: url(assets/Study-Material.png); width: 1022px; height:350px; margin-left:15%; border-radius: 10px">
+</div>
+<div class="main-wrapper" style="text-align:center; font-size: 350%;background-color: white; border: solid;border-radius: 10px;opacity: 0.9; width:520px;height: 80px; margin-left: 450px; margin-top:-200px">
+<b>Upload Study Material</b>
+</div>
 
 
-<div *ngIf="currentUpload && currentUpload?.progress!=100 ">
-  <div class="progress">
-    <div class="progress-bar progress-bar-animated" [ngStyle]="{ 'width': currentUpload?.progress + '%' }"></div>
+
+<br><br><br>
+<div class="item" style="margin-top:190px; margin-left:500px; padding-left: 32px; padding-top: 240px; background-color:#D5D8DC; border-style: solid;">
+<div class="item2" style="margin-top:-200px;margin-left:-10px;border-style: solid;"></div>
+<br>
+
+
+
+<div *ngIf="currentUpload && currentUpload?.progress!=100 " >
+  <div class="progress" >
+    <div class="progress-bar progress-bar-animated" [ngStyle]="{ 'width': currentUpload?.progress + '%' }" ></div>
   </div>
   Progress: {{currentUpload?.name}} | {{currentUpload?.progress}}% Complete
 
 
 </div>
 
-<div *ngIf="currentUpload?.progress==100">
-  <div class="modal-dialog modal-sm">
+<div *ngIf="currentUpload?.progress==100" >
+  <div class="modal-dialog modal-sm" >
 
     <!-- Modal content-->
     <div class="modal-content">
 
-      <div class="modal-body">
+      <div class="modal-body" style="height:10px">
         <p>The file was uploaded ! </p>
       </div>
 
@@ -79,7 +96,7 @@
        <input type="file" (change)="detectFiles($event)">
     </label>
 
-    <button
+    <button class="btn btn-primary"
             [disabled]="!selectedFiles"
             (click)="uploadSingle()">
 
@@ -96,3 +113,5 @@
 
         Upload Multiple
       </button-->
+
+    </div>

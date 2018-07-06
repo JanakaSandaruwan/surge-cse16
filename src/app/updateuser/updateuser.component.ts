@@ -5,12 +5,18 @@ import { Observable } from 'rxjs/Observable';
 import {  UploadserviceService } from '../services/uploadservice.service';
 import { Upload } from '../models/upload';
 import {LocalStorageService, SessionStorageService} from 'ngx-webstorage';
+import { ViewChild } from '@angular/core';
+
+
+
 @Component({
   selector: 'app-updateuser',
   templateUrl: './updateuser.component.html',
   styleUrls: ['./updateuser.component.css']
 })
 export class UpdateuserComponent implements OnInit {
+  @ViewChild('newprofile')
+  newprofileVariable: any;
   fcontact : string;
   fcontact2 : string
   fNIC : string;
@@ -35,6 +41,8 @@ export class UpdateuserComponent implements OnInit {
   selectedFiles: FileList;
   currentFileUpload: Upload;
   profileurl: string;
+  profilepicchanged = true;
+
   constructor(private storage:LocalStorageService, private _loginservice : LoginServiceService, private logincookie : CookieService, private  uploadService: UploadserviceService) { }
 
   ngOnInit() {
@@ -73,6 +81,9 @@ export class UpdateuserComponent implements OnInit {
   }
 
   restore() {
+    console.log(this.newprofileVariable.nativeElement.files);
+    this.newprofileVariable.nativeElement.value = "";
+    console.log(this.newprofileVariable.nativeElement.files);
     this.fcontact = this.storage.retrieve("contact");
     this.fNIC = this.storage.retrieve("NIC");
     this.femail = this.storage.retrieve("email");
@@ -110,6 +121,8 @@ export class UpdateuserComponent implements OnInit {
     this.emadis = true;
     this.caldis = true;
     this.condis2 = true;
+    this.selectedFiles = undefined;
+    this.profilepicchanged = true;
   }
   getcurrentPassword(){
     this._loginservice.login(this.storage.retrieve("uname"),"s").subscribe(data => {
@@ -165,6 +178,7 @@ export class UpdateuserComponent implements OnInit {
 
   update(){
     console.log('run');
+    this.profilepicchanged = true;
     this.model.year = this.date.substring(0,4);
     this.model.month = this.date.substring(5,7);
     this.model.day = this.date.substring(8,10);
@@ -178,16 +192,27 @@ export class UpdateuserComponent implements OnInit {
     this.storage.store("byear",this.model.year);
     this.storage.store("bmonth",this.model.month);
     this.storage.store("bdate",this.model.day);
+    if(!this.profilepicchanged){
+      $('#uploadbutton').click();
+    }
   }
 
   detectfiles(event){
-    const file = event.target.files.item(0)
-
+    const file = event.target.files.item(0);
+    console.log(event.target.result);
+    this.profilepicchanged = false;
     if (file.type.match('image.*')) {
       this.selectedFiles = event.target.files;
     } else {
       alert('invalid format!');
     }
+    var reader = new FileReader();
+            reader.onload = (event: any) => {
+                this.profileurl = event.target.result;
+            }
+            reader.readAsDataURL(event.target.files[0]);
+
+
 
 
 

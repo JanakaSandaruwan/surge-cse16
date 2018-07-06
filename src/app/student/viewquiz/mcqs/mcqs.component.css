@@ -1,0 +1,11 @@
+.incomplete{
+  background-color:mintcream;
+}
+
+.correct{
+  background-color: #ceffce;
+}
+
+.wrong{
+  background-color : #ff9999;
+}
