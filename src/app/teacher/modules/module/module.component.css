@@ -4,8 +4,10 @@ ol {
 }
 
 ul {
-    background: #cce5ff;/*#3399ff;*/
+    background: #E5E8E8;/*#3399ff;*/
     padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0px 5px 30px #F4D03F;
 }
 
 .bigbutton{

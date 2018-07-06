@@ -18,9 +18,9 @@
             </li>-->
         </ul>
         <ul class="nav navbar-nav pull-right">
-            <li class="dropdown">
+            <li class="dropdown" (mouseenter)="movedown()" (mouseleave)="moveup()">
                 <img src="assets/149071.png" height="30px" style="margin-left:4.5rem; margin-top:1rem;"/>
-                <a href="#" (click)="movedown()" id="nbAcctDD" style="background-color:#424242" class="content" data-toggle="dropdown"><i class="icon-user"></i>Username<i class="icon-sort-down"></i></a>
+                <a href="#"  id="nbAcctDD" style="background-color:#424242" class="content" data-toggle="dropdown"><i class="icon-user"></i>{{username}}<i class="icon-sort-down"></i></a>
                 <ul class="dropdown-menu pull-right content" style="background-color:#424242" >
                     <li ><a (click)="logout()">Log Out</a></li>
                     <li ><a (click)="changedata()">Change</a></li>
@@ -36,20 +36,25 @@
         <ul class="sidebar-nav content">
             <li  >
                 <div>
-                  <a (click)="togglenav()">Close <i class="fa fa-bars menu-icon fa-2x" aria-hidden="true"></i></a>
+                  <a  href="javascript:void(0);" (click)="togglenav()">Close <i class="fa fa-bars menu-icon fa-2x small-icon" aria-hidden="true"></i></a>
                 </div>
             </li>
             <li>
-                <a href="#">Home <i class="fa fa-home menu-icon fa-2x " aria-hidden="true"></i></a>
+                <a href="javascript:void(0);" (click)="gotoHome()">Home <i class="fa fa-home menu-icon fa-2x large-icon" aria-hidden="true"></i></a>
             </li>
             <li>
-                <a href="#">Download<i class="fa fa-download menu-icon fa-2x" aria-hidden="true"></i></a>
+                  <a href="javascript:void(0);" (click)="gotoVN()">View notices<i class="fa fa-sticky-note menu-icon fa-2x small-icon" aria-hidden="true"></i></a>
             </li>
             <li>
-                <a href="#">Edit<i class="fa fa-cog menu-icon fa-2x" aria-hidden="true"></i></a>
+                <a href="javascript:void(0);" (click)="gotoNN()">Create notice<i class="fa fa-edit menu-icon fa-2x small-icon" aria-hidden="true"></i>
+                    </a>
             </li>
             <li>
-                <a href="#">log out<i class="fa fa-sign-out menu-icon fa-2x" aria-hidden="true"></i>
+                <a href="javascript:void(0);" (click)="changedata()">Change Data<i class="fa fa-cog menu-icon fa-2x small-icon" aria-hidden="true"></i>
+                    </a>
+            </li>
+            <li>
+                <a href="javascript:void(0);" (click)="logout()">Logout<i class="fa fa-sign-out menu-icon fa-2x" aria-hidden="true"></i>
                     </a>
             </li>
 

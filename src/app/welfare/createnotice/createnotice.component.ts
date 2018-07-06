@@ -49,12 +49,17 @@ export class CreatenoticeComponent implements OnInit {
 
   Postnotice(){
     this._post.postnotice(this.noticesubject,this.noticedes,this.model, this.files);
+    $('#successrbutton').click();
   }
 
   reset(){
     this.noticedes = undefined;
     this.noticesubject = undefined;
     this.model = undefined;
+    this.descheck = Observable.of(false);
+    this.subcheck  = Observable.of(false);
+    this.modelcheck  = Observable.of(false);
+    this.modelearly = Observable.of(false);
     $('.image-ul-clear').click();
   }
   doublecheckdate(){
@@ -105,13 +110,13 @@ export class CreatenoticeComponent implements OnInit {
       }
     }
     console.log(pickedDate);
-    if ( this.noticedes == undefined ){
+    if ( this.noticedes == undefined || this.noticedes == "" ){
       x= true;
       this.descheck = Observable.of(true);
     }else{
       this.descheck = Observable.of(false);
     }
-    if ( this.noticesubject == undefined ){
+    if ( this.noticesubject == undefined || this.noticesubject == ""){
       x = true;
       this.subcheck = Observable.of(true);
     }else{

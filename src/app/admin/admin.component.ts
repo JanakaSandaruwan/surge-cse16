@@ -14,7 +14,7 @@ import {  UploadserviceService } from '../services/uploadservice.service';
 export class AdminComponent implements OnInit {
   fulldata : object = <object>{} ;
   usercode : string;
-  state : string = "expanded";
+  state : string = "minimized";
   dropdownstate : string = "collapsed";
   username: string;
   profileurl: string;
@@ -55,7 +55,7 @@ export class AdminComponent implements OnInit {
     } else {
         if (this.state == "minimized") {
             $('.sidebar').css('margin-left', '0px');
-            $('#main-wrapper').css('margin-left', '250px');
+            //$('#main-wrapper').css('margin-left', '250px');
             $('.menu-icon').css('float','left');
             $('.menu-icon').css('position','relative');
             $('.large-icon').css('padding-left','0px');
@@ -96,7 +96,7 @@ export class AdminComponent implements OnInit {
   }
 
   logout(){
-    this.storage.clear("uname");
+    this.storage.clear();
     this.login.logoutuser(this.fulldata['username']);
     this.router.navigate(['']);
   }
@@ -106,6 +106,23 @@ export class AdminComponent implements OnInit {
 
   gotohome(){
     this.router.navigate(['admin/home', {details : this.usercode}]);
+  }
+
+
+  gotoVS(){
+    this.router.navigate(['admin/createstudent', {details : this.usercode}]);
+  }
+
+  gotoVT(){
+    this.router.navigate(['admin/createTeacher', {details : this.usercode}]);
+  }
+
+  gotoVE(){
+    this.router.navigate(['admin/createemployee', {details :this.usercode}]);
+  }
+
+  gotoVSub(){
+    this.router.navigate(['admin/createsubject', {details : this.usercode}]);
   }
 
 }

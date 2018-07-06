@@ -16,14 +16,14 @@ export class ExamdivComponent implements OnInit {
 
   fulldata : object = <object>{} ;
   usercode : string;
-  state : string = "expanded";
+  state : string = "minimized";
   dropdownstate : string = "collapsed";
   username: string;
   profileurl: string;
   constructor(private  uploadService: UploadserviceService, private storage:LocalStorageService, private route: ActivatedRoute, private login : LoginServiceService, private router: Router, private logincookie : CookieService) { }
 
   movedown(){
-
+      console.log("dad");
       if (this.dropdownstate == "collapsed"){
         $('.dropdown-menu').first().stop(true, true).slideDown();
         this.dropdownstate = "down";
@@ -32,6 +32,17 @@ export class ExamdivComponent implements OnInit {
         this.dropdownstate = "collapsed";
       }
 
+  }
+
+  moveup(){
+    console.log("dad");
+    if (this.dropdownstate == "collapsed"){
+      $('.dropdown-menu').first().stop(true, true).slideDown();
+      this.dropdownstate = "down";
+    }else{
+      $('.dropdown-menu').first().stop(true, true).slideUp();
+      this.dropdownstate = "collapsed";
+    }
   }
   togglenav(){
     if (this.state == "expanded") {
@@ -46,7 +57,7 @@ export class ExamdivComponent implements OnInit {
     } else {
         if (this.state == "minimized") {
             $('.sidebar').css('margin-left', '0px');
-            $('#main-wrapper').css('margin-left', '250px');
+            //$('#main-wrapper').css('margin-left', '250px');
             $('.menu-icon').css('float','left');
             $('.menu-icon').css('position','relative');
             $('.large-icon').css('padding-left','0px');
@@ -87,7 +98,7 @@ export class ExamdivComponent implements OnInit {
   }
 
   logout(){
-    this.storage.clear("uname");
+    this.storage.clear();
     this.login.logoutuser(this.fulldata['username']);
     this.router.navigate(['']);
   }

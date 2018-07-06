@@ -18,7 +18,7 @@ export class StudentservicesService {
       return Observable.of(finallist);
   }
 
-  levelModule(studentID,year): Observable<string[]> {
+  levelModule(studentID,year): Observable<any[]> {
 
     var Modulelist: any[] = [];
     firebase.database().ref('/Users/'+studentID+"/bnumber").on("value", function(data){
@@ -34,7 +34,7 @@ export class StudentservicesService {
   return Observable.of(Modulelist);
 }
 
-enrol(module,studentID,moduleName,level){
+enrol(modulen,studentID,moduleName,level){
   firebase.database().ref('/Users/'+studentID+"/bnumber").on("value", function(data){
     var batchno = data.val();
       console.log(batchno);
@@ -45,7 +45,7 @@ enrol(module,studentID,moduleName,level){
   });
 
 
-  firebase.database().ref('/classes/'+module+'/students/'+studentID).set({
+  firebase.database().ref('/classes/'+modulen+'/students/'+studentID).set({
     id : studentID,
     attendance : "",
     grade:"",

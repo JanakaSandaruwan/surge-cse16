@@ -17,7 +17,7 @@ export class TeacherComponent implements OnInit {
   username: string;
   usercode: string;
   fulldata : object = <object>{} ;
-  state : string = "expanded";
+  state : string = "minimized";
   dropdownstate : string = "collapsed";
   dropdownstate1: string ="themeup";
 //  username: string;
@@ -25,8 +25,6 @@ export class TeacherComponent implements OnInit {
   constructor(private uploadService: UploadserviceService,private storage:LocalStorageService, private logincookie : CookieService , private route: ActivatedRoute, private login : LoginServiceService,private router:Router){}//,private home:TeacherHomeComponent) { }
 
   movedown(){
-
-
       console.log("dad");
       if (this.dropdownstate == "collapsed"){
         $('.dropdown-menu').first().stop(true, true).slideDown();
@@ -36,6 +34,17 @@ export class TeacherComponent implements OnInit {
         this.dropdownstate = "collapsed";
       }
 
+  }
+
+  moveup(){
+    console.log("dad");
+    if (this.dropdownstate == "collapsed"){
+      $('.dropdown-menu').first().stop(true, true).slideDown();
+      this.dropdownstate = "down";
+    }else{
+      $('.dropdown-menu').first().stop(true, true).slideUp();
+      this.dropdownstate = "collapsed";
+    }
   }
 
   movedownl(){
@@ -89,7 +98,7 @@ export class TeacherComponent implements OnInit {
     } else {
         if (this.state == "minimized") {
             $('.sidebar').css('margin-left', '0px');
-            $('#main-wrapper').css('margin-left', '250px');
+            //$('#main-wrapper').css('margin-left', '250px');
             $('.menu-icon').css('float','left');
             $('.menu-icon').css('position','relative');
             $('.large-icon').css('padding-left','0px');
@@ -100,6 +109,7 @@ export class TeacherComponent implements OnInit {
   }
 
   ngOnInit() {
+    this.username = this.storage.retrieve("uname");
     if (!this.storage.retrieve("uname")){
       this.router.navigate(['']);
     }
@@ -128,7 +138,7 @@ export class TeacherComponent implements OnInit {
 
   logout(){
     console.log("logout");
-    this.storage.clear("username");
+    this.storage.clear();
     this.login.logoutuser(this.fulldata['username']);
     this.router.navigate(['']);
   }

@@ -5,12 +5,14 @@ import { Student } from '../../models/student';
 import { LoginServiceService } from '../../services/login-service.service';
 import { GridOptions } from "ag-grid";
 import { Observable } from 'rxjs/Observable';
+import { LoadgradesService } from '../../services/loadgrades.service';
 @Component({
   selector: 'app-create-student',
   templateUrl: './create-student.component.html',
   styleUrls: ['./create-student.component.css']
 })
 export class CreateStudentComponent implements OnInit {
+  set : boolean = false;
   dtOptions: DataTables.Settings = {};
   name : string;
   phone : string;
@@ -36,6 +38,9 @@ export class CreateStudentComponent implements OnInit {
   showmail : boolean = true;
   Error : string = "";
 
+  setted(){
+    this.set = true;
+  }
   toggleid(){
     this.showid = !this.showid;
     this.gridColumnApi.setColumnVisible("ID",this.showid);
@@ -94,7 +99,7 @@ export class CreateStudentComponent implements OnInit {
     }
   }
 
-  constructor(private _batchservice: LoadbatchesService,
+  constructor(private _batchservice: LoadbatchesService, private _lgrades : LoadgradesService,
     private _loginservice : LoginServiceService) {
       this.columnDefs = [
             {headerName: "", field:"", checkboxSelection: true, headerCheckboxSelection: true},
@@ -151,6 +156,7 @@ export class CreateStudentComponent implements OnInit {
 
     }
     checkValidity(){
+      this.setted();
       this.NICtaken = this._loginservice.checkNICs(this.cstudent.NIC);
     }
 
@@ -188,6 +194,7 @@ export class CreateStudentComponent implements OnInit {
   }
 
   clear(){
+    this.set = false;
     this.cstudent.fname = "";
     this.cstudent.NIC = "";
     this.cstudent.Address = "";
@@ -230,6 +237,8 @@ export class CreateStudentComponent implements OnInit {
     }
 
   }
+
+  
 
   changebatch(batchno,batch){
     batch.active = !batch.active;

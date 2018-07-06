@@ -4,16 +4,19 @@
 			Welcome to SurgeOrb
 		</header>
 
-		
+
 
 		<div class="item animated fadeInDown" style="font-family: 'Roboto', sans-serif; overflow:auto; border: solid; border-radius: 10px" >
 
 			<form align="center" style="font-family: 'Lato', sans-serif; ">
 				<h1>LOG IN</h1>
-				<p>Username</p><input type="text" placeholder="Username" [(ngModel)]="uname" name="username" size="20" /><br />
-				<p>Password </p><input type="password" placeholder="Password" [(ngModel)]="pass" name="passw"/><br /><br>
-				<input type="checkbox" name="vehicle" value="Bike">Remember username<br>
-				<input class="button" type="submit" (click)="Auth()" value="Login" style="border-radius: 10px;background-color: #3498DB;font-size: 30px; opacity: 0.8" />
+				<p>Username</p><input type="text" placeholder="Username" [(ngModel)]="uname" name="username" size="20" (keyup.enter)="Auth()"/><br />
+				<p>Password </p><input type="password" placeholder="Password" [(ngModel)]="pass" name="passw" (keyup.enter)="Auth()"/><br /><br>
+				<input type="checkbox" name="vehicle" value="Bike" >Remember username<br>
+				<input type="submit" class="button" (click)="Auth()" value="Login" style="border-radius: 10px;background-color: #3498DB;font-size: 30px;" />
+				<p id="wronguname" style="display:none">
+					Wrong Username or Password
+				</p>
 			</form>
 		</div>
 	</div>

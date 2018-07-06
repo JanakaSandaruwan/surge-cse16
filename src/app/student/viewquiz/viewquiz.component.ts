@@ -22,17 +22,18 @@ export class ViewquizComponent implements OnInit {
   correct : number = 0 ;
   shownext : boolean = true;
   showprev : boolean = false;
-  completed : boolean = true;
-  answers : string[];
+  completed : boolean = false;
+  answers : string[] = [];
   corans : string[] = ["","","",""];
   quizes:any [];
+  wrongboolean: boolean[] = []
   /*quiz : Quiz =
   {Questions : [{Text: "Bob has x candybars. He gives you and Paul y candybars each. You give a x-y of your candy bars to Paul at the end you have z,2z and 3z bars respectively whats the value of y?"
   , Option1: "65", Option2: "13", Option3: "43", Option4: "none of the above", type:"mcq"},
   {Text: "The moon is also called luna and is place where the gravitational field is 1/6th than that of earth. If you were to throw a ball of the same mass on the moon and the earth at the same velocity what will be the ration of the two times taken to hit the ground", Option1: "1", Option2: "2", Option3: "3sada", Option4: "4", type:"mcq"},
   {Text: "Is there cheese on the moon?", type:"tf"}, {Text: "What is the answer to life and the universe?", type:"sans"}]};*/
 
-  quiz:any[];
+  quiz:any[] = [];
 
   constructor(private router:Router, private route: ActivatedRoute,private componentFactoryResolver: ComponentFactoryResolver,
                 private viewContainerRef: ViewContainerRef,private quizSvc:LoadquizService ) { }
@@ -55,16 +56,17 @@ export class ViewquizComponent implements OnInit {
                 }
 
                 next(){
-                  this.counter = this.counter + 1 ;
+                  this.counter = this.counter  + 1 ;
                   this.viewContainerRef.remove(0);
                   this.Add();
                   if (this.counter == this.quiz.length - 1){
-                    this.showprev = true;
                     this.shownext = false;
-                  }else{
                     this.showprev = true;
+                  }else{
                     this.shownext = true;
+                    this.showprev = true;
                   }
+
                 }
 
                 prev(){
@@ -93,6 +95,7 @@ export class ViewquizComponent implements OnInit {
                       ref.instance.Option3 = this.quiz[this.counter].Option3;
                       ref.instance.Option4 = this.quiz[this.counter].Option4;
                       ref.instance.corans = this.corans[this.counter];
+                      ref.instance.wrong = this.wrongboolean[this.counter];
                       ref.instance.id = (this.counter)+"";
                       ref.instance.type = this.quiz[this.counter].type;
                       ref.instance.completed = this.completed;
@@ -125,30 +128,39 @@ export class ViewquizComponent implements OnInit {
                 }
 
                 refresh(){
-                  console.log((this.quizname));
-                  console.log((this.subjectname));
-                  this.quizes=this.quizSvc.quizeslist(this.subjectname);
-                  console.log(this.quizes);
-                  var i=0;
-                   while(i<this.quizes.length){
-                     if (this.quizname == this.quizes[i]["name"]){
-                       this.quiz=this.quizes[i]["question"];
-                       this.corans=this.quizes[i]["answer"];
-                       //console.log(this.answers);
-                       this.Add();
-                       break;
+                  if(this.quiz.length == 0){
+                    console.log((this.quizname));
+                    console.log((this.subjectname));
+                    this.quizes=this.quizSvc.quizeslist(this.subjectname);
+                    console.log(this.quizes);
+                    var i=0;
+                     while(i<this.quizes.length){
+                       if (this.quizname == this.quizes[i]["name"]){
+                         this.quiz=this.quizes[i]["question"];
+                         this.corans=this.quizes[i]["answer"];
+                         var x = 0;
+                         while(x<this.quiz.length){
+                           this.wrongboolean[x]=false;
+                           x = x+1;
+                         }
+                         this.Add();
+                         break;
+                       }
+                       i++;
                      }
-                     i++;
-                   }
+                  }
+
                 }
 
               submit(){
-
+                  console.log(this.answers);
                   this.completed = true;
                   var i : number = 0;
                   for (i=0;i<this.quizes.length;i++){
                     if(this.corans[i]==this.answers[i]){
                       this.correct = this.correct + 1;
+                    }else{
+                      this.wrongboolean[i] = true;
                     }
                   }
                   this.counter = 0;

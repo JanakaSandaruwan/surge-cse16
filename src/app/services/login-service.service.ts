@@ -83,6 +83,16 @@ export class LoginServiceService {
     return Observable.of(exists);
   }
 
+  checkUsernames(username) : Observable<boolean>{
+    var exists : boolean = false
+    firebase.database().ref('Users').on('child_added',function(data){
+      if(data.val().UName == username ){
+        exists = true;
+      }
+    });
+    return Observable.of(exists);
+  }
+
   updatepassword ( uname , pass ){
     firebase.database().ref('Users/' + uname).update({
       Password: pass,
