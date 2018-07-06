@@ -2,112 +2,112 @@
   <div class="form-group">
 
     <div class="form-group" rel="popover" data-trigger="hover" data-content="The people who you want to send the message." data-original-title="" style="display: block;">
-          <label class="control-label control-label-left col-sm-2 col-xs-12 " for="field3" ><b>Send to </b></label>
-          <div class="col-lg-10 col-md-10 col-sm-10 col-xs-12">
+      <label class="control-label control-label-left col-sm-2 col-xs-12 " for="field3" ><b>Send to </b></label>
+      <div class="col-lg-10 col-md-10 col-sm-10 col-xs-12">
 
-                <select id="field3" [(ngModel)]="Sendto" class="form-control" data-role="select" required="required" selected="selected" data-parsley-errors-container="#errId2">
-
-
+        <select id="field3" [(ngModel)]="Sendto" class="form-control" data-role="select" required="required" selected="selected" data-parsley-errors-container="#errId2">
 
 
 
-    <option [ngValue]="Students" selected="selected">Students</option>
-    <option [ngValue]="Teacher">Teachers</option></select><span id="errId2" class="error"></span></div>
-    <label class="control-label col-lg-2 col-md-2 col-sm-2 col-xs-12" for="name" style="padding-top:15px"><b>Subject</b></label>
-    <div class="col-lg-10 col-md-10 col-sm-10 col-xs-12" style="padding-top:15px">
-      <input id="subject" name="subject" class="form-control input-md marginbot" required [(ngModel)]="noticesubject" #subject="ngModel" (input)="doublechecksub()">
-      <div id="div14" class="col-lg-10 col-md-10 col-sm-10 col-xs-12" *ngIf="(subcheck | async)" class="alert alert-danger">
-      <div *ngIf="(subcheck | async)">No Subject</div> </div>
-      </div>
 
 
-    <label class="control-label col-lg-2 col-md-2 col-sm-2 col-xs-12" for="des"><b>Description</b></label>
-    <div class="col-lg-10 col-md-10 col-sm-10 col-xs-12">
-      <textarea id="des" name="des" class="form-control marginbot" required [(ngModel)]="noticedes" #des="ngModel" style='height:200px;' (input)="doublechecknotice()"></textarea>
-      <div id="div13" class="col-lg-10 col-md-10 col-sm-10 col-xs-12" *ngIf="(descheck | async)" class="alert alert-danger">
-      <div *ngIf="(descheck | async)">No description</div> </div>
-    </div>
+          <option [ngValue]="Students" selected="selected">Students</option>
+          <option [ngValue]="Teacher">Teachers</option></select><span id="errId2" class="error"></span></div>
+          <label class="control-label col-lg-2 col-md-2 col-sm-2 col-xs-12" for="name" style="padding-top:15px"><b>Subject</b></label>
+          <div class="col-lg-10 col-md-10 col-sm-10 col-xs-12" style="padding-top:15px">
+            <input id="subject" name="subject" class="form-control input-md marginbot" required [(ngModel)]="noticesubject" #subject="ngModel" (input)="doublechecksub()">
+            <div id="div14" class="col-lg-10 col-md-10 col-sm-10 col-xs-12" *ngIf="(subcheck | async)" class="alert alert-danger">
+              <div *ngIf="(subcheck | async)">No Subject</div> </div>
+            </div>
 
-    <label class="control-label col-lg-2 col-md-2 col-sm-2 col-xs-12" for="name"><b>Files to upload</b></label>
-    <div class="col-lg-10 col-md-10 col-sm-10 col-xs-12 marginbot" >
-      <image-upload  removeAfterUpload [max]="100" [url]=""  [dropBoxMessage]="' or Drop your images here'" (uploadFinished)="onUploadFinished($event)" (removed)="onRemoved($event)"></image-upload>
-    </div>
-    <label class="control-label col-lg-2 col-md-2 col-sm-2 col-xs-12" for="dp"><b>Stop Notice on </b></label>
-    <div class="col-lg-10 col-md-10 col-sm-10 col-xs-12 marginbot" style="padding-left:15px;">
-      <span class="k-widget k-datepicker k-header form-control" style="">
-        <span class="k-picker-wrap k-state-default">
-          <input name="name"   (input)="doublecheckdate()" [(ngModel)]="model" id="field3" type="date" class="form-control k-input" data-role="date" role="textbox" aria-haspopup="true" aria-expanded="false" aria-owns="field3_dateview" aria-disabled="false" aria-readonly="false" aria-label="Current focused date is null" data-error-container="#errfield3" style="width: 100%;" required="required" data-parsley-errors-container="#errId3" >
+            
+            <label class="control-label col-lg-2 col-md-2 col-sm-2 col-xs-12" for="des"><b>Description</b></label>
+            <div class="col-lg-10 col-md-10 col-sm-10 col-xs-12">
+              <textarea id="des" name="des" class="form-control marginbot" required [(ngModel)]="noticedes" #des="ngModel" style='height:200px;' (input)="doublechecknotice()"></textarea>
+              <div id="div13" class="col-lg-10 col-md-10 col-sm-10 col-xs-12" *ngIf="(descheck | async)" class="alert alert-danger">
+                <div *ngIf="(descheck | async)">No description</div> </div>
+              </div>
 
-          <span style="background-color:white;" unselectable="on" class="k-select" role="button" aria-controls="field3_dateview" ><span unselectable="on" class="k-icon k-i-calendar" >select</span></span></span></span>
-          <div id="div133" class="col-lg-10 col-md-10 col-sm-10 col-xs-12" *ngIf="(modelcheck | async)" class="alert alert-danger">
-          <div *ngIf="( modelcheck | async)">No End date</div> </div>
-          <div id="div13s3" class="col-lg-10 col-md-10 col-sm-10 col-xs-12" *ngIf="(modelearly | async)" class="alert alert-danger">
-          <div *ngIf="(modelearly | async)">Date given is not valid</div> </div>
-    </div>
-    <button id="x" style="display:none"(click)="d.toggle()">toggle</button>
-  </div>
+              <label class="control-label col-lg-2 col-md-2 col-sm-2 col-xs-12" for="name"><b>Files to upload</b></label>
+              <div class="col-lg-10 col-md-10 col-sm-10 col-xs-12 marginbot" >
+                <image-upload  removeAfterUpload [max]="100" [url]=""  [dropBoxMessage]="' or Drop your images here'" (uploadFinished)="onUploadFinished($event)" (removed)="onRemoved($event)"></image-upload>
+              </div>
+              <label class="control-label col-lg-2 col-md-2 col-sm-2 col-xs-12" for="dp"><b>Stop Notice on </b></label>
+              <div class="col-lg-10 col-md-10 col-sm-10 col-xs-12 marginbot" style="padding-left:15px;">
+                <span class="k-widget k-datepicker k-header form-control" style="">
+                  <span class="k-picker-wrap k-state-default">
+                    <input name="name"   (input)="doublecheckdate()" [(ngModel)]="model" id="field3" type="date" class="form-control k-input" data-role="date" role="textbox" aria-haspopup="true" aria-expanded="false" aria-owns="field3_dateview" aria-disabled="false" aria-readonly="false" aria-label="Current focused date is null" data-error-container="#errfield3" style="width: 100%;" required="required" data-parsley-errors-container="#errId3" >
 
-
-
-</div>
+                    <span style="background-color:white;" unselectable="on" class="k-select" role="button" aria-controls="field3_dateview" ><span unselectable="on" class="k-icon k-i-calendar" >select</span></span></span></span>
+                    <div id="div133" class="col-lg-10 col-md-10 col-sm-10 col-xs-12" *ngIf="(modelcheck | async)" class="alert alert-danger">
+                      <div *ngIf="( modelcheck | async)">No End date</div> </div>
+                      <div id="div13s3" class="col-lg-10 col-md-10 col-sm-10 col-xs-12" *ngIf="(modelearly | async)" class="alert alert-danger">
+                        <div *ngIf="(modelearly | async)">Date given is not valid</div> </div>
+                      </div>
+                      <button id="x" style="display:none"(click)="d.toggle()">toggle</button>
+                    </div>
 
 
 
-<div class="form-group pull-right">
-<button id="button77" type="button" class="btn btn-default" data-toggle="modal" data-target="#myModal2">View preview</button>
-</div>
-<div class="form-group pull-right">
-<button id="button78" type="button" class="btn btn-default" (click)="justletters()">Post</button>
-</div>
-<div class="form-group pull-right">
-<button id="button7ds" type="button" class="btn btn-default" (click)="reset()">Reset</button>
-</div>
-<button id="button79" class="hidden" (click)="Postnotice()">ds</button>
-<div id="myModal2" class="modal fade" role="dialog">
-  <div class="modal-dialog">
-    <div class="modal-content">
-      <div class="modal-header">
-        <button type="button" class="close" data-dismiss="modal">&times;</button>
-        <h4 class="modal-title">{{noticesubject}}</h4>
-      </div>
-      <div class="modal-body">
-        <div class="form-group">
-
-        <div class="row">
-
-       <div class="col-md-12">
+                  </div>
 
 
-       <p> {{noticedes}}</p>
-      </div>
-      </div>
-      </div>
 
-      <div class="form-group">
+                  <div class="form-group pull-right">
+                    <button id="button77" type="button" class="btn btn-default" data-toggle="modal" data-target="#myModal2">View preview</button>
+                  </div>
+                  <div class="form-group pull-right">
+                    <button id="button78" type="button" class="btn btn-default" (click)="justletters()">Post</button>
+                  </div>
+                  <div class="form-group pull-right">
+                    <button id="button7ds" type="button" class="btn btn-default" (click)="reset()">Reset</button>
+                  </div>
+                  <button id="button79" class="hidden" (click)="Postnotice()">ds</button>
+                  <div id="myModal2" class="modal fade" role="dialog">
+                    <div class="modal-dialog">
+                      <div class="modal-content">
+                        <div class="modal-header">
+                          <button type="button" class="close" data-dismiss="modal">&times;</button>
+                          <h4 class="modal-title">{{noticesubject}}</h4>
+                        </div>
+                        <div class="modal-body">
+                          <div class="form-group">
 
-      <div class="row">
+                            <div class="row">
+
+                              <div class="col-md-12">
 
 
-     <div *ngFor="let file of files" (click)="yay(file)">
-           <img  [src]="file.src"  class="thumbnail" style="max-height:100px; max-width:200px; height:auto; width:auto;"/>
+                                <p> {{noticedes}}</p>
+                              </div>
+                            </div>
+                          </div>
+
+                          <div class="form-group">
+
+                            <div class="row">
 
 
-    </div>
-    </div>
-    </div>
-      </div>
-      <div class="modal-footer">
-        <div class="form-group pull-right">
-        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-        </div>
-      </div>
-    </div>
-  </div>
-</div>
-<div class="row">
-<div class="item1" style="margin-top: 800px; left:201px; width:1500px; height:150px;background-image: url(../assets/footer.jpg);" >
-  <div style="padding-top: 65px;padding-left: 60px"><a target="_blank" title="follow us on Twitter" href="http://www.twitter.com/PLACEHOLDER"><img alt="follow us on Twitter" src="https://c866088.ssl.cf3.rackcdn.com/assets/twitter30x30.png" border=0></a><a style="padding-left: 20px" target="_blank" title="follow me on facebook" href="http://www.facebook.com/PLACEHOLDER">
-    <img alt="follow us on facebook" src="https://c866088.ssl.cf3.rackcdn.com/assets/facebook30x30.png" border=0></a><a style="padding-left: 20px" target="_blank" title="follow us on youtube" href="http://www.youtube.com/PLACEHOLDER"><img alt="follow us on youtube" src="https://c866088.ssl.cf3.rackcdn.com/assets/youtube30x30.png" border=0></a><a style="padding-left: 20px" target="_blank" title="follow us on instagram" href="http://www.instagram.com/PLACEHOLDER" >
-    <img alt="follow us on instagram" src="https://c866088.ssl.cf3.rackcdn.com/assets/instagram30x30.png" border=0></a><a style="padding-left: 20px" target="_blank" title="follow us on google plus" href="https://plus.google.com/PLACEHOLDER"><img alt="follow us on google plus" src="https://c866088.ssl.cf3.rackcdn.com/assets/googleplus30x30.png" border=0></a></div><div class="row"><p style="margin-left:1140px;margin-top: -25px;font-family:'Courier New'; font-weight: bold;"><img src="../assets/surge.png" style="width: 30px;height: 30px" />     Team SURGE</p></div></div>
+                              <div *ngFor="let file of files" (click)="yay(file)">
+                                <img  [src]="file.src"  class="thumbnail" style="max-height:100px; max-width:200px; height:auto; width:auto;"/>
 
-    </div>
+
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                        <div class="modal-footer">
+                          <div class="form-group pull-right">
+                            <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="row">
+                    <div class="item1" style="margin-top: 800px; left:201px; width:1500px; height:150px;background-image: url(../assets/footer.jpg);" >
+                      <div style="padding-top: 65px;padding-left: 60px"><a target="_blank" title="follow us on Twitter" href="http://www.twitter.com/PLACEHOLDER"><img alt="follow us on Twitter" src="https://c866088.ssl.cf3.rackcdn.com/assets/twitter30x30.png" border=0></a><a style="padding-left: 20px" target="_blank" title="follow me on facebook" href="http://www.facebook.com/PLACEHOLDER">
+                        <img alt="follow us on facebook" src="https://c866088.ssl.cf3.rackcdn.com/assets/facebook30x30.png" border=0></a><a style="padding-left: 20px" target="_blank" title="follow us on youtube" href="http://www.youtube.com/PLACEHOLDER"><img alt="follow us on youtube" src="https://c866088.ssl.cf3.rackcdn.com/assets/youtube30x30.png" border=0></a><a style="padding-left: 20px" target="_blank" title="follow us on instagram" href="http://www.instagram.com/PLACEHOLDER" >
+                          <img alt="follow us on instagram" src="https://c866088.ssl.cf3.rackcdn.com/assets/instagram30x30.png" border=0></a><a style="padding-left: 20px" target="_blank" title="follow us on google plus" href="https://plus.google.com/PLACEHOLDER"><img alt="follow us on google plus" src="https://c866088.ssl.cf3.rackcdn.com/assets/googleplus30x30.png" border=0></a></div><div class="row"><p style="margin-left:1140px;margin-top: -25px;font-family:'Courier New'; font-weight: bold;"><img src="../assets/surge.png" style="width: 30px;height: 30px" />     Team SURGE</p></div></div>
+
+                        </div>
