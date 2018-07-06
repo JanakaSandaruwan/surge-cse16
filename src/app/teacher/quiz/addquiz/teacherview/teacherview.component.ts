@@ -123,20 +123,22 @@ export class TeacherviewComponent implements OnInit {
   }
 
   refresh(){
-    console.log((this.quizname));
-    console.log((this.subjectname));
-    this.quizes=this.quizSvc.quizeslist(this.subjectname);
-    console.log(this.quizes);
-    var i=0;
-     while(i<this.quizes.length){
-       if (this.quizname == this.quizes[i]["name"]){
-         this.quiz=this.quizes[i]["question"];
-         this.answers=this.quizes[i]["answer"];
-         console.log(this.answers);
-         this.Add();
-         break;
+    if(this.quiz.length == 0){
+      console.log((this.quizname));
+      console.log((this.subjectname));
+      this.quizes=this.quizSvc.quizeslist(this.subjectname);
+      console.log(this.quizes);
+      var i=0;
+       while(i<this.quizes.length){
+         if (this.quizname == this.quizes[i]["name"]){
+           this.quiz=this.quizes[i]["question"];
+           this.answers=this.quizes[i]["answer"];
+           console.log(this.answers);
+           this.Add();
+           break;
+         }
+         i++;
        }
-       i++;
-     }
+    }
   }
 }
