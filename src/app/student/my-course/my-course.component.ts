@@ -21,21 +21,21 @@ export class MyCourseComponent implements OnInit {
     console.log("component");
     this._sservice.levelModule(this.storage.retrieve("uname"),"Year 1").subscribe(data => {
       this.ModuleList = data;
-      console.log(this.ModuleList[0].module.moduleName);
+      console.log(this.ModuleList[0].moduleName);
 });
 }
   showl2(){
     console.log("component");
     this._sservice.levelModule(this.storage.retrieve("uname"),"Year 2").subscribe(data => {
       this.ModuleList = data;
-      console.log(this.ModuleList[0].module.moduleName);
+      console.log(this.ModuleList[0].moduleName);
 });
 }
 showl3(){
   console.log("component");
   this._sservice.levelModule(this.storage.retrieve("uname"),"Year 3").subscribe(data => {
     this.ModuleList = data;
-    console.log(this.ModuleList[0].module.moduleName);
+    console.log(this.ModuleList[0].moduleName);
 });
 }
 view(subject){

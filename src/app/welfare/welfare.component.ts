@@ -10,7 +10,7 @@ import { LoginServiceService } from '../services/login-service.service';
   styleUrls: ['./welfare.component.css']
 })
 export class WelfareComponent implements OnInit {
-  state : string = "expanded";
+  state : string = "minimized";
   dropdownstate : string = "collapsed";
   username: string;
   usercode: string;
@@ -28,26 +28,46 @@ export class WelfareComponent implements OnInit {
       }
 
   }
+
+  changedata(){
+    this.router.navigate(['welfare/updatedetails', {details : this.usercode}]);
+  }
+
+
+  moveup(){
+    console.log("dad");
+    if (this.dropdownstate == "collapsed"){
+      $('.dropdown-menu').first().stop(true, true).slideDown();
+      this.dropdownstate = "down";
+    }else{
+      $('.dropdown-menu').first().stop(true, true).slideUp();
+      this.dropdownstate = "collapsed";
+    }
+  }
   togglenav(){
     if (this.state == "expanded") {
-        $('.sidebar').css('margin-left', '-190px');
-        $('#main-wrapper').css('margin-left', '60px');
-        $('.menu-icon').css('float','none');
-        $('.menu-icon').css('position','absolute');
-        $('.menu-icon').css('right','0');
-        this.state = "minimized";
+      $('.sidebar').css('margin-left', '-190px');
+      $('#main-wrapper').css('margin-left', '60px');
+      $('.menu-icon').css('float','none');
+      $('.menu-icon').css('position','absolute');
+      $('.menu-icon').css('right','0');
+      $('.large-icon').css('padding-left','15px');
+      $('.small-icon').css('padding-left','18px');
+      this.state = "minimized";
     } else {
         if (this.state == "minimized") {
-            $('.sidebar').css('margin-left', '0px');
-            $('#main-wrapper').css('margin-left', '250px');
-            $('.menu-icon').css('float','left');
-            $('.menu-icon').css('position','relative');
-            this.state = "expanded";
+          $('.sidebar').css('margin-left', '0px');
+          //$('#main-wrapper').css('margin-left', '250px');
+          $('.menu-icon').css('float','left');
+          $('.menu-icon').css('position','relative');
+          $('.large-icon').css('padding-left','0px');
+          $('.small-icon').css('padding-left','0px');
+          this.state = "expanded";
         }
     }
   }
   ngOnInit() {
-
+    this.username = this.storage.retrieve("uname");
     if (!this.storage.retrieve("uname")){
       console.log("x");
       this.router.navigate(['']);
@@ -69,6 +89,18 @@ export class WelfareComponent implements OnInit {
          });
       });
     }
+  }
+
+  gotoNN(){
+    this.router.navigate(['welfare/create' , {details : this.usercode}]);
+  }
+
+  gotoHome(){
+    this.router.navigate(['welfare/home' , {details : this.usercode}]);
+  }
+
+  gotoVN(){
+    this.router.navigate(['welfare/viewnotices', {details : this.usercode}]);
   }
 
   logout(){

@@ -12,7 +12,7 @@
       <div class="modal-body">
         <div class="form-group">
           <div class="row">
-            <label class="control-label col-md-3"><b>Code</b> </label>
+            <label class="control-label col-md-3"><b>Code</b><span class="req"> *</span> </label>
             <div class="col-md-9">
               <input id="code" name="code" class="form-control" required minlength="6"  [(ngModel)]="csubject.code" #code="ngModel" (input)="checkValidity()">
 
@@ -24,7 +24,7 @@
         </div>
         <div class="form-group">
           <div class="row">
-            <label class="control-label col-md-3"><b>Name</b></label>
+            <label class="control-label col-md-3"><b>Name</b><span class="req"> *</span></label>
             <div class="col-md-9">
               <textarea type="textarea" id="name" name="name" class="form-control" required minlength="30" (input)="setted()" [(ngModel)]="csubject.name" #name="ngModel" ></textarea>
 
@@ -38,7 +38,7 @@
 
         <div class="form-group">
           <div class="row">
-            <label class="control-label col-md-3"><b>Level</b></label>
+            <label class="control-label col-md-3"><b>Level</b><span class="req"> *</span></label>
             <div class="col-md-9">
               <select class="form-control" [(ngModel)]="csubject.level" required #level="ngModel" (input)="checkValidity()">
                 <option *ngFor="let level of levels" [ngValue]="level.name">{{level.name}}</option>
@@ -50,7 +50,7 @@
 
         <div class="form-group">
           <div class="row">
-            <label class="control-label col-md-3"><b>Teacher</b></label>
+            <label class="control-label col-md-3"><b>Teacher</b><span class="req"> *</span></label>
             <div class="col-md-9">
               <select id="teacher" class="form-control" [(ngModel)]="csubject.teacher" required #teacher="ngModel" (input)="setted()">
                 <option *ngFor="let teacher of availTeachers" [ngValue]="teacher" >{{teacher.fname}}</option>
@@ -61,7 +61,7 @@
 
         <div class="form-group">
           <div class="row">
-            <label class="control-label col-md-3"><b>Batch</b></label>
+            <label class="control-label col-md-3"><b>Batch</b><span class="req"> *</span></label>
             <div class="col-md-9">
               <select class="form-control" [(ngModel)]="csubject.batch" (change)="checkValidity()" #batch="ngModel" required (input)="setted()">
                 <option *ngFor="let batch of batches" [ngValue]="batch.name">{{batch.name}}</option>
@@ -93,13 +93,9 @@
         <div class="form-group pull-right">
         <button id="button77" type="button" class="btn btn-default" (click)="clear()">Reset</button>
         </div>
-        <div *ngIf="!(classtaken | async)">
-          <div class="form-group pull-right" *ngIf="(!code.invalid) &&
-          (!name.invalid) && (!level.invalid)
-          && (!batch.invalid) && (!teacher.invalid) && set" >
-          <button id="pro"  type="button" class="btn btn-default" data-dismiss="modal" (click)="AddSubject()">Proceed</button>
+          <div class="form-group pull-right"  >
+          <button id="pro" [disabled]="(code.invalid) || (name.invalid) || (level.invalid) || (batch.invalid ) || (teacher.invalid) || !set || (classtaken | async)" type="button" class="btn btn-default" data-dismiss="modal" (click)="AddSubject()">Proceed</button>
           </div>
-        </div>
       </div>
     </div>
   </div>

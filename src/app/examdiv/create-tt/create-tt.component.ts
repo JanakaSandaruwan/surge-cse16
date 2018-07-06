@@ -15,6 +15,7 @@ export class CreateTtComponent implements OnInit {
   columnDefs : any[];
   rowSelection : any;
   gridColumnApi : any;
+  indexnoexists : Observable<boolean> = Observable.of(true);
   modelearly : Observable<boolean> = Observable.of(false);
   modelcheck : Observable<boolean> = Observable.of(false);
   model = { year:undefined ,month:undefined, day:undefined};
@@ -31,7 +32,7 @@ export class CreateTtComponent implements OnInit {
     {subject: 'Electrical Componenets', grade: "B+" }
 
   ]
-  constructor() {
+  constructor(private lservice : LoginServiceService) {
     this.columnDefs = [
           {headerName: "Subject", field:"subject" , width: 350},
           {headerName: "Grade", field: "grade", width: 100},
@@ -68,7 +69,14 @@ export class CreateTtComponent implements OnInit {
         }
       }
 
-
+      checkindex(){
+        if(this.index.substring(0,2) != "bc"){
+          this.indexnoexists = Observable.of(false);
+        }else{
+          console.log(this.lservice.checkUsernames(this.index));
+          this.indexnoexists = this.lservice.checkUsernames(this.index);
+        }
+      }
 
       changes(){
         this.model.year = this.date.substring(0,4);

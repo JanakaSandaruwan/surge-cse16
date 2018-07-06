@@ -5,6 +5,7 @@ import { Student } from '../../models/student';
 import { LoginServiceService } from '../../services/login-service.service';
 import { GridOptions } from "ag-grid";
 import { Observable } from 'rxjs/Observable';
+import { LoadgradesService } from '../../services/loadgrades.service';
 @Component({
   selector: 'app-create-student',
   templateUrl: './create-student.component.html',
@@ -98,7 +99,7 @@ export class CreateStudentComponent implements OnInit {
     }
   }
 
-  constructor(private _batchservice: LoadbatchesService,
+  constructor(private _batchservice: LoadbatchesService, private _lgrades : LoadgradesService,
     private _loginservice : LoginServiceService) {
       this.columnDefs = [
             {headerName: "", field:"", checkboxSelection: true, headerCheckboxSelection: true},
@@ -236,6 +237,8 @@ export class CreateStudentComponent implements OnInit {
     }
 
   }
+
+  
 
   changebatch(batchno,batch){
     batch.active = !batch.active;

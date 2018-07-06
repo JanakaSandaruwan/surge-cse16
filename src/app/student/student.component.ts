@@ -14,7 +14,7 @@ import {  UploadserviceService } from '../services/uploadservice.service';
 export class StudentComponent implements OnInit {
   fulldata : object = <object>{} ;
   usercode : string;
-  state : string = "expanded";
+  state : string = "minimized";
   dropdownstate : string = "collapsed";
   username: string;
   profileurl: string;
@@ -31,6 +31,17 @@ export class StudentComponent implements OnInit {
       }
 
   }
+
+  moveup(){
+    console.log("dad");
+    if (this.dropdownstate == "collapsed"){
+      $('.dropdown-menu').first().stop(true, true).slideDown();
+      this.dropdownstate = "down";
+    }else{
+      $('.dropdown-menu').first().stop(true, true).slideUp();
+      this.dropdownstate = "collapsed";
+    }
+  }
   togglenav(){
     if (this.state == "expanded") {
         $('.sidebar').css('margin-left', '-190px');
@@ -44,7 +55,7 @@ export class StudentComponent implements OnInit {
     } else {
         if (this.state == "minimized") {
             $('.sidebar').css('margin-left', '0px');
-            $('#main-wrapper').css('margin-left', '250px');
+            //$('#main-wrapper').css('margin-left', '250px');
             $('.menu-icon').css('float','left');
             $('.menu-icon').css('position','relative');
             $('.large-icon').css('padding-left','0px');
@@ -87,9 +98,12 @@ export class StudentComponent implements OnInit {
   }
 
   logout(){
-    this.storage.clear("uname");
+    this.storage.clear();
     this.login.logoutuser(this.fulldata['username']);
     this.router.navigate(['']);
+  }
+  changedata(){
+    this.router.navigate(['student/updatedetails', {details : this.usercode}]);
   }
 
 

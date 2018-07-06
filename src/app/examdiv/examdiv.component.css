@@ -69,6 +69,7 @@ border-right: 1px solid gray;
     -webkit-transition: margin 1s;
     transition: margin 1s;
   flex:1;
+  margin-left : -190px;
 }
 #navbar-toggle {
     cursor: pointer;
@@ -77,17 +78,19 @@ border-right: 1px solid gray;
     margin-left: 44px;
 }
 .menu-icon {
-    float:left;
+    float:none;
+    position : absolute;
     color: gold;
     width: 50px;
     -webkit-transition: margin 2s;
     transition: margin 2s;
+    right : 0
 }
 .small-icon{
-
+  padding-left: 18px;
 }
 .large-icon{
-
+  padding-left: 15px;
 }
 .content{
   font-family: 'Lato', sans-serif;
@@ -126,6 +129,7 @@ body {
 @media (min-width: 992px) {
 #main-wrapper {
   background-color: #424242;
+  margin-left: 60px;
 }
 }
 @media (max-width: 992px) {
@@ -169,7 +173,7 @@ background-color: #424242;
 }
 
 .button {
-  
+
   padding-left: 100px;
   color: white;
   padding: 16px 32px;

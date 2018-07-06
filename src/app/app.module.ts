@@ -90,6 +90,7 @@ import { WritenoticeComponent } from './examdiv/writenotice/writenotice.componen
 import { EnrolmentComponent } from './student/enrolment/enrolment.component';
 import { ViewquizComponent } from './student/viewquiz/viewquiz.component';
 import { McqsComponent } from './student/viewquiz/mcqs/mcqs.component';
+import { LoadgradesService } from './services/loadgrades.service';
 //import { CalendarModule } from 'angular-calendar';
 
 @NgModule({
@@ -149,6 +150,7 @@ import { McqsComponent } from './student/viewquiz/mcqs/mcqs.component';
   ],
   entryComponents: [
     McqComponent,
+    McqsComponent,
     TeachermcqComponent
   ],
   imports: [
@@ -216,7 +218,8 @@ import { McqsComponent } from './student/viewquiz/mcqs/mcqs.component';
     { path: 'quizview', component:QuizviewComponent},
     {path: 'subject',component:Level1Component},
     {path:'viewquiz',component:ViewquizComponent},
-    {path:'viewquiz/mcqs',component:McqsComponent}
+    {path:'viewquiz/mcqs',component:McqsComponent},
+    {path:'updatedetails',component:UpdateuserComponent}
   ]
   //{ path: '**', component: PageNotFoundComponent }
   },
@@ -224,7 +227,8 @@ import { McqsComponent } from './student/viewquiz/mcqs/mcqs.component';
     /*{ path: '', component: TeacherHomeComponent }*/
     { path: 'home', component:WelfareHomeComponent},
     { path: 'create', component:CreatenoticeComponent},
-    { path: 'viewnotices', component:NoticesviewComponent}]
+    { path: 'viewnotices', component:NoticesviewComponent},
+  {path:'updatedetails',component:UpdateuserComponent}]
   //{ path: '**', component: PageNo,FoundComponent }
   },
   { path: 'hr', component:HrComponent, children : [
@@ -249,7 +253,7 @@ import { McqsComponent } from './student/viewquiz/mcqs/mcqs.component';
     ]),
     RouterModule
   ],
-  providers: [StudentservicesService,UpdatemessagesService,LeaveapproveService, NoticeserviceService, LoadquizService,UploadService, LoginServiceService, HttpClient, LoadbatchesService, LoadteacherService, LoademployeesService , CookieService,  UploadserviceService],
+  providers: [LoadgradesService,StudentservicesService,UpdatemessagesService,LeaveapproveService, NoticeserviceService, LoadquizService,UploadService, LoginServiceService, HttpClient, LoadbatchesService, LoadteacherService, LoademployeesService , CookieService,  UploadserviceService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

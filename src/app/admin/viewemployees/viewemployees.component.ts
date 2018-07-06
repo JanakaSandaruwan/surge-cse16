@@ -172,6 +172,7 @@ export class ViewemployeesComponent implements OnInit {
     this.cemployee.email = "";
     this.cemployee.ID = "";
     this.cemployee.role = "";
+    this.cemployee.username = "";
     this.set = false;
   }
 
