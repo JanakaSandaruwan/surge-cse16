@@ -1,4 +1,11 @@
-<button (click)="refresh()">Refresh</button>
+
+
+
+<button class="btn "(click)="refresh()">Refresh</button>
+<div *ngIf="!(blocked | async)">
+  You are locked out of this quiz
+</div>
+<div *ngIf = "(blocked | async)">
 <div class="btn-group">
   <button type="button" class="btn btn-primary"  *ngFor= "let question of quiz" (click)="goto(quiz.indexOf(question))">{{quiz.indexOf(question) + 1}}</button>
 </div>
@@ -17,4 +24,5 @@
 <div class = "form-group" *ngIf="completed" style="background-color:mintcream; border-style:solid; border-color:grey; border-radius:10px; height:60px; text-align:center; padding-top:10px;">
   You got {{correct}} out of {{this.quiz.length}} Questions correct.<br />
   Percentage = {{correct*100/this.quiz.length}} %
+</div>
 </div>
