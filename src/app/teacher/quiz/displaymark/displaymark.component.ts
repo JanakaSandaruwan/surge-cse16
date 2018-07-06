@@ -25,16 +25,22 @@ export class DisplaymarkComponent implements OnInit {
   //mark=[{ID:"bc20150000",quiz1:"45",quiz2:"55",quiz3:"55"},{ID:"bc20150001",quiz1:"45",quiz2:"15",quiz3:"85"}];
   mark=[];
   constructor(private router:Router, private loadquiz:LoadquizService, private route: ActivatedRoute) {
-    this.columnDefs = [
+    var tempCol = [
           {headerName: "ID", field: "ID", width: 400},
-          {headerName: "Quiz1", field: "quiz1", width: 200,editable:true},
-          {headerName: "Quiz2", field: "quiz2", width: 200,editable:true},
+          //{headerName: "Quiz1", field: "quiz1", width: 200,editable:true},
+          //{headerName: "Quiz2", field: "quiz2", width: 200,editable:true},
           //{headerName: "Quiz3", field: "quiz3", width: 200,editable:true}
 
       ];
-      this.rowSelection = "single";
-        //this.columnDefs.editable=true;
 
+      var i=1;
+      var limit=this.loadquiz.getNumQuiz(this.subjectname);
+      while(i<limit+1){
+        tempCol.push({headerName: "Quiz"+i, field: "quiz"+i, width: 200,editable:false});
+        i++;
+      }
+      this.columnDefs=tempCol;
+      this.rowSelection = "single";
   }
 
   ngOnInit() {
@@ -52,31 +58,55 @@ export class DisplaymarkComponent implements OnInit {
     this.gridColumnApi = params.columnApi;
   }
 
+
+  loadTable(){
+    var tempCol = [
+          {headerName: "ID", field: "ID", width: 400},
+          //{headerName: "Quiz1", field: "quiz1", width: 200,editable:true},
+          //{headerName: "Quiz2", field: "quiz2", width: 200,editable:true},
+          //{headerName: "Quiz3", field: "quiz3", width: 200,editable:true}
+
+      ];
+
+      var i=1;
+      var limit=this.loadquiz.getNumQuiz(this.subjectname);
+      while(i<limit+1){
+        tempCol.push({headerName: "Quiz"+i, field: "quiz"+i, width: 200,editable:false});
+        i++;
+      }
+      this.columnDefs=tempCol;
+      this.rowSelection = "single";
+  }
+
   refresh(){
+    this.loadTable();
+
     this.mark=[];
      var list=this.loadquiz.quizMarks(this.subjectname);
 
      var i=0;
-    // console.log(list);
+     console.log(list);
+
      while(i<list.length){
        var ls=[];
        var tempquiz=list[i]["quiz"];
 
-       var j=1;
-       while (j<=Object.keys(tempquiz).length){
-         var name="quiz"+j;
+         var j=1;
+         while (j<=Object.keys(tempquiz).length){
+           var name="quiz"+j;
 
-         ls[name]=tempquiz[name]["mark"];
-         j++;
+           ls[name]=tempquiz[name]["mark"];
+           j++;
 
-       }
-       ls["ID"]=list[i]["ID"];
+         }
+       console.log(list[i]["id"]);
+       ls["ID"]=list[i]["id"];
        //console.log(list[i]["quiz"]);
        this.mark.push(ls);
        i=i+1;
      }
 
-    // console.log(this.mark);
+    console.log(this.mark);
     this.gridApi.setRowData(this.mark);
 
   }
