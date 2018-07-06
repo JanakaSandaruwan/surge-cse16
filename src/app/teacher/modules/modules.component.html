@@ -19,9 +19,9 @@
 </div-->
 
 
-<div style="text-align:center; background-image: url(assets/modulescover.jpg); width: 1100px; height:420px; margin-left:5%; border-radius: 10px">
+<div style="text-align:center; background-image: url(assets/modulescover.jpg); width: 1100px; height:420px; margin-left:12%; border-radius: 10px">
 </div>
-<div class="main-wrapper" style="text-align:center; font-size: 350%;background-color: white; border: solid;border-radius: 10px;opacity: 0.9; width:400px;height: 80px; margin-left: 420px; margin-top:-240px">
+<div class="main-wrapper" style="text-align:center; font-size: 350%;background-color: white; border: solid;border-radius: 10px;opacity: 0.9; width:400px;height: 80px; margin-left: 490px; margin-top:-240px">
 <b>MY MODULES</b>
 </div>
 
@@ -32,13 +32,13 @@
 <button class="btn btn-primary" (click)="refresh()" >Refresh</button>
 </div>
 
-<div style=" text-align: center;width: 300px;height: 100px;padding-top:30px; margin-bottom:30px; margin-left:450px; border:solid; border-radius: 10px; background-color:#E5E8E8  ">
+<div style=" text-align: center;width: 300px;height: 100px;padding-top:30px; margin-bottom:30px; margin-left:550px; border:solid; border-radius: 10px; background-color:#E5E8E8  ">
   <label style="font-size:15px"><b> Search&nbsp;&nbsp; </b>   </label>
   <input type="text" [(ngModel)]="term" ><img src="assets/Search.png" style="width:40px;height:40px">
 
 </div>
 
-<div  style=" text-align: center;width: 300px;height: auto;padding-top:30px; margin-bottom:30px; margin-left:450px; border:solid; border-radius: 10px; background-color:#E5E8E8 ">
+<div  style=" text-align: center;width: 300px;height: auto;padding-top:30px; margin-bottom:30px; margin-left:550px; border:solid; border-radius: 10px; background-color:#E5E8E8 ">
   <ul>
     <li style="padding:10px;"  *ngFor= "let module of modules | filter:term" (click)="redirect(module)"><a>{{module}}</a></li>
   </ul>

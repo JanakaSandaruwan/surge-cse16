@@ -36,7 +36,7 @@ export class DisplaymarkComponent implements OnInit {
       var i=1;
       var limit=this.loadquiz.getNumQuiz(this.subjectname);
       while(i<limit+1){
-        tempCol.push({headerName: "Quiz"+i, field: "quiz"+i, width: 200,editable:false});
+        tempCol.push({headerName: "Quiz"+i, field: "quiz"+i, width: 200});
         i++;
       }
       this.columnDefs=tempCol;
@@ -71,7 +71,7 @@ export class DisplaymarkComponent implements OnInit {
       var i=1;
       var limit=this.loadquiz.getNumQuiz(this.subjectname);
       while(i<limit+1){
-        tempCol.push({headerName: "Quiz"+i, field: "quiz"+i, width: 200,editable:false});
+        tempCol.push({headerName: "Quiz"+i, field: "quiz"+i, width: 200});
         i++;
       }
       this.columnDefs=tempCol;
@@ -113,7 +113,7 @@ export class DisplaymarkComponent implements OnInit {
 
   addQuizMark(){
     console.log("add new column");
-    this.columnDefs.push({headerName: "Quiz4", field: "quiz4", width: 200,editable:true});
+    this.columnDefs.push({headerName: "Quiz4", field: "quiz4", width: 200});
     this.mark[0]["quiz4"]="nodata";
     this.mark[1]["quiz4"]="nodata";
     //console.log(this.columnDefs);
