@@ -16,9 +16,9 @@ export class McqsComponent implements OnInit {
   Option4: string;
   type: string;
   corans : string;
-  completed : boolean=true;
+  completed : boolean;
   selected : string ;
-  wrong : boolean = false;
+  wrong : boolean ;
   final : Question = <Question>{};
   id : string = "";
   constructor(private elRef: ElementRef) { }
