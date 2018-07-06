@@ -1,10 +1,8 @@
 
 <h2>Quiz Mark</h2>
 <button class="btn" (click)="refresh()">Refresh</button>
-<div align="right" style="padding-bottom: 20px;">
-  <button class="btn btn-primary" (click)="addQuizMark()">+ Quiz Marks</button>
-</div>
-<ag-grid-angular style="width:1000px; height: 131px; margin-top:30px" class="ag-theme-bootstrap"
+
+<ag-grid-angular style="width:1200px; height: 131px; margin-top:30px; margin-left:100px" class="ag-theme-bootstrap"
                  [rowData]="rowData"
                  [columnDefs]="columnDefs"
                  enableSorting
@@ -13,7 +11,7 @@
                  enableQuickFilter
                  [rowSelection]="rowSelection"
                  (selectionChanged)="onSelectionChanged($event)"
-                 
+
                  (cellValueChanged)="valuechange($event)"
 
                  (gridReady)="onGridReady($event)"

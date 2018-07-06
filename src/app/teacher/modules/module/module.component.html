@@ -1,65 +1,65 @@
 <div class="main-wrapper" style="text-align:center; font-size: 350%;background-color:#E5E8E8 ; border: solid;border-radius: 10px;opacity: 0.9; width:400px;height: 80px; margin-left: 420px;">
-    <b>{{subjectname}}</b></div>
-<div class="row">
-<div style="padding-top: 100px">
+  <b>{{subjectname}}</b></div>
+  <div class="row">
+    <div style="padding-top: 100px">
 
-<div class="col-lg-3 col-md-3 col-sm-6 col-xs-12 mycontainer" align="center" (click)="gotoProgress()" style="margin-left:150px;padding-left:0px">
-<button class= "btn button" style=" background: url(assets/finalgrade.jpg);color: black;font-size:xx-large;font-weight: bold;">
-<div class="main-wrapper" style="background-color: white; border-radius: 3px;opacity: 0.8">  Final Grades</div></button>
-</div>
-<div class="col-lg-3 col-md-3 col-sm-6 col-xs-12 mycontainer" align="center" (click)="gotoAdmittance()" style="padding-left: 300px">
-<button class= "btn button" style=" background: url(assets/attendance.jpg);color: black;font-size:xx-large;font-weight: bold;">
-<div class="main-wrapper" style="background-color: white; border-radius: 3px;opacity: 0.8"> Attendance</div></button>
-</div>
-</div>
-</div>
-<div class="row">
-<div style="padding-top: 40px">
-<div class="col-lg-3 col-md-3 col-sm-6 col-xs-12 mycontainer " (click)="gotoaddquiz()" align="center" style="margin-left:150px;padding-left:0px" >
-<button class= "btn button" style=" background: url(assets/addquizes.jpg);color: black;font-size:xx-large;font-weight: bold;">
-<div class="main-wrapper" style="background-color: white; border-radius: 3px;opacity: 0.8">  Add Quizzes</div></button>
-</div>
-<div class="col-lg-3 col-md-3 col-sm-6 col-xs-12 mycontainer" align="center" (click) = "gotomaterial()" style="padding-left: 300px" >
-<button class= "btn button" style=" background: url(assets/studymaterial.jpg);color: black;font-size:xx-large;font-weight: bold;">
-<div class="main-wrapper" style="background-color: white; border-radius: 3px;opacity: 0.8">Add Study Material</div></button>
-</div>
-
-
-</div>
-</div>
-<div class="row">
-<div style="padding-top: 40px">
-<div class="col-lg-3 col-md-3 col-sm-6 col-xs-12 mycontainer " (click)="gotoQuiz()" align="center" style="margin-left:150px;padding-left:0px" >
-<button class= "btn button" style=" background: url(assets/quizmarks.jpg);color: black;font-size:xx-large;font-weight: bold;">
-<div class="main-wrapper" style="background-color: white; border-radius: 3px;opacity: 0.8">  Quiz Marks</div></button>
-</div>
-</div>
-</div>
-<!--div style="margin-top:150px;">
-<ul>
-  <li *ngFor="let week of weeks">{{week.name}}
-      <div style="border-radius:10px; width:100%; height:100px; background-color:white; margin-top:20px;">
-          <a routerLink="../../quiz" style="padding:10px;">Add a quiz</a><br>
-          <a routerLink="../../studymaterial" routerLinkActive="active"  style="padding:10px;">Add study material</a>
+      <div class="col-lg-3 col-md-3 col-sm-6 col-xs-12 mycontainer" align="center" (click)="gotoProgress()" style="margin-left:150px;padding-left:0px">
+        <button class= "btn button" style=" background: url(assets/finalgrade.jpg);color: black;font-size:xx-large;font-weight: bold;">
+          <div class="main-wrapper" style="background-color: white; border-radius: 3px;opacity: 0.8">  Final Grades</div></button>
+        </div>
+        <div class="col-lg-3 col-md-3 col-sm-6 col-xs-12 mycontainer" align="center" (click)="gotoAdmittance()" style="padding-left: 300px">
+          <button class= "btn button" style=" background: url(assets/attendance.jpg);color: black;font-size:xx-large;font-weight: bold;">
+            <div class="main-wrapper" style="background-color: white; border-radius: 3px;opacity: 0.8"> Attendance</div></button>
+          </div>
+        </div>
       </div>
-  </li>
-</ul>
-</div-->
+      <div class="row">
+        <div style="padding-top: 40px">
+          <div class="col-lg-3 col-md-3 col-sm-6 col-xs-12 mycontainer " (click)="gotoaddquiz()" align="center" style="margin-left:150px;padding-left:0px" >
+            <button class= "btn button" style=" background: url(assets/addquizes.jpg);color: black;font-size:xx-large;font-weight: bold;">
+              <div class="main-wrapper" style="background-color: white; border-radius: 3px;opacity: 0.8">  Add Quizzes</div></button>
+            </div>
+            <div class="col-lg-3 col-md-3 col-sm-6 col-xs-12 mycontainer" align="center" (click) = "gotomaterial()" style="padding-left: 300px" >
+              <button class= "btn button" style=" background: url(assets/studymaterial.jpg);color: black;font-size:xx-large;font-weight: bold;">
+                <div class="main-wrapper" style="background-color: white; border-radius: 3px;opacity: 0.8">Add Study Material</div></button>
+              </div>
 
-<!--div style="margin-top:20px;border-radius:10px;height:50px; text-align:center; font-size: 20px; background:linear-gradient(#6680FF,#99BFFF,#A3C9FF);">
-  <a style="color:white; text-align:center" routerLink="../../quiz/displaymark">Display Quiz marks</a>
-</div-->
-<button class="btn" (click)="refresh()">Refresh</button>
-<div  style="margin-top:30px; margin-bottom:30px; margin-left:50px">
-  <h4>Added Study Materials</h4>
-  <ul>
-    <li style="padding:10px;"  *ngFor= "let file of files " ><a href="{{file.url}}">{{file.name}}</a> <button class="btn" style="margin-left:  10px ;" (click)="delete(file.name)">Delete</button></li>
-  </ul>
-</div>
 
-<div  style="margin-top:30px; margin-bottom:30px; margin-left:50px">
-  <h4>Quizes</h4>
-  <ul>
-    <li style="padding:10px;"  *ngFor= "let quiz of quizes " ><a (click)="gotodisplayquiz(quiz.name)" >{{quiz.name}}</a></li>
-  </ul>
-</div>
+            </div>
+          </div>
+          <div class="row">
+            <div style="padding-top: 40px">
+              <div class="col-lg-3 col-md-3 col-sm-6 col-xs-12 mycontainer " (click)="gotoQuiz()" align="center" style="margin-left:150px;padding-left:0px" >
+                <button class= "btn button" style=" background: url(assets/quizmarks.jpg);color: black;font-size:xx-large;font-weight: bold;">
+                  <div class="main-wrapper" style="background-color: white; border-radius: 3px;opacity: 0.8">  Quiz Marks</div></button>
+                </div>
+              </div>
+            </div>
+            <!--div style="margin-top:150px;">
+            <ul>
+            <li *ngFor="let week of weeks">{{week.name}}
+            <div style="border-radius:10px; width:100%; height:100px; background-color:white; margin-top:20px;">
+            <a routerLink="../../quiz" style="padding:10px;">Add a quiz</a><br>
+            <a routerLink="../../studymaterial" routerLinkActive="active"  style="padding:10px;">Add study material</a>
+          </div>
+        </li>
+      </ul>
+    </div-->
+
+    <!--div style="margin-top:20px;border-radius:10px;height:50px; text-align:center; font-size: 20px; background:linear-gradient(#6680FF,#99BFFF,#A3C9FF);">
+    <a style="color:white; text-align:center" routerLink="../../quiz/displaymark">Display Quiz marks</a>
+  </div-->
+  <button class="btn btn-primary" style="margin-left:87.5%"(click)="refresh()">Refresh</button>
+  <div  style="margin-top:30px; margin-bottom:30px; margin-left:50px;">
+    <h4>Added Study Materials</h4>
+    <ul>
+      <li style="padding:10px ; border-radius: 10px"  *ngFor= "let file of files " ><a href="{{file.url}}">{{file.name}}</a> <button class="btn btn-primary" style=" margin-left:90%;" (click)="delete(file.name)">Delete</button></li>
+    </ul>
+  </div>
+
+  <div  style="margin-top:30px; margin-bottom:30px; margin-left:50px;">
+    <h4>Quizzes</h4>
+    <ul>
+      <li style="padding:10px;border-radius: 10px"  *ngFor= "let quiz of quizes " ><a (click)="gotodisplayquiz(quiz.name)" >{{quiz.name}}</a></li>
+    </ul>
+  </div>
