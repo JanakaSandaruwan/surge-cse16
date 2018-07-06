@@ -14,8 +14,10 @@
 				<p>Password </p><input type="password" placeholder="Password" [(ngModel)]="pass" name="passw" (keyup.enter)="Auth()"/><br /><br>
 				<input type="checkbox" name="vehicle" value="Bike" >Remember username<br>
 				<input type="submit" class="button" (click)="Auth()" value="Login" style="border-radius: 10px;background-color: #3498DB;font-size: 30px;" />
-				<p id="wronguname" style="display:none">
-					Wrong Username or Password
+				<br>
+
+				<p id="wronguname" class="blink_me" style="display:none; color: red">
+					Invalid Username or Password
 				</p>
 			</form>
 		</div>
