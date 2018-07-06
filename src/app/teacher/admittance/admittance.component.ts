@@ -28,7 +28,7 @@ export class AdmittanceComponent implements OnInit {
 
   constructor(private gradeservice:LoadgradesService,private router:Router,private route: ActivatedRoute) {
     this.columnDefs = [
-          {headerName: "ID", field: "ID", width: 350},
+          {headerName: "ID", field: "id", width: 350},
           {headerName: "Total Precentage", field: "attendance", width: 250,editable:true},
           //{headerName: "Addmitance", field: "present", width: 350,editable:true},
 
@@ -80,7 +80,7 @@ export class AdmittanceComponent implements OnInit {
   valuechange($event){
     this.newvalue=this.gridApi.getSelectedRows();
     console.log(this.newvalue);
-    firebase.database().ref('classes/'+this.subjectname+'/students/'+this.newvalue[0]["ID"]).update({
+    firebase.database().ref('classes/'+this.subjectname+'/students/'+this.newvalue[0]["id"]).update({
       attendance:Number(this.newvalue[0]["attendance"])
     //  grademark:this.getGrade(Number(this.newvalue[0]["grade"]))
     });
