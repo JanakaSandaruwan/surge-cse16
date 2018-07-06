@@ -48,9 +48,21 @@
 
 </main-->
 
-<h2>Admittance of students</h2>
-<button class="btn" (click)="refresh()">Refresh</button>
-<ag-grid-angular style="width:600px; height: 131px;  margin-top:30px; margin: auto" class="ag-theme-bootstrap"
+<h2>Attendance Of Students</h2>
+
+<hr style="color: #E5E8E8;width: 1500px">
+
+<div style="text-align:center; background-image: url(assets/attendancecover.jpg); width: 1100px; height:250px; margin-left:12%; border-radius: 10px">
+</div>
+
+<div class="main-wrapper" style="text-align:center; font-size: 350%;background-color: white; border: solid;border-radius: 10px;opacity: 0.9; width:600px;height: 80px; margin-left: 450px; margin-top:-180px">
+<b>Attendance of Students</b>
+</div>
+
+<br><br><br>
+
+<button class=" btn btn-primary" style="margin-left:80%;margin-top:70px;"(click)="refresh()">Refresh</button>
+<ag-grid-angular style="width:1000px; height: 131px; margin-top:50px; margin-left:15%; border-radius:10px;" class="ag-theme-bootstrap item"
                  [rowData]="rowData"
                  [columnDefs]="columnDefs"
                  enableSorting
