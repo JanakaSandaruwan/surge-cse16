@@ -17,7 +17,8 @@
   </div>
 </div>
 
+
 <ul style="list-style-type:none; display:none" class="list-group dropdown-menu1" id="list1">
-  <li *ngFor=" let subject of finalList" class="list-group-item ">{{subject.code}} {{subject.name}}<button (click)="enrol(subject)">enrol</button>
+  <li *ngFor=" let subject of finalList" class="list-group-item ">{{subject.code}} {{subject.name}}<button (click)="enrol($event.target, 'Unenrol', subject)">Enrol</button>
   </li>
 </ul>

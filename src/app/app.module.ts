@@ -62,7 +62,6 @@ import { CreateComponent } from './teacher/quiz/create/create.component';
 import { McqComponent } from './teacher/quiz/create/mcq/mcq.component';
 import { Question } from './models/question';
 import { Quiz } from './models/quiz';
-import { QuizviewComponent } from './student/quizview/quizview.component';
 import { CookieService } from 'angular2-cookie/services/cookies.service';
 import { UpdateuserComponent } from './updateuser/updateuser.component';
 import { Upload } from './models/upload';
@@ -115,7 +114,6 @@ import { McqsComponent } from './student/viewquiz/mcqs/mcqs.component';
     ProgresscheckComponent,
     CreateComponent,
     McqComponent,
-    QuizviewComponent,
     UpdateuserComponent,
     MessageComponent,
     HrComponent,
@@ -212,7 +210,6 @@ import { McqsComponent } from './student/viewquiz/mcqs/mcqs.component';
     { path: 'leave', component: MedicleLeaveComponent },
     { path: 'scholarship', component: ScholarshipComponent },
     { path: 'complain', component: ComplainComponent },
-    { path: 'quizview', component:QuizviewComponent},
     {path: 'subject',component:Level1Component},
     {path:'viewquiz',component:ViewquizComponent},
     {path:'viewquiz/mcqs',component:McqsComponent}

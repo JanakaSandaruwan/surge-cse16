@@ -43,8 +43,20 @@ gotol4(){
   });
 
 }
-enrol(subject){
-  this._sservice.enrol(subject.code,this.storage.retrieve("uname"),subject.name,subject.level);
-}
+/*enrol(element, text, subject){
+  element.textContent = text;
+  element.disabled = true;
+  this._sservice.enrol(subject.code+subject.batch,this.storage.retrieve("uname"),subject.name,subject.level);
+}*/
+enrol(element, text, subject){
+  if(element.textContent == "Enrol"){
+    element.textContent = text;
+    this._sservice.enrol(subject.code+subject.batch,this.storage.retrieve("uname"),subject.name,subject.level);
+  }else{
+    element.textContent = "Enrol"
+    console.log("else");
+    this._sservice.unenrol(subject.code+subject.batch,this.storage.retrieve("uname"),subject.name,subject.level);
+  }
 
+}
 }

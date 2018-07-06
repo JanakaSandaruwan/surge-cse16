@@ -10,8 +10,8 @@
           </h4>
         </div>
         <div id="collapse1" class="container panel-collapse collapse">
-          <ul style="list-style-type:none; display:none" class="list-group dropdown-menu1" id="listM">
-            <li *ngFor=" let subject of ModuleList" class="list-group-item " style="width:500px"> <a (click)="view(subject.module.moduleName)">{{subject.module.moduleName}}</a>
+          <ul style="list-style-type:none;" class="list-group dropdown-menu1" id="listM">
+            <li *ngFor=" let subject of ModuleListl1" class="list-group-item " style="width:500px"> <a (click)="view(subject.module.moduleName)">{{subject.moduleName}}</a>
             </li>
           </ul>
         </div>
@@ -25,7 +25,7 @@
         </div>
         <div id="collapse2" class="container panel-collapse collapse">
           <ul style="list-style-type:none;" class="list-group dropdown-menu2" id="listM">
-            <li *ngFor=" let subject of ModuleList" class="list-group-item " style="width:500px"> <a (click)="view(subject.module.moduleName)">{{subject.module.moduleName}}</a>
+            <li *ngFor=" let subject of ModuleListl2" class="list-group-item " style="width:500px"> <a (click)="view(subject)">{{subject.moduleName}}</a>
             </li>
           </ul>
 
@@ -38,8 +38,8 @@
           </h4>
         </div>
         <div id="collapse3" class="container panel-collapse collapse">
-          <ul style="list-style-type:none; display:none" class="list-group dropdown-menu3" id="listM">
-            <li *ngFor=" let subject of ModuleList" class="list-group-item " style="width:500px"> <a (click)="view(subject.module.moduleName)">{{subject.module.moduleName}}</a>
+          <ul style="list-style-type:none;" class="list-group dropdown-menu3" id="listM">
+            <li *ngFor=" let subject of ModuleListl3" class="list-group-item " style="width:500px"> <a (click)="view(subject.module.module)">{{subject.moduleName}}</a>
             </li>
           </ul>
 

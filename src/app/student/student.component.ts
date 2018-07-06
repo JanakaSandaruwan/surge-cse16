@@ -104,10 +104,6 @@ export class StudentComponent implements OnInit {
     this.router.navigate(['student/enrolment',{details: this.usercode}]);
 
   }
-  gotoquiz(){
-    this.router.navigate(['student/quizview',{details: this.usercode}]);
-
-  }
   gotoprogress(){
     this.router.navigate(['student/viewprogress',{details: this.usercode}]);
 
