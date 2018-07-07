@@ -43,7 +43,7 @@ showl3(){
 view(subject){
   console.log("dimuthu");
   console.log(subject);
-  this.router.navigate(['./student/subject',{subjectname: btoa(subject.module.module),details:btoa(this.storage.retrieve("uname"))}]);
+  this.router.navigate(['./student/subject',{subjectname: btoa(subject.module),details:btoa(this.storage.retrieve("uname"))}]);
 }
 
 
