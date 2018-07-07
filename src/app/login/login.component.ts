@@ -34,7 +34,7 @@ export class LoginComponent implements OnInit {
   Auth(): void {
     this.lservice.login(this.uname,this.pass).subscribe(data => {
       this.usrdata = data;
-      if (this.usrdata == null){
+      if (this.usrdata == null ){                       // check when user is null. Password null is ok
         console.log("invalid username");
         $('#wronguname').css('display', 'block');
       }else if (this.usrdata.Password != this.pass){
