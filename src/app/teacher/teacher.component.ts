@@ -181,5 +181,9 @@ export class TeacherComponent implements OnInit {
     this.router.navigate(['teacher/modules',{details: (this.usercode)}]);
   }
 
+  gotonotices(){
+    this.router.navigate(['teacher/notices',{details: (this.usercode)}]);
+  }
+
 
 }

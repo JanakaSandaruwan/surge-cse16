@@ -1,24 +1,26 @@
 <div class="row">
-  <div class="col-lg-3 col-md-3 col-sm-6 col-xs-12 mycontainer" align="center" (click)="gotol1()">
-    <button class= "btn bigbutton" >
-      enrolment level-1<br /><span class="glyphicon glyphicon-book"></span></button>
+  <div class="col-lg-3 col-md-3 col-sm-6 col-xs-12 mycontainer" align="center">
+    <button [disabled] = "!validyear('Year 1')" class= "btn bigbutton" (click)="gotol1()" >
+      enrolment level-1<br /><span class="glyphicon glyphicon-book"></span>
+    </button>
   </div>
-  <div class="col-lg-3 col-md-3 col-sm-6 col-xs-12 mycontainer" align="center" (click)="gotol2()">
-    <button class= "btn bigbutton" >
+  <div class="col-lg-3 col-md-3 col-sm-6 col-xs-12 mycontainer" align="center" >
+    <button [disabled]="!validyear('Year 2')" class= "btn bigbutton" (click)="gotol2()">
       enrolment level-2<br /><span class="glyphicon glyphicon-book"></span></button>
   </div>
-  <div class="col-lg-3 col-md-3 col-sm-6 col-xs-12 mycontainer "  align="center" (click)="gotol3()" >
-    <button class= "btn bigbutton" >
+  <div class="col-lg-3 col-md-3 col-sm-6 col-xs-12 mycontainer "  align="center" >
+    <button [disabled]="!validyear('Year 3')" class= "btn bigbutton" (click)="gotol3()"  >
       enrolment level-3<br /><span class="glyphicon glyphicon-book"></span></button>
   </div>
-  <div class="col-lg-3 col-md-3 col-sm-6 col-xs-12 mycontainer" align="center" (click)="gotol4()" >
-    <button class= "btn bigbutton" >
+  <div class="col-lg-3 col-md-3 col-sm-6 col-xs-12 mycontainer" align="center"  >
+    <button [disabled]="!validyear('Year 4')" class= "btn bigbutton" (click)="gotol4()" >
       enrolment level-4<br /><span class="glyphicon glyphicon-book"></span></button>
+    </div>
   </div>
-</div>
+
 
 
 <ul style="list-style-type:none; display:none" class="list-group dropdown-menu1" id="list1">
-  <li *ngFor=" let subject of finalList" class="list-group-item ">{{subject.code}} {{subject.name}}<button (click)="enrol($event.target, 'Unenrol', subject)">Enrol</button>
+  <li *ngFor=" let subject of finalList" class="list-group-item ">{{subject.code}} {{subject.name}}<button [disabled]="isEnrol()" (click)="enrol($event.target, 'Unenrol', subject)">Enrol</button>
   </li>
 </ul>

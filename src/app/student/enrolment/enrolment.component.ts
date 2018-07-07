@@ -2,15 +2,23 @@ import { Component, OnInit } from '@angular/core';
 import { Subject } from '../../models/subject';
 import {StudentservicesService} from '../../services/studentservices.service';
 import {LocalStorageService, SessionStorageService} from 'ngx-webstorage';
+import { Observable } from 'rxjs/Observable';
 @Component({
   selector: 'app-enrolment',
   templateUrl: './enrolment.component.html',
   styleUrls: ['./enrolment.component.css']
 })
 export class EnrolmentComponent implements OnInit {
-  Level : string;
+  Level : string =this._sservice.getLevel(this.storage.retrieve("uname")) ;
+  isenrol: boolean=this._sservice.checkEnrol(this.storage.retrieve("uname"),this.Level);
+
   finalList : Subject[];
-  constructor(private storage:LocalStorageService, private _sservice : StudentservicesService) { }
+  constructor(private storage:LocalStorageService, private _sservice : StudentservicesService) {
+
+
+console.log(this.isenrol);
+
+  }
 
   ngOnInit() {
 
@@ -54,9 +62,19 @@ enrol(element, text, subject){
     this._sservice.enrol(subject.code+subject.batch,this.storage.retrieve("uname"),subject.name,subject.level);
   }else{
     element.textContent = "Enrol"
-    console.log("else");
     this._sservice.unenrol(subject.code+subject.batch,this.storage.retrieve("uname"),subject.name,subject.level);
   }
+  }
 
+
+validyear(year){
+  if(year == this.Level){
+      return true;
+    }else{
+      return false;
+    }
+}
+isEnrol(){
+  return this.isenrol;
 }
 }

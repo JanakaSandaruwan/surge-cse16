@@ -91,6 +91,7 @@ import { ViewquizComponent } from './student/viewquiz/viewquiz.component';
 import { McqsComponent } from './student/viewquiz/mcqs/mcqs.component';
 import { LoadgradesService } from './services/loadgrades.service';
 import { InvalidComponent } from './invalid/invalid.component';
+import { NoticesComponent } from './teacher/notices/notices.component';
 //import { CalendarModule } from 'angular-calendar';
 
 @NgModule({
@@ -146,7 +147,8 @@ import { InvalidComponent } from './invalid/invalid.component';
     WritenoticeComponent,
     ViewquizComponent,
     McqsComponent,
-    InvalidComponent
+    InvalidComponent,
+    NoticesComponent
   ],
   entryComponents: [
     McqComponent,
@@ -199,7 +201,8 @@ import { InvalidComponent } from './invalid/invalid.component';
       {path:'create',component:CreateComponent},
       {path:'create/mcq',component:McqComponent},
       { path: 'quizes', component:CreateComponent},
-      {path:'updatedetails',component:UpdateuserComponent}
+      {path:'updatedetails',component:UpdateuserComponent},
+      {path:'notices',component:NoticesComponent}
     ]
 
   },

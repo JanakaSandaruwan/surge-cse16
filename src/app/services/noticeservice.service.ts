@@ -47,12 +47,24 @@ export class NoticeserviceService {
     return firebase.database().ref('/notices');
   }
 
+  getTeachernotices(){
+    return firebase.database().ref('/studentnotices');
+  }
+
   deletenotice(key){
     firebase.database().ref('/notices/'+key+'/files').on("child_added", snapshot => {
       var x = snapshot.val().filename ;
       firebase.storage().ref('/notices/'+key+'/'+x).delete();
     })
     firebase.database().ref('/notices/' + key).remove();
+  }
+
+  deleteTeachernotices(key){
+    firebase.database().ref('/studentnotices/'+key+'/files').on("child_added", snapshot => {
+      var x = snapshot.val().filename ;
+      firebase.storage().ref('/studentnotices/'+key+'/'+x).delete();
+    })
+    firebase.database().ref('/studentnotices/' + key).remove();
   }
 
 }

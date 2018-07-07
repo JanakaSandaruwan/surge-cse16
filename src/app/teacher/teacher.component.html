@@ -104,9 +104,11 @@
                   <a (click)="togglenav()">Close <i class="fa fa-bars menu-icon fa-2x large-icon" aria-hidden="true"></i></a>
                 </div>
             </li>
+
             <li (click)="redirecthome()">
                 <a >Home <i class="fa fa-home menu-icon fa-2x  large-icon" aria-hidden="true"></i></a>
             </li>
+
             <li (click)="redirectLeave()">
                 <a >Leave Application<i class="fas fa-file-alt menu-icon large-icon fa-2x" aria-hidden="true"></i></a>
             </li>
@@ -119,20 +121,23 @@
                 <a >Change Profile<i class="fas fa-cog menu-icon fa-2x small-icon" aria-hidden="true"></i></a>
             </li>
 
-            <li id="thememenu">
-                <a ng-mouseover="movedownl()" ng-mouseleave="hoverOut()">Themes<i class="fas fa-wrench menu-icon fa-2x large-icon" aria-hidden="true"></i></a>
+            <li (click)="gotonotices()">
+                  <a >View notices<i class="fa fa-sticky-note menu-icon fa-2x small-icon" aria-hidden="true"></i></a>
+            </li>
+            <!--li id="thememenu">
+                <a ng-mouseover="movedownl()" ng-mouseleave="hoverOut()">Themes<i class="fas fa-wrench menu-icon fa-2x large-icon" aria-hidden="true"></i></a-->
 
                 <!--ul class="nav navbar-nav pull-right" style="display:table; margin:0 auto; margin-top:1rem;">
                     <li class="dropdown"-->
                       <!--a href="#" (click)="movedownl()" id="nbAcc" style="float:right;background-color:#424242" class="content" data-toggle="dropdown"><i class="icon-user"></i>+SKINS<i class="icon-sort-down"></i></a-->
-                      <ul class="dropdown-menu1 pull-right content sidebar-nav " style="background-color:#424242 ; display:none " id="menu1">
+                      <!--ul class="dropdown-menu1 pull-right content sidebar-nav " style="background-color:#424242 ; display:none " id="menu1">
                         <li ><a (click)="dracular()">Dracular</a></li>
                         <li ><a (click)="blue()">Surge blue</a></li>
-                      </ul>
+                      </ul-->
                     <!--/li>
                </ul-->
 
-            </li>
+            <!--/li-->
             <li (click)="logout()">
                     <a> Log out<i class="fa fa-sign-out-alt menu-icon fa-2x small-icon" aria-hidden="true"></i>
                         </a>

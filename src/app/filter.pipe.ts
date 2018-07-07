@@ -10,7 +10,7 @@ export class FilterPipe implements PipeTransform {
 
      return modules.filter(function(module){
 
-     	return module.toLowerCase().includes(term.toLowerCase());
+     	return (module.code + module.name).toLowerCase().includes(term.toLowerCase());
      	})
   }
 

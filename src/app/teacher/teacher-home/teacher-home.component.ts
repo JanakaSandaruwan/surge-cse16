@@ -30,6 +30,12 @@ export class TeacherHomeComponent implements OnInit {
     console.log("navigate to modules");
   }
 
+  changedata(){
+    this.router.navigate(['teacher/updatedetails', {details : btoa(this.usercode)}]);
+  }
 
+  gotonotices(){
+    this.router.navigate(['teacher/notices',{details: btoa(this.usercode)}]);
+  }
 
 }
