@@ -52,14 +52,35 @@ export class ProgresscheckComponent implements OnInit {
   }
 
   valuechange($event){
-    this.newvalue=this.gridApi.getSelectedRows();
+   this.newvalue=this.gridApi.getSelectedRows();
    console.log(this.newvalue[0]["id"]);
-   firebase.database().ref('classes/'+this.subjectname+'/students/'+this.newvalue[0]["id"]).update({
-     grade:Number(this.newvalue[0]["grade"]),
-     grademark:this.getGrade(Number(this.newvalue[0]["grade"]))
-   });
+   var num=Number(this.newvalue[0]["grade"]);
+   if(isNaN(num)){
+     firebase.database().ref('classes/'+this.subjectname+'/students/'+this.newvalue[0]["id"]).update({
+       grade:"",
+       grademark:""
+     });
 
-    this.refresh();
+      this.refresh();
+   }else{
+     if(num>100 || num < 0){
+       firebase.database().ref('classes/'+this.subjectname+'/students/'+this.newvalue[0]["id"]).update({
+         grade:"",
+         grademark:""
+       });
+
+        this.refresh();
+     }else{
+       firebase.database().ref('classes/'+this.subjectname+'/students/'+this.newvalue[0]["id"]).update({
+         grade:Number(this.newvalue[0]["grade"]),
+         grademark:this.getGrade(Number(this.newvalue[0]["grade"]))
+       });
+
+        this.refresh();
+     }
+   }
+
+
 
   }
 
