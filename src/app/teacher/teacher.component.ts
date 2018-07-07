@@ -1,10 +1,12 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, NavigationStart, NavigationEnd } from '@angular/router';
+import { Location, PopStateEvent } from "@angular/common";
 import { LoginServiceService } from '../services/login-service.service';
 import {CookieService} from 'angular2-cookie/core';
 import {LocalStorageService, SessionStorageService} from 'ngx-webstorage';
 import { UploadserviceService } from '../services/uploadservice.service';
+
 //import {TeacherHomeComponent} from '../teacher/teacher-home/teacher-home.component';
 @Component({
   selector: 'app-teacher',
@@ -13,7 +15,8 @@ import { UploadserviceService } from '../services/uploadservice.service';
 //  providers:[TeacherHomeComponent]
 })
 export class TeacherComponent implements OnInit {
-
+  private lastPoppedUrl: string;
+    private yScrollStack: number[] = [];
   username: string;
   usercode: string;
   fulldata : object = <object>{} ;
@@ -22,7 +25,7 @@ export class TeacherComponent implements OnInit {
   dropdownstate1: string ="themeup";
 //  username: string;
   profileurl: string;
-  constructor(private uploadService: UploadserviceService,private storage:LocalStorageService, private logincookie : CookieService , private route: ActivatedRoute, private login : LoginServiceService,private router:Router){}//,private home:TeacherHomeComponent) { }
+  constructor(private location: Location, private uploadService: UploadserviceService,private storage:LocalStorageService, private logincookie : CookieService , private route: ActivatedRoute, private login : LoginServiceService,private router:Router){}//,private home:TeacherHomeComponent) { }
 
   movedown(){
       console.log("dad");
@@ -109,6 +112,21 @@ export class TeacherComponent implements OnInit {
   }
 
   ngOnInit() {
+    this.location.subscribe((ev:PopStateEvent) => {
+            this.lastPoppedUrl = ev.url;
+        });
+        this.router.events.subscribe((ev:any) => {
+            if (ev instanceof NavigationStart) {
+                if (ev.url != this.lastPoppedUrl)
+                    this.yScrollStack.push(window.scrollY);
+            } else if (ev instanceof NavigationEnd) {
+                if (ev.url == this.lastPoppedUrl) {
+                    this.lastPoppedUrl = undefined;
+                    window.scrollTo(0, this.yScrollStack.pop());
+                } else
+                    window.scrollTo(0, 0);
+            }
+        });
     this.username = this.storage.retrieve("uname");
     if (!this.storage.retrieve("uname")){
       this.router.navigate(['']);

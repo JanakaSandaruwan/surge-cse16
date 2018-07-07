@@ -32,18 +32,88 @@ export class LoadgradesService {
 
   listgradesof(student,year):Observable<Grade[]>{
     var SubofYear : any[] = [];
-    var grade : Grade[] =[]
+    var grade : Grade[] =[];
     this.sservice.levelModule(student,year).subscribe(data => {
       SubofYear = data;
       var i = 0 ;
       for (;i<SubofYear.length;i++){
-        console.log('classes/'+SubofYear[i].moduleNo+'/students/'+student);
-        firebase.database().ref('classes/'+SubofYear[i].moduleNo+'/students/'+student).on('value', function(data){
+        console.log('classes/'+SubofYear[i].module+'/students/'+student);
+        firebase.database().ref('classes/'+SubofYear[i].module+'/students/'+student).on('value', function(data){
           grade[i]= <Grade>{};
           grade[i].Subjectname = SubofYear[i];
           grade[i].ID = student;
           grade[i].attendance = data.val().attendance;
-          grade[i].grade = data.val();
+          grade[i].grade = data.val().grademark;
+        });
+      }
+    });
+    return Observable.of(grade);
+  }
+
+  listgradesofall(student):Observable<Grade[]>{
+    var SubofYear : any[] = [];
+    var grade : Grade[] =[]
+    var k =0;
+    this.sservice.levelModule(student,"Year 1").subscribe(data => {
+      SubofYear = data;
+      var i = 0 ;
+      for (;i<SubofYear.length;i++){
+        console.log('classes/'+SubofYear[i].module+'/students/'+student);
+        firebase.database().ref('classes/'+SubofYear[i].module+'/students/'+student).on('value', function(data){
+          grade[k]= <Grade>{};
+          grade[k].Subjectname = SubofYear[i];
+          grade[k].ID = student;
+          grade[k].attendance = data.val().attendance;
+          grade[k].grade = data.val().grademark;
+          k++;
+        });
+      }
+    });
+    SubofYear  = [];
+    this.sservice.levelModule(student,"Year 2").subscribe(data => {
+      SubofYear = data;
+      var i = 0 ;
+      for (;i<SubofYear.length;i++){
+        console.log('classes/'+SubofYear[i].module+'/students/'+student);
+        firebase.database().ref('classes/'+SubofYear[i].module+'/students/'+student).on('value', function(data){
+          grade[k]= <Grade>{};
+          grade[k].Subjectname = SubofYear[i];
+          grade[k].ID = student;
+          grade[k].attendance = data.val().attendance;
+          grade[k].grade = data.val().grademark;
+          k++;
+        });
+      }
+    });
+    SubofYear  = [];
+    this.sservice.levelModule(student,"Year 3").subscribe(data => {
+      SubofYear = data;
+      var i = 0 ;
+      for (;i<SubofYear.length;i++){
+        console.log('classes/'+SubofYear[i].module+'/students/'+student);
+        firebase.database().ref('classes/'+SubofYear[i].module+'/students/'+student).on('value', function(data){
+          grade[k]= <Grade>{};
+          grade[k].Subjectname = SubofYear[i];
+          grade[k].ID = student;
+          grade[k].attendance = data.val().attendance;
+          grade[k].grade = data.val().grademark;
+          k++;
+        });
+      }
+    });
+    SubofYear  = [];
+    this.sservice.levelModule(student, "Year 4").subscribe(data => {
+      SubofYear = data;
+      var i = 0 ;
+      for (;i<SubofYear.length;i++){
+        console.log('classes/'+SubofYear[i].module+'/students/'+student);
+        firebase.database().ref('classes/'+SubofYear[i].module+'/students/'+student).on('value', function(data){
+          grade[k]= <Grade>{};
+          grade[k].Subjectname = SubofYear[i];
+          grade[k].ID = student;
+          grade[k].attendance = data.val().attendance;
+          grade[k].grade = data.val().grademark;
+          k++;
         });
       }
     });

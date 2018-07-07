@@ -5,14 +5,14 @@
       <label class="control-label control-label-left col-sm-2 col-xs-12 " for="field3" ><b>Send to </b></label>
       <div class="col-lg-10 col-md-10 col-sm-10 col-xs-12">
 
-        <select id="field3" [(ngModel)]="Sendto" class="form-control" data-role="select" required="required" selected="selected" data-parsley-errors-container="#errId2">
+        <select id="field3" [(ngModel)]="Sendto" class="form-control" data-role="select" required="required"  data-parsley-errors-container="#errId2" (input)="console()">
 
 
 
 
 
-          <option [ngValue]="Students" selected="selected">Students</option>
-          <option [ngValue]="Teacher">Teachers</option></select><span id="errId2" class="error"></span></div>
+          <option value="Students" >Students</option>
+          <option value="Teacher">Teachers</option></select><span id="errId2" class="error"></span></div>
           <label class="control-label col-lg-2 col-md-2 col-sm-2 col-xs-12" for="name" style="padding-top:15px"><b>Subject</b></label>
           <div class="col-lg-10 col-md-10 col-sm-10 col-xs-12" style="padding-top:15px">
             <input id="subject" name="subject" class="form-control input-md marginbot" required [(ngModel)]="noticesubject" #subject="ngModel" (input)="doublechecksub()">
@@ -20,7 +20,7 @@
               <div *ngIf="(subcheck | async)">No Subject</div> </div>
             </div>
 
-            
+
             <label class="control-label col-lg-2 col-md-2 col-sm-2 col-xs-12" for="des"><b>Description</b></label>
             <div class="col-lg-10 col-md-10 col-sm-10 col-xs-12">
               <textarea id="des" name="des" class="form-control marginbot" required [(ngModel)]="noticedes" #des="ngModel" style='height:200px;' (input)="doublechecknotice()"></textarea>

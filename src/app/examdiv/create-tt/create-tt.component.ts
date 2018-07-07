@@ -2,8 +2,10 @@ import { Component, OnInit } from '@angular/core';
 import { GridOptions } from "ag-grid";
 import { Observable } from 'rxjs/Observable';
 import { LoginServiceService } from '../../services/login-service.service';
-
-
+import {Router} from '@angular/router';
+import {LocalStorageService, SessionStorageService} from 'ngx-webstorage';
+import { LoadgradesService } from '../../services/loadgrades.service';
+import { Grade } from '../../models/grade';
 @Component({
   selector: 'app-create-tt',
   templateUrl: './create-tt.component.html',
@@ -27,14 +29,10 @@ export class CreateTtComponent implements OnInit {
   calinvalid : Observable<boolean> = Observable.of(false);
   Indextaken :Observable<boolean>;
 
-  results = [
-    {subject: 'Mathematics', grade: "A+"},
-    {subject: 'Electrical Componenets', grade: "B+" }
-
-  ]
-  constructor(private lservice : LoginServiceService) {
+  results : Grade[] = [];
+  constructor(private storage:LocalStorageService, private router:Router, private lservice : LoginServiceService, private lgservice : LoadgradesService) {
     this.columnDefs = [
-          {headerName: "Subject", field:"subject" , width: 350},
+          {headerName: "Subject", field:"Subjectname.module" , width: 350},
           {headerName: "Grade", field: "grade", width: 100},
 
 
@@ -46,6 +44,10 @@ export class CreateTtComponent implements OnInit {
         this.gridColumnApi = params.columnApi;
         this.gridApi.setRowData(this.results);
 
+      }
+
+      cancel(){
+        this.router.navigate(['examdiv/home', {details : btoa(this.storage.retrieve("uname"))}],{ skipLocationChange: true });
       }
       onBtnExport(): void {
         console.log("k");
@@ -109,6 +111,13 @@ export class CreateTtComponent implements OnInit {
   ngOnInit() {
   }
 
+  getresults(){
+    this.lgservice.listgradesof(this.index,"Year "+this.year).subscribe(data =>{
+      this.results = data;
+      console.log(this.results);
+      $("#openmodal").click();
+    });
+  }
   validYear(){
     if ( this.year == "1" || this.year=="2" || this.year=="3"|| this.year=="4" || this.year==""){
       this.validyear=Observable.of(false);

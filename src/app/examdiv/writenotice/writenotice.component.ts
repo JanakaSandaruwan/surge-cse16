@@ -17,10 +17,13 @@ export class WritenoticeComponent implements OnInit {
   modelcheck : Observable<boolean> = Observable.of(false);
   modelearly : Observable<boolean> = Observable.of(false);
   model : any;
-  Sendto : string;
+  Sendto : string="";
 
   constructor(private _post : NoticeserviceService) { }
 
+  console(){
+    console.log(this.Sendto)
+  }
   ngOnInit() {
   }
 

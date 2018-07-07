@@ -20,6 +20,7 @@ export class NoticeserviceService {
   }
 
   postspecificnotice(sub , des , date, files , user){
+    console.log(user);
     if (user == "Teacher"){const pushrequest = firebase.database().ref('teachernotices').push({
       subject : sub,
       description : des,

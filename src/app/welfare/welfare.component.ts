@@ -1,7 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import {LocalStorageService, SessionStorageService} from 'ngx-webstorage';
 import { Router } from '@angular/router';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, NavigationStart, NavigationEnd } from '@angular/router';
+import { Location, PopStateEvent } from "@angular/common";
 import { LoginServiceService } from '../services/login-service.service';
 
 @Component({
@@ -15,7 +16,9 @@ export class WelfareComponent implements OnInit {
   username: string;
   usercode: string;
   fulldata : object = <object>{} ;
-  constructor(private storage:LocalStorageService, private route: ActivatedRoute, private login : LoginServiceService,private router:Router) { }
+  private lastPoppedUrl: string;
+  private yScrollStack: number[] = [];
+  constructor(private location: Location,private storage:LocalStorageService, private route: ActivatedRoute, private login : LoginServiceService,private router:Router) { }
 
   movedown(){
       console.log("dad");
@@ -67,6 +70,21 @@ export class WelfareComponent implements OnInit {
     }
   }
   ngOnInit() {
+    this.location.subscribe((ev:PopStateEvent) => {
+            this.lastPoppedUrl = ev.url;
+        });
+        this.router.events.subscribe((ev:any) => {
+            if (ev instanceof NavigationStart) {
+                if (ev.url != this.lastPoppedUrl)
+                    this.yScrollStack.push(window.scrollY);
+            } else if (ev instanceof NavigationEnd) {
+                if (ev.url == this.lastPoppedUrl) {
+                    this.lastPoppedUrl = undefined;
+                    window.scrollTo(0, this.yScrollStack.pop());
+                } else
+                    window.scrollTo(0, 0);
+            }
+        });
     this.username = this.storage.retrieve("uname");
     if (!this.storage.retrieve("uname")){
       console.log("x");

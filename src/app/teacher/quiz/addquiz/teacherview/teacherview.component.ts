@@ -24,7 +24,7 @@ export class TeacherviewComponent implements OnInit {
   completed : boolean = true;
   answers : string[];
   corans : string[] = ["","","",""];
-  quizes:any [];
+  quizes:any [] = [];
   /*quiz : Quiz =
   {Questions : [{Text: "Bob has x candybars. He gives you and Paul y candybars each. You give a x-y of your candy bars to Paul at the end you have z,2z and 3z bars respectively whats the value of y?"
   , Option1: "65", Option2: "13", Option3: "43", Option4: "none of the above", type:"mcq"},
@@ -123,22 +123,23 @@ export class TeacherviewComponent implements OnInit {
   }
 
   refresh(){
-    if(this.quiz.length == 0){
-      console.log((this.quizname));
-      console.log((this.subjectname));
-      this.quizes=this.quizSvc.quizeslist(this.subjectname);
-      console.log(this.quizes);
-      var i=0;
-       while(i<this.quizes.length){
-         if (this.quizname == this.quizes[i]["name"]){
-           this.quiz=this.quizes[i]["question"];
-           this.answers=this.quizes[i]["answer"];
-           console.log(this.answers);
-           this.Add();
-           break;
-         }
-         i++;
+    console.log((this.quizname));
+    console.log((this.subjectname));
+    this.quizes=this.quizSvc.quizeslist(this.subjectname);
+    console.log(this.quizes);
+    var i=0;
+     while(i<this.quizes.length){
+       if (this.quizname == this.quizes[i]["name"]){
+         this.quiz=this.quizes[i]["question"];
+         this.answers=this.quizes[i]["answer"];
+         console.log(this.answers);
+
+         break;
        }
+       i++;
+     }
+    if(this.quiz.length == 0){
+      this.Add();
     }
   }
 }

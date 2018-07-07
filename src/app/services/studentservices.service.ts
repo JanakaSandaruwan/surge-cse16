@@ -15,6 +15,7 @@ export class StudentservicesService {
         finallist[x]=data.val();
         x=x+1;
       });
+      console.log(finallist);
       return Observable.of(finallist);
   }
 
@@ -38,9 +39,9 @@ enrol(modulen,studentID,moduleName,level){
   firebase.database().ref('/Users/'+studentID+"/bnumber").on("value", function(data){
     var batchno = data.val();
       console.log(batchno);
-    firebase.database().ref('/batches/'+batchno+'/students/'+studentID+'/subjects/'+level+'/'+module).set({
-      module,
-      moduleName
+    firebase.database().ref('/batches/'+batchno+'/students/'+studentID+'/subjects/'+level+'/'+modulen).set({
+      module : modulen,
+      moduleName : moduleName
     });
   });
 

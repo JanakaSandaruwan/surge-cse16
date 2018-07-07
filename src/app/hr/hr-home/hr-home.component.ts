@@ -20,7 +20,7 @@ export class HrHomeComponent implements OnInit {
   gotoleave(){
     this.router.navigate(['hr/viewleave',{details : this.usercode}]);
   }
-  
+
 
 
 }

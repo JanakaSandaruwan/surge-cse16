@@ -6,6 +6,8 @@ import { LoginServiceService } from '../../services/login-service.service';
 import { GridOptions } from "ag-grid";
 import { Observable } from 'rxjs/Observable';
 import { LoadgradesService } from '../../services/loadgrades.service';
+import { Grade } from '../../models/grade';
+
 @Component({
   selector: 'app-create-student',
   templateUrl: './create-student.component.html',
@@ -37,6 +39,10 @@ export class CreateStudentComponent implements OnInit {
   showname : boolean = true;
   showmail : boolean = true;
   Error : string = "";
+  gridApi2 : any;
+  columnDefs2 : any[];
+  gridColumnApi2 : any;
+  results : Grade[];
 
   setted(){
     this.set = true;
@@ -100,7 +106,7 @@ export class CreateStudentComponent implements OnInit {
   }
 
   constructor(private _batchservice: LoadbatchesService, private _lgrades : LoadgradesService,
-    private _loginservice : LoginServiceService) {
+    private _loginservice : LoginServiceService , private lgservice : LoadgradesService) {
       this.columnDefs = [
             {headerName: "", field:"", checkboxSelection: true, headerCheckboxSelection: true},
             {headerName: "ID", field: "ID", width: 350},
@@ -111,11 +117,25 @@ export class CreateStudentComponent implements OnInit {
             {headerName: "Contact", field: "contact", width: 350},
 
         ];
+        this.columnDefs2 = [
+              {headerName: "Subject", field:"Subjectname.module"},
+              {headerName: "Grade", field: "grade"},
+              {headerName: "Attendance", field: "attendance"}
+
+
+          ];
         this.rowSelection = "multiple";
     }
 
     fit(){
         this.gridApi.sizeColumnsToFit();
+    }
+
+    onGridReady2(params) {
+      this.gridApi2 = params.api;
+      this.gridColumnApi2 = params.columnApi;
+      this.gridApi2.setRowData(this.results);
+
     }
 
     SendtoNextlevel(){
@@ -172,6 +192,11 @@ export class CreateStudentComponent implements OnInit {
 
     onRDC($event){
       this.DCCRows = this.gridApi.getSelectedRows()[0];
+      this.lgservice.listgradesofall(this.DCCRows.ID).subscribe(data => {
+        this.results = data;
+        this.gridApi2.setRowData(this.results);
+        console.log(this.results);
+      });
       console.log(this.DCCRows);
       $('#save').click();
     }
@@ -238,7 +263,7 @@ export class CreateStudentComponent implements OnInit {
 
   }
 
-  
+
 
   changebatch(batchno,batch){
     batch.active = !batch.active;

@@ -90,6 +90,7 @@ import { EnrolmentComponent } from './student/enrolment/enrolment.component';
 import { ViewquizComponent } from './student/viewquiz/viewquiz.component';
 import { McqsComponent } from './student/viewquiz/mcqs/mcqs.component';
 import { LoadgradesService } from './services/loadgrades.service';
+import { InvalidComponent } from './invalid/invalid.component';
 //import { CalendarModule } from 'angular-calendar';
 
 @NgModule({
@@ -144,7 +145,8 @@ import { LoadgradesService } from './services/loadgrades.service';
     EnrolmentComponent,
     WritenoticeComponent,
     ViewquizComponent,
-    McqsComponent
+    McqsComponent,
+    InvalidComponent
   ],
   entryComponents: [
     McqComponent,
@@ -175,8 +177,9 @@ import { LoadgradesService } from './services/loadgrades.service';
         { path: 'createTeacher',component:ViewteacherComponent},
         { path: 'createsubject',component:ViewsubjectsComponent},
         { path: 'createemployee',component:ViewemployeesComponent},
-        { path: 'updatedetails',component:UpdateuserComponent}]
-    //{ path: '**', component: PageNotFoundComponent }
+        { path: 'updatedetails',component:UpdateuserComponent}
+      ]
+
       },
     { path: 'teacher', component:TeacherComponent, children : [
       { path: '', component: TeacherHomeComponent },
@@ -198,12 +201,7 @@ import { LoadgradesService } from './services/loadgrades.service';
       { path: 'quizes', component:CreateComponent},
       {path:'updatedetails',component:UpdateuserComponent}
     ]
-    //{ path: '**', component: PageNotFoundComponent }
-  },
-  { path: 'teacher/:details', component:TeacherComponent, children : [
-    { path: '', component: TeacherHomeComponent },
-    { path: 'progresscheck', component:ProgresscheckComponent}]
-  //{ path: '**', component: PageNotFoundComponent }
+
   },
   { path: 'student', component:StudentComponent, children : [
     { path: 'home', component: HomeComponent },
@@ -244,9 +242,7 @@ import { LoadgradesService } from './services/loadgrades.service';
   {path:'writenotice',component:WritenoticeComponent}]
   //{ path: '**', component: PageNo,FoundComponent }
 },
-{
-  path: 'new' , component: NewviewComponent
-}
+{ path: '**', component: InvalidComponent }
     ]),
     RouterModule
   ],

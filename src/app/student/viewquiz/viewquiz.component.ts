@@ -152,6 +152,11 @@ export class ViewquizComponent implements OnInit {
                   this.quizSvc.checkcomplete(this.storage.retrieve("uname"),this.subjectname,this.quizindex+1).subscribe(data => {
                     this.completed = data;
                   });
+                  if(this.completed == true){
+                    this.quizSvc.checkans(this.storage.retrieve("uname"),this.subjectname,this.quizindex+1).subscribe(data => {
+                      this.answers = data;
+                    });
+                  }
                   this.blocked=this.quizSvc.checktime(this.subjectname,this.quizindex+1)
                   var blockcheck;
                   this.blocked.subscribe(data => {
@@ -168,6 +173,10 @@ export class ViewquizComponent implements OnInit {
 
                   }
 
+                }
+
+                backtomodule(){
+                    this.router.navigate(['./student/subject',{subjectname: btoa(this.subjectname),details:btoa(this.storage.retrieve("uname"))}]);
                 }
 
               submit(){
