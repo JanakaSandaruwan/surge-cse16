@@ -101,6 +101,8 @@ export class ModuleComponent implements OnInit {
       }
     });
 
+    this.refresh();
+
   }
 
 

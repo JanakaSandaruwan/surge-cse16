@@ -28,18 +28,25 @@
 
 <br><br><br>
 
-<div style="padding-left:1000px; padding-top:120px">
+<div style="padding-left:1200px; padding-top:120px">
 <button class="btn btn-primary" (click)="refresh()" >Refresh</button>
 </div>
 
-<div style=" text-align: center;width: 300px;height: 100px;padding-top:30px; margin-bottom:30px; margin-left:550px; border:solid; border-radius: 10px; background-color:#E5E8E8  ">
+<div style=" text-align: center;width: 600px;height: 100px;padding-top:30px; margin-bottom:30px; margin-left:450px; border:solid; border-radius: 10px; background-color:#E5E8E8  ">
   <label style="font-size:15px"><b> Search&nbsp;&nbsp; </b>   </label>
   <input type="text" [(ngModel)]="term" ><img src="assets/Search.png" style="width:40px;height:40px">
 
 </div>
 
-<div  style=" text-align: center;width: 300px;height: auto;padding-top:30px; margin-bottom:30px; margin-left:550px; border:solid; border-radius: 10px; background-color:#E5E8E8 ">
-  <ul>
-    <li style="padding:10px;"  *ngFor= "let module of modules | filter:term" (click)="redirect(module)"><a>{{module}}</a></li>
+<div  style=" text-align: left ;width: 600px;height: auto;padding-top:30px; margin-bottom:30px; margin-left:450px; border:solid; border-radius: 10px; background-color:#E5E8E8 ">
+  <ul style="list-style-type: square;">
+    <li style="padding:10px;"  *ngFor= "let module of modules | filter:term" (click)="redirect(module.code)"><a style="font-size:20px; color:black">{{module.code}}<p></p> {{module.name}}</a><hr style=" color:black"></li>
+
   </ul>
 </div>
+
+<!--div  style="margin-top:30px; margin-bottom:30px; margin-left:250px; width:600px">
+  <ul>
+    <li style="padding:10px;"  *ngFor= "let module of modules | filter:term" (click)="redirect(module)"><a style="font-size:15px; color:black">{{module}}</a></li>
+  </ul>
+</div-->

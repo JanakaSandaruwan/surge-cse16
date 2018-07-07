@@ -25,7 +25,7 @@ export class ProgresscheckComponent implements OnInit {
 
   constructor(private gradeservice :LoadgradesService,private router:Router,private route: ActivatedRoute) {
     this.columnDefs =[
-          {headerName: "ID", field: "ID", width: 350},
+          {headerName: "ID", field: "id", width: 350},
           {headerName: "Final mark", field: "grade", width: 350, editable:true},
           {headerName: "Grade", field: "grademark", width: 350},
 
@@ -52,14 +52,35 @@ export class ProgresscheckComponent implements OnInit {
   }
 
   valuechange($event){
-    this.newvalue=this.gridApi.getSelectedRows();
-   console.log(this.newvalue[0]["ID"]);
-   firebase.database().ref('classes/'+this.subjectname+'/students/'+this.newvalue[0]["ID"]).update({
-     grade:Number(this.newvalue[0]["grade"]),
-     grademark:this.getGrade(Number(this.newvalue[0]["grade"]))
-   });
+   this.newvalue=this.gridApi.getSelectedRows();
+   console.log(this.newvalue[0]["id"]);
+   var num=Number(this.newvalue[0]["grade"]);
+   if(isNaN(num)){
+     firebase.database().ref('classes/'+this.subjectname+'/students/'+this.newvalue[0]["id"]).update({
+       grade:"",
+       grademark:""
+     });
 
-    this.refresh();
+      this.refresh();
+   }else{
+     if(num>100 || num < 0){
+       firebase.database().ref('classes/'+this.subjectname+'/students/'+this.newvalue[0]["id"]).update({
+         grade:"",
+         grademark:""
+       });
+
+        this.refresh();
+     }else{
+       firebase.database().ref('classes/'+this.subjectname+'/students/'+this.newvalue[0]["id"]).update({
+         grade:Number(this.newvalue[0]["grade"]),
+         grademark:this.getGrade(Number(this.newvalue[0]["grade"]))
+       });
+
+        this.refresh();
+     }
+   }
+
+
 
   }
 

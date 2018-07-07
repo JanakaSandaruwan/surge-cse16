@@ -90,6 +90,7 @@ import { EnrolmentComponent } from './student/enrolment/enrolment.component';
 import { ViewquizComponent } from './student/viewquiz/viewquiz.component';
 import { McqsComponent } from './student/viewquiz/mcqs/mcqs.component';
 import { LoadgradesService } from './services/loadgrades.service';
+import { NoticesComponent } from './teacher/notices/notices.component';
 //import { CalendarModule } from 'angular-calendar';
 
 @NgModule({
@@ -144,7 +145,8 @@ import { LoadgradesService } from './services/loadgrades.service';
     EnrolmentComponent,
     WritenoticeComponent,
     ViewquizComponent,
-    McqsComponent
+    McqsComponent,
+    NoticesComponent
   ],
   entryComponents: [
     McqComponent,
@@ -196,7 +198,8 @@ import { LoadgradesService } from './services/loadgrades.service';
       {path:'create',component:CreateComponent},
       {path:'create/mcq',component:McqComponent},
       { path: 'quizes', component:CreateComponent},
-      {path:'updatedetails',component:UpdateuserComponent}
+      {path:'updatedetails',component:UpdateuserComponent},
+      {path:'notices',component:NoticesComponent}
     ]
     //{ path: '**', component: PageNotFoundComponent }
   },

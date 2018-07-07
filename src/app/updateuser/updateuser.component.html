@@ -78,7 +78,7 @@
 
       </div>
       <label class="btn btn-default btn-file" style="margin-left:33px;">
-        Browse <input type="file" style="display: none;" (change)="detectfiles($event)">
+        Browse <input #newprofile type="file" style="display: none;" (change)="detectfiles($event)">
       </label>
     </li>
 
@@ -228,9 +228,9 @@
   <div align="right" style="padding-bottom: 20px;" >
     <button class="btn" [disabled]=" (fnamedis || (name.invalid))   && (fadddis || (Address.invalid))
     && (condis|| (contact.invalid)) && (emadis || (email.invalid))
-    && (caldis || (calinvalid | async)) && (condis2 || (contact2.invalid))" (click)="update()"> Update data</button>
+    && (caldis || (calinvalid | async)) && (condis2 || (contact2.invalid)) && profilepicchanged" (click)="update()"> Update data</button>
     <button class="btn" (click)="getcurrentPassword()"  data-toggle="modal" data-target="#myModal">Change Password</button>
     <button class="btn" (click)="restore()" >Restore</button>
   </div>
 
-  <button style="display:none" (click)="upload()"> Upload </button>
+  <button style="display:none" id="uploadbutton" (click)="upload()"> Upload </button>

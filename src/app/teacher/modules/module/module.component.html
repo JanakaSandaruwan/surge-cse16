@@ -1,7 +1,7 @@
-<div class="main-wrapper" style="text-align:center; font-size: 350%;background-color:#E5E8E8 ; border: solid;border-radius: 10px;opacity: 0.9; width:400px;height: 80px; margin-left: 420px;">
+<div class="main-wrapper" style="text-align:center; font-size: 350%;background-color:#E5E8E8 ; border: solid;border-radius: 10px;opacity: 0.9; width:400px;height: 80px; margin-left: 490px;">
   <b>{{subjectname}}</b></div>
   <div class="row">
-    <div style="padding-top: 100px">
+    <div style="padding-top: 100px; padding-left:60px">
 
       <div class="col-lg-3 col-md-3 col-sm-6 col-xs-12 mycontainer" align="center" (click)="gotoProgress()" style="margin-left:150px;padding-left:0px">
         <button class= "btn button" style=" background: url(assets/finalgrade.jpg);color: black;font-size:xx-large;font-weight: bold;">
@@ -14,7 +14,7 @@
         </div>
       </div>
       <div class="row">
-        <div style="padding-top: 40px">
+        <div style="padding-top: 40px; padding-left:60px">
           <div class="col-lg-3 col-md-3 col-sm-6 col-xs-12 mycontainer " (click)="gotoaddquiz()" align="center" style="margin-left:150px;padding-left:0px" >
             <button class= "btn button" style=" background: url(assets/addquizes.jpg);color: black;font-size:xx-large;font-weight: bold;">
               <div class="main-wrapper" style="background-color: white; border-radius: 3px;opacity: 0.8">  Add Quizzes</div></button>
@@ -28,7 +28,7 @@
             </div>
           </div>
           <div class="row">
-            <div style="padding-top: 40px">
+            <div style="padding-top: 40px;padding-left:60px">
               <div class="col-lg-3 col-md-3 col-sm-6 col-xs-12 mycontainer " (click)="gotoQuiz()" align="center" style="margin-left:150px;padding-left:0px" >
                 <button class= "btn button" style=" background: url(assets/quizmarks.jpg);color: black;font-size:xx-large;font-weight: bold;">
                   <div class="main-wrapper" style="background-color: white; border-radius: 3px;opacity: 0.8">  Quiz Marks</div></button>
@@ -51,15 +51,15 @@
   </div-->
   <button class="btn btn-primary" style="margin-left:87.5%"(click)="refresh()">Refresh</button>
   <div  style="margin-top:30px; margin-bottom:30px; margin-left:50px;">
-    <h4>Added Study Materials</h4>
-    <ul>
-      <li style="padding:10px ; border-radius: 10px"  *ngFor= "let file of files " ><a href="{{file.url}}">{{file.name}}</a> <button class="btn btn-primary" style=" margin-left:90%;" (click)="delete(file.name)">Delete</button></li>
+    <h4 style="color:white ; font-size:20px">Added Study Materials</h4>
+    <ul style="list-style-type: square">
+      <li style="padding:10px ; border-radius: 10px"  *ngFor= "let file of files " ><a style="font-size: 20px; color:black;" href="{{file.url}}">{{file.name}}</a> <button class="btn btn-primary" style=" margin-left:90%;" (click)="delete(file.name)">Delete</button></li>
     </ul>
   </div>
 
   <div  style="margin-top:30px; margin-bottom:30px; margin-left:50px;">
-    <h4>Quizzes</h4>
-    <ul>
-      <li style="padding:10px;border-radius: 10px"  *ngFor= "let quiz of quizes " ><a (click)="gotodisplayquiz(quiz.name)" >{{quiz.name}}</a></li>
+    <h4 style="color:white ; font-size:20px">Quizzes</h4>
+    <ul style="list-style-type: square">
+      <li style="padding:10px;border-radius: 10px "  *ngFor= "let quiz of quizes " ><a style="font-size: 20px; color:black;"(click)="gotodisplayquiz(quiz.name)" >{{quiz.name}}</a></li>
     </ul>
   </div>

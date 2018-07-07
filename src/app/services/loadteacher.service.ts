@@ -123,7 +123,8 @@ export class LoadteacherService {
     var nodata = 0;
     firebase.database().ref('teachers/'+tname+'/subjects').on('child_added', function(data) {
 
-          finallist[nodata]=data.key;
+          finallist[nodata]=data.val();
+          finallist[nodata]["code"]=data.key;
           nodata = nodata + 1;
 
       });
