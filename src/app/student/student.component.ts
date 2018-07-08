@@ -152,5 +152,9 @@ export class StudentComponent implements OnInit {
     this.router.navigate(['student/scholarship',{details: this.usercode}]);
 
   }
+  gotonotices(){
+    this.router.navigate(['student/notices',{details: this.usercode}]);
+
+  }
 
 }

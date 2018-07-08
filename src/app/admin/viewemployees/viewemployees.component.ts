@@ -49,7 +49,6 @@ export class ViewemployeesComponent implements OnInit {
   }
 
   onBtnExport(): void {
-    console.log(this.gridApi.getSelectedRows());
     if ( this.gridApi.getSelectedRows().length != 0){
       const params = {
         columnGroups: true,
@@ -59,7 +58,6 @@ export class ViewemployeesComponent implements OnInit {
       }
       this.gridApi.exportDataAsCsv(params);
     }else{
-      console.log('d');
       const params = {
         columnGroups: true,
         allColumns: true,
@@ -113,7 +111,6 @@ export class ViewemployeesComponent implements OnInit {
     }
     onRDC($event){
       this.DCCRows = this.gridApi.getSelectedRows()[0];
-      console.log(this.DCCRows);
       $('#save').click();
     }
     checkValidity(){

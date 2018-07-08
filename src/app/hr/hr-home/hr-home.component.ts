@@ -14,7 +14,6 @@ export class HrHomeComponent implements OnInit {
   ngOnInit() {
     this.route.params.subscribe(params => {
        this.usercode = params['details'];
-       console.log(this.usercode);
     });
   }
   gotoleave(){

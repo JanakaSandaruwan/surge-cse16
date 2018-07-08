@@ -178,10 +178,10 @@ export class UpdateuserComponent implements OnInit {
 
   update(){
     console.log('run');
-    this.profilepicchanged = true;
     this.model.year = this.date.substring(0,4);
     this.model.month = this.date.substring(5,7);
     this.model.day = this.date.substring(8,10);
+    console.log(this.storage.retrieve("uname"),this.storage.retrieve("role"));
     this._loginservice.updatedetails(this.storage.retrieve("uname"),this.storage.retrieve("role"),this.model, this.fname, this.fAddress, this.fcontact , this.fcontact2 , this.femail);
     this.storage.store("contact" , this.fcontact);
     this.storage.store("NIC", this.fNIC);
@@ -195,6 +195,7 @@ export class UpdateuserComponent implements OnInit {
     if(!this.profilepicchanged){
       $('#uploadbutton').click();
     }
+    this.profilepicchanged = true;
   }
 
   detectfiles(event){

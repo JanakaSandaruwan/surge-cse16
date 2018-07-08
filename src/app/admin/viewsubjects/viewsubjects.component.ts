@@ -38,7 +38,6 @@ export class ViewsubjectsComponent implements OnInit {
     this.set = true;
   }
   onBtnExport(): void {
-    console.log(this.gridApi.getSelectedRows());
     if ( this.gridApi.getSelectedRows().length != 0){
       const params = {
         columnGroups: true,
@@ -48,7 +47,6 @@ export class ViewsubjectsComponent implements OnInit {
       }
       this.gridApi.exportDataAsCsv(params);
     }else{
-      console.log('d');
       const params = {
         columnGroups: true,
         allColumns: true,
@@ -104,7 +102,6 @@ export class ViewsubjectsComponent implements OnInit {
     this.gridApi = params.api;
     this.gridColumnApi = params.columnApi;
     this.SSubject = this._teacherservice.listSubjects();
-    console.log(this.SSubject);
     this.gridApi.setRowData(this.SSubject);
   }
 
@@ -124,7 +121,6 @@ export class ViewsubjectsComponent implements OnInit {
     });
     this._batchservice.listBatches()
         .subscribe(students => {
-          console.log(students);
           this.batches = students;
         });
 

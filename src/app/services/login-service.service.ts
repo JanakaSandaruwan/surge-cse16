@@ -100,7 +100,7 @@ export class LoginServiceService {
   }
   updatedetails (uname, role , fbday , name , fadd , fcontact, fcontact2 , femail ){
     console.log(role);
-    if (role == "admin"){
+    if (role == "admin" || role=="hr" || role == "welfare"){
       firebase.database().ref('employees/'+uname).update({
         fname : name,
         Address : fadd,
@@ -118,6 +118,46 @@ export class LoginServiceService {
           bday : fbday
         });
       }
+    }else if(role == "teacher"){
+      firebase.database().ref('teachers/'+uname).update({
+        fname : name,
+        Address : fadd,
+        email : femail,
+        contact : fcontact,
+
+      });
+      if ( fcontact2 != undefined){
+        firebase.database().ref('teachers/'+uname).update({
+          econtact : fcontact2
+        });
+      }
+      if ( fbday != undefined){
+        firebase.database().ref('teachers/'+uname).update({
+          bday : fbday
+        });
+      }
+    }else if(role == "student"){
+      firebase.database().ref('/Users/'+uname+"/bnumber").on("value", function(data){
+        var batchno = data.val();
+        firebase.database().ref('batches/'+batchno+'/students/'+uname).update({
+          fname : name,
+          Address : fadd,
+          email : femail,
+          contact : fcontact,
+
+        });
+        if ( fcontact2 != undefined){
+          firebase.database().ref('batches/'+batchno+'/students/'+uname).update({
+            econtact : fcontact2
+          });
+        }
+        if ( fbday != undefined){
+          firebase.database().ref('batches/'+batchno+'/students/'+uname).update({
+            bday : fbday
+          });
+        }
+      });
+
     }
   }
 }

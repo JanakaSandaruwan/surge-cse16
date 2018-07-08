@@ -218,6 +218,7 @@ import { StudentprogresscheckComponent } from './student/studentprogresscheck/st
     { path: 'viewprogress', component: ViewAcademicProgressComponent },
     { path: 'mycourses', component: MyCourseComponent },
     { path: 'leave', component: MedicleLeaveComponent },
+    {path:'notices',component:NoticesComponent},
     { path: 'scholarship', component: ScholarshipComponent },
     { path: 'complain', component: ComplainComponent },
     {path: 'subject',component:Level1Component},
