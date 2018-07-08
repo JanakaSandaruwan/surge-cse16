@@ -29,9 +29,11 @@
             <label class="control-label col-md-3" for="field2"><b>Starting Year</b><span class="req"> *</span></label>
   			    <div class="controls col-md-9">
 
-                  <input id="field2" type="text" (input)="setted()" class="form-control k-textbox"  [(ngModel)]="cb.com" data-role="text" required #syear="ngModel">
+                  <input id="field2" type="text" (input)="checkyears()" class="form-control k-textbox"  [(ngModel)]="cb.com" data-role="text" required #syear="ngModel" pattern=[0-9]{4}>
                   <div id="div1" *ngIf="syear.invalid && (syear.touched || syear.dirty) && set" class="alert alert-danger">
                   <div *ngIf="syear.errors.required"> Starting year is required.</div>
+                  <div *ngIf="syear.errors.pattern">Stating year is invalid</div>
+                  <div *ngIf="(invalidyears | async)"> Ending year has to be after starting year</div>
                   </div>
           </div>
         </div>
@@ -42,9 +44,11 @@
              <label class="control-label col-md-3" for="field3"><b>Graduation Year</b><span class="req"> *</span></label>
    			    <div class="controls col-md-9">
 
-                   <input id="field3" type="text" (input)="setted()" [(ngModel)]="cb.grad" class="form-control k-textbox" data-role="text" required #gyear="ngModel">
+                   <input id="field3" type="text" (input)="checkyears()" [(ngModel)]="cb.grad" class="form-control k-textbox" data-role="text" required #gyear="ngModel" pattern=[0-9]{4}>
                    <div id="div1" *ngIf="gyear.invalid && (gyear.touched || gyear.dirty) && set" class="alert alert-danger">
                    <div *ngIf="gyear.errors.required"> Graduation Year is required.</div>
+                   <div *ngIf="gyear.errors.pattern"> Ending year is invalid</div>
+                   <div *ngIf="(invalidyears | async)"> Ending year has to be after starting year</div>
                    </div>
            </div>
          </div>
@@ -54,7 +58,7 @@
     </div>
       <div class="modal-footer">
         <div class="form-group pull-right"  >
-        <button [disabled]="(gyear.invalid || (!gyear.dirty && !gyear.touched)) || (syear.invalid || (!syear.dirty && !syear.touched)) || (bcode.invalid || (!bcode.dirty && !bcode.touched))"id="button77" type="button" class="btn btn-default" (click)="submitStudent()">Submit</button>
+        <button [disabled]="( (invalidyears | async) || gyear.invalid || (!gyear.dirty && !gyear.touched)) || (syear.invalid || (!syear.dirty && !syear.touched)) || (bcode.invalid || (!bcode.dirty && !bcode.touched))"id="button77" type="button" class="btn btn-default" (click)="submitStudent()">Submit</button>
         </div>
         <div class="form-group pull-right" >
         <button type="button" class="btn btn-default" (click)="clear()">Clear</button>

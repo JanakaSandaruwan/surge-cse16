@@ -1,0 +1,15 @@
+<button (click)="refresh()">refresh</button>
+
+<p>
+  {{finalgrade}}
+</p>
+
+<p>
+  {{attendance}}
+</p>
+
+<ul style="list-style-type:none;" class="list-group dropdown-menu1" id="listM">
+
+<li *ngFor=" let quiz of quizfinal" class="list-group-item " style="width:500px"> <a (click)="view(subject.module)">{{quiz.mark}}</a>
+  </li>
+</ul>

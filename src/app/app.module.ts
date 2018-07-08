@@ -92,6 +92,7 @@ import { McqsComponent } from './student/viewquiz/mcqs/mcqs.component';
 import { LoadgradesService } from './services/loadgrades.service';
 import { InvalidComponent } from './invalid/invalid.component';
 import { NoticesComponent } from './teacher/notices/notices.component';
+import { StudentprogresscheckComponent } from './student/studentprogresscheck/studentprogresscheck.component';
 //import { CalendarModule } from 'angular-calendar';
 
 @NgModule({
@@ -148,7 +149,8 @@ import { NoticesComponent } from './teacher/notices/notices.component';
     ViewquizComponent,
     McqsComponent,
     InvalidComponent,
-    NoticesComponent
+    NoticesComponent,
+    StudentprogresscheckComponent
   ],
   entryComponents: [
     McqComponent,
@@ -184,7 +186,7 @@ import { NoticesComponent } from './teacher/notices/notices.component';
 
       },
     { path: 'teacher', component:TeacherComponent, children : [
-      { path: '', component: TeacherHomeComponent },
+      { path: 'home', component: TeacherHomeComponent },
       { path: 'progresscheck', component:ProgresscheckComponent},
       { path: 'admittance', component:AdmittanceComponent},
       { path: 'leaveapplication', component:LeaveapplicationComponent},
@@ -217,7 +219,8 @@ import { NoticesComponent } from './teacher/notices/notices.component';
     {path: 'subject',component:Level1Component},
     {path:'viewquiz',component:ViewquizComponent},
     {path:'viewquiz/mcqs',component:McqsComponent},
-    {path:'updatedetails',component:UpdateuserComponent}
+    {path:'updatedetails',component:UpdateuserComponent},
+    {path: 'progresscheck' , component:StudentprogresscheckComponent}
   ]
   //{ path: '**', component: PageNotFoundComponent }
   },

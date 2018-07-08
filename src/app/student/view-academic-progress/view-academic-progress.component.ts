@@ -1,5 +1,11 @@
 import { Component, OnInit } from '@angular/core';
 import { GridOptions } from "ag-grid";
+import { Observable } from 'rxjs/Observable';
+import { LoginServiceService } from '../../services/login-service.service';
+import {Router} from '@angular/router';
+import {LocalStorageService, SessionStorageService} from 'ngx-webstorage';
+import { LoadgradesService } from '../../services/loadgrades.service';
+import { Grade } from '../../models/grade';
 @Component({
   selector: 'app-view-academic-progress',
   templateUrl: './view-academic-progress.component.html',
@@ -10,14 +16,11 @@ export class ViewAcademicProgressComponent implements OnInit {
   columnDefs : any[];
   rowSelection : any;
   gridColumnApi : any;
-  results = [
-    {subject: 'Mathematics', grade: "A+"},
-    {subject: 'Electrical Componenets', grade: "B+" }
-
-  ]
-  constructor() {
+  results : Grade[] = [];
+  years : string[] = ["Year 1", "Year 2", "Year 3", "Year 4"];
+  constructor(private storage:LocalStorageService, private router:Router, private lservice : LoginServiceService, private lgservice : LoadgradesService) {
     this.columnDefs = [
-          {headerName: "Subject", field:"subject" , width: 350},
+          {headerName: "Subject", field:"Subjectname.module" , width: 350},
           {headerName: "Grade", field: "grade", width: 100},
 
 
@@ -33,25 +36,11 @@ export class ViewAcademicProgressComponent implements OnInit {
     this.gridApi.setRowData(this.results);
 
   }
-  onBtnExport(): void {
-    console.log("k");
-    console.log(this.gridApi.getSelectedRows());
-    if ( this.gridApi.getSelectedRows().length != 0){
-      const params = {
-        columnGroups: true,
-        allColumns: true,
-        fileName: 'filename_of_your_choice',
-        onlySelected : true
-      }
-      this.gridApi.exportDataAsCsv(params);
-    }else{
-      console.log('d');
-      const params = {
-        columnGroups: true,
-        allColumns: true,
-        fileName: 'filename_of_your_choice'
-      }
-      this.gridApi.exportDataAsCsv(params);
-    }
+  getresults(year){
+    this.lgservice.listgradesof(this.storage.retrieve("uname"),year).subscribe(data =>{
+      this.results = data;
+      console.log(this.results);
+      $("#openmodal").click();
+    });
   }
 }

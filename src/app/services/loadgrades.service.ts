@@ -15,7 +15,13 @@ declare var firebase: any;
 export class LoadgradesService {
 
   constructor(private sservice :StudentservicesService) { }
+  listgradesdataof(subject,student) : any{
+    return firebase.database().ref('/classes/'+subject+'/students/'+student);
+  }
 
+  listquizdataof(subject,student) : any{
+    return firebase.database().ref('/classes/'+subject+'/students/'+student+'/quiz');
+  }
   listgrades(subjectname):Observable<Grade[]>{
 
     var finallist : Grade[];
