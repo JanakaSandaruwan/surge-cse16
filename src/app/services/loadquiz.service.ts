@@ -56,6 +56,16 @@ export class LoadquizService {
     return Observable.of(completed);
   }
 
+  checkcorrect(student,modulen,quiznu) : Observable<number>{
+    var right : number;
+    firebase.database().ref('/classes/'+modulen+'/students/'+student+'/quiz/quiz'+quiznu+'/mark').on('value', function(data){
+      console.log(data.val());
+      right = data.val();
+    });
+    right = Math.round(right / 100 * 3);
+    return Observable.of(right);
+  }
+
   checkans(student,modulen,quiznu) : Observable<string[]>{
     var ans : string[];
     firebase.database().ref('/classes/'+modulen+'/students/'+student+'/quiz/quiz'+quiznu+'/ans').on('value', function(data){

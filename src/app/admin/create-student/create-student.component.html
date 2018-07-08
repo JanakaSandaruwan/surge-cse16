@@ -230,8 +230,26 @@
     </div>
 </div>
 </div>
+<div id="suremodal" class="modal fade" role="dialog">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal">&times;</button>
+        <h4 class="modal-title">Are you sure you want to delete ?</h4>
+      </div>
+      <div class="modal-body" style="height:100px">
+        <div class="form-group pull-right" >
+          <button type="button" class="btn btn-default" data-dismiss="modal" (click)="Deletebutton()" >Yes</button>
+        <button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
+        </div>
+      </div>
+
+
+    </div>
+  </div>
+</div>
 <div style="height:60px;">
-  <button class="btn btn-primary" (click)="Deletebutton()">Delete</button>
+  <button class="btn btn-primary" data-toggle="modal" data-target="#suremodal">Delete</button>
   <button class="btn btn-primary" (click)="SendtoNextlevel()">Send to Next</button>
   <button class="btn btn-primary" (click)="fit()">fit</button>
   <button class="btn btn-primary" (click)="onBtnExport()">Download</button>
@@ -295,6 +313,18 @@
     <div class="alert alert-danger">
         <button type="button" class="close" data-dismiss="modal">&times;</button>
         <h4 class="modal-title">{{Error}}</h4>
+    </div>
+  </div>
+</div>
+
+
+<button style="display:none;" id="successbutton" data-toggle="modal" data-target="#successmodal" class="btn btn-primary"></button>
+
+<div id="successmodal" class="modal fade" >
+  <div class="modal-dialog">
+    <div class="alert alert-success">
+        <button type="button" class="close" data-dismiss="modal">&times;</button>
+        <h4 class="modal-title">{{Success}}</h4>
     </div>
   </div>
 </div>

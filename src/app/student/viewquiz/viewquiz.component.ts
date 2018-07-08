@@ -54,8 +54,6 @@ export class ViewquizComponent implements OnInit {
                      console.log((this.subjectname));
                   });
                   console.log("ngOnInit");
-                  this.refresh();
-
 
 
                 }
@@ -133,6 +131,7 @@ export class ViewquizComponent implements OnInit {
                 }
 
                 refresh(){
+                  var k = 0;
                   var i=0;
                   this.quizes=this.quizSvc.quizeslist(this.subjectname);
                    while(i<this.quizes.length){
@@ -150,11 +149,17 @@ export class ViewquizComponent implements OnInit {
                     x = x+1;
                   }
                   this.quizSvc.checkcomplete(this.storage.retrieve("uname"),this.subjectname,this.quizindex+1).subscribe(data => {
-                    this.completed = data;
+                      this.completed = data;
                   });
                   if(this.completed == true){
                     this.quizSvc.checkans(this.storage.retrieve("uname"),this.subjectname,this.quizindex+1).subscribe(data => {
                       this.answers = data;
+
+                    });
+
+                    this.quizSvc.checkcorrect(this.storage.retrieve("uname"),this.subjectname,this.quizindex+1).subscribe(data => {
+                      this.correct = data;
+
                     });
                   }
                   this.blocked=this.quizSvc.checktime(this.subjectname,this.quizindex+1)
@@ -162,16 +167,6 @@ export class ViewquizComponent implements OnInit {
                   this.blocked.subscribe(data => {
                     blockcheck = data;
                   });
-                  if(this.quiz.length == 0 && blockcheck){
-
-
-
-                         this.Add();
-
-
-
-
-                  }
 
                 }
 
@@ -183,7 +178,7 @@ export class ViewquizComponent implements OnInit {
                   console.log(this.answers);
                   this.completed = true;
                   var i : number = 0;
-                  for (i=0;i<this.quizes.length;i++){
+                  for (i=0;i<this.quiz.length;i++){
                     if(this.corans[i]==this.answers[i]){
                       this.correct = this.correct + 1;
                     }else{
@@ -195,7 +190,7 @@ export class ViewquizComponent implements OnInit {
                   this.showprev = false;
                   this.viewContainerRef.remove(0);
                   this.Add();
-                  var marks = this.correct / this.quizes.length * 100 ;
+                  var marks = this.correct / this.quiz.length * 100 ;
                   this.quizSvc.updatequizmarkstudent(this.storage.retrieve("uname"),this.subjectname,this.quizindex+1,this.answers,marks);
                   console.log(this.subjectname,this.quizname,this.storage.retrieve("uname"));
                 }

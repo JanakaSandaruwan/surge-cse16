@@ -43,10 +43,11 @@ export class McqsComponent implements OnInit {
   }
 
   ngOnInit() {
+    console.log(this.completed);
     if(this.selected != this.corans){
       this.wrong = true;
     }
-    
+
 
 
   }

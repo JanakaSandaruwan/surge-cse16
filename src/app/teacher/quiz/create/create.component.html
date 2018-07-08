@@ -1,12 +1,24 @@
+
 <div align="right" style="padding-bottom: 20px;" data-toggle="modal" data-target="#myModal">
   <button class="btn">+ Add  Mcq Question</button>
 </div>
+<div>
+  <div class="btn-group">
+    <button type="button" class="btn btn-primary"  *ngFor= "let question of quiz.Questions" (click)="goto(quiz.Questions.indexOf(question))">{{quiz.Questions.indexOf(question) + 1}}</button>
+  </div>
+
+  <div style="overflow:hidden;">
+    <button class="btn" *ngIf="shownext" style="float:right;"(click)="next()">next</button>
+    <button class="btn" *ngIf="showprev" (click)="prev()">previous</button>
+  </div>
+</div>
+
 <div id="myModal" class="modal fade" role="dialog">
   <div class="modal-dialog">
     <div class="modal-content">
       <div class="modal-header">
         <button type="button" class="close" data-dismiss="modal">&times;</button>
-        <h4 class="modal-title">Create Teacher Form</h4>
+        <h4 class="modal-title">Create Question</h4>
       </div>
       <div class="modal-body">
         <form  method="post" #mcqForm="ngForm">
@@ -102,7 +114,7 @@
             <button id="button79" type="button" class="btn btn-default" data-dismiss="modal">Close</button>
             </div>
             <div class="form-group pull-right" >
-            <button id="button77" type="button" class="btn btn-default" (click)="Add()" [disabled]="( answernotselected | async) ">Reset</button>
+            <button id="button77" type="button" class="btn btn-default" (click)="gotolastcreated()" [disabled]="( answernotselected | async) ">Reset</button>
             </div>
           </div>
 

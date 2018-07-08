@@ -31,6 +31,7 @@ export class ViewsubjectsComponent implements OnInit {
   classtaken : Observable<boolean>;
   showid : boolean = true;
   showname : boolean = true;
+  Success : string;
 
 
   setted(){
@@ -77,6 +78,8 @@ export class ViewsubjectsComponent implements OnInit {
       var i : number = 0;
       for (i=0;i<this.selectedRows.length;i++){
         this._teacherservice.saveSubjectlist(this.selectedRows[i].code,this.selectedRows[i].level,this.selectedRows[i].batch,this.selectedRows[i].tccode);
+        this.Success = "Successfuly deleted";
+        $('#successbutton').click();
       }
     }
     this.SSubject = this._teacherservice.listSubjects();
@@ -146,6 +149,8 @@ export class ViewsubjectsComponent implements OnInit {
     this.csubject.name = "";
     this.csubject.code = "";
     $('#button79').click();
+    this.Success = "Successfuly Added";
+    $('#successbutton').click();
   }
 
 

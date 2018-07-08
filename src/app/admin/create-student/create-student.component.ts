@@ -14,6 +14,7 @@ import { Grade } from '../../models/grade';
   styleUrls: ['./create-student.component.css']
 })
 export class CreateStudentComponent implements OnInit {
+  Success : string;
   set : boolean = false;
   dtOptions: DataTables.Settings = {};
   name : string;
@@ -172,6 +173,8 @@ export class CreateStudentComponent implements OnInit {
         }
         this.SStudents = this._batchservice.listStudents(this.selected);
         this.gridApi.setRowData(this.SStudents);
+        this.Success = "Successfuly deleted";
+        $('#successbutton').click();
       }
 
     }
@@ -260,7 +263,8 @@ export class CreateStudentComponent implements OnInit {
       this.SStudents = this._batchservice.listStudents(this.selected);
       this.gridApi.setRowData(this.SStudents);
     }
-
+    this.Success = "Successfuly added";
+    $('#successbutton').click();
   }
 
 

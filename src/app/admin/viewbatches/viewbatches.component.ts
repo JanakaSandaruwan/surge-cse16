@@ -14,6 +14,8 @@ export class ViewbatchesComponent implements OnInit {
   cb : Batch = <Batch>{};
   show : boolean;
   invalidyears : Observable<boolean> = Observable.of(false);
+  Success : string;
+
   constructor(private _batchservice: LoadbatchesService) {
 
   }
@@ -23,7 +25,7 @@ export class ViewbatchesComponent implements OnInit {
     if(+this.cb.grad <= +this.cb.com){
       this.invalidyears = Observable.of(true);
     }else{
-      this.invalidyears = Observable.of(false);  
+      this.invalidyears = Observable.of(false);
     }
   }
 
@@ -74,6 +76,8 @@ export class ViewbatchesComponent implements OnInit {
                     });
               });
         }
+        this.Success = "Successfuly deleted";
+        $('#successbutton').click();
     }
 
 

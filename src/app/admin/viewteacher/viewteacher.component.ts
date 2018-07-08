@@ -36,6 +36,7 @@ export class ViewteacherComponent implements OnInit {
   showname : boolean = true;
   showmail : boolean = true;
   DCCRows : Teacher = <Teacher>{};
+  Success : string;
 
   setted(){
     this.set = true;
@@ -65,6 +66,8 @@ export class ViewteacherComponent implements OnInit {
           this._teacherservice.saveTeacherlist(this.selectedRows[i].username);
         }
         $('#refresher').click();
+        this.Success = "Successfuly deleted";
+        $('#successbutton').click();
       }
     }
 
@@ -216,5 +219,7 @@ export class ViewteacherComponent implements OnInit {
     this.cteacher.email = "";
     $('#refresher').click();
     $('#button79').click();
+    this.Success = "Successfuly added";
+    $('#successbutton').click();
   }
 }

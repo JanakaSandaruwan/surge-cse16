@@ -17,12 +17,17 @@ import {Router} from '@angular/router';
 
 
 export class CreateComponent implements OnInit {
+  index : number = 0;
+  counter : number = -1;
   answernotselected : Observable<boolean> = Observable.of(true);
   TempQue : Question = <Question>{};
   quiz : Quiz = <Quiz>{};
   quizanswers : string[] = [];
   subjectcode : string;
   usercode:string;
+  shownext : boolean = false;
+  showprev : boolean = false;
+  completed : boolean = false;
   validtf : Observable<boolean> = Observable.of(false);
 
   typechange(){
@@ -76,6 +81,8 @@ export class CreateComponent implements OnInit {
   }
 
   Adding(){
+    this.counter++;
+    this.index = this.counter;
     if(this.TempQue.type=="mcq"){
         //console.log("mcq adding");
         this.AddingMcq();
@@ -106,8 +113,50 @@ export class CreateComponent implements OnInit {
 
     //console.log(this.quiz.Questions);
     this.quizanswers.push(tempans);
-    //console.log(this.quizanswers);
+    console.log(this.quizanswers);
+    this.AddMcq();
+  }
 
+  Addfromnav() {
+
+        var factory = this.componentFactoryResolver.resolveComponentFactory(McqComponent);
+        var ref = this.viewContainerRef.createComponent(factory);
+        //expComponent.instance._ref = expComponent;
+        ref.instance._ref = ref;
+        ref.instance.level = true;
+        ref.instance.type = this.quiz.Questions[this.index].type;
+        ref.instance.Question = this.quiz.Questions[this.index].Text;
+        ref.instance.Option1 = this.quiz.Questions[this.index].Option1;
+        ref.instance.Option2 = this.quiz.Questions[this.index].Option2;
+        ref.instance.Option3 = this.quiz.Questions[this.index].Option3;
+        ref.instance.Option4 = this.quiz.Questions[this.index].Option4;
+        ref.instance.corans=this.quizanswers[this.index];
+        ref.instance.completed = false;
+        //ref.changeDetectorRef.detectChanges();
+        var blockInstance = ref.instance as McqComponent;
+      //  this.loadquiz.updatequizquestion(this.subjectcode,this.quiz.Questions);
+      //  this.loadquiz.updatequizanswer(this.subjectcode,this.quizanswers);
+
+        blockInstance.messageEvent.subscribe((val) => {
+            console.log(val);
+            var i : number;
+            i=0;
+            while (i<this.quiz.Questions.length){
+              if (this.quiz.Questions[i].Text == val.Text){
+                if (i > -1) {
+                   this.quiz.Questions.splice(i, 1);
+                   this.quizanswers.splice(i,1);
+                }
+              }
+              i=i+1;
+            }
+            this.counter--;
+            console.log(this.quiz.Questions);
+            if(this.quiz.Questions.length > 0){
+              this.prev();
+            }
+
+        });
   }
 
   AddMcq() {
@@ -117,15 +166,14 @@ export class CreateComponent implements OnInit {
         //expComponent.instance._ref = expComponent;
         ref.instance._ref = ref;
         ref.instance.level = true;
-        ref.instance.type = this.TempQue.type;
-        ref.instance.Question = this.TempQue.Text;
-        ref.instance.Option1 = this.TempQue.Option1;
-        ref.instance.Option2 = this.TempQue.Option2;
-        ref.instance.Option3 = this.TempQue.Option3;
-        ref.instance.Option4 = this.TempQue.Option4;
-        ref.instance.corans=this.TempQue.Answer;
+        ref.instance.type = this.quiz.Questions[this.counter].type;
+        ref.instance.Question = this.quiz.Questions[this.counter].Text;
+        ref.instance.Option1 = this.quiz.Questions[this.counter].Option1;
+        ref.instance.Option2 = this.quiz.Questions[this.counter].Option2;
+        ref.instance.Option3 = this.quiz.Questions[this.counter].Option3;
+        ref.instance.Option4 = this.quiz.Questions[this.counter].Option4;
+        ref.instance.corans=this.quizanswers[this.counter];
         ref.instance.completed = false;
-        this.Adding();
         //ref.changeDetectorRef.detectChanges();
         var blockInstance = ref.instance as McqComponent;
       //  this.loadquiz.updatequizquestion(this.subjectcode,this.quiz.Questions);
@@ -144,7 +192,11 @@ export class CreateComponent implements OnInit {
               }
               i=i+1;
             }
-            //console.log(this.quiz.Questions);
+            this.counter--;
+            if(this.quiz.Questions.length > 0){
+              this.prev();
+            }
+            console.log(this.quiz.Questions);
         });
 
         this.TempQue.Text="";
@@ -163,7 +215,8 @@ export class CreateComponent implements OnInit {
     this.quiz.Questions.push(temp);
     //console.log(this.quiz.Questions);
     this.quizanswers.push(tempans);
-    //console.log(this.quizanswers);
+    console.log(this.quizanswers);
+    this.AddTrue();
     //this.subjectcode="MA2-bc0001";
   //  this.loadquiz.updatequizquestion(this.subjectcode,this.quiz.Questions);
     //  this.loadquiz.updatequizanswer(this.subjectcode,this.quizanswers);
@@ -176,7 +229,8 @@ export class CreateComponent implements OnInit {
     this.quiz.Questions.push(temp);
     //console.log(this.quiz.Questions);
     this.quizanswers.push(tempans);
-    //console.log(this.quizanswers);
+    console.log(this.quizanswers);
+    this.AddEssay();
   //  this.subjectcode="MA2-bc0001";
   //  this.loadquiz.updatequizquestion(this.subjectcode,this.quiz.Questions);
     //this.loadquiz.updatequizanswer(this.subjectcode,this.quizanswers);
@@ -189,16 +243,15 @@ export class CreateComponent implements OnInit {
         //expComponent.instance._ref = expComponent;
         ref.instance._ref = ref;
         ref.instance.level = true;
-        ref.instance.Question = this.TempQue.Text;
-        ref.instance.type = this.TempQue.type;
-        ref.instance.corans=this.TempQue.Answer;
-        /*ref.instance.Option1 = this.TempQue.Option1;
-        ref.instance.Option2 = this.TempQue.Option2;
-        ref.instance.Option3 = this.TempQue.Option3;
-        ref.instance.Option4 = this.TempQue.Option4;
+        ref.instance.Question = this.quiz.Questions[this.counter].Text;
+        ref.instance.type = this.quiz.Questions[this.counter].type;
+        ref.instance.corans=this.quizanswers[this.counter];
+        /*ref.instance.Option1 = this.quiz.Questions[this.counter].Option1;
+        ref.instance.Option2 = this.quiz.Questions[this.counter].Option2;
+        ref.instance.Option3 = this.quiz.Questions[this.counter].Option3;
+        ref.instance.Option4 = this.quiz.Questions[this.counter].Option4;
         //ref.changeDetectorRef.detectChanges();*/
         ref.instance.completed = false;
-        this.Adding();
         var blockInstance = ref.instance as McqComponent;
       //  this.loadquiz.updatequizquestion(this.subjectcode,this.quiz.Questions);
       //  this.loadquiz.updatequizanswer(this.subjectcode,this.quizanswers);
@@ -216,7 +269,11 @@ export class CreateComponent implements OnInit {
               }
               i=i+1;
             }
-          //  console.log(this.quiz.Questions);
+            this.counter--;
+            console.log(this.quiz.Questions);
+            if(this.quiz.Questions.length > 0){
+              this.prev();
+            }
         });
 
         this.TempQue.Text="";
@@ -228,6 +285,49 @@ export class CreateComponent implements OnInit {
         this.answernotselected = Observable.of(true);
   }
 
+  next(){
+    this.index = this.index  + 1 ;
+    this.viewContainerRef.remove(0);
+    this.Addfromnav();
+    if (this.index == this.quiz.Questions.length - 1){
+      this.shownext = false;
+      this.showprev = true;
+    }else{
+      this.shownext = true;
+      this.showprev = true;
+    }
+
+  }
+
+  prev(){
+    this.index = this.index - 1 ;
+    this.viewContainerRef.remove(0);
+    this.Addfromnav();
+    if (this.index == 0){
+      this.showprev = false;
+      this.shownext = true;
+    }else{
+      this.shownext = true;
+      this.showprev = true;
+    }
+  }
+
+  goto(inde){
+    if(inde == this.quiz.Questions.length - 1){
+      this.shownext = false;
+      this.showprev = true;
+    }else if ( inde == 0 ){
+      this.showprev = false;
+      this.shownext = true;
+    }else{
+      this.shownext = true;
+      this.showprev = true;
+    }
+    this.index = inde;
+    this.viewContainerRef.remove(0);
+    this.Addfromnav();
+  }
+
   AddEssay() {
 
         var factory = this.componentFactoryResolver.resolveComponentFactory(McqComponent);
@@ -235,19 +335,20 @@ export class CreateComponent implements OnInit {
         //expComponent.instance._ref = expComponent;
         ref.instance._ref = ref;
         ref.instance.level = true;
-        ref.instance.Question = this.TempQue.Text;
-        ref.instance.type = this.TempQue.type;
-        ref.instance.corans=this.TempQue.Answer;
-        /*ref.instance.Option1 = this.TempQue.Option1;
-        ref.instance.Option2 = this.TempQue.Option2;
-        ref.instance.Option3 = this.TempQue.Option3;
-        ref.instance.Option4 = this.TempQue.Option4;
+        ref.instance.Question = this.quiz.Questions[this.counter].Text;
+        ref.instance.type = this.quiz.Questions[this.counter].type;
+        ref.instance.corans=this.quizanswers[this.counter];
+        /*ref.instance.Option1 = this.quiz.Questions[this.counter].Option1;
+        ref.instance.Option2 = this.quiz.Questions[this.counter].Option2;
+        ref.instance.Option3 = this.quiz.Questions[this.counter].Option3;
+        ref.instance.Option4 = this.quiz.Questions[this.counter].Option4;
         //ref.changeDetectorRef.detectChanges();*/
         ref.instance.completed = false;
-        this.Adding();
         var blockInstance = ref.instance as McqComponent;
       //  this.loadquiz.updatequizquestion(this.subjectcode,this.quiz.Questions);
       //  this.loadquiz.updatequizanswer(this.subjectcode,this.quizanswers);
+
+
 
         blockInstance.messageEvent.subscribe((val) => {
             //console.log(val);
@@ -262,7 +363,11 @@ export class CreateComponent implements OnInit {
               }
               i=i+1;
             }
-          //  console.log(this.quiz.Questions);
+            this.counter--;
+            if(this.quiz.Questions.length > 0){
+              this.prev();
+            }
+            console.log(this.quiz.Questions);
         });
 
         this.TempQue.Text="";
@@ -289,9 +394,19 @@ export class CreateComponent implements OnInit {
     this.router.navigate(['../../teacher/modules/module',{subjectname: btoa(this.subjectcode),details:btoa(this.usercode)}]);
   }
 
+  gotolastcreated(){
+      this.viewContainerRef.remove(0);
+    this.Adding();
+    this.shownext = false;
+    if(this.counter == 1){
+      this.showprev = false;
+      this.shownext = false;
+    }else{
+      this.showprev = true;
+    }
+  }
   validAnstf(){
     console.log(this.TempQue.Answer);
-    //console.log(this.ans);
   }
 
 }
