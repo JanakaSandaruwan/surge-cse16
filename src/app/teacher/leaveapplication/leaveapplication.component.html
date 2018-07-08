@@ -54,7 +54,7 @@
           <div *ngIf="(fromvalid | async)" class ="alert alert-danger">  {{message}}</div>
 
           <label for="to" class="control-label control-label-left col-sm-3">To*</label>
-          <input type="date" [(ngModel)]="to" (input)="validToDate()" name="to" id="to" placeholder="MM/DD/YYY" required class="form-control" #rnx="ngModel"  >
+          <input [disabled]="!issetdate" title="First fill the start date !" type="date" [(ngModel)]="to" (input)="validToDate()" name="to" id="to" placeholder="MM/DD/YYY" required class="form-control" #rnx="ngModel"  >
           <div *ngIf="rnx.errors && (rnx.dirty || rnx.touched) "  class ="alert alert-danger">
 
 

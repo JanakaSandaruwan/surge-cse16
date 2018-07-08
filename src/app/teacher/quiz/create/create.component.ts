@@ -6,6 +6,7 @@ import { Question } from '../../../models/question';
 import { ActivatedRoute } from '@angular/router';
 import {LoadquizService} from '../../../services/loadquiz.service';
 import {Router} from '@angular/router';
+import { Observable } from 'rxjs/Observable';
 @Component({
   selector: 'app-create',
   templateUrl: './create.component.html',
@@ -19,6 +20,7 @@ export class CreateComponent implements OnInit {
   quizanswers : string[] = [];
   subjectcode : string;
   usercode:string;
+  validtf : Observable<boolean> = Observable.of(false);
 
   //@ViewChild('parent', { read: ViewContainerRef }) container: ViewContainerRef;
   getChildEvent(evt){
@@ -33,7 +35,7 @@ export class CreateComponent implements OnInit {
        this.usercode = atob(params['details']);
        this.subjectcode=atob(params['subjectname']);
        //console.log((this.usercode));
-       console.log((this.subjectcode));
+       //console.log((this.subjectcode));
     });
     this.quiz.Questions = [];
   }
@@ -41,37 +43,37 @@ export class CreateComponent implements OnInit {
 
   Add(){
     if(this.TempQue.type=="mcq"){
-        console.log("mcq add");
+        //console.log("mcq add");
         this.AddMcq();
     }
 
     if(this.TempQue.type=="tf"){
-        console.log("tf add");
+        //console.log("tf add");
         this.AddTrue();
     }
 
     if(this.TempQue.type=="sans"){
-        console.log("sans add");
+        //console.log("sans add");
         this.AddEssay();
     }
 
-    console.log(this.quiz);
-    console.log(this.quizanswers);
+    //console.log(this.quiz);
+    //console.log(this.quizanswers);
   }
 
   Adding(){
     if(this.TempQue.type=="mcq"){
-        console.log("mcq adding");
+        //console.log("mcq adding");
         this.AddingMcq();
     }
 
     if(this.TempQue.type=="tf"){
-        console.log("tf adding");
+        //console.log("tf adding");
         this.AddingTrue();
     }
 
     if(this.TempQue.type=="sans"){
-        console.log("sans adding");
+      //  console.log("sans adding");
         this.AddingEssay();
     }
 
@@ -88,9 +90,9 @@ export class CreateComponent implements OnInit {
     temp.type = this.TempQue.type;
     this.quiz.Questions.push(temp);
 
-    console.log(this.quiz.Questions);
+    //console.log(this.quiz.Questions);
     this.quizanswers.push(tempans);
-    console.log(this.quizanswers);
+    //console.log(this.quizanswers);
 
   }
 
@@ -116,7 +118,7 @@ export class CreateComponent implements OnInit {
       //  this.loadquiz.updatequizanswer(this.subjectcode,this.quizanswers);
 
         blockInstance.messageEvent.subscribe((val) => {
-            console.log(val);
+            //console.log(val);
             var i : number;
             i=0;
             while (i<this.quiz.Questions.length){
@@ -128,7 +130,7 @@ export class CreateComponent implements OnInit {
               }
               i=i+1;
             }
-            console.log(this.quiz.Questions);
+            //console.log(this.quiz.Questions);
         });
 
         this.TempQue.Text="";
@@ -144,9 +146,9 @@ export class CreateComponent implements OnInit {
     temp.Text = this.TempQue.Text;
     var tempans = this.TempQue.Answer;
     this.quiz.Questions.push(temp);
-    console.log(this.quiz.Questions);
+    //console.log(this.quiz.Questions);
     this.quizanswers.push(tempans);
-    console.log(this.quizanswers);
+    //console.log(this.quizanswers);
     //this.subjectcode="MA2-bc0001";
   //  this.loadquiz.updatequizquestion(this.subjectcode,this.quiz.Questions);
     //  this.loadquiz.updatequizanswer(this.subjectcode,this.quizanswers);
@@ -157,9 +159,9 @@ export class CreateComponent implements OnInit {
     temp.Text = this.TempQue.Text;
     var tempans = this.TempQue.Answer;
     this.quiz.Questions.push(temp);
-    console.log(this.quiz.Questions);
+    //console.log(this.quiz.Questions);
     this.quizanswers.push(tempans);
-    console.log(this.quizanswers);
+    //console.log(this.quizanswers);
   //  this.subjectcode="MA2-bc0001";
   //  this.loadquiz.updatequizquestion(this.subjectcode,this.quiz.Questions);
     //this.loadquiz.updatequizanswer(this.subjectcode,this.quizanswers);
@@ -199,7 +201,7 @@ export class CreateComponent implements OnInit {
               }
               i=i+1;
             }
-            console.log(this.quiz.Questions);
+          //  console.log(this.quiz.Questions);
         });
 
         this.TempQue.Text="";
@@ -232,7 +234,7 @@ export class CreateComponent implements OnInit {
       //  this.loadquiz.updatequizanswer(this.subjectcode,this.quizanswers);
 
         blockInstance.messageEvent.subscribe((val) => {
-            console.log(val);
+            //console.log(val);
             var i : number;
             i=0;
             while (i<this.quiz.Questions.length){
@@ -244,7 +246,7 @@ export class CreateComponent implements OnInit {
               }
               i=i+1;
             }
-            console.log(this.quiz.Questions);
+          //  console.log(this.quiz.Questions);
         });
 
         this.TempQue.Text="";
@@ -268,6 +270,11 @@ export class CreateComponent implements OnInit {
 
   redirect(){
     this.router.navigate(['../../teacher/modules/module',{subjectname: btoa(this.subjectcode),details:btoa(this.usercode)}]);
+  }
+
+  validAnstf(){
+    console.log(this.TempQue.Answer);
+    //console.log(this.ans);
   }
 
 }

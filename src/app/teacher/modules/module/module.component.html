@@ -53,7 +53,30 @@
   <div  style="margin-top:30px; margin-bottom:30px; margin-left:50px;">
     <h4 style="color:white ; font-size:20px">Added Study Materials</h4>
     <ul style="list-style-type: square">
-      <li style="padding:10px ; border-radius: 10px"  *ngFor= "let file of files " ><a style="font-size: 20px; color:black;" href="{{file.url}}">{{file.name}}</a> <button class="btn btn-primary" style=" margin-left:90%;" (click)="delete(file.name)">Delete</button></li>
+      <li style="padding:10px ; border-radius: 10px"  *ngFor= "let file of files " ><a style="font-size: 20px; color:black;" href="{{file.url}}">{{file.name}}</a> <button class="btn btn-primary" style=" margin-left:90%;" data-toggle="modal" data-target="#myModal1" >Delete</button>
+
+
+        <div id="myModal1" class="modal fade" role="dialog">
+          <div class="modal-dialog modal-sm">
+
+            <!-- Modal content-->
+            <div class="modal-content">
+
+              <div class="modal-body">
+                <p>Do you want to delete {{file.name}} ? </p>
+              </div>
+
+              <div class="modal-footer">
+               <button type="button" (click)="delete(file)" class="btn btn-default" data-dismiss="modal" >Yes</button>
+               <button type="button" class="btn btn-default" data-dismiss="modal">No</button>
+             </div>
+
+            </div>
+
+          </div>
+        </div>
+
+      </li>
     </ul>
   </div>
 

@@ -1,4 +1,8 @@
 <button class="btn btn-primary" (click)="refresh()">Refresh</button>
+<div *ngIf="!(blocked )" style="color:white; font-size:20px;">
+  Student doesn't complete yet.
+</div>
+<div *ngIf = "(blocked )">
 <div class="btn-group">
   <button type="button" class="btn btn-primary"  *ngFor= "let question1 of quiz" (click)="goto(quiz.indexOf(question1))">{{quiz.indexOf(question1) + 1}}</button>
 </div>
@@ -7,4 +11,5 @@
   <button class="btn" *ngIf="shownext" style="float:right;"(click)="next()">next</button>
   <button class="btn" *ngIf="showprev" (click)="prev()">previous</button>
 
+</div>
 </div>

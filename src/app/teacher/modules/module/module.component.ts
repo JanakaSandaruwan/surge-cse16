@@ -82,12 +82,12 @@ export class ModuleComponent implements OnInit {
 
   }
 
-  delete(filename){
+  delete(file){
     //console.log(filename);
     //console.log(this.subjectname);
     var k=this.subjectname;
 
-    var storageRef=firebase.storage().ref().child('studymaterial/'+k+'/'+filename).delete().then(function() {
+    var storageRef=firebase.storage().ref().child('studymaterial/'+k+'/'+file.name).delete().then(function() {
       // File deleted successfully
     }).catch(function(error) {
       // Uh-oh, an error occurred!
@@ -95,7 +95,7 @@ export class ModuleComponent implements OnInit {
   //  console.log(this.subjectname);
     firebase.database().ref('classes/'+k+'/studymaterial').on("child_added", function(data){
       var x : string;
-      if(data.val().name == filename){
+      if(data.val().url == file.url){
         x = data.key;
         firebase.database().ref('classes/'+k+'/studymaterial/'+x).remove();
       }

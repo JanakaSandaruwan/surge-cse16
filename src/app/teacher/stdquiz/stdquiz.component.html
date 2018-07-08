@@ -1,0 +1,8 @@
+
+<button class="btn btn-primary" (click)="refresh()">Refresh</button>
+<div  style="margin-top:30px; margin-bottom:30px; margin-left:50px;">
+  <h4 style="color:white ; font-size:20px">Student List</h4>
+  <ul style="list-style-type: square">
+    <li style="padding:10px;border-radius: 10px "  *ngFor= "let user of students " ><a style="font-size: 20px; color:black;"(click)="gotoAnswer(user.id)" >{{user.id}}</a></li>
+  </ul>
+</div>

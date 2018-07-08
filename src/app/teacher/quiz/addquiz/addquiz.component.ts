@@ -15,7 +15,7 @@ import { ActivatedRoute } from '@angular/router';
 })
 
 export class AddquizComponent implements OnInit {
-
+  username:string;
   quizname:string;
   subjectname:string;
   quizdate:any;
@@ -32,6 +32,7 @@ export class AddquizComponent implements OnInit {
       // this.usercode = params['details'];
        this.quizname=atob(params['quizname']);
        this.subjectname=atob(params['subjectname']);
+       this.username=atob(params['details']);
        //console.log((this.usercode));
        console.log((this.quizname));
     });
@@ -41,8 +42,12 @@ export class AddquizComponent implements OnInit {
   }
 
   gotoView(){
-    this.router.navigate(['../../teacher/quiz/teacherview',{quizname: btoa(this.quizname),subjectname:btoa(this.subjectname)}]);
+    this.router.navigate(['../../teacher/quiz/teacherview',{quizname: btoa(this.quizname),subjectname:btoa(this.subjectname),details:btoa(this.username)}]);
     console.log("navigate to teacherview");
+  }
+
+  gotoStdview(){
+    this.router.navigate(['../../teacher/stdnotices',{quizname: btoa(this.quizname),subjectname:btoa(this.subjectname),details:btoa(this.username)}]);
   }
 
   loadInfo(){

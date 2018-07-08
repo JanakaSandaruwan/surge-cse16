@@ -30,6 +30,7 @@ export class LeaveapplicationComponent implements OnInit {
   message:string;
   fromvalid : Observable<boolean> = Observable.of(false);
   tovalid : Observable<boolean> = Observable.of(false);
+  issetdate:boolean=false;
   constructor(private router:Router, private route: ActivatedRoute,private leave:LoadLeaveService,private teacher:LoadteacherService) {
     this.columnDefs = [
           {headerName: "From", field: "from", width: 300},
@@ -56,7 +57,7 @@ export class LeaveapplicationComponent implements OnInit {
     });
 
     console.log(this.leavenum);
-
+    this.issetdate=false;
 
 
   }
@@ -153,10 +154,13 @@ export class LeaveapplicationComponent implements OnInit {
 
     if( (new Date(today).getTime() <= new Date(this.from).getTime())){
           this.fromvalid = Observable.of(false);
+          this.issetdate=true;
     }else{
           this.message="Incorrect date !"
           this.fromvalid = Observable.of(true);
+          this.issetdate=false;
     }
+    this.to="";
 
   }
 

@@ -1,22 +1,31 @@
-<button class="btn" (click)="loadInfo()" >Refresh</button>
-<div>
-    <h3><b>{{quizname}}</b></h3>
+<div style="font-size:25px; color:white">
+  <b>Quiz Information</b>
+</div>
+<hr style="color:white ;">
+<button class="btn btn-primary" (click)="loadInfo()" >Refresh</button>
+
+<div  style="  width: 1100px; height: auto;   margin-left:150px; border:solid; border-radius: 10px; background-color:#E5E8E8">
+  <div style=" text-align: center">
+      <h3><b>{{quizname}}</b></h3>
+  </div>
+
+  <div style=" text-align: center">
+    <div style="margin-top:10px; margin-left: 450px font-size:15px;"><b>Date : {{quizdate}}</b></div>
+    <div style="margin-top:10px; margin-left: 450px font-size:15px;"><b>Start time : {{starttime}}</b></div>
+    <div style="margin-top:10px; margin-left: 450px font-size:15px;"><b>End time: {{endtime}}</b></div>
+  </div>
+
 </div>
 
-<div style="margin-top:35px;margin-left: 50px">
-  <div style="margin-top:10px;"><b>Date : {{quizdate}}</b></div>
-  <div style="margin-top:10px;"><b>Start time : {{starttime}}</b></div>
-  <div style="margin-top:10px;"><b>End time: {{endtime}}</b></div>
-</div>
 
-
-<div class="col-lg-3 col-md-3 col-sm-6 col-xs-12 mycontainer" align="center" (click)="gotoView()" style="margin-top:35px;">
+<div class="col-lg-3 col-md-3 col-sm-6 col-xs-12 mycontainer" align="center" (click)="gotoView()" style="margin-top:35px; margin-left:12%">
   <button class= "btn bigbutton" >
     View Questions <br /><span class="glyphicon glyphicon-book"></span></button>
 </div>
 
 
-<div class="col-lg-3 col-md-3 col-sm-6 col-xs-12 mycontainer" align="center" style="margin-top:35px;" >
+
+<div class="col-lg-3 col-md-3 col-sm-6 col-xs-12 mycontainer" align="center" style="margin-top:35px; margin-left: 20%" (click)="gotoStdview()" >
   <button class= "btn bigbutton" >
     Student Answers <br /><span class="glyphicon glyphicon-book"></span></button>
 </div>

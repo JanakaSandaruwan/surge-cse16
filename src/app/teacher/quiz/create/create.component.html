@@ -73,8 +73,8 @@
               </div>
 
             </div>
-            <input type="radio"  name="gender" [(ngModel)]="TempQue.Answer" value="True" checked > True <br />
-            <input type="radio" name="gender" [(ngModel)]="TempQue.Answer" value="False"  > False<br />
+            <input type="radio"  name="gender" [(ngModel)]="TempQue.Answer"  value="True" checked (input)="validAnstf()"> True <br />
+            <input type="radio" name="gender"   [(ngModel)]="TempQue.Answer"  value="False" (input)="validAnstf()" > False<br />
           </div>
 
           <div *ngIf="TempQue.type=='sans'">
@@ -129,7 +129,7 @@
      <div class="modal-content">
 
        <div class="modal-body">
-         <p>The request  was sent ! </p>
+         <p>The quiz is submitted ! </p>
        </div>
 
        <div class="modal-footer">

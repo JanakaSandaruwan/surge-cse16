@@ -1,0 +1,26 @@
+ol {
+    background: #ff9999;
+    padding: 20px;
+}
+
+ul {
+    background: 	#666666;/*#3399ff;*/
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0px 5px 30px #F4D03F;
+    border-style:solid;
+}
+
+
+
+
+ol li {
+    background: ;
+    padding: 5px;
+    margin-left: 35px;
+}
+
+ul li {
+    background: 	#bfbfbf/*#E5E8E8*/;
+    margin: 5px;
+}

@@ -51,7 +51,8 @@
 
             <input id="field2" name="quizno" type="text" class="form-control k-textbox" data-role="text" required="required" data-parsley-errors-container="#errId2"><span id="errId2" class="error"></span></div>
 
-</div--><div class="form-group">
+</div-->
+<div class="form-group">
       <label class="control-label control-label-left col-sm-3" for="field3">Date<span class="req"> *</span></label>
       <div class="controls col-sm-9">
 
@@ -78,12 +79,14 @@
           <div *ngIf="(fromvalid | async)" class ="alert alert-danger">  {{message}}</div>
     </div>
 
-</div><div class="form-group">
+</div>
+
+<div class="form-group">
       <label class="control-label control-label-left col-sm-3" for="field4">Start Time<span class="req"> *</span></label>
           <div class="controls col-sm-9">
 
             <span class="k-widget k-timepicker k-header form-control" style=""><span class="k-picker-wrap k-state-default">
-              <input required  #rx="ngModel"  name="from" [(ngModel)]="starttime" id="field4" type="time" class="form-control k-input" data-role="time" role="textbox" aria-haspopup="true" aria-expanded="false" aria-owns="field4_timeview" aria-disabled="false"  aria-readonly="false"  data-error-container="#errfield4" style="width: 100%;"  data-parsley-errors-container="#errId4">
+              <input required [disabled]="!issetstart" #rx="ngModel" (input)="validstarttime()" name="from" [(ngModel)]="starttime" id="field4" type="time" class="form-control k-input" data-role="time" role="textbox" aria-haspopup="true" aria-expanded="false" aria-owns="field4_timeview" aria-disabled="false"  aria-readonly="false"  data-error-container="#errfield4" style="width: 100%;"  data-parsley-errors-container="#errId4">
 
               <span unselectable="on" class="k-select" role="button" aria-controls="field4_timeview"><span unselectable="on" class="k-icon k-i-clock">select</span></span></span></span><span id="errId4" class="error"></span>
 
@@ -93,16 +96,23 @@
                 </div>
 
 
+
               </div>
+
+              <div *ngIf="(validstart | async)" class ="alert alert-danger">  {{startmessage}}</div>
 
             </div>
 
-</div><div class="form-group">
+</div>
+
+
+
+<div class="form-group">
       <label class="control-label control-label-left col-sm-3" for="field5">End Time<span class="req"> *</span></label>
       <div class="controls col-sm-9">
 
             <span class="k-widget k-timepicker k-header form-control" style=""><span class="k-picker-wrap k-state-default">
-              <input name="to" #rkx="ngModel" required  [(ngModel)]="endtime" id="field5" type="time" class="form-control k-input" data-role="time" role="textbox" aria-haspopup="true" aria-expanded="false" aria-owns="field5_timeview" aria-disabled="false" aria-readonly="false" data-error-container="#errfield5" style="width: 100%;" data-parsley-errors-container="#errId5">
+              <input [disabled]="!issettime" title="First enter the start time !" name="to" #rkx="ngModel" (input)="validendtime()" required  [(ngModel)]="endtime" id="field5" type="time" class="form-control k-input" data-role="time" role="textbox" aria-haspopup="true" aria-expanded="false" aria-owns="field5_timeview" aria-disabled="false" aria-readonly="false" data-error-container="#errfield5" style="width: 100%;" data-parsley-errors-container="#errId5">
               <span unselectable="on" class="k-select" role="button" aria-controls="field5_timeview">
                 <span unselectable="on" class="k-icon k-i-clock">select</span></span></span></span><span id="errId5" class="error"></span>
 
@@ -114,13 +124,15 @@
 
                 </div>
 
+                <div *ngIf="(validend | async)" class ="alert alert-danger">  {{startmessage}}</div>
       </div>
 
-</div><div class="form-group pull-right">
+</div>
+<div class="form-group pull-right">
 
 
 
-<button id="button7" (click)="add()" type="button" class="btn btn-primary"  [disabled]="!userForm.form.valid || (fromvalid | async)">create</button>
+<button id="button7" (click)="add()" type="button" class="btn btn-primary"  [disabled]="!userForm.form.valid || (fromvalid | async) ||(validend | async) || (validstart | async)">create</button>
 </div>
 </div>
                                 </div>
