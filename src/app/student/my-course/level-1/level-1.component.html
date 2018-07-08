@@ -1,22 +1,29 @@
-<h3 style="text-align:center">{{subjectname}}</h3>
+<div class="main-wrapper" style="text-align:center; font-size: 350%;background-color:#E5E8E8 ; border: solid;border-radius: 10px;opacity: 0.9; width:400px;height: 80px; margin-left: 490px;">
+  <b>{{subjectname}}</b></div>
 
-<div class="col-lg-3 col-md-3 col-sm-6 col-xs-12 mycontainer" align="center" (click)="gotoProgress()" >
-  <button class= "btn bigbutton" >
-    Final Grades <br /><span class="glyphicon glyphicon-book"></span></button>
-</div>
+  <div class="row">
+    <div style="padding-top: 100px; padding-left:60px">
+
+      <div class="col-lg-3 col-md-3 col-sm-6 col-xs-12 mycontainer" align="center" (click)="gotoProgress()" style="margin-left:150px;padding-left:0px">
+        <button class= "btn button" style=" background: url(assets/finalgrade.jpg);color: black;font-size:xx-large;font-weight: bold;">
+          <div class="main-wrapper" style="background-color: white; border-radius: 3px;opacity: 0.8">  Final Grades</div></button>
+        </div>
+
+        </div>
+      </div>
 
 
-<button class="btn" style="margin-top:150px;" (click)="refresh()">Refresh</button>
+<button class="btn btn-primary" style="margin-left:87.5%" (click)="refresh()">Refresh</button>
 <div  style="margin-top:50px; margin-bottom:30px; margin-left:50px">
-  <h4 style="color:blue">Added Study Materials</h4>
+  <h4 style="color:white ; font-size:20px">Added Study Materials</h4>
   <ul>
-    <li style="padding:10px;"  *ngFor= "let file of files " ><a href="{{file.url}}">{{file.name}}</a> </li>
+    <li style="padding:10px;border-radius: 10px "  *ngFor= "let file of files " ><a style="font-size: 20px; color:black;" href="{{file.url}}">{{file.name}}</a> </li>
   </ul>
 </div>
 
 <div  style="margin-top:30px; margin-bottom:30px; margin-left:50px">
-  <h4>Quizes</h4>
+  <h4 style="color:white ; font-size:20px">Quizzes</h4>
   <ul>
-    <li style="padding:10px;"  *ngFor= "let quiz of quizes " ><a (click)="gotodisplayquiz(quiz.name)" >{{quiz.name}}</a></li>
+    <li style="padding:10px;border-radius: 10px "  *ngFor= "let quiz of quizes " ><a style="font-size: 20px; color:black;"(click)="gotodisplayquiz(quiz.name)" >{{quiz.name}}</a></li>
   </ul>
 </div>
