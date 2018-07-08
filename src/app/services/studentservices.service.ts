@@ -15,6 +15,7 @@ export class StudentservicesService {
         finallist[x]=data.val();
         x=x+1;
       });
+      console.log(finallist);
       return Observable.of(finallist);
   }
 
@@ -38,9 +39,9 @@ enrol(modulen,studentID,moduleName,level){
   firebase.database().ref('/Users/'+studentID+"/bnumber").on("value", function(data){
     var batchno = data.val();
       console.log(batchno);
-    firebase.database().ref('/batches/'+batchno+'/students/'+studentID+'/subjects/'+level+'/'+module).set({
-      module,
-      moduleName
+    firebase.database().ref('/batches/'+batchno+'/students/'+studentID+'/subjects/'+level+'/'+modulen).set({
+      module : modulen,
+      moduleName : moduleName
     });
   });
 
@@ -55,9 +56,38 @@ enrol(modulen,studentID,moduleName,level){
 unenrol(module,studentID,moduleName,level){
   firebase.database().ref('/Users/'+studentID+"/bnumber").on("value", function(data){
     var batchno = data.val();
-    console.log(batchno);
+    console.log(batchno+"unenrol");
     firebase.database().ref('/batches/'+batchno+'/students/'+studentID+'/subjects/'+level+'/'+module).remove();
       });
 }
 
+  getLevel(studentID):string{
+    var level:string ='Year 1';
+  firebase.database().ref('/Users/'+studentID+"/bnumber").on("value", function(data){
+      var batchno = data.val();
+    firebase.database().ref('/batches/'+batchno+'/students/'+studentID+'/Level').on("value",function(data){
+    level=data.val();
+    });
+    });
+    return level;
+  }
+  checkEnrol(studentID,level) : boolean{
+    var exists : boolean = false;
+    var Module: any[];
+    firebase.database().ref('/Users/'+studentID+"/bnumber").on("value", function(data){
+      var batchno = data.val();
+      console.log(batchno);
+      console.log(level);
+    firebase.database().ref('/batches/'+batchno+'/students/'+studentID+'/subjects/'+level).on("value", function(data){
+      Module = data.val();
+      console.log(Module);
+      if(Module==null){
+        exists = false;
+      }else{
+        exists=true;
+      }
+    });
+  });
+    return exists;
+  }
 }

@@ -56,13 +56,13 @@ export class LoadquizService {
     return Observable.of(completed);
   }
 
-  checkanswer(student,modulen,quiznu) : Observable<boolean>{
-    var completed : boolean;
-    firebase.database().ref('/classes/'+modulen+'/students/'+student+'/quiz/quiz'+quiznu+'/complete').on('value', function(data){
+  checkans(student,modulen,quiznu) : Observable<string[]>{
+    var ans : string[];
+    firebase.database().ref('/classes/'+modulen+'/students/'+student+'/quiz/quiz'+quiznu+'/ans').on('value', function(data){
       console.log(data.val());
-      completed = data.val();
+      ans = data.val();
     });
-    return Observable.of(completed);
+    return Observable.of(ans);
   }
 
   checkforcomplete(modulen,student,quizname) :Observable<boolean>{

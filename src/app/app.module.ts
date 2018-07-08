@@ -85,10 +85,12 @@ import { EnrolmentComponent } from './student/enrolment/enrolment.component';
 import { ViewquizComponent } from './student/viewquiz/viewquiz.component';
 import { McqsComponent } from './student/viewquiz/mcqs/mcqs.component';
 import { LoadgradesService } from './services/loadgrades.service';
+import { InvalidComponent } from './invalid/invalid.component';
 import { NoticesComponent } from './teacher/notices/notices.component';
 import { StdquizComponent } from './teacher/stdquiz/stdquiz.component';
 import { AnsviewComponent } from './teacher/stdquiz/ansview/ansview.component';
 import { QuesComponent } from './teacher/stdquiz/ansview/ques/ques.component';
+import { StudentprogresscheckComponent } from './student/studentprogresscheck/studentprogresscheck.component';
 //import { CalendarModule } from 'angular-calendar';
 
 @NgModule({
@@ -147,7 +149,9 @@ import { QuesComponent } from './teacher/stdquiz/ansview/ques/ques.component';
     NoticesComponent,
     StdquizComponent,
     AnsviewComponent,
-    QuesComponent
+    QuesComponent,
+    InvalidComponent,
+    StudentprogresscheckComponent
   ],
   entryComponents: [
     McqComponent,
@@ -178,11 +182,12 @@ import { QuesComponent } from './teacher/stdquiz/ansview/ques/ques.component';
         { path: 'createTeacher',component:ViewteacherComponent},
         { path: 'createsubject',component:ViewsubjectsComponent},
         { path: 'createemployee',component:ViewemployeesComponent},
-        { path: 'updatedetails',component:UpdateuserComponent}]
-    //{ path: '**', component: PageNotFoundComponent }
+        { path: 'updatedetails',component:UpdateuserComponent}
+      ]
+
       },
     { path: 'teacher', component:TeacherComponent, children : [
-      { path: '', component: TeacherHomeComponent },
+      { path: 'home', component: TeacherHomeComponent },
       { path: 'progresscheck', component:ProgresscheckComponent},
       { path: 'admittance', component:AdmittanceComponent},
       { path: 'leaveapplication', component:LeaveapplicationComponent},
@@ -205,12 +210,7 @@ import { QuesComponent } from './teacher/stdquiz/ansview/ques/ques.component';
       {path:'stdans',component:AnsviewComponent},
       {path:'ques',component:QuesComponent}
     ]
-    //{ path: '**', component: PageNotFoundComponent }
-  },
-  { path: 'teacher/:details', component:TeacherComponent, children : [
-    { path: '', component: TeacherHomeComponent },
-    { path: 'progresscheck', component:ProgresscheckComponent}]
-  //{ path: '**', component: PageNotFoundComponent }
+
   },
   { path: 'student', component:StudentComponent, children : [
     { path: 'home', component: HomeComponent },
@@ -223,7 +223,8 @@ import { QuesComponent } from './teacher/stdquiz/ansview/ques/ques.component';
     {path: 'subject',component:Level1Component},
     {path:'viewquiz',component:ViewquizComponent},
     {path:'viewquiz/mcqs',component:McqsComponent},
-    {path:'updatedetails',component:UpdateuserComponent}
+    {path:'updatedetails',component:UpdateuserComponent},
+    {path: 'progresscheck' , component:StudentprogresscheckComponent}
   ]
   //{ path: '**', component: PageNotFoundComponent }
   },
@@ -251,9 +252,7 @@ import { QuesComponent } from './teacher/stdquiz/ansview/ques/ques.component';
   {path:'writenotice',component:WritenoticeComponent}]
   //{ path: '**', component: PageNo,FoundComponent }
 },
-{
-  path: 'new' , component: NewviewComponent
-}
+{ path: '**', component: InvalidComponent }
     ]),
     RouterModule
   ],

@@ -4,9 +4,10 @@ import { McqComponent } from './mcq/mcq.component';
 import { Quiz } from '../../../models/quiz';
 import { Question } from '../../../models/question';
 import { ActivatedRoute } from '@angular/router';
+import { Observable } from 'rxjs/Observable';
 import {LoadquizService} from '../../../services/loadquiz.service';
 import {Router} from '@angular/router';
-import { Observable } from 'rxjs/Observable';
+//import { Observable } from 'rxjs/Observable';
 @Component({
   selector: 'app-create',
   templateUrl: './create.component.html',
@@ -14,7 +15,9 @@ import { Observable } from 'rxjs/Observable';
   providers:[LoadquizService]
 })
 
+
 export class CreateComponent implements OnInit {
+  answernotselected : Observable<boolean> = Observable.of(true);
   TempQue : Question = <Question>{};
   quiz : Quiz = <Quiz>{};
   quizanswers : string[] = [];
@@ -22,6 +25,17 @@ export class CreateComponent implements OnInit {
   usercode:string;
   validtf : Observable<boolean> = Observable.of(false);
 
+  typechange(){
+    this.answernotselected = Observable.of(true);
+    this.TempQue.Answer = "";
+  }
+  seeans(){
+    if(this.TempQue.Answer != undefined && this.TempQue.Answer != ""){
+      this.answernotselected = Observable.of(false);
+    }else{
+      this.answernotselected = Observable.of(true);
+    }
+  }
   //@ViewChild('parent', { read: ViewContainerRef }) container: ViewContainerRef;
   getChildEvent(evt){
     console.log('got this from the child', evt.detail);
@@ -139,6 +153,7 @@ export class CreateComponent implements OnInit {
         this.TempQue.Option3="";
         this.TempQue.Option4="";
         this.TempQue.Answer="";
+        this.answernotselected = Observable.of(true);
   }
 
   AddingTrue(){
@@ -210,6 +225,7 @@ export class CreateComponent implements OnInit {
         this.TempQue.Option3="";
         this.TempQue.Option4="";
         this.TempQue.Answer="";
+        this.answernotselected = Observable.of(true);
   }
 
   AddEssay() {
@@ -254,7 +270,8 @@ export class CreateComponent implements OnInit {
         this.TempQue.Option2="";
         this.TempQue.Option3="";
         this.TempQue.Option4="";
-        this.TempQue.Answer="";``
+        this.TempQue.Answer="";
+        this.answernotselected = Observable.of(true);
   }
 
 

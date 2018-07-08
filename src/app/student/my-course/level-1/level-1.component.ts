@@ -31,7 +31,7 @@ export class Level1Component implements OnInit {
     this.refresh();
   }
   gotoProgress(){
-    this.router.navigate(['../../teacher/progresscheck',{subjectname: btoa(this.subjectname),details:btoa(this.usercode)}]);
+    this.router.navigate(['../../student/progresscheck',{subjectname: btoa(this.subjectname),details:btoa(this.usercode)}]);
     console.log("navigate to progresscheck");
   }
   gotoQuiz(){

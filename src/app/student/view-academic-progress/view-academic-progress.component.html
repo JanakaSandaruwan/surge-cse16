@@ -1,7 +1,9 @@
 <h3>View Academic Result</h3>
+<div class="btn-group">
+  <button type="button" class="btn btn-primary"  *ngFor= "let year of years" (click)="getresults(year)">{{year}}</button>
+</div>
 
 <div class="news-item">
-  <h2>Semester 1</h2>
   <div class="row">
     <ag-grid-angular style="font-family: Arial; font-size: 20px;height: 131px;" class="ag-theme-fresh"
                      [rowData]="results"
@@ -13,6 +15,5 @@
 
                      rowTemplate= '<div ng-dblclick="getExternalScopes().onGridDoubleClick(row)" ng-repeat="col in colContainer.renderedColumns track by col.colDef.name" class="ui-grid-cell" ui-grid-cell></div>'>
     </ag-grid-angular>
-    <h2 style="">Semester GPA = 3.37</h2>
   </div>
 </div>

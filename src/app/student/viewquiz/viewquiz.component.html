@@ -1,11 +1,15 @@
 
 
 
-<button class="btn "(click)="refresh()">Refresh</button>
-<div *ngIf="!(blocked | async)">
+<div style="height:100px; padding-top:30px">
+  <button class="btn "(click)="refresh()">Refresh</button>
+  <button [disabled]="!completed && (blocked | async)" class="btn "(click)="backtomodule()">Back to Module</button>
+</div>
+
+<div *ngIf="!(blocked | async) && !completed" id="mainbody" style=" padding-top:30px ; padding-bottom: 30px; text-align: center; background-color: mintcream; border-style:solid; border-color:grey; border-radius:10px; margin-top:20px; margin-bottom:20px;">
   You are locked out of this quiz
 </div>
-<div *ngIf = "(blocked | async)">
+<div *ngIf = "(blocked | async) || completed">
 <div class="btn-group">
   <button type="button" class="btn btn-primary"  *ngFor= "let question of quiz" (click)="goto(quiz.indexOf(question))">{{quiz.indexOf(question) + 1}}</button>
 </div>

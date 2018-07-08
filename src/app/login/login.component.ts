@@ -14,19 +14,24 @@ export class LoginComponent implements OnInit {
   pass : string;
   usrdata : any;
   fulldata : any;
+  alreadyloggedin : boolean = false;
   constructor(private lservice : LoginServiceService, private router:Router, private logincookie : CookieService, private storage:LocalStorageService ) { }
 
+  logout(){
+      this.alreadyloggedin = false;
+      this.storage.clear();
+      this.uname = "";
+      this.lservice.logoutuser(this.uname);
+      this.router.navigate(['']);
+
+  }
   ngOnInit() {
     this.storage.observe('key')
             .subscribe((value) => console.log('new value', value));
-    var x = this.logincookie.get("uname");
+    var x = this.storage.retrieve("uname");
     if(x){
-      if(this.logincookie.get("role") == "admin"){
-        this.router.navigate(['admin/home',{details: btoa(x)}]);
-      }else{
-
-      }this.router.navigate(['teacher/home',{details: btoa(x)}]);
-
+      this.alreadyloggedin = true;
+      this.uname = x;
     }
   }
 

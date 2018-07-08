@@ -32,8 +32,8 @@ left: 0;
 display: inline-block;
 }
 #main-wrapper {
-height: 100%;
-overflow-y: scroll;
+height: 900px;
+overflow-y: auto;
 padding: 0px 0 0px 0;
 -webkit-transition: margin 1s;
 transition: margin 1s;
@@ -135,6 +135,7 @@ body {
 @media (max-width: 992px) {
 #main-wrapper {
   padding-top: 0px;
+  margin-left: 60px;
   background-color: #424242;
 }
 }

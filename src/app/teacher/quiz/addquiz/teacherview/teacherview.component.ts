@@ -24,7 +24,7 @@ export class TeacherviewComponent implements OnInit {
   completed : boolean = true;
   answers : string[];
   corans : string[] = ["","","",""];
-  quizes:any [];
+  quizes:any [] = [];
   /*quiz : Quiz =
   {Questions : [{Text: "Bob has x candybars. He gives you and Paul y candybars each. You give a x-y of your candy bars to Paul at the end you have z,2z and 3z bars respectively whats the value of y?"
   , Option1: "65", Option2: "13", Option3: "43", Option4: "none of the above", type:"mcq"},

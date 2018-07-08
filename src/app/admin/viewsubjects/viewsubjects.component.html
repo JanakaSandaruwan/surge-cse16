@@ -16,9 +16,10 @@
             <div class="col-md-9">
               <input id="code" name="code" class="form-control" required minlength="6"  [(ngModel)]="csubject.code" #code="ngModel" (input)="checkValidity()">
 
-             <div id="div1" *ngIf="code.invalid && (code.dirty || code.touched)  && set " class="alert alert-danger">
+             <div id="div1" *ngIf="code.invalid && (code.dirty || code.touched)  && set " class="alert alert-danger" pattern="[A-Z]{2}[1-9]{4}">
+             <div *ngIf="code.errors.pattern"> Code should be 2 Uppercase letters followed by 4 digits</div>
              <div *ngIf="code.errors.required"> Code is required.</div>
-             <div *ngIf="code.errors.minlength"> Code must be at least 6 characters long.</div></div>
+             <div *ngIf="code.errors.minlength"> Code must 6 characters long.</div></div>
             </div>
           </div>
         </div>
