@@ -56,6 +56,16 @@ export class LoadquizService {
     return Observable.of(completed);
   }
 
+  checkcorrect(student,modulen,quiznu) : Observable<number>{
+    var right : number;
+    firebase.database().ref('/classes/'+modulen+'/students/'+student+'/quiz/quiz'+quiznu+'/mark').on('value', function(data){
+      console.log(data.val());
+      right = data.val();
+    });
+    right = Math.round(right / 100 * 3);
+    return Observable.of(right);
+  }
+
   checkans(student,modulen,quiznu) : Observable<string[]>{
     var ans : string[];
     firebase.database().ref('/classes/'+modulen+'/students/'+student+'/quiz/quiz'+quiznu+'/ans').on('value', function(data){
@@ -65,7 +75,15 @@ export class LoadquizService {
     return Observable.of(ans);
   }
 
-  
+  checkforcomplete(modulen,student,quizname) :Observable<boolean>{
+
+    var completed : boolean;
+    firebase.database().ref('/classes/'+modulen+'/students/'+student+'/quiz/'+quizname+'/complete').on('value', function(data){
+      console.log(data.val());
+      completed = data.val();
+    });
+    return Observable.of(completed);
+  }
 
   checktime(modulen,quiznu): Observable<boolean>{
     var timebeg : string;
@@ -73,6 +91,8 @@ export class LoadquizService {
     var qdate : string;
     var ontime : boolean;
     firebase.database().ref('/classes/'+modulen+'/Quiz/quiz'+quiznu).on('value', function(data){
+      console.log(data.val());
+      console.log(quiznu,modulen);
       timebeg = data.val().starttime;
       timeend = data.val().endtime;
       qdate = data.val().date;
@@ -93,6 +113,7 @@ export class LoadquizService {
 
 
     });
+    console.log(ontime);
     return Observable.of(ontime);
   }
 
@@ -146,6 +167,17 @@ export class LoadquizService {
       return finallist;
     }
 
+    stdanswers(student,quizname,modulen):any[]{
+      console.log(student,quizname,modulen);
+      var finallist :any[];
+      finallist = [];
+      var nodata = 0;
+      firebase.database().ref('/classes/'+modulen+'/students/'+student+'/quiz/'+quizname+'/ans').on('child_added', function(data){
+        finallist[nodata]=data.val();
+        nodata = nodata + 1;
+      });
+      return finallist;
+    }
 
 
 }

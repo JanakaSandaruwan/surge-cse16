@@ -1,20 +1,25 @@
 import {Router} from '@angular/router';
 import { ActivatedRoute } from '@angular/router';
-import { Quiz } from '../../../../models/quiz';
-import { Question } from '../../../../models/question';
-import { TeachermcqComponent } from './teachermcq/teachermcq.component';
+import { Quiz } from '../../../models/quiz';
+import { Question } from '../../../models/question';
+import { QuesComponent } from './ques/ques.component';
 import { ViewChild, ComponentFactoryResolver, ViewContainerRef } from '@angular/core';
 import { Component, OnInit, Input, ElementRef , EventEmitter, Output } from '@angular/core';
-import {LoadquizService} from '../../../../services/loadquiz.service';
+import {LoadquizService} from '../../../services/loadquiz.service';
+import {LocalStorageService, SessionStorageService} from 'ngx-webstorage';
+import { Observable } from 'rxjs/Observable';
 
 @Component({
-  selector: 'app-teacherview',
-  templateUrl: './teacherview.component.html',
-  styleUrls: ['./teacherview.component.css']
+  selector: 'app-ansview',
+  templateUrl: './ansview.component.html',
+  styleUrls: ['./ansview.component.css']
 })
-export class TeacherviewComponent implements OnInit {
+export class AnsviewComponent implements OnInit {
+
   quizname:string;
+  stdname:string;
   subjectname:string;
+  username:string;
   counter : number = 0;
   currentquestion : any;
   components = [];
@@ -24,7 +29,9 @@ export class TeacherviewComponent implements OnInit {
   completed : boolean = true;
   answers : string[];
   corans : string[] = ["","","",""];
-  quizes:any [] = [];
+  quizes:any [];
+  //blocked : Observable<boolean> = Observable.of(false);
+  blocked:boolean=false;
   /*quiz : Quiz =
   {Questions : [{Text: "Bob has x candybars. He gives you and Paul y candybars each. You give a x-y of your candy bars to Paul at the end you have z,2z and 3z bars respectively whats the value of y?"
   , Option1: "65", Option2: "13", Option3: "43", Option4: "none of the above", type:"mcq"},
@@ -42,6 +49,8 @@ export class TeacherviewComponent implements OnInit {
        this.quizname=atob(params['quizname']);
        this.subjectname =atob( params['subjectname']);
        //console.log((this.usercode));
+       this.stdname=atob(params['stdname']);
+       this.username=atob(params['details']);
        console.log((this.quizname));
        console.log((this.subjectname));
     });
@@ -79,7 +88,7 @@ export class TeacherviewComponent implements OnInit {
   }
   Add() {
 
-        var factory = this.componentFactoryResolver.resolveComponentFactory(TeachermcqComponent);
+        var factory = this.componentFactoryResolver.resolveComponentFactory(QuesComponent);
         var ref = this.viewContainerRef.createComponent(factory);
         //expComponent.instance._ref = expComponent;
         ref.instance._ref = ref;
@@ -97,7 +106,7 @@ export class TeacherviewComponent implements OnInit {
         ref.instance.selected = this.answers[this.counter];
         this.components.push(ref);
         //ref.changeDetectorRef.detectChanges();
-        var blockInstance = ref.instance as TeachermcqComponent;
+        var blockInstance = ref.instance as QuesComponent;
 
         blockInstance.answerEvent.subscribe((val) => {
             console.log(val);
@@ -125,18 +134,28 @@ export class TeacherviewComponent implements OnInit {
   refresh(){
     //console.log(this.quiz);
     //console.log(this.quiz.length);
+  //  var a:boolean;
+
+
     this.quizes=this.quizSvc.quizeslist(this.subjectname);
+
+    //console.log(ans,this.quizes);
     var i=0;
     while(i<this.quizes.length){
          if (this.quizname == this.quizes[i]["name"]){
            this.quiz=this.quizes[i]["question"];
-           this.answers=this.quizes[i]["answer"];
+           this.answers=this.quizSvc.stdanswers(this.stdname,"quiz"+(i+1),this.subjectname);
            console.log(this.answers);
 
            break;
          }
          i++;
     }
+
+    this.quizSvc.checkforcomplete(this.subjectname,this.stdname,"quiz"+(i+1)).subscribe(data => {
+      this.blocked = data;
+    });
+
     if(this.quiz.length == 0){
       this.Add();
     }

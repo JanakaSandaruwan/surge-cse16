@@ -26,13 +26,8 @@ import { QuizComponent } from './teacher/quiz/quiz.component';
 import { AddmarkComponent } from './teacher/quiz/addmark/addmark.component';
 import { DisplaymarkComponent } from './teacher/quiz/displaymark/displaymark.component';
 import { AddquizComponent } from './teacher/quiz/addquiz/addquiz.component';
-
-
-
 import { TeacherviewComponent  } from './teacher/quiz/addquiz/teacherview/teacherview.component';
-
 import { TeachermcqComponent } from './teacher/quiz/addquiz/teacherview/teachermcq/teachermcq.component';
-
 import { AdmittanceComponent } from './teacher/admittance/admittance.component';
 import { StudymaterialComponent } from './teacher/studymaterial/studymaterial.component';
 import { ModulesComponent } from './teacher/modules/modules.component';
@@ -92,6 +87,9 @@ import { McqsComponent } from './student/viewquiz/mcqs/mcqs.component';
 import { LoadgradesService } from './services/loadgrades.service';
 import { InvalidComponent } from './invalid/invalid.component';
 import { NoticesComponent } from './teacher/notices/notices.component';
+import { StdquizComponent } from './teacher/stdquiz/stdquiz.component';
+import { AnsviewComponent } from './teacher/stdquiz/ansview/ansview.component';
+import { QuesComponent } from './teacher/stdquiz/ansview/ques/ques.component';
 import { StudentprogresscheckComponent } from './student/studentprogresscheck/studentprogresscheck.component';
 //import { CalendarModule } from 'angular-calendar';
 
@@ -148,8 +146,11 @@ import { StudentprogresscheckComponent } from './student/studentprogresscheck/st
     WritenoticeComponent,
     ViewquizComponent,
     McqsComponent,
-    InvalidComponent,
     NoticesComponent,
+    StdquizComponent,
+    AnsviewComponent,
+    QuesComponent,
+    InvalidComponent,
     StudentprogresscheckComponent
   ],
   entryComponents: [
@@ -204,7 +205,10 @@ import { StudentprogresscheckComponent } from './student/studentprogresscheck/st
       {path:'create/mcq',component:McqComponent},
       { path: 'quizes', component:CreateComponent},
       {path:'updatedetails',component:UpdateuserComponent},
-      {path:'notices',component:NoticesComponent}
+      {path:'notices',component:NoticesComponent},
+      {path:'stdnotices',component:StdquizComponent},
+      {path:'stdans',component:AnsviewComponent},
+      {path:'ques',component:QuesComponent}
     ]
 
   },

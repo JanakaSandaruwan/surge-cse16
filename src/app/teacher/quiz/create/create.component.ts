@@ -7,6 +7,7 @@ import { ActivatedRoute } from '@angular/router';
 import { Observable } from 'rxjs/Observable';
 import {LoadquizService} from '../../../services/loadquiz.service';
 import {Router} from '@angular/router';
+//import { Observable } from 'rxjs/Observable';
 @Component({
   selector: 'app-create',
   templateUrl: './create.component.html',
@@ -27,6 +28,7 @@ export class CreateComponent implements OnInit {
   shownext : boolean = false;
   showprev : boolean = false;
   completed : boolean = false;
+  validtf : Observable<boolean> = Observable.of(false);
 
   typechange(){
     this.answernotselected = Observable.of(true);
@@ -52,29 +54,47 @@ export class CreateComponent implements OnInit {
        this.usercode = atob(params['details']);
        this.subjectcode=atob(params['subjectname']);
        //console.log((this.usercode));
-       console.log((this.subjectcode));
+       //console.log((this.subjectcode));
     });
     this.quiz.Questions = [];
   }
 
 
+  Add(){
+    if(this.TempQue.type=="mcq"){
+        //console.log("mcq add");
+        this.AddMcq();
+    }
 
+    if(this.TempQue.type=="tf"){
+        //console.log("tf add");
+        this.AddTrue();
+    }
+
+    if(this.TempQue.type=="sans"){
+        //console.log("sans add");
+        this.AddEssay();
+    }
+
+    //console.log(this.quiz);
+    //console.log(this.quizanswers);
+  }
 
   Adding(){
     this.counter++;
     this.index = this.counter;
     if(this.TempQue.type=="mcq"){
-        console.log("mcq adding");
+        //console.log("mcq adding");
         this.AddingMcq();
     }
 
     if(this.TempQue.type=="tf"){
-        console.log("tf adding");
+        //console.log("tf adding");
         this.AddingTrue();
     }
 
     if(this.TempQue.type=="sans"){
-        console.log("sans adding");
+      //  console.log("sans adding");
         this.AddingEssay();
     }
 
@@ -91,7 +111,7 @@ export class CreateComponent implements OnInit {
     temp.type = this.TempQue.type;
     this.quiz.Questions.push(temp);
 
-    console.log(this.quiz.Questions);
+    //console.log(this.quiz.Questions);
     this.quizanswers.push(tempans);
     console.log(this.quizanswers);
     this.AddMcq();
@@ -160,7 +180,7 @@ export class CreateComponent implements OnInit {
       //  this.loadquiz.updatequizanswer(this.subjectcode,this.quizanswers);
 
         blockInstance.messageEvent.subscribe((val) => {
-            console.log(val);
+            //console.log(val);
             var i : number;
             i=0;
             while (i<this.quiz.Questions.length){
@@ -193,7 +213,7 @@ export class CreateComponent implements OnInit {
     temp.Text = this.TempQue.Text;
     var tempans = this.TempQue.Answer;
     this.quiz.Questions.push(temp);
-    console.log(this.quiz.Questions);
+    //console.log(this.quiz.Questions);
     this.quizanswers.push(tempans);
     console.log(this.quizanswers);
     this.AddTrue();
@@ -207,7 +227,7 @@ export class CreateComponent implements OnInit {
     temp.Text = this.TempQue.Text;
     var tempans = this.TempQue.Answer;
     this.quiz.Questions.push(temp);
-    console.log(this.quiz.Questions);
+    //console.log(this.quiz.Questions);
     this.quizanswers.push(tempans);
     console.log(this.quizanswers);
     this.AddEssay();
@@ -331,7 +351,7 @@ export class CreateComponent implements OnInit {
 
 
         blockInstance.messageEvent.subscribe((val) => {
-            console.log(val);
+            //console.log(val);
             var i : number;
             i=0;
             while (i<this.quiz.Questions.length){
@@ -384,6 +404,9 @@ export class CreateComponent implements OnInit {
     }else{
       this.showprev = true;
     }
+  }
+  validAnstf(){
+    console.log(this.TempQue.Answer);
   }
 
 }

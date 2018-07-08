@@ -26,7 +26,7 @@ export class McqComponent implements OnInit {
   @Output() answerEvent = new EventEmitter<string>();
 
   newValue(value){
-    console.log(this.selected);
+    //console.log(this.selected);
     this.answerEvent.emit(this.selected);
   }
 
@@ -37,13 +37,13 @@ export class McqComponent implements OnInit {
     this.final.Option3 = this.Option3;
     this.final.Option4 = this.Option4;
     this.messageEvent.emit(this.final);
-    console.log(this.messageEvent);
+    //console.log(this.messageEvent);
     this._ref.destroy();
   }
 
   ngOnInit() {
     if(this.completed == false){
-      console.log("k2");
+    //  console.log("k2");
       this.wrong = false;
       //$('#mainbody').addClass("incomplete");
     }else{

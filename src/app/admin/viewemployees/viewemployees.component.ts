@@ -23,7 +23,7 @@ export class ViewemployeesComponent implements OnInit {
   gridApi : any;
   gridColumnApi : any;
   DCCRows : Employee = <Employee>{};
-  selectedRows : any;
+  selectedRows : any = [];
   NICtaken : Observable<boolean>;
   Usernametaken : Observable<boolean>;
   showid : boolean = true;
@@ -33,6 +33,7 @@ export class ViewemployeesComponent implements OnInit {
   showname : boolean = true;
   showmail : boolean = true;
   Error : string = "";
+  Success : string = "";
 
   toggleid(){
     this.showid = !this.showid;
@@ -137,6 +138,8 @@ export class ViewemployeesComponent implements OnInit {
         }
         this.SEmployees = this._employeeservice.listEmployees();
         this.gridApi.setRowData(this.SEmployees);
+        this.Success = "Successfuly deleted";
+        $('#successbutton').click();
       }
     }
     onGridReady(params) {
@@ -189,6 +192,8 @@ export class ViewemployeesComponent implements OnInit {
     this.cemployee.email = "";
     $('#refresher').click();
     $('#button79').click();
+    this.Success = "Successfuly Added";
+    $('#successbutton').click();
   }
 
 }
