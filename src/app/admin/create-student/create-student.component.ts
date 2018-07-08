@@ -200,6 +200,7 @@ export class CreateStudentComponent implements OnInit {
     }
 
   ngOnInit(): void {
+    this.cstudent.ps = false;
     this.dtOptions = {
       pagingType: 'full_numbers',
       info: false,
@@ -257,6 +258,7 @@ export class CreateStudentComponent implements OnInit {
       this.SStudents = this._batchservice.listStudents(this.selected);
       this.gridApi.setRowData(this.SStudents);
     }
+    this.set = false;
     this.Success = "Successfuly added";
     $('#successbutton').click();
   }
@@ -269,6 +271,7 @@ export class CreateStudentComponent implements OnInit {
     this.sbatch = batch;
     this.nextid = batch.nextid;
     this.SStudents = this._batchservice.listStudents(this.selected);
+    console.log(this.nextid);
     //this.gridApi.setRowData(this.SStudents);
       //this.rowData = this.SStudents;
 
