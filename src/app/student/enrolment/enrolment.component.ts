@@ -9,8 +9,8 @@ import { Observable } from 'rxjs/Observable';
   styleUrls: ['./enrolment.component.css']
 })
 export class EnrolmentComponent implements OnInit {
-  Level : string =this._sservice.getLevel(this.storage.retrieve("uname")) ;
-  isenrol: boolean=this._sservice.checkEnrol(this.storage.retrieve("uname"),this.Level);
+  Level : string;
+  isenrol: boolean;
 
   finalList : Subject[];
   constructor(private storage:LocalStorageService, private _sservice : StudentservicesService) {
@@ -20,8 +20,16 @@ console.log(this.isenrol);
 
   }
 
-  ngOnInit() {
+  refresh(){
+    this.Level =this._sservice.getLevel(this.storage.retrieve("uname")) ;
+    console.log(this.Level);
+    this.isenrol=this._sservice.checkEnrol(this.storage.retrieve("uname"),this.Level);
+  }
 
+  ngOnInit() {
+this.Level =this._sservice.getLevel(this.storage.retrieve("uname")) ;
+console.log(this.Level);
+this.isenrol=this._sservice.checkEnrol(this.storage.retrieve("uname"),this.Level);
   }
 gotol1(){
   this._sservice.listModule("Year 1").subscribe(data => {
