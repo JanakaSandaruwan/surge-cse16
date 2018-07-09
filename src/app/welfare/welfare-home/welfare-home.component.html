@@ -1,11 +1,14 @@
 <div class="row">
-  <div class="col-lg-3 col-md-3 col-sm-6 col-xs-12 mycontainer" align="center" >
-    <button class= "btn bigbutton" (click)="gotoNN()">
-      Post New Notice<br /><span class="glyphicon glyphicon-book"></span></button>
-  </div>
-  <div class="col-lg-3 col-md-3 col-sm-6 col-xs-12 mycontainer" align="center" >
-    <button class= "btn bigbutton" (click)="gotoVN()">
-      View Notices<br /><span class="glyphicon glyphicon-book"></span></button>
-  </div>
+  <div>
 
+    <div class="col-lg-3 col-md-3 col-sm-6 col-xs-12 mycontainer" align="center" (click)="gotoNN()" style="margin-left:200px;padding-left:0px">
+      <button class= "btn button" style=" background: url(assets/noticewrite.jpg);color: black;font-size:xx-large;font-weight: bold;">
+        <div class="main-wrapper" style="background-color: white; border-radius: 3px;opacity: 0.8">  Write a Notice</div></button>
+      </div>
+      <div class="col-lg-3 col-md-3 col-sm-6 col-xs-12 mycontainer" align="center" (click)="gotoVN()" style="margin-left:350px;padding-left:0px">
+        <button class= "btn button" style=" background: url(assets/viewnotices.jpg);color: black;font-size:xx-large;font-weight: bold;">
+          <div class="main-wrapper" style="background-color: white; border-radius: 3px;opacity: 0.8">View Notices</div></button>
+        </div>
+
+</div>
 </div>
