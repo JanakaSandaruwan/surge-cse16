@@ -115,12 +115,10 @@ export class ViewteacherComponent implements OnInit {
     }
     onRDC($event){
       this.DCCRows = this.gridApi.getSelectedRows()[0];
-      console.log(this.DCCRows);
       $('#save').click();
     }
 
     onBtnExport(): void {
-      console.log(this.gridApi.getSelectedRows());
       if ( this.gridApi.getSelectedRows().length != 0){
         const params = {
           columnGroups: true,
@@ -130,7 +128,6 @@ export class ViewteacherComponent implements OnInit {
         }
         this.gridApi.exportDataAsCsv(params);
       }else{
-        console.log('d');
         const params = {
           columnGroups: true,
           allColumns: true,
@@ -142,7 +139,6 @@ export class ViewteacherComponent implements OnInit {
 
     onGridReady(params) {
       var i : number = 0;
-      console.log(this.STeachers);
       this.gridApi = params.api;
       this.gridColumnApi = params.columnApi;
       this.gridApi.setRowData(this.STeachers);
@@ -163,7 +159,6 @@ export class ViewteacherComponent implements OnInit {
     var i : number = 0;
     this.subjectlist= this._teacherservice.listSubjects();
     this._teacherservice.listTeachers().subscribe(val => {
-      console.log(val)
       this.STeachers = val;
     });
     this._teacherservice.gettid().subscribe(val => {
@@ -194,10 +189,8 @@ export class ViewteacherComponent implements OnInit {
     this._teacherservice.gettid().subscribe(val => {
       this.nextid = val;
     });
-    console.log(this.nextid);
     this.cteacher.password = "teacher123";
     this.cteacher.role = "teacher";
-    console.log(this.nextid);
       if (this.nextid < 10){
         this.cteacher.ID = "tc000"+this.nextid;
       }else if (this.nextid< 100){

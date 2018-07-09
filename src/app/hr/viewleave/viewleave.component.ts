@@ -21,7 +21,6 @@ export class ViewleaveComponent implements OnInit {
       }
       //$('#messageslist').append('<div  class="list-group-item animated fadeInLeft"><p>'+snapshot.val().content+'</p></div>');
     });
-    console.log(this.contentd);
     /*this._lservice.getleaverequests().on("child_removed", snapshot =>{
       //this.contentd.remove(snapshot.val().content);
       const index: number = this.contentd.indexOf(snapshot.val().content);
@@ -46,7 +45,6 @@ export class ViewleaveComponent implements OnInit {
   }*/
   movedownl(x,y){
     this.selected = y;
-    console.log(x);
       var K = "#"+x;
       $(K).slideToggle();
 

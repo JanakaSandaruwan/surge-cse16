@@ -15,11 +15,10 @@ export class NoticesviewComponent implements OnInit {
   constructor(private _nservice: NoticeserviceService) { }
 
   ngOnInit() {
+    this._nservice.deletelatenotices();
     this._nservice.getnotices().on("child_added", snapshot =>{
       this.contentd.push(snapshot.val());
       this.keys.push(snapshot.key);
-      console.log(this.keys);
-      console.log(this.contentd);
       //$('#messageslist').append('<div  class="list-group-item animated fadeInLeft"><p>'+snapshot.val().content+'</p></div>');
     });
     this._nservice.getnotices().on("child_removed", snapshot =>{
@@ -28,7 +27,6 @@ export class NoticesviewComponent implements OnInit {
       if (index !== -1) {
           this.contentd.splice(index, 1);
       }
-      console.log(snapshot.val().content);
     });
 
 
@@ -37,7 +35,6 @@ export class NoticesviewComponent implements OnInit {
 
   chooseselect(index){
     this.selectednotice = this.contentd[index];
-    console.log(this.selectednotice);
     var obj = this.selectednotice.files;
     if ( obj != undefined){
       this.selectedfiles = Object.keys(obj).map(function(key) {
@@ -45,14 +42,12 @@ export class NoticesviewComponent implements OnInit {
       });
     }
 
-    console.log(this.selectedfiles);
     $("#xxx").click();
   }
 
 
 
   deletenotice(index){
-    console.log(index);
     var deletekey = this.keys[index];
     if (index !== -1) {
         this.contentd.splice(index, 1);

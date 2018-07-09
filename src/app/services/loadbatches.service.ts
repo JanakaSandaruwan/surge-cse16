@@ -126,4 +126,15 @@ export class LoadbatchesService {
     });
 
   }
+
+  checkbatchname(bname){
+    var exists : boolean = false;
+    firebase.database().ref('batches').on('child_added',function(data){
+      if(data.val().name == bname ){
+        exists = true;
+        console.log("d");
+      }
+    });
+    return Observable.of(exists);
+  }
 }

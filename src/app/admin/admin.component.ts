@@ -24,7 +24,6 @@ export class AdminComponent implements OnInit {
   constructor(private location: Location,private  uploadService: UploadserviceService, private storage:LocalStorageService, private route: ActivatedRoute, private login : LoginServiceService, private router: Router, private logincookie : CookieService) { }
 
   movedown(){
-      console.log("dad");
       if (this.dropdownstate == "collapsed"){
         $('.dropdown-menu').first().stop(true, true).slideDown();
         this.dropdownstate = "down";
@@ -36,7 +35,6 @@ export class AdminComponent implements OnInit {
   }
 
   moveup(){
-    console.log("dad");
     if (this.dropdownstate == "collapsed"){
       $('.dropdown-menu').first().stop(true, true).slideDown();
       this.dropdownstate = "down";
@@ -86,20 +84,15 @@ export class AdminComponent implements OnInit {
         });
     this.username = this.storage.retrieve("uname");
     if (!this.storage.retrieve("uname")){
-      console.log("x");
       this.router.navigate(['']);
     }
-    console.log(this.storage.retrieve("uname")+"adsa");
     if (this.login.getloginstatus(this.storage.retrieve("uname")) == false){
-      console.log("y");
       this.router.navigate(['']);
     }else{
       this.uploadService.getUrl(this.storage.retrieve("uname")).subscribe(data => {
         this.profileurl = data;
-        console.log(this.profileurl);
       });
       this.route.firstChild.params.subscribe(params => {
-           console.log(atob(params['details']));
            this.usercode = params['details'];
          this.login.loginemployee(atob(params['details'])).subscribe(data => {
            this.fulldata = data;

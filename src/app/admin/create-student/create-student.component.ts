@@ -83,7 +83,6 @@ export class CreateStudentComponent implements OnInit {
   }
 
   onBtnExport(): void {
-    console.log(this.gridApi.getSelectedRows());
     if (this.selected == undefined){
         this.Error = "No batch selected";
         $("#errorbutton").click();
@@ -96,7 +95,6 @@ export class CreateStudentComponent implements OnInit {
       }
       this.gridApi.exportDataAsCsv(params);
     }else{
-      console.log('d');
       const params = {
         columnGroups: true,
         allColumns: true,
@@ -190,7 +188,6 @@ export class CreateStudentComponent implements OnInit {
 
     onSelectionChanged($event){
       this.selectedRows = this.gridApi.getSelectedRows();
-      console.log(this.selectedRows);
     }
 
     onRDC($event){
@@ -198,13 +195,12 @@ export class CreateStudentComponent implements OnInit {
       this.lgservice.listgradesofall(this.DCCRows.ID).subscribe(data => {
         this.results = data;
         this.gridApi2.setRowData(this.results);
-        console.log(this.results);
       });
-      console.log(this.DCCRows);
       $('#save').click();
     }
 
   ngOnInit(): void {
+    this.cstudent.ps = false;
     this.dtOptions = {
       pagingType: 'full_numbers',
       info: false,
@@ -215,7 +211,6 @@ export class CreateStudentComponent implements OnInit {
     };
     this._batchservice.listBatches()
         .subscribe(students => {
-          console.log(students);
           this.batches = students;
         });
 
@@ -263,6 +258,7 @@ export class CreateStudentComponent implements OnInit {
       this.SStudents = this._batchservice.listStudents(this.selected);
       this.gridApi.setRowData(this.SStudents);
     }
+    this.set = false;
     this.Success = "Successfuly added";
     $('#successbutton').click();
   }
@@ -275,6 +271,7 @@ export class CreateStudentComponent implements OnInit {
     this.sbatch = batch;
     this.nextid = batch.nextid;
     this.SStudents = this._batchservice.listStudents(this.selected);
+    console.log(this.nextid);
     //this.gridApi.setRowData(this.SStudents);
       //this.rowData = this.SStudents;
 

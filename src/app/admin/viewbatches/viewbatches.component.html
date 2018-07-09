@@ -15,10 +15,12 @@
             <label class="control-label col-md-3" for="field1"><b>Batch Code</b><span class="req"> *</span></label>
   			    <div class="controls col-md-9">
 
-                  <input id="field1" type="text" #bcode="ngModel" (input)="setted()" required class="form-control k-textbox" data-role="text" [(ngModel)]="cb.name">
-                  <div id="div1" *ngIf="bcode.invalid && (bcode.touched || bcode.dirty) && set" class="alert alert-danger">
+                  <input id="field1" type="text" #bcode="ngModel" (input)="checkbname()" required class="form-control k-textbox" data-role="text" [(ngModel)]="cb.name">
+                  <div id="div1" *ngIf="bcode.invalid && (bcode.touched || bcode.dirty)" class="alert alert-danger">
                   <div *ngIf="bcode.errors.required"> Batchcode is required.</div>
+                  <div class="alert alert-danger" id="div343" *ngIf="(batchtaken | async)"> Already Exists</div>
                 </div>
+                <div class="alert alert-danger" id="div343" *ngIf="(batchtaken | async)"> Already Exists</div>
 
           </div>
         </div>
@@ -58,7 +60,7 @@
     </div>
       <div class="modal-footer">
         <div class="form-group pull-right"  >
-        <button [disabled]="( (invalidyears | async) || gyear.invalid || (!gyear.dirty && !gyear.touched)) || (syear.invalid || (!syear.dirty && !syear.touched)) || (bcode.invalid || (!bcode.dirty && !bcode.touched))"id="button77" type="button" class="btn btn-default" (click)="submitStudent()">Submit</button>
+        <button [disabled]="((batchtaken | async) || (invalidyears | async) || gyear.invalid || (!gyear.dirty && !gyear.touched)) || (syear.invalid || (!syear.dirty && !syear.touched)) || (bcode.invalid || (!bcode.dirty && !bcode.touched))"id="button77" type="button" class="btn btn-default" (click)="submitStudent()">Submit</button>
         </div>
         <div class="form-group pull-right" >
         <button type="button" class="btn btn-default" (click)="clear()">Clear</button>

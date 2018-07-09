@@ -15,6 +15,7 @@ export class ViewbatchesComponent implements OnInit {
   show : boolean;
   invalidyears : Observable<boolean> = Observable.of(false);
   Success : string;
+  batchtaken : Observable<boolean> = Observable.of(false);
 
   constructor(private _batchservice: LoadbatchesService) {
 
@@ -78,6 +79,10 @@ export class ViewbatchesComponent implements OnInit {
         }
         this.Success = "Successfuly deleted";
         $('#successbutton').click();
+    }
+    checkbname(){
+      this.setted();
+      this.batchtaken = this._batchservice.checkbatchname(this.cb.name);
     }
 
 

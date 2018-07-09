@@ -17,6 +17,7 @@ export class NoticeserviceService {
     console.log(pushkey);
     console.log(files);
     this._upload.uploadNoticefiles(pushkey,files);
+    this.deletelatenotices();
   }
 
   postspecificnotice(sub , des , date, files , user){
@@ -48,6 +49,10 @@ export class NoticeserviceService {
   }
 
   getTeachernotices(){
+    return firebase.database().ref('/teachernotices');
+  }
+
+  getStudentnotices(){
     return firebase.database().ref('/studentnotices');
   }
 
@@ -65,6 +70,73 @@ export class NoticeserviceService {
       firebase.storage().ref('/studentnotices/'+key+'/'+x).delete();
     })
     firebase.database().ref('/studentnotices/' + key).remove();
+  }
+
+  deletelatenotices(){
+    var year : string;
+    var month : string;
+    var day : string;
+    var deletelater : string[] = [];
+    firebase.database().ref('/notices/').on("child_added",snapshot=>{
+      year = snapshot.val().enddate.substring(0,4);
+      month = snapshot.val().enddate.substring(5,7);
+      day = snapshot.val().enddate.substring(8,10);
+      console.log(month);
+      const d: Date = new Date();
+      if(d.getFullYear() > +year){
+        console.log(d.getFullYear());
+        this.deletenotice(snapshot.key);
+      }else if(d.getFullYear() == +year){
+        if(d.getMonth() + 1 > +month){
+          this.deletenotice(snapshot.key);
+        }else if(d.getMonth() + 1 == +month){
+          if(d.getDate() > +day){
+            console.log(1);
+            this.deletenotice(snapshot.key);
+          }
+        }
+      }
+    });
+    firebase.database().ref('/studentnotices/').on("child_added",snapshot=>{
+      year = snapshot.val().enddate.substring(0,4);
+      month = snapshot.val().enddate.substring(5,7);
+      day = snapshot.val().enddate.substring(8,10);
+      console.log(month);
+      const d: Date = new Date();
+      if(d.getFullYear() > +year){
+        console.log(d.getFullYear());
+        this.deletenotice(snapshot.key);
+      }else if(d.getFullYear() == +year){
+        if(d.getMonth() + 1 > +month){
+          this.deletenotice(snapshot.key);
+        }else if(d.getMonth() + 1 == +month){
+          if(d.getDate() > +day){
+            console.log(1);
+            this.deletenotice(snapshot.key);
+          }
+        }
+      }
+    });
+    firebase.database().ref('/teachernotices/').on("child_added",snapshot=>{
+      year = snapshot.val().enddate.substring(0,4);
+      month = snapshot.val().enddate.substring(5,7);
+      day = snapshot.val().enddate.substring(8,10);
+      console.log(month);
+      const d: Date = new Date();
+      if(d.getFullYear() > +year){
+        console.log(d.getFullYear());
+        this.deletenotice(snapshot.key);
+      }else if(d.getFullYear() == +year){
+        if(d.getMonth() + 1 > +month){
+          this.deletenotice(snapshot.key);
+        }else if(d.getMonth() + 1 == +month){
+          if(d.getDate() > +day){
+            console.log(1);
+            this.deletenotice(snapshot.key);
+          }
+        }
+      }
+    });
   }
 
 }

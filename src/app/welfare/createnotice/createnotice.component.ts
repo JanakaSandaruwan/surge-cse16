@@ -34,7 +34,6 @@ export class CreatenoticeComponent implements OnInit {
     if (index !== -1) {
         this.files.splice(index, 1);
     }
-    console.log(this.files);
   }
   onUploadFinished(event){
     this.files.push(event);
@@ -75,7 +74,6 @@ export class CreatenoticeComponent implements OnInit {
         this.modelearly = Observable.of(false);
       }
     }
-    console.log(pickedDate);
 
 
   }
@@ -109,7 +107,6 @@ export class CreatenoticeComponent implements OnInit {
         this.modelearly = Observable.of(false);
       }
     }
-    console.log(pickedDate);
     if ( this.noticedes == undefined || this.noticedes == "" ){
       x= true;
       this.descheck = Observable.of(true);
