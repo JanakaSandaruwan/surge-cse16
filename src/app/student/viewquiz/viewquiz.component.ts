@@ -149,7 +149,10 @@ export class ViewquizComponent implements OnInit {
                     x = x+1;
                   }
                   this.quizSvc.checkcomplete(this.storage.retrieve("uname"),this.subjectname,this.quizindex+1).subscribe(data => {
-                      this.completed = data;
+                      if(data != null){
+                        this.completed = data;
+                      }
+
                   });
                   if(this.completed == true){
                     this.quizSvc.checkans(this.storage.retrieve("uname"),this.subjectname,this.quizindex+1).subscribe(data => {
@@ -191,7 +194,7 @@ export class ViewquizComponent implements OnInit {
                   this.viewContainerRef.remove(0);
                   this.Add();
                   var marks = this.correct / this.quiz.length * 100 ;
-                  this.quizSvc.updatequizmarkstudent(this.storage.retrieve("uname"),this.subjectname,this.quizindex+1,this.answers,marks);
+                  this.quizSvc.updatequizmarkstudent(this.storage.retrieve("uname"),this.subjectname,this.quizindex+1,this.answers,marks,this.correct);
                   console.log(this.subjectname,this.quizname,this.storage.retrieve("uname"));
                 }
 
