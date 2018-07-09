@@ -2,11 +2,6 @@
   <li *ngFor= "let x of contentd" class="list-group-item animated fadeInLeft" (click)="chooseselect(contentd.indexOf(x))">
     <div>
       {{x.subject}}
-      <span class="pull-right">
-          <span class="btn btn-xs btn-default" (click)="deletenotice(contentd.indexOf(x))">
-                <span class="glyphicon glyphicon-trash" aria-hidden="true"></span>
-          </span>
-      </span>
     </div>
 
   </li>

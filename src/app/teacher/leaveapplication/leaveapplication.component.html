@@ -28,11 +28,11 @@
 
 
 
-          <label for="discrip" class="control-label control-label-left col-sm-3">Discription*</label>
+          <label for="discrip" class="control-label control-label-left col-sm-3">Description*</label>
                    <!--textarea cols="100" rows=""30 name="discrip" id="discrip"></textarea><br-->
           <textarea required minlength="10"  (input)="newform()" #disc="ngModel" id="discrip" rows="3" name="text" [(ngModel)]="discription" class="form-control k-textbox" data-role="textarea" required="required"  data-maxwords="150" style="margin-top: 0px; margin-bottom: 0px; height: 285px;"  ></textarea>
           <div *ngIf="disc.errors && (disc.dirty || disc.touched) && (newf | async) "  class ="alert alert-danger">
-            <div *ngIf="disc.errors.minlength">Discription must be at least 10 characters long.
+            <div *ngIf="disc.errors.minlength">Description must be at least 10 characters long.
             </div>
 
             <div *ngIf="disc.errors.required" >Please enter description

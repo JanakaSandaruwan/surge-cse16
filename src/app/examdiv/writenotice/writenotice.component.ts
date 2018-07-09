@@ -125,6 +125,13 @@ export class WritenoticeComponent implements OnInit {
     if ( !x ){
       $('#button79').click();
     }
+
+
+    if(this.noticesubject != "" && this.model != "" && this.noticedes != "" && this.noticesubject != null && this.model != null && this.noticedes != null ){
+      $("#verify").click();
+      $("#button7ds").click();
+    }
+
   }
 
   /*detectfiles(event){
