@@ -29,6 +29,7 @@ export class CreateComponent implements OnInit {
   showprev : boolean = false;
   completed : boolean = false;
   validtf : Observable<boolean> = Observable.of(false);
+  newf:Observable<boolean> = Observable.of(false);
 
   typechange(){
     this.answernotselected = Observable.of(true);
@@ -40,6 +41,8 @@ export class CreateComponent implements OnInit {
     }else{
       this.answernotselected = Observable.of(true);
     }
+
+    this.newf=Observable.of(true);
   }
   //@ViewChild('parent', { read: ViewContainerRef }) container: ViewContainerRef;
   getChildEvent(evt){
@@ -299,6 +302,14 @@ export class CreateComponent implements OnInit {
 
   }
 
+  newform(){
+    this.newf = Observable.of(true);
+  }
+
+  close(){
+    this.newf = Observable.of(false);
+  }
+
   prev(){
     this.index = this.index - 1 ;
     this.viewContainerRef.remove(0);
@@ -395,6 +406,9 @@ export class CreateComponent implements OnInit {
   }
 
   gotolastcreated(){
+
+      this.newf = Observable.of(false);
+
       this.viewContainerRef.remove(0);
     this.Adding();
     this.shownext = false;

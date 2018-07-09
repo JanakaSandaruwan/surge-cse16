@@ -1,5 +1,8 @@
 
- <ul id="messageslist" style="list-style-type:none" class="list-group">
+<h2 >View Leave Applications</h2>
+
+<hr style="color: #E5E8E8;width: 1500px">
+ <ul id="messageslist" style="list-style-type:none; " class="list-group">
   <li *ngFor= "let x of contentd" class="list-group-item animated fadeInLeft " (click)="movedownl(contentd.indexOf(x),x)">
     <div>
       {{x.decription}}

@@ -139,6 +139,33 @@ export class LoadquizService {
        question:"",
        answer:"",
     });
+
+    var list=this.studentList(subjectcode);
+    console.log(list);
+    var i=0;
+
+    while(i<list.length){
+      var std=list[i];
+      console.log(list[i]);
+      i++;
+      firebase.database().ref('/classes/'+subjectcode+'/students/'+std+"/quiz/quiz"+this.getNumQuiz(subjectcode)).set({
+         mark:"Not completed",
+         complete:false,
+         answer:"",
+      });
+    }
+
+  }
+
+  studentList(subjectname){
+    var finallist :any[];
+    finallist = [];
+    var nodata = 0;
+    firebase.database().ref('classes/'+subjectname+'/students').on('child_added', function(data) {
+        finallist[nodata]=data.val()['id'];
+        nodata = nodata + 1;
+      });
+      return finallist;
   }
 
   quizMarks(subjectname):any [] {
