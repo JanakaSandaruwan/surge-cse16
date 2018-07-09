@@ -130,8 +130,8 @@ export class LoadquizService {
     this.updatequizno(subjectcode);
 
     console.log(quizname+" "+quizdate);
-
-    firebase.database().ref('/classes/'+subjectcode+'/Quiz/quiz'+this.getNumQuiz(subjectcode)).set({
+    var k=this.getNumQuiz(subjectcode);
+    firebase.database().ref('/classes/'+subjectcode+'/Quiz/quiz'+k).set({
        name:quizname,
        date:quizdate,
        starttime:startquiztime,
@@ -139,33 +139,37 @@ export class LoadquizService {
        question:"",
        answer:"",
     });
+    var list = []
+    this.studentList(subjectcode).subscribe(data => {
+      list = data;
+      console.log(list);
+      var i=0;
 
-    var list=this.studentList(subjectcode);
-    console.log(list);
-    var i=0;
+      while(i<list.length){
+        var std=list[i];
+        console.log(list[i]);
+        i++;
+        firebase.database().ref('/classes/'+subjectcode+'/students/'+std+"/quiz/quiz"+k).set({
+           mark:"Not completed",
+           complete:false,
+           answer:"",
+        });
+      }
+    });
+    
 
-    while(i<list.length){
-      var std=list[i];
-      console.log(list[i]);
-      i++;
-      firebase.database().ref('/classes/'+subjectcode+'/students/'+std+"/quiz/quiz"+this.getNumQuiz(subjectcode)).set({
-         mark:"Not completed",
-         complete:false,
-         answer:"",
-      });
-    }
 
   }
 
-  studentList(subjectname){
+  studentList(subjectname):Observable<any[]>{
     var finallist :any[];
     finallist = [];
     var nodata = 0;
     firebase.database().ref('classes/'+subjectname+'/students').on('child_added', function(data) {
-        finallist[nodata]=data.val()['id'];
+        finallist[nodata]=data.key
         nodata = nodata + 1;
       });
-      return finallist;
+      return Observable.of(finallist);
   }
 
   quizMarks(subjectname):any [] {
