@@ -62,7 +62,7 @@ unenrol(module,studentID,moduleName,level){
 }
 
   getLevel(studentID):string{
-    var level:string ='Year 1';
+    var level:string ='';
   firebase.database().ref('/Users/'+studentID+"/bnumber").on("value", function(data){
       var batchno = data.val();
     firebase.database().ref('/batches/'+batchno+'/students/'+studentID+'/Level').on("value",function(data){
