@@ -21,7 +21,7 @@
             <li class="dropdown" (mouseenter)="movedown()" (mouseleave)="moveup()">
                 <img id="xsd" src={{profileurl}} alt="assets/149071.png" onerror="this.src='assets/149071.png'" />
                 <a href="#"  id="nbAcctDD" style="background-color:#424242" class="content" data-toggle="dropdown"><i class="icon-user"></i>{{username}}<i class="icon-sort-down"></i></a>
-                <ul class="dropdown-menu pull-right content" style="background-color:#424242" >
+                <ul class="dropdown-menu pull-right content" style="background-color:#808B96" >
                     <li ><a (click)="logout()">Log Out</a></li>
                     <li ><a (click)="changedata()">Change</a></li>
                 </ul>
@@ -51,15 +51,15 @@
             <li (click)="gotoprogress()">
                 <a href="javascript:void(0);" >Progress Check<i class="fa fa-chart-line menu-icon fa-2x large-icon" aria-hidden="true"></i></a>
             </li>
-            <li (click)="gotoscholar()">
+            <!--li (click)="gotoscholar()">
                 <a href="javascript:void(0);" >Scholarship<i class="fa fa-graduation-cap menu-icon fa-2x large-icon" aria-hidden="true"></i></a>
-            </li>
+            </li-->
             <li (click)="gotonotices()">
-                <a href="javascript:void(0);" >Medicle Leave<i class="fa fa-briefcase-medical menu-icon fa-2x large-icon" aria-hidden="true"></i></a>
+                <a href="javascript:void(0);" >Notices<i class="fa fa-sticky-note menu-icon fa-2x small-icon" aria-hidden="true"></i></a>
             </li>
-            <li (click)="gotocomplain()">
+            <!--li (click)="gotocomplain()">
                 <a href="javascript:void(0);"  >Add Complain<i class="fa fa-chalkboard-teacher menu-icon fa-2x large-icon" aria-hidden="true"></i></a>
-            </li>
+            </li-->
             <li>
                 <a href="javascript:void(0);" (click) = "changedata()" >Change Profile<i class="fa fa-cog menu-icon fa-2x small-icon" aria-hidden="true"></i></a>
             </li>

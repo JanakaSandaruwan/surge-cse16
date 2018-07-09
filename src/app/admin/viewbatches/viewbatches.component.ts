@@ -77,7 +77,8 @@ export class ViewbatchesComponent implements OnInit {
                     });
               });
         }
-        this.Success = "Successfuly deleted";
+        this.set = false;
+        this.Success = "Successfuly added";
         $('#successbutton').click();
     }
     checkbname(){

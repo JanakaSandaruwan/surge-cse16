@@ -51,4 +51,9 @@ export class HomeComponent implements OnInit {
 
   }
 
+  gotoVN(){
+    this.router.navigate(['student/notices',{details: btoa(this.usercode)}]);
+
+  }
+
 }

@@ -39,11 +39,12 @@ export class LoadquizService {
 
   }
 
-  updatequizmarkstudent(student,modulen,quiznu,answer, marks){
+  updatequizmarkstudent(student,modulen,quiznu,answer, marks , corans){
     firebase.database().ref('/classes/'+modulen+'/students/'+student+'/quiz/quiz'+quiznu+'').set({
       ans : answer,
       mark : marks,
-      complete : true
+      complete : true,
+      correct : corans
     });
   }
 
@@ -58,11 +59,10 @@ export class LoadquizService {
 
   checkcorrect(student,modulen,quiznu) : Observable<number>{
     var right : number;
-    firebase.database().ref('/classes/'+modulen+'/students/'+student+'/quiz/quiz'+quiznu+'/mark').on('value', function(data){
+    firebase.database().ref('/classes/'+modulen+'/students/'+student+'/quiz/quiz'+quiznu+'/correct').on('value', function(data){
       console.log(data.val());
       right = data.val();
     });
-    right = Math.round(right / 100 * 3);
     return Observable.of(right);
   }
 
@@ -130,8 +130,8 @@ export class LoadquizService {
     this.updatequizno(subjectcode);
 
     console.log(quizname+" "+quizdate);
-
-    firebase.database().ref('/classes/'+subjectcode+'/Quiz/quiz'+this.getNumQuiz(subjectcode)).set({
+    var k=this.getNumQuiz(subjectcode);
+    firebase.database().ref('/classes/'+subjectcode+'/Quiz/quiz'+k).set({
        name:quizname,
        date:quizdate,
        starttime:startquiztime,
@@ -139,6 +139,37 @@ export class LoadquizService {
        question:"",
        answer:"",
     });
+    var list = []
+    this.studentList(subjectcode).subscribe(data => {
+      list = data;
+      console.log(list);
+      var i=0;
+
+      while(i<list.length){
+        var std=list[i];
+        console.log(list[i]);
+        i++;
+        firebase.database().ref('/classes/'+subjectcode+'/students/'+std+"/quiz/quiz"+k).set({
+           mark:"Not completed",
+           complete:false,
+           answer:"",
+        });
+      }
+    });
+    
+
+
+  }
+
+  studentList(subjectname):Observable<any[]>{
+    var finallist :any[];
+    finallist = [];
+    var nodata = 0;
+    firebase.database().ref('classes/'+subjectname+'/students').on('child_added', function(data) {
+        finallist[nodata]=data.key
+        nodata = nodata + 1;
+      });
+      return Observable.of(finallist);
   }
 
   quizMarks(subjectname):any [] {
