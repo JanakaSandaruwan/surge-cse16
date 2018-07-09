@@ -31,6 +31,8 @@ export class LeaveapplicationComponent implements OnInit {
   fromvalid : Observable<boolean> = Observable.of(false);
   tovalid : Observable<boolean> = Observable.of(false);
   issetdate:boolean=false;
+  newf : Observable<boolean> = Observable.of(false);
+
   constructor(private router:Router, private route: ActivatedRoute,private leave:LoadLeaveService,private teacher:LoadteacherService) {
     this.columnDefs = [
           {headerName: "From", field: "from", width: 300},
@@ -58,6 +60,7 @@ export class LeaveapplicationComponent implements OnInit {
 
     console.log(this.leavenum);
     this.issetdate=false;
+    this.newf=Observable.of(false);
 
 
   }
@@ -81,7 +84,9 @@ export class LeaveapplicationComponent implements OnInit {
   }*/
 }
 
-
+  newform(){
+    this.newf=Observable.of(true);
+  }
 
   refresh(){
 
@@ -126,7 +131,7 @@ export class LeaveapplicationComponent implements OnInit {
     this.to="";
     this.from="";
     this.discription="";
-
+    this.newf= Observable.of(false);
   }
 
   send(){
@@ -144,11 +149,13 @@ export class LeaveapplicationComponent implements OnInit {
     this.to="";
     this.from="";
     this.discription="";
-
+    this.newf= Observable.of(false);
+    this.refresh();
     }
 
 
   validFromDate(){
+    this.newf= Observable.of(true);
     var date = new Date();
     var today = date.getFullYear() + '-' + ('0' + (date.getMonth() + 1)).slice(-2) + '-' + ('0' + date.getDate()).slice(-2);
 
@@ -165,6 +172,7 @@ export class LeaveapplicationComponent implements OnInit {
   }
 
   validToDate(){
+    this.newf=Observable.of(true);
     if( (new Date(this.from).getTime() < new Date(this.to).getTime())){
 
       this.tovalid=Observable.of(false);
