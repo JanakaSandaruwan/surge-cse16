@@ -42,9 +42,16 @@ export class UpdateuserComponent implements OnInit {
   currentFileUpload: Upload;
   profileurl: string;
   profilepicchanged = true;
+  passwordset : boolean = false;
 
   constructor(private storage:LocalStorageService, private _loginservice : LoginServiceService, private logincookie : CookieService, private  uploadService: UploadserviceService) { }
 
+  closepassword(){
+    this.passwordset = false;
+  }
+  passwordtouched(){
+    this.passwordset = true;
+  }
   ngOnInit() {
     this.fcontact = this.storage.retrieve("contact");
     this.fNIC = this.storage.retrieve("NIC");
@@ -136,12 +143,15 @@ export class UpdateuserComponent implements OnInit {
     }else if( this.reconfirm != this.newpassword){
       this.oldcheck = Observable.of(false);
       this.newcheck = Observable.of(true);
-      console.log("make sure to type the same password");
     }else{
       this.oldcheck = Observable.of(false);
       this.newcheck = Observable.of(false);
-      console.log("done and dusted");
       this._loginservice.updatepassword(this.storage.retrieve("uname"),this.newpassword);
+      this.passwordset = false;
+      $("#closeonsuccess").click();
+      this.oldpassword = "";
+      this.newpassword = "";
+      this.reconfirm = "";
     }
   }
 

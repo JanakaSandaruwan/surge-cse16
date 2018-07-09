@@ -146,6 +146,7 @@ export class ViewsubjectsComponent implements OnInit {
     this.csubject.code = "";
     $('#button79').click();
     this.Success = "Successfuly Added";
+    this.set = false;
     $('#successbutton').click();
   }
 

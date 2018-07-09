@@ -39,11 +39,12 @@ export class LoadquizService {
 
   }
 
-  updatequizmarkstudent(student,modulen,quiznu,answer, marks){
+  updatequizmarkstudent(student,modulen,quiznu,answer, marks , corans){
     firebase.database().ref('/classes/'+modulen+'/students/'+student+'/quiz/quiz'+quiznu+'').set({
       ans : answer,
       mark : marks,
-      complete : true
+      complete : true,
+      correct : corans
     });
   }
 
@@ -58,11 +59,10 @@ export class LoadquizService {
 
   checkcorrect(student,modulen,quiznu) : Observable<number>{
     var right : number;
-    firebase.database().ref('/classes/'+modulen+'/students/'+student+'/quiz/quiz'+quiznu+'/mark').on('value', function(data){
+    firebase.database().ref('/classes/'+modulen+'/students/'+student+'/quiz/quiz'+quiznu+'/correct').on('value', function(data){
       console.log(data.val());
       right = data.val();
     });
-    right = Math.round(right / 100 * 3);
     return Observable.of(right);
   }
 

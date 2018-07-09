@@ -212,6 +212,7 @@ export class ViewteacherComponent implements OnInit {
     this.cteacher.email = "";
     $('#refresher').click();
     $('#button79').click();
+    this.set = false;
     this.Success = "Successfuly added";
     $('#successbutton').click();
   }

@@ -191,6 +191,7 @@ export class ViewemployeesComponent implements OnInit {
     $('#button79').click();
     this.Success = "Successfuly Added";
     $('#successbutton').click();
+    this.set = false;
   }
 
 }
